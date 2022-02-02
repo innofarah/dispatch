@@ -24,7 +24,7 @@ import { mainget } from './get.mjs'
 
 program
     .command('publish <mainAssetName> <mainAssetType> <directoryPath> <target>')
-    .description('publish a file object with all dependencies to ipfs. target takes either `local` to store the constructed objects only locally, or `web3storage` to publish through the web3.storage api')
+    .description('publish a file object with all dependencies to ipfs. <mainAssetName> takes the name of the file without its extension. <mainAssetType> takes either `script` or `specification`. <directoryPath> takes the path of the directory containing the file starting from the directory of execution .<target> takes either `local` to store the constructed objects only locally, or `web3storage` to publish through the web3.storage api')
     .action(main)
 
 program
