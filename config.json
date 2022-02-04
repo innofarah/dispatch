@@ -1,4 +1,4 @@
 {
     "my-gateway": "http://dweb.link",
-    "my-web3.storage-api-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweEM5RmVhMWZERDMyMjM1ZUY4NUE0Yzc5NUEyZTUyQ2NFMTE0QTMxODciLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NDE5MDk4MTY2MzMsIm5hbWUiOiJmaXJzdHRva2VuIn0.63FN5benN2vbSa2QawYG3F5MCHbucKQo59IagLE28bs"
+    "my-web3.storage-api-token": "**insert-your-token-here**"
 }
