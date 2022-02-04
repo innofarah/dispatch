@@ -78,6 +78,12 @@ export let mainget = (ipfsPath, directory, ipfsStation) => {
         console.log("Missing arguments for process")
         process.exit(1)
     }
+
+    // create the given directorypath if it does not exist (starting from directory of execution)
+    if (!fs.existsSync(directory)){
+        fs.mkdirSync(directory, { recursive: true });
+    }
+    
     //const ipfsPath = process.argv[2]
     //const localDirectoryPath = process.argv[3]
 

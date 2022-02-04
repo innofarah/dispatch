@@ -1,6 +1,0 @@
-Specification "nat".
-
-% Ground nats
-Define nat : nat -> prop by
-  nat z;
-  nat (s N) := nat N.

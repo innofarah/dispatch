@@ -1,5 +1,0 @@
-Specification "nat".
-
-Import "defnat".
-Import "defnat1".
-Import "defalgos".

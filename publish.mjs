@@ -44,7 +44,7 @@ let processAsset = (assetName, assetType, directoryPath) => {
 
 let processFile = (asset, fileExtension, directoryPath) => {
     let fileText = fs.readFileSync(directoryPath + "/" + asset["name"] + fileExtension).toString()
-    let lines = fileText.split("\r\n")
+    let lines = fileText.split("\n")
     let rawText = ""
     if (fileExtension == ".thm") {
         lines.forEach(line => {
@@ -97,12 +97,12 @@ let processFile = (asset, fileExtension, directoryPath) => {
                         else asset["imports"].push(importedName)
                     }
                     else {
-                        if (command != "" && command != "\r\n") {
+                        if (command != "" && command != "\r\n" && command != "\n") {
                             line = line.trim()
                             if (command == line && line[line.length - 1] == ".") {
                                 rawText += command + "."
                             }
-                            else if (command == line)
+                            else if (command == line || command == "*/")
                                 rawText += command
                             else
                                 rawText += command + "."
@@ -129,7 +129,7 @@ let processFile = (asset, fileExtension, directoryPath) => {
     }
     else if (fileExtension == ".sig" || fileExtension == ".mod") {
         let modorsiglinefound = false
-        lines = lines.toString().split("\n")
+        //lines = lines.toString().split("\n")
         lines.forEach(line => {
             line.trim()
             if (line[0] == "%") {
@@ -167,12 +167,12 @@ let processFile = (asset, fileExtension, directoryPath) => {
                         }
                     }
                     else {
-                        if (command != "" && command != "\r\n") {
+                        if (command != "" && command != "\r\n" && command != "\n") {
                             line = line.trim()
                             if (command == line && line[line.length - 1] == ".") {
                                 rawText += command + "."
                             }
-                            else if (command == line)
+                            else if (command == line || command == "*/")
                                 rawText += command
                             else
                                 rawText += command + "."
@@ -199,9 +199,8 @@ let processFile = (asset, fileExtension, directoryPath) => {
 }
 
 let publishRawText = (asset, rawText, fileExtension) => {
-    let cmd = "echo \"" + rawText + "\" > rawText.txt"
-    execSync(cmd)
-    const output = execSync('ipfs add rawText.txt --quieter --cid-version 1', { encoding: 'utf-8' });  // the default is 'buffer'
+    fs.writeFileSync("rawText.txt", rawText)
+    const output = execSync('ipfs add rawText.txt --quieter --cid-version 1', { encoding : 'utf-8' });  // the default is 'buffer'
     if (fileExtension == ".thm")
         asset["text"]["/"] = output.substring(0, output.length - 1) // without the final "\n"
     else if (fileExtension == ".sig")
