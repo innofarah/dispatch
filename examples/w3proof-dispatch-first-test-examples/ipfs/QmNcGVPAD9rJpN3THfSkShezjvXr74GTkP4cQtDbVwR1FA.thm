@@ -1,0 +1,13 @@
+% Non-zero subtraction gets smaller
+
+Specification "nat".
+
+Import "defnat".
+Import "defalgos".
+
+Theorem sub_lt : forall N1 N2 N3,
+  nat N2 -> sub N1 (s N2) N3 ->
+    lt N3 N1.
+induction on 1. intros. case H1.
+  case H2. case H3. search.
+  case H2. apply IH to H3 H4. search.

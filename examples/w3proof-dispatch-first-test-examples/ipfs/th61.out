@@ -1,0 +1,11 @@
+Welcome to Abella 2.0.8-dev.
+Abella < Specification "nat".
+Reading specification "nat".
+
+Abella < Import "defnat".
+Importing from "defnat".
+
+Abella < Import "defalgos".
+Importing from "defalgos".
+
+Abella < 

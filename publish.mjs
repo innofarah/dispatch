@@ -129,6 +129,7 @@ let processFile = (asset, fileExtension, directoryPath) => {
     }
     else if (fileExtension == ".sig" || fileExtension == ".mod") {
         let modorsiglinefound = false
+        lines = lines.toString().split("\n")
         lines.forEach(line => {
             line.trim()
             if (line[0] == "%") {

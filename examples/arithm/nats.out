@@ -1,0 +1,12 @@
+Welcome to Abella 2.0.8-dev.
+Abella < Kind nat Type.
+
+Abella < Type z nat.
+
+Abella < Type s nat -> nat.
+
+Abella < Define nat : nat -> prop by 
+nat z;
+nat (s N) := nat N.
+
+Abella < 

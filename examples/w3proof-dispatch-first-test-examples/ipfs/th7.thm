@@ -1,0 +1,39 @@
+Specification "nat".
+
+% Ground nats
+Define nat : nat -> prop by
+  nat z;
+  nat (s N) := nat N.
+
+% Less than
+Define lt : nat -> nat -> prop by
+  lt N (s N);
+  lt N1 (s N2) := lt N1 N2.
+
+% The accessible part of the less-than relation
+Define lt_acc : nat -> prop by
+  lt_acc N := forall M, lt M N -> lt_acc M.
+
+
+% Subtraction
+Define sub : nat -> nat -> nat -> prop by
+  sub N z N := nat N;
+  sub (s N1) (s N2) N3 := sub N1 N2 N3.
+
+% Remainder: mod N M = R
+Define mod : nat -> nat -> nat -> prop by
+  mod N M N := lt N M;
+  mod N M R := exists N', sub N M N' /\ mod N' M R.
+
+% Euclid's Algorithm: gcd N M = D (including gcd z z = z)
+Define gcd : nat -> nat -> nat -> prop by
+  gcd N z N;
+  gcd N (s M) D := exists R, mod N (s M) R /\ gcd (s M) R D.
+
+Import "ipfs://QmSvHkahEWR5LYCkKppKAipMWDdTNZybPem43fJAh8BdKy".
+Import "ipfs://QmV128HEtk6d5c1Z8AQp1ktRuqEQRdAhRsdYtS8miKbG7a".
+
+Theorem mod_total : forall N M,
+  nat N -> nat M ->
+    exists R, nat R /\ mod N (s M) R.
+intros. apply nat_acc to H1. apply mod_total_strong to H1 H3 H2. search.

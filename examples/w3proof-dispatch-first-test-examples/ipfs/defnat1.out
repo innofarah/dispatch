@@ -1,0 +1,9 @@
+Welcome to Abella 2.0.8-dev.
+Abella < Specification "nat".
+Reading specification "nat".
+
+Abella < Define nat : nat -> prop by 
+nat z;
+nat (s N) := nat N.
+
+Abella < 

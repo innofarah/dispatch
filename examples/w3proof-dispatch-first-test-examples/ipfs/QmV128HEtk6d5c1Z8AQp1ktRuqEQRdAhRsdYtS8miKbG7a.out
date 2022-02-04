@@ -1,0 +1,147 @@
+Welcome to Abella 2.0.8-dev.
+Abella < Specification "nat".
+Reading specification "nat".
+
+Abella < Import "defnat".
+Importing from "defnat".
+
+Abella < Import "defalgos".
+Importing from "defalgos".
+
+Abella < Import "ipfs://QmQW3wzHwfyCH7LmXFX9a8QUG9WCFWDUajxWSjdpo1WdUq".
+Importing from "QmQW3wzHwfyCH7LmXFX9a8QUG9WCFWDUajxWSjdpo1WdUq".
+
+Abella < Import "ipfs://QmNcGVPAD9rJpN3THfSkShezjvXr74GTkP4cQtDbVwR1FA".
+Importing from "QmNcGVPAD9rJpN3THfSkShezjvXr74GTkP4cQtDbVwR1FA".
+
+Abella < Theorem mod_total_strong : 
+forall N M, nat N -> lt_acc N -> nat M -> (exists R, nat R /\ mod N (s M) R).
+
+
+============================
+ forall N M, nat N -> lt_acc N -> nat M -> (exists R, nat R /\ mod N (s M) R)
+
+mod_total_strong < induction on 2.
+
+IH : forall N M, nat N -> lt_acc N * -> nat M ->
+       (exists R, nat R /\ mod N (s M) R)
+============================
+ forall N M, nat N -> lt_acc N @ -> nat M ->
+   (exists R, nat R /\ mod N (s M) R)
+
+mod_total_strong < intros.
+
+Variables: N M
+IH : forall N M, nat N -> lt_acc N * -> nat M ->
+       (exists R, nat R /\ mod N (s M) R)
+H1 : nat N
+H2 : lt_acc N @
+H3 : nat M
+============================
+ exists R, nat R /\ mod N (s M) R
+
+mod_total_strong < case H2.
+
+Variables: N M
+IH : forall N M, nat N -> lt_acc N * -> nat M ->
+       (exists R, nat R /\ mod N (s M) R)
+H1 : nat N
+H3 : nat M
+H4 : forall M, lt M N -> lt_acc M *
+============================
+ exists R, nat R /\ mod N (s M) R
+
+mod_total_strong < apply sub_total to H1 _ with N2 = s M.
+
+Variables: N M
+IH : forall N M, nat N -> lt_acc N * -> nat M ->
+       (exists R, nat R /\ mod N (s M) R)
+H1 : nat N
+H3 : nat M
+H4 : forall M, lt M N -> lt_acc M *
+H5 : lt N (s M) \/ (exists N3, nat N3 /\ sub N (s M) N3)
+============================
+ exists R, nat R /\ mod N (s M) R
+
+mod_total_strong < case H5.
+Subgoal 1:
+
+Variables: N M
+IH : forall N M, nat N -> lt_acc N * -> nat M ->
+       (exists R, nat R /\ mod N (s M) R)
+H1 : nat N
+H3 : nat M
+H4 : forall M, lt M N -> lt_acc M *
+H6 : lt N (s M)
+============================
+ exists R, nat R /\ mod N (s M) R
+
+Subgoal 2 is:
+ exists R, nat R /\ mod N (s M) R
+
+mod_total_strong < search.
+Subgoal 2:
+
+Variables: N M N3
+IH : forall N M, nat N -> lt_acc N * -> nat M ->
+       (exists R, nat R /\ mod N (s M) R)
+H1 : nat N
+H3 : nat M
+H4 : forall M, lt M N -> lt_acc M *
+H6 : nat N3
+H7 : sub N (s M) N3
+============================
+ exists R, nat R /\ mod N (s M) R
+
+mod_total_strong < apply sub_lt to H3 H7.
+Subgoal 2:
+
+Variables: N M N3
+IH : forall N M, nat N -> lt_acc N * -> nat M ->
+       (exists R, nat R /\ mod N (s M) R)
+H1 : nat N
+H3 : nat M
+H4 : forall M, lt M N -> lt_acc M *
+H6 : nat N3
+H7 : sub N (s M) N3
+H8 : lt N3 N
+============================
+ exists R, nat R /\ mod N (s M) R
+
+mod_total_strong < apply H4 to H8.
+Subgoal 2:
+
+Variables: N M N3
+IH : forall N M, nat N -> lt_acc N * -> nat M ->
+       (exists R, nat R /\ mod N (s M) R)
+H1 : nat N
+H3 : nat M
+H4 : forall M, lt M N -> lt_acc M *
+H6 : nat N3
+H7 : sub N (s M) N3
+H8 : lt N3 N
+H9 : lt_acc N3 *
+============================
+ exists R, nat R /\ mod N (s M) R
+
+mod_total_strong < apply IH to H6 H9 H3.
+Subgoal 2:
+
+Variables: N M N3 R
+IH : forall N M, nat N -> lt_acc N * -> nat M ->
+       (exists R, nat R /\ mod N (s M) R)
+H1 : nat N
+H3 : nat M
+H4 : forall M, lt M N -> lt_acc M *
+H6 : nat N3
+H7 : sub N (s M) N3
+H8 : lt N3 N
+H9 : lt_acc N3 *
+H10 : nat R
+H11 : mod N3 (s M) R
+============================
+ exists R, nat R /\ mod N (s M) R
+
+mod_total_strong < search.
+Proof completed.
+Abella < 

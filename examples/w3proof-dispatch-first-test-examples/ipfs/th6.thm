@@ -1,0 +1,18 @@
+Specification "nat".
+
+Import "ipfs://QmSvHkahEWR5LYCkKppKAipMWDdTNZybPem43fJAh8BdKy". 
+%% th6'
+Import "ipfs://QmV128HEtk6d5c1Z8AQp1ktRuqEQRdAhRsdYtS8miKbG7a".
+%% th6''
+
+Theorem mod_total : forall N M,
+  nat N -> nat M ->
+    exists R, nat R /\ mod N (s M) R.
+intros. apply nat_acc to H1. apply mod_total_strong to H1 H3 H2. search.
+
+
+% Remainder smaller than divisor
+Theorem mod_lt : forall N M R, mod N M R -> lt R M.
+induction on 1. intros. case H1.
+  search.
+  apply IH to H3. search.

@@ -13,16 +13,17 @@ As a result, it makes sense to start the exploration by experimenting with how t
 
 To make things simple, only one producer of 'artifacts' (proof assistant) is considered for experimenting. This producer is the [Abella](https://abella-prover.org/) proof assistant. The other component within this experiment is the [IPFS](https://ipfs.io/)/[IPLD](https://ipld.io/) model.
 
+### Entry Goal
+
 ### Abella
 
-- 
+-
 
 ### IPFS and IPLD
 
 ---
 
 ### Usage
-
 
 ```javascript
 { "some": "json" }

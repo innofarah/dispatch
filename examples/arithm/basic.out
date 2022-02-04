@@ -1,0 +1,3615 @@
+Welcome to Abella 2.0.8-dev.
+Abella < Import "nats".
+Importing from "nats".
+
+Abella < Theorem succ_nat : 
+forall A, nat A -> nat (s A).
+
+
+============================
+ forall A, nat A -> nat (s A)
+
+succ_nat < induction on 1.
+
+IH : forall A, nat A * -> nat (s A)
+============================
+ forall A, nat A @ -> nat (s A)
+
+succ_nat < intros.
+
+Variables: A
+IH : forall A, nat A * -> nat (s A)
+H1 : nat A @
+============================
+ nat (s A)
+
+succ_nat < case H1.
+Subgoal 1:
+
+IH : forall A, nat A * -> nat (s A)
+============================
+ nat (s z)
+
+Subgoal 2 is:
+ nat (s (s N))
+
+succ_nat < search.
+Subgoal 2:
+
+Variables: N
+IH : forall A, nat A * -> nat (s A)
+H2 : nat N *
+============================
+ nat (s (s N))
+
+succ_nat < apply IH to H2.
+Subgoal 2:
+
+Variables: N
+IH : forall A, nat A * -> nat (s A)
+H2 : nat N *
+H3 : nat (s N)
+============================
+ nat (s (s N))
+
+succ_nat < search.
+Proof completed.
+Abella < Theorem succ_nat' : 
+forall A, nat (s A) -> nat A.
+
+
+============================
+ forall A, nat (s A) -> nat A
+
+succ_nat' < induction on 1.
+
+IH : forall A, nat (s A) * -> nat A
+============================
+ forall A, nat (s A) @ -> nat A
+
+succ_nat' < intros.
+
+Variables: A
+IH : forall A, nat (s A) * -> nat A
+H1 : nat (s A) @
+============================
+ nat A
+
+succ_nat' < case H1.
+
+Variables: A
+IH : forall A, nat (s A) * -> nat A
+H2 : nat A *
+============================
+ nat A
+
+succ_nat' < search.
+Proof completed.
+Abella < Define plus : nat -> nat -> nat -> prop by 
+plus z N N;
+plus (s M) N (s K) := plus M N K.
+
+Abella < Theorem augend_nat : 
+forall A B C, plus A B C -> nat B -> nat C -> nat A.
+
+
+============================
+ forall A B C, plus A B C -> nat B -> nat C -> nat A
+
+augend_nat < induction on 1.
+
+IH : forall A B C, plus A B C * -> nat B -> nat C -> nat A
+============================
+ forall A B C, plus A B C @ -> nat B -> nat C -> nat A
+
+augend_nat < intros.
+
+Variables: A B C
+IH : forall A B C, plus A B C * -> nat B -> nat C -> nat A
+H1 : plus A B C @
+H2 : nat B
+H3 : nat C
+============================
+ nat A
+
+augend_nat < case H1.
+Subgoal 1:
+
+Variables: C
+IH : forall A B C, plus A B C * -> nat B -> nat C -> nat A
+H2 : nat C
+H3 : nat C
+============================
+ nat z
+
+Subgoal 2 is:
+ nat (s M)
+
+augend_nat < search.
+Subgoal 2:
+
+Variables: B K M
+IH : forall A B C, plus A B C * -> nat B -> nat C -> nat A
+H2 : nat B
+H3 : nat (s K)
+H4 : plus M B K *
+============================
+ nat (s M)
+
+augend_nat < case H3.
+Subgoal 2:
+
+Variables: B K M
+IH : forall A B C, plus A B C * -> nat B -> nat C -> nat A
+H2 : nat B
+H4 : plus M B K *
+H5 : nat K
+============================
+ nat (s M)
+
+augend_nat < apply IH to H4 H2 H5.
+Subgoal 2:
+
+Variables: B K M
+IH : forall A B C, plus A B C * -> nat B -> nat C -> nat A
+H2 : nat B
+H4 : plus M B K *
+H5 : nat K
+H6 : nat M
+============================
+ nat (s M)
+
+augend_nat < search.
+Proof completed.
+Abella < Theorem augend_nat' : 
+forall A B C, plus A B C -> nat C -> nat A.
+
+
+============================
+ forall A B C, plus A B C -> nat C -> nat A
+
+augend_nat' < induction on 1.
+
+IH : forall A B C, plus A B C * -> nat C -> nat A
+============================
+ forall A B C, plus A B C @ -> nat C -> nat A
+
+augend_nat' < intros.
+
+Variables: A B C
+IH : forall A B C, plus A B C * -> nat C -> nat A
+H1 : plus A B C @
+H2 : nat C
+============================
+ nat A
+
+augend_nat' < case H1.
+Subgoal 1:
+
+Variables: C
+IH : forall A B C, plus A B C * -> nat C -> nat A
+H2 : nat C
+============================
+ nat z
+
+Subgoal 2 is:
+ nat (s M)
+
+augend_nat' < search.
+Subgoal 2:
+
+Variables: B K M
+IH : forall A B C, plus A B C * -> nat C -> nat A
+H2 : nat (s K)
+H3 : plus M B K *
+============================
+ nat (s M)
+
+augend_nat' < case H2.
+Subgoal 2:
+
+Variables: B K M
+IH : forall A B C, plus A B C * -> nat C -> nat A
+H3 : plus M B K *
+H4 : nat K
+============================
+ nat (s M)
+
+augend_nat' < apply IH to H3 H4.
+Subgoal 2:
+
+Variables: B K M
+IH : forall A B C, plus A B C * -> nat C -> nat A
+H3 : plus M B K *
+H4 : nat K
+H5 : nat M
+============================
+ nat (s M)
+
+augend_nat' < search.
+Proof completed.
+Abella < Theorem addend_nat : 
+forall A B C, plus A B C -> nat C -> nat B.
+
+
+============================
+ forall A B C, plus A B C -> nat C -> nat B
+
+addend_nat < induction on 1.
+
+IH : forall A B C, plus A B C * -> nat C -> nat B
+============================
+ forall A B C, plus A B C @ -> nat C -> nat B
+
+addend_nat < intros.
+
+Variables: A B C
+IH : forall A B C, plus A B C * -> nat C -> nat B
+H1 : plus A B C @
+H2 : nat C
+============================
+ nat B
+
+addend_nat < case H1.
+Subgoal 1:
+
+Variables: C
+IH : forall A B C, plus A B C * -> nat C -> nat B
+H2 : nat C
+============================
+ nat C
+
+Subgoal 2 is:
+ nat B
+
+addend_nat < search.
+Subgoal 2:
+
+Variables: B K M
+IH : forall A B C, plus A B C * -> nat C -> nat B
+H2 : nat (s K)
+H3 : plus M B K *
+============================
+ nat B
+
+addend_nat < case H2.
+Subgoal 2:
+
+Variables: B K M
+IH : forall A B C, plus A B C * -> nat C -> nat B
+H3 : plus M B K *
+H4 : nat K
+============================
+ nat B
+
+addend_nat < apply IH to H3 H4.
+Subgoal 2:
+
+Variables: B K M
+IH : forall A B C, plus A B C * -> nat C -> nat B
+H3 : plus M B K *
+H4 : nat K
+H5 : nat B
+============================
+ nat B
+
+addend_nat < search.
+Proof completed.
+Abella < Theorem plus_nat : 
+forall A B C, plus A B C -> nat A -> nat B -> nat C.
+
+
+============================
+ forall A B C, plus A B C -> nat A -> nat B -> nat C
+
+plus_nat < induction on 1.
+
+IH : forall A B C, plus A B C * -> nat A -> nat B -> nat C
+============================
+ forall A B C, plus A B C @ -> nat A -> nat B -> nat C
+
+plus_nat < intros.
+
+Variables: A B C
+IH : forall A B C, plus A B C * -> nat A -> nat B -> nat C
+H1 : plus A B C @
+H2 : nat A
+H3 : nat B
+============================
+ nat C
+
+plus_nat < case H1.
+Subgoal 1:
+
+Variables: C
+IH : forall A B C, plus A B C * -> nat A -> nat B -> nat C
+H2 : nat z
+H3 : nat C
+============================
+ nat C
+
+Subgoal 2 is:
+ nat (s K)
+
+plus_nat < search.
+Subgoal 2:
+
+Variables: B K M
+IH : forall A B C, plus A B C * -> nat A -> nat B -> nat C
+H2 : nat (s M)
+H3 : nat B
+H4 : plus M B K *
+============================
+ nat (s K)
+
+plus_nat < case H2.
+Subgoal 2:
+
+Variables: B K M
+IH : forall A B C, plus A B C * -> nat A -> nat B -> nat C
+H3 : nat B
+H4 : plus M B K *
+H5 : nat M
+============================
+ nat (s K)
+
+plus_nat < apply IH to H4 H5 H3.
+Subgoal 2:
+
+Variables: B K M
+IH : forall A B C, plus A B C * -> nat A -> nat B -> nat C
+H3 : nat B
+H4 : plus M B K *
+H5 : nat M
+H6 : nat K
+============================
+ nat (s K)
+
+plus_nat < search.
+Proof completed.
+Abella < Theorem plus_type1 : 
+forall N M P, plus N M P -> nat N.
+
+
+============================
+ forall N M P, plus N M P -> nat N
+
+plus_type1 < induction on 1.
+
+IH : forall N M P, plus N M P * -> nat N
+============================
+ forall N M P, plus N M P @ -> nat N
+
+plus_type1 < intros.
+
+Variables: N M P
+IH : forall N M P, plus N M P * -> nat N
+H1 : plus N M P @
+============================
+ nat N
+
+plus_type1 < case H1.
+Subgoal 1:
+
+Variables: P
+IH : forall N M P, plus N M P * -> nat N
+============================
+ nat z
+
+Subgoal 2 is:
+ nat (s M1)
+
+plus_type1 < search.
+Subgoal 2:
+
+Variables: M K M1
+IH : forall N M P, plus N M P * -> nat N
+H2 : plus M1 M K *
+============================
+ nat (s M1)
+
+plus_type1 < apply IH to H2.
+Subgoal 2:
+
+Variables: M K M1
+IH : forall N M P, plus N M P * -> nat N
+H2 : plus M1 M K *
+H3 : nat M1
+============================
+ nat (s M1)
+
+plus_type1 < search.
+Proof completed.
+Abella < Theorem plus_type2 : 
+forall N M P, nat M -> plus N M P -> nat P.
+
+
+============================
+ forall N M P, nat M -> plus N M P -> nat P
+
+plus_type2 < induction on 2.
+
+IH : forall N M P, nat M -> plus N M P * -> nat P
+============================
+ forall N M P, nat M -> plus N M P @ -> nat P
+
+plus_type2 < intros.
+
+Variables: N M P
+IH : forall N M P, nat M -> plus N M P * -> nat P
+H1 : nat M
+H2 : plus N M P @
+============================
+ nat P
+
+plus_type2 < case H2.
+Subgoal 1:
+
+Variables: P
+IH : forall N M P, nat M -> plus N M P * -> nat P
+H1 : nat P
+============================
+ nat P
+
+Subgoal 2 is:
+ nat (s K)
+
+plus_type2 < search.
+Subgoal 2:
+
+Variables: M K M1
+IH : forall N M P, nat M -> plus N M P * -> nat P
+H1 : nat M
+H3 : plus M1 M K *
+============================
+ nat (s K)
+
+plus_type2 < apply IH to H1 H3.
+Subgoal 2:
+
+Variables: M K M1
+IH : forall N M P, nat M -> plus N M P * -> nat P
+H1 : nat M
+H3 : plus M1 M K *
+H4 : nat K
+============================
+ nat (s K)
+
+plus_type2 < search.
+Proof completed.
+Abella < Theorem plus_zero : 
+forall N, nat N -> plus N z N.
+
+
+============================
+ forall N, nat N -> plus N z N
+
+plus_zero < induction on 1.
+
+IH : forall N, nat N * -> plus N z N
+============================
+ forall N, nat N @ -> plus N z N
+
+plus_zero < intros.
+
+Variables: N
+IH : forall N, nat N * -> plus N z N
+H1 : nat N @
+============================
+ plus N z N
+
+plus_zero < case H1.
+Subgoal 1:
+
+IH : forall N, nat N * -> plus N z N
+============================
+ plus z z z
+
+Subgoal 2 is:
+ plus (s N1) z (s N1)
+
+plus_zero < search.
+Subgoal 2:
+
+Variables: N1
+IH : forall N, nat N * -> plus N z N
+H2 : nat N1 *
+============================
+ plus (s N1) z (s N1)
+
+plus_zero < apply IH to H2.
+Subgoal 2:
+
+Variables: N1
+IH : forall N, nat N * -> plus N z N
+H2 : nat N1 *
+H3 : plus N1 z N1
+============================
+ plus (s N1) z (s N1)
+
+plus_zero < search.
+Proof completed.
+Abella < Theorem plus_succ : 
+forall M N K, plus M N K -> plus M (s N) (s K).
+
+
+============================
+ forall M N K, plus M N K -> plus M (s N) (s K)
+
+plus_succ < induction on 1.
+
+IH : forall M N K, plus M N K * -> plus M (s N) (s K)
+============================
+ forall M N K, plus M N K @ -> plus M (s N) (s K)
+
+plus_succ < intros.
+
+Variables: M N K
+IH : forall M N K, plus M N K * -> plus M (s N) (s K)
+H1 : plus M N K @
+============================
+ plus M (s N) (s K)
+
+plus_succ < case H1.
+Subgoal 1:
+
+Variables: K
+IH : forall M N K, plus M N K * -> plus M (s N) (s K)
+============================
+ plus z (s K) (s K)
+
+Subgoal 2 is:
+ plus (s M1) (s N) (s (s K1))
+
+plus_succ < search.
+Subgoal 2:
+
+Variables: N K1 M1
+IH : forall M N K, plus M N K * -> plus M (s N) (s K)
+H2 : plus M1 N K1 *
+============================
+ plus (s M1) (s N) (s (s K1))
+
+plus_succ < apply IH to H2.
+Subgoal 2:
+
+Variables: N K1 M1
+IH : forall M N K, plus M N K * -> plus M (s N) (s K)
+H2 : plus M1 N K1 *
+H3 : plus M1 (s N) (s K1)
+============================
+ plus (s M1) (s N) (s (s K1))
+
+plus_succ < search.
+Proof completed.
+Abella < Theorem plus_comm : 
+forall M N K, nat K -> plus M N K -> plus N M K.
+
+
+============================
+ forall M N K, nat K -> plus M N K -> plus N M K
+
+plus_comm < induction on 2.
+
+IH : forall M N K, nat K -> plus M N K * -> plus N M K
+============================
+ forall M N K, nat K -> plus M N K @ -> plus N M K
+
+plus_comm < intros.
+
+Variables: M N K
+IH : forall M N K, nat K -> plus M N K * -> plus N M K
+H1 : nat K
+H2 : plus M N K @
+============================
+ plus N M K
+
+plus_comm < case H2.
+Subgoal 1:
+
+Variables: K
+IH : forall M N K, nat K -> plus M N K * -> plus N M K
+H1 : nat K
+============================
+ plus K z K
+
+Subgoal 2 is:
+ plus N (s M1) (s K1)
+
+plus_comm < apply plus_zero to H1.
+Subgoal 1:
+
+Variables: K
+IH : forall M N K, nat K -> plus M N K * -> plus N M K
+H1 : nat K
+H3 : plus K z K
+============================
+ plus K z K
+
+Subgoal 2 is:
+ plus N (s M1) (s K1)
+
+plus_comm < search.
+Subgoal 2:
+
+Variables: N K1 M1
+IH : forall M N K, nat K -> plus M N K * -> plus N M K
+H1 : nat (s K1)
+H3 : plus M1 N K1 *
+============================
+ plus N (s M1) (s K1)
+
+plus_comm < case H1.
+Subgoal 2:
+
+Variables: N K1 M1
+IH : forall M N K, nat K -> plus M N K * -> plus N M K
+H3 : plus M1 N K1 *
+H4 : nat K1
+============================
+ plus N (s M1) (s K1)
+
+plus_comm < apply IH to H4 H3.
+Subgoal 2:
+
+Variables: N K1 M1
+IH : forall M N K, nat K -> plus M N K * -> plus N M K
+H3 : plus M1 N K1 *
+H4 : nat K1
+H5 : plus N M1 K1
+============================
+ plus N (s M1) (s K1)
+
+plus_comm < apply plus_succ to H5.
+Subgoal 2:
+
+Variables: N K1 M1
+IH : forall M N K, nat K -> plus M N K * -> plus N M K
+H3 : plus M1 N K1 *
+H4 : nat K1
+H5 : plus N M1 K1
+H6 : plus N (s M1) (s K1)
+============================
+ plus N (s M1) (s K1)
+
+plus_comm < search.
+Proof completed.
+Abella < Theorem plus_det : 
+forall A B C D, plus A B C -> plus A B D -> C = D.
+
+
+============================
+ forall A B C D, plus A B C -> plus A B D -> C = D
+
+plus_det < induction on 1.
+
+IH : forall A B C D, plus A B C * -> plus A B D -> C = D
+============================
+ forall A B C D, plus A B C @ -> plus A B D -> C = D
+
+plus_det < intros.
+
+Variables: A B C D
+IH : forall A B C D, plus A B C * -> plus A B D -> C = D
+H1 : plus A B C @
+H2 : plus A B D
+============================
+ C = D
+
+plus_det < case H1.
+Subgoal 1:
+
+Variables: C D
+IH : forall A B C D, plus A B C * -> plus A B D -> C = D
+H2 : plus z C D
+============================
+ C = D
+
+Subgoal 2 is:
+ s K = D
+
+plus_det < case H2.
+Subgoal 1:
+
+Variables: D
+IH : forall A B C D, plus A B C * -> plus A B D -> C = D
+============================
+ D = D
+
+Subgoal 2 is:
+ s K = D
+
+plus_det < search.
+Subgoal 2:
+
+Variables: B D K M
+IH : forall A B C D, plus A B C * -> plus A B D -> C = D
+H2 : plus (s M) B D
+H3 : plus M B K *
+============================
+ s K = D
+
+plus_det < case H2.
+Subgoal 2:
+
+Variables: B K M K1
+IH : forall A B C D, plus A B C * -> plus A B D -> C = D
+H3 : plus M B K *
+H4 : plus M B K1
+============================
+ s K = s K1
+
+plus_det < apply IH to H3 H4.
+Subgoal 2:
+
+Variables: B M K1
+IH : forall A B C D, plus A B C * -> plus A B D -> C = D
+H3 : plus M B K1 *
+H4 : plus M B K1
+============================
+ s K1 = s K1
+
+plus_det < search.
+Proof completed.
+Abella < Theorem plus_assoc : 
+forall A B C AB ABC, plus A B AB -> plus AB C ABC ->
+  (exists BC, plus B C BC /\ plus A BC ABC).
+
+
+============================
+ forall A B C AB ABC, plus A B AB -> plus AB C ABC ->
+   (exists BC, plus B C BC /\ plus A BC ABC)
+
+plus_assoc < induction on 1.
+
+IH : forall A B C AB ABC, plus A B AB * -> plus AB C ABC ->
+       (exists BC, plus B C BC /\ plus A BC ABC)
+============================
+ forall A B C AB ABC, plus A B AB @ -> plus AB C ABC ->
+   (exists BC, plus B C BC /\ plus A BC ABC)
+
+plus_assoc < intros.
+
+Variables: A B C AB ABC
+IH : forall A B C AB ABC, plus A B AB * -> plus AB C ABC ->
+       (exists BC, plus B C BC /\ plus A BC ABC)
+H1 : plus A B AB @
+H2 : plus AB C ABC
+============================
+ exists BC, plus B C BC /\ plus A BC ABC
+
+plus_assoc < case H1.
+Subgoal 1:
+
+Variables: C AB ABC
+IH : forall A B C AB ABC, plus A B AB * -> plus AB C ABC ->
+       (exists BC, plus B C BC /\ plus A BC ABC)
+H2 : plus AB C ABC
+============================
+ exists BC, plus AB C BC /\ plus z BC ABC
+
+Subgoal 2 is:
+ exists BC, plus B C BC /\ plus (s M) BC ABC
+
+plus_assoc < search.
+Subgoal 2:
+
+Variables: B C ABC K M
+IH : forall A B C AB ABC, plus A B AB * -> plus AB C ABC ->
+       (exists BC, plus B C BC /\ plus A BC ABC)
+H2 : plus (s K) C ABC
+H3 : plus M B K *
+============================
+ exists BC, plus B C BC /\ plus (s M) BC ABC
+
+plus_assoc < case H2.
+Subgoal 2:
+
+Variables: B C K M K1
+IH : forall A B C AB ABC, plus A B AB * -> plus AB C ABC ->
+       (exists BC, plus B C BC /\ plus A BC ABC)
+H3 : plus M B K *
+H4 : plus K C K1
+============================
+ exists BC, plus B C BC /\ plus (s M) BC (s K1)
+
+plus_assoc < apply IH to H3 H4.
+Subgoal 2:
+
+Variables: B C K M K1 BC
+IH : forall A B C AB ABC, plus A B AB * -> plus AB C ABC ->
+       (exists BC, plus B C BC /\ plus A BC ABC)
+H3 : plus M B K *
+H4 : plus K C K1
+H5 : plus B C BC
+H6 : plus M BC K1
+============================
+ exists BC, plus B C BC /\ plus (s M) BC (s K1)
+
+plus_assoc < search.
+Proof completed.
+Abella < Theorem plus_assoc_rl : 
+forall A B C BC ABC, nat ABC -> plus B C BC -> plus A BC ABC ->
+  (exists AB, plus A B AB /\ plus AB C ABC).
+
+
+============================
+ forall A B C BC ABC, nat ABC -> plus B C BC -> plus A BC ABC ->
+   (exists AB, plus A B AB /\ plus AB C ABC)
+
+plus_assoc_rl < intros.
+
+Variables: A B C BC ABC
+H1 : nat ABC
+H2 : plus B C BC
+H3 : plus A BC ABC
+============================
+ exists AB, plus A B AB /\ plus AB C ABC
+
+plus_assoc_rl < apply plus_comm to H1 H3.
+
+Variables: A B C BC ABC
+H1 : nat ABC
+H2 : plus B C BC
+H3 : plus A BC ABC
+H4 : plus BC A ABC
+============================
+ exists AB, plus A B AB /\ plus AB C ABC
+
+plus_assoc_rl < apply addend_nat to H3 H1.
+
+Variables: A B C BC ABC
+H1 : nat ABC
+H2 : plus B C BC
+H3 : plus A BC ABC
+H4 : plus BC A ABC
+H5 : nat BC
+============================
+ exists AB, plus A B AB /\ plus AB C ABC
+
+plus_assoc_rl < apply plus_comm to H5 H2.
+
+Variables: A B C BC ABC
+H1 : nat ABC
+H2 : plus B C BC
+H3 : plus A BC ABC
+H4 : plus BC A ABC
+H5 : nat BC
+H6 : plus C B BC
+============================
+ exists AB, plus A B AB /\ plus AB C ABC
+
+plus_assoc_rl < apply plus_assoc to H6 H4.
+
+Variables: A B C BC ABC BC1
+H1 : nat ABC
+H2 : plus B C BC
+H3 : plus A BC ABC
+H4 : plus BC A ABC
+H5 : nat BC
+H6 : plus C B BC
+H7 : plus B A BC1
+H8 : plus C BC1 ABC
+============================
+ exists AB, plus A B AB /\ plus AB C ABC
+
+plus_assoc_rl < apply plus_comm to H1 H8.
+
+Variables: A B C BC ABC BC1
+H1 : nat ABC
+H2 : plus B C BC
+H3 : plus A BC ABC
+H4 : plus BC A ABC
+H5 : nat BC
+H6 : plus C B BC
+H7 : plus B A BC1
+H8 : plus C BC1 ABC
+H9 : plus BC1 C ABC
+============================
+ exists AB, plus A B AB /\ plus AB C ABC
+
+plus_assoc_rl < apply addend_nat to H8 H1.
+
+Variables: A B C BC ABC BC1
+H1 : nat ABC
+H2 : plus B C BC
+H3 : plus A BC ABC
+H4 : plus BC A ABC
+H5 : nat BC
+H6 : plus C B BC
+H7 : plus B A BC1
+H8 : plus C BC1 ABC
+H9 : plus BC1 C ABC
+H10 : nat BC1
+============================
+ exists AB, plus A B AB /\ plus AB C ABC
+
+plus_assoc_rl < apply plus_comm to H10 H7.
+
+Variables: A B C BC ABC BC1
+H1 : nat ABC
+H2 : plus B C BC
+H3 : plus A BC ABC
+H4 : plus BC A ABC
+H5 : nat BC
+H6 : plus C B BC
+H7 : plus B A BC1
+H8 : plus C BC1 ABC
+H9 : plus BC1 C ABC
+H10 : nat BC1
+H11 : plus A B BC1
+============================
+ exists AB, plus A B AB /\ plus AB C ABC
+
+plus_assoc_rl < search.
+Proof completed.
+Abella < Theorem plus_perm4 : 
+forall A B C D AB CD ABCD, nat ABCD -> plus A B AB -> plus C D CD ->
+  plus AB CD ABCD ->
+  (exists AC BD, plus A C AC /\ plus B D BD /\ plus AC BD ABCD).
+
+
+============================
+ forall A B C D AB CD ABCD, nat ABCD -> plus A B AB -> plus C D CD ->
+   plus AB CD ABCD ->
+   (exists AC BD, plus A C AC /\ plus B D BD /\ plus AC BD ABCD)
+
+plus_perm4 < intros.
+
+Variables: A B C D AB CD ABCD
+H1 : nat ABCD
+H2 : plus A B AB
+H3 : plus C D CD
+H4 : plus AB CD ABCD
+============================
+ exists AC BD, plus A C AC /\ plus B D BD /\ plus AC BD ABCD
+
+plus_perm4 < apply plus_assoc to H2 H4.
+
+Variables: A B C D AB CD ABCD BC
+H1 : nat ABCD
+H2 : plus A B AB
+H3 : plus C D CD
+H4 : plus AB CD ABCD
+H5 : plus B CD BC
+H6 : plus A BC ABCD
+============================
+ exists AC BD, plus A C AC /\ plus B D BD /\ plus AC BD ABCD
+
+plus_perm4 < apply addend_nat to H6 H1.
+
+Variables: A B C D AB CD ABCD BC
+H1 : nat ABCD
+H2 : plus A B AB
+H3 : plus C D CD
+H4 : plus AB CD ABCD
+H5 : plus B CD BC
+H6 : plus A BC ABCD
+H7 : nat BC
+============================
+ exists AC BD, plus A C AC /\ plus B D BD /\ plus AC BD ABCD
+
+plus_perm4 < apply plus_comm to H7 H5.
+
+Variables: A B C D AB CD ABCD BC
+H1 : nat ABCD
+H2 : plus A B AB
+H3 : plus C D CD
+H4 : plus AB CD ABCD
+H5 : plus B CD BC
+H6 : plus A BC ABCD
+H7 : nat BC
+H8 : plus CD B BC
+============================
+ exists AC BD, plus A C AC /\ plus B D BD /\ plus AC BD ABCD
+
+plus_perm4 < apply plus_assoc to H3 H8.
+
+Variables: A B C D AB CD ABCD BC BC1
+H1 : nat ABCD
+H2 : plus A B AB
+H3 : plus C D CD
+H4 : plus AB CD ABCD
+H5 : plus B CD BC
+H6 : plus A BC ABCD
+H7 : nat BC
+H8 : plus CD B BC
+H9 : plus D B BC1
+H10 : plus C BC1 BC
+============================
+ exists AC BD, plus A C AC /\ plus B D BD /\ plus AC BD ABCD
+
+plus_perm4 < apply addend_nat to H10 H7.
+
+Variables: A B C D AB CD ABCD BC BC1
+H1 : nat ABCD
+H2 : plus A B AB
+H3 : plus C D CD
+H4 : plus AB CD ABCD
+H5 : plus B CD BC
+H6 : plus A BC ABCD
+H7 : nat BC
+H8 : plus CD B BC
+H9 : plus D B BC1
+H10 : plus C BC1 BC
+H11 : nat BC1
+============================
+ exists AC BD, plus A C AC /\ plus B D BD /\ plus AC BD ABCD
+
+plus_perm4 < apply plus_comm to H11 H9.
+
+Variables: A B C D AB CD ABCD BC BC1
+H1 : nat ABCD
+H2 : plus A B AB
+H3 : plus C D CD
+H4 : plus AB CD ABCD
+H5 : plus B CD BC
+H6 : plus A BC ABCD
+H7 : nat BC
+H8 : plus CD B BC
+H9 : plus D B BC1
+H10 : plus C BC1 BC
+H11 : nat BC1
+H12 : plus B D BC1
+============================
+ exists AC BD, plus A C AC /\ plus B D BD /\ plus AC BD ABCD
+
+plus_perm4 < apply plus_assoc_rl to H1 H10 H6.
+
+Variables: A B C D AB CD ABCD BC BC1 AB1
+H1 : nat ABCD
+H2 : plus A B AB
+H3 : plus C D CD
+H4 : plus AB CD ABCD
+H5 : plus B CD BC
+H6 : plus A BC ABCD
+H7 : nat BC
+H8 : plus CD B BC
+H9 : plus D B BC1
+H10 : plus C BC1 BC
+H11 : nat BC1
+H12 : plus B D BC1
+H13 : plus A C AB1
+H14 : plus AB1 BC1 ABCD
+============================
+ exists AC BD, plus A C AC /\ plus B D BD /\ plus AC BD ABCD
+
+plus_perm4 < search.
+Proof completed.
+Abella < Theorem plus_total : 
+forall M N, nat M -> (exists K, plus M N K).
+
+
+============================
+ forall M N, nat M -> (exists K, plus M N K)
+
+plus_total < induction on 1.
+
+IH : forall M N, nat M * -> (exists K, plus M N K)
+============================
+ forall M N, nat M @ -> (exists K, plus M N K)
+
+plus_total < intros.
+
+Variables: M N
+IH : forall M N, nat M * -> (exists K, plus M N K)
+H1 : nat M @
+============================
+ exists K, plus M N K
+
+plus_total < case H1.
+Subgoal 1:
+
+Variables: N
+IH : forall M N, nat M * -> (exists K, plus M N K)
+============================
+ exists K, plus z N K
+
+Subgoal 2 is:
+ exists K, plus (s N1) N K
+
+plus_total < search.
+Subgoal 2:
+
+Variables: N N1
+IH : forall M N, nat M * -> (exists K, plus M N K)
+H2 : nat N1 *
+============================
+ exists K, plus (s N1) N K
+
+plus_total < apply IH to H2 with N = N.
+Subgoal 2:
+
+Variables: N N1 K
+IH : forall M N, nat M * -> (exists K, plus M N K)
+H2 : nat N1 *
+H3 : plus N1 N K
+============================
+ exists K, plus (s N1) N K
+
+plus_total < search.
+Proof completed.
+Abella < Theorem plus_total' : 
+forall M N, nat M -> nat N -> (exists K, nat K /\ plus M N K).
+
+
+============================
+ forall M N, nat M -> nat N -> (exists K, nat K /\ plus M N K)
+
+plus_total' < induction on 1.
+
+IH : forall M N, nat M * -> nat N -> (exists K, nat K /\ plus M N K)
+============================
+ forall M N, nat M @ -> nat N -> (exists K, nat K /\ plus M N K)
+
+plus_total' < intros.
+
+Variables: M N
+IH : forall M N, nat M * -> nat N -> (exists K, nat K /\ plus M N K)
+H1 : nat M @
+H2 : nat N
+============================
+ exists K, nat K /\ plus M N K
+
+plus_total' < case H1.
+Subgoal 1:
+
+Variables: N
+IH : forall M N, nat M * -> nat N -> (exists K, nat K /\ plus M N K)
+H2 : nat N
+============================
+ exists K, nat K /\ plus z N K
+
+Subgoal 2 is:
+ exists K, nat K /\ plus (s N1) N K
+
+plus_total' < exists N.
+Subgoal 1:
+
+Variables: N
+IH : forall M N, nat M * -> nat N -> (exists K, nat K /\ plus M N K)
+H2 : nat N
+============================
+ nat N /\ plus z N N
+
+Subgoal 2 is:
+ exists K, nat K /\ plus (s N1) N K
+
+plus_total' < search.
+Subgoal 2:
+
+Variables: N N1
+IH : forall M N, nat M * -> nat N -> (exists K, nat K /\ plus M N K)
+H2 : nat N
+H3 : nat N1 *
+============================
+ exists K, nat K /\ plus (s N1) N K
+
+plus_total' < apply IH to H3 H2.
+Subgoal 2:
+
+Variables: N N1 K
+IH : forall M N, nat M * -> nat N -> (exists K, nat K /\ plus M N K)
+H2 : nat N
+H3 : nat N1 *
+H4 : nat K
+H5 : plus N1 N K
+============================
+ exists K, nat K /\ plus (s N1) N K
+
+plus_total' < search.
+Proof completed.
+Abella < Theorem plus_swaprl : 
+forall A B C, plus A (s B) C -> plus (s A) B C.
+
+
+============================
+ forall A B C, plus A (s B) C -> plus (s A) B C
+
+plus_swaprl < induction on 1.
+
+IH : forall A B C, plus A (s B) C * -> plus (s A) B C
+============================
+ forall A B C, plus A (s B) C @ -> plus (s A) B C
+
+plus_swaprl < intros.
+
+Variables: A B C
+IH : forall A B C, plus A (s B) C * -> plus (s A) B C
+H1 : plus A (s B) C @
+============================
+ plus (s A) B C
+
+plus_swaprl < case H1.
+Subgoal 1:
+
+Variables: B
+IH : forall A B C, plus A (s B) C * -> plus (s A) B C
+============================
+ plus (s z) B (s B)
+
+Subgoal 2 is:
+ plus (s (s M)) B (s K)
+
+plus_swaprl < search.
+Subgoal 2:
+
+Variables: B K M
+IH : forall A B C, plus A (s B) C * -> plus (s A) B C
+H2 : plus M (s B) K *
+============================
+ plus (s (s M)) B (s K)
+
+plus_swaprl < apply IH to H2.
+Subgoal 2:
+
+Variables: B K M
+IH : forall A B C, plus A (s B) C * -> plus (s A) B C
+H2 : plus M (s B) K *
+H3 : plus (s M) B K
+============================
+ plus (s (s M)) B (s K)
+
+plus_swaprl < search.
+Proof completed.
+Abella < Theorem plus_swaplr : 
+forall A B C, plus (s A) B C -> plus A (s B) C.
+
+
+============================
+ forall A B C, plus (s A) B C -> plus A (s B) C
+
+plus_swaplr < induction on 1.
+
+IH : forall A B C, plus (s A) B C * -> plus A (s B) C
+============================
+ forall A B C, plus (s A) B C @ -> plus A (s B) C
+
+plus_swaplr < intros.
+
+Variables: A B C
+IH : forall A B C, plus (s A) B C * -> plus A (s B) C
+H1 : plus (s A) B C @
+============================
+ plus A (s B) C
+
+plus_swaplr < case H1.
+
+Variables: A B K
+IH : forall A B C, plus (s A) B C * -> plus A (s B) C
+H2 : plus A B K *
+============================
+ plus A (s B) (s K)
+
+plus_swaplr < apply plus_succ to H2.
+
+Variables: A B K
+IH : forall A B C, plus (s A) B C * -> plus A (s B) C
+H2 : plus A B K *
+H3 : plus A (s B) (s K)
+============================
+ plus A (s B) (s K)
+
+plus_swaplr < search.
+Proof completed.
+Abella < Theorem plus_one : 
+forall N, nat N -> plus N (s z) (s N).
+
+
+============================
+ forall N, nat N -> plus N (s z) (s N)
+
+plus_one < induction on 1.
+
+IH : forall N, nat N * -> plus N (s z) (s N)
+============================
+ forall N, nat N @ -> plus N (s z) (s N)
+
+plus_one < intros.
+
+Variables: N
+IH : forall N, nat N * -> plus N (s z) (s N)
+H1 : nat N @
+============================
+ plus N (s z) (s N)
+
+plus_one < case H1.
+Subgoal 1:
+
+IH : forall N, nat N * -> plus N (s z) (s N)
+============================
+ plus z (s z) (s z)
+
+Subgoal 2 is:
+ plus (s N1) (s z) (s (s N1))
+
+plus_one < search.
+Subgoal 2:
+
+Variables: N1
+IH : forall N, nat N * -> plus N (s z) (s N)
+H2 : nat N1 *
+============================
+ plus (s N1) (s z) (s (s N1))
+
+plus_one < apply IH to H2.
+Subgoal 2:
+
+Variables: N1
+IH : forall N, nat N * -> plus N (s z) (s N)
+H2 : nat N1 *
+H3 : plus N1 (s z) (s N1)
+============================
+ plus (s N1) (s z) (s (s N1))
+
+plus_one < search.
+Proof completed.
+Abella < Define times : nat -> nat -> nat -> prop by 
+times z N z;
+times (s K) M N := exists N', times K M N' /\ plus N' M N.
+
+Abella < Theorem times_nat : 
+forall A B C, times A B C -> nat A -> nat B -> nat C.
+
+
+============================
+ forall A B C, times A B C -> nat A -> nat B -> nat C
+
+times_nat < induction on 1.
+
+IH : forall A B C, times A B C * -> nat A -> nat B -> nat C
+============================
+ forall A B C, times A B C @ -> nat A -> nat B -> nat C
+
+times_nat < intros.
+
+Variables: A B C
+IH : forall A B C, times A B C * -> nat A -> nat B -> nat C
+H1 : times A B C @
+H2 : nat A
+H3 : nat B
+============================
+ nat C
+
+times_nat < case H1.
+Subgoal 1:
+
+Variables: B
+IH : forall A B C, times A B C * -> nat A -> nat B -> nat C
+H2 : nat z
+H3 : nat B
+============================
+ nat z
+
+Subgoal 2 is:
+ nat C
+
+times_nat < search.
+Subgoal 2:
+
+Variables: B C N' K
+IH : forall A B C, times A B C * -> nat A -> nat B -> nat C
+H2 : nat (s K)
+H3 : nat B
+H4 : times K B N' *
+H5 : plus N' B C
+============================
+ nat C
+
+times_nat < case H2.
+Subgoal 2:
+
+Variables: B C N' K
+IH : forall A B C, times A B C * -> nat A -> nat B -> nat C
+H3 : nat B
+H4 : times K B N' *
+H5 : plus N' B C
+H6 : nat K
+============================
+ nat C
+
+times_nat < apply IH to H4 H6 H3.
+Subgoal 2:
+
+Variables: B C N' K
+IH : forall A B C, times A B C * -> nat A -> nat B -> nat C
+H3 : nat B
+H4 : times K B N' *
+H5 : plus N' B C
+H6 : nat K
+H7 : nat N'
+============================
+ nat C
+
+times_nat < apply plus_nat to H5 H7 H3.
+Subgoal 2:
+
+Variables: B C N' K
+IH : forall A B C, times A B C * -> nat A -> nat B -> nat C
+H3 : nat B
+H4 : times K B N' *
+H5 : plus N' B C
+H6 : nat K
+H7 : nat N'
+H8 : nat C
+============================
+ nat C
+
+times_nat < search.
+Proof completed.
+Abella < Theorem times_zero : 
+forall N, nat N -> times N z z.
+
+
+============================
+ forall N, nat N -> times N z z
+
+times_zero < induction on 1.
+
+IH : forall N, nat N * -> times N z z
+============================
+ forall N, nat N @ -> times N z z
+
+times_zero < intros.
+
+Variables: N
+IH : forall N, nat N * -> times N z z
+H1 : nat N @
+============================
+ times N z z
+
+times_zero < case H1.
+Subgoal 1:
+
+IH : forall N, nat N * -> times N z z
+============================
+ times z z z
+
+Subgoal 2 is:
+ times (s N1) z z
+
+times_zero < search.
+Subgoal 2:
+
+Variables: N1
+IH : forall N, nat N * -> times N z z
+H2 : nat N1 *
+============================
+ times (s N1) z z
+
+times_zero < apply IH to H2.
+Subgoal 2:
+
+Variables: N1
+IH : forall N, nat N * -> times N z z
+H2 : nat N1 *
+H3 : times N1 z z
+============================
+ times (s N1) z z
+
+times_zero < search.
+Proof completed.
+Abella < Theorem times_total' : 
+forall M N, nat M -> nat N -> (exists K, nat K /\ times M N K).
+
+
+============================
+ forall M N, nat M -> nat N -> (exists K, nat K /\ times M N K)
+
+times_total' < induction on 1.
+
+IH : forall M N, nat M * -> nat N -> (exists K, nat K /\ times M N K)
+============================
+ forall M N, nat M @ -> nat N -> (exists K, nat K /\ times M N K)
+
+times_total' < intros.
+
+Variables: M N
+IH : forall M N, nat M * -> nat N -> (exists K, nat K /\ times M N K)
+H1 : nat M @
+H2 : nat N
+============================
+ exists K, nat K /\ times M N K
+
+times_total' < case H1.
+Subgoal 1:
+
+Variables: N
+IH : forall M N, nat M * -> nat N -> (exists K, nat K /\ times M N K)
+H2 : nat N
+============================
+ exists K, nat K /\ times z N K
+
+Subgoal 2 is:
+ exists K, nat K /\ times (s N1) N K
+
+times_total' < search.
+Subgoal 2:
+
+Variables: N N1
+IH : forall M N, nat M * -> nat N -> (exists K, nat K /\ times M N K)
+H2 : nat N
+H3 : nat N1 *
+============================
+ exists K, nat K /\ times (s N1) N K
+
+times_total' < apply IH to H3 H2.
+Subgoal 2:
+
+Variables: N N1 K
+IH : forall M N, nat M * -> nat N -> (exists K, nat K /\ times M N K)
+H2 : nat N
+H3 : nat N1 *
+H4 : nat K
+H5 : times N1 N K
+============================
+ exists K, nat K /\ times (s N1) N K
+
+times_total' < apply plus_total' to H4 H2.
+Subgoal 2:
+
+Variables: N N1 K K1
+IH : forall M N, nat M * -> nat N -> (exists K, nat K /\ times M N K)
+H2 : nat N
+H3 : nat N1 *
+H4 : nat K
+H5 : times N1 N K
+H6 : nat K1
+H7 : plus K N K1
+============================
+ exists K, nat K /\ times (s N1) N K
+
+times_total' < search.
+Proof completed.
+Abella < Theorem times_det : 
+forall A B C D, times A B C -> times A B D -> C = D.
+
+
+============================
+ forall A B C D, times A B C -> times A B D -> C = D
+
+times_det < induction on 1.
+
+IH : forall A B C D, times A B C * -> times A B D -> C = D
+============================
+ forall A B C D, times A B C @ -> times A B D -> C = D
+
+times_det < intros.
+
+Variables: A B C D
+IH : forall A B C D, times A B C * -> times A B D -> C = D
+H1 : times A B C @
+H2 : times A B D
+============================
+ C = D
+
+times_det < case H1.
+Subgoal 1:
+
+Variables: B D
+IH : forall A B C D, times A B C * -> times A B D -> C = D
+H2 : times z B D
+============================
+ z = D
+
+Subgoal 2 is:
+ C = D
+
+times_det < case H2.
+Subgoal 1:
+
+Variables: B
+IH : forall A B C D, times A B C * -> times A B D -> C = D
+============================
+ z = z
+
+Subgoal 2 is:
+ C = D
+
+times_det < search.
+Subgoal 2:
+
+Variables: B C D N' K
+IH : forall A B C D, times A B C * -> times A B D -> C = D
+H2 : times (s K) B D
+H3 : times K B N' *
+H4 : plus N' B C
+============================
+ C = D
+
+times_det < case H2.
+Subgoal 2:
+
+Variables: B C D N' K N'1
+IH : forall A B C D, times A B C * -> times A B D -> C = D
+H3 : times K B N' *
+H4 : plus N' B C
+H5 : times K B N'1
+H6 : plus N'1 B D
+============================
+ C = D
+
+times_det < apply IH to H3 H5.
+Subgoal 2:
+
+Variables: B C D K N'1
+IH : forall A B C D, times A B C * -> times A B D -> C = D
+H3 : times K B N'1 *
+H4 : plus N'1 B C
+H5 : times K B N'1
+H6 : plus N'1 B D
+============================
+ C = D
+
+times_det < apply plus_det to H4 H6.
+Subgoal 2:
+
+Variables: B D K N'1
+IH : forall A B C D, times A B C * -> times A B D -> C = D
+H3 : times K B N'1 *
+H4 : plus N'1 B D
+H5 : times K B N'1
+H6 : plus N'1 B D
+============================
+ D = D
+
+times_det < search.
+Proof completed.
+Abella < Theorem times_one : 
+forall N, nat N -> times N (s z) N.
+
+
+============================
+ forall N, nat N -> times N (s z) N
+
+times_one < induction on 1.
+
+IH : forall N, nat N * -> times N (s z) N
+============================
+ forall N, nat N @ -> times N (s z) N
+
+times_one < intros.
+
+Variables: N
+IH : forall N, nat N * -> times N (s z) N
+H1 : nat N @
+============================
+ times N (s z) N
+
+times_one < case H1.
+Subgoal 1:
+
+IH : forall N, nat N * -> times N (s z) N
+============================
+ times z (s z) z
+
+Subgoal 2 is:
+ times (s N1) (s z) (s N1)
+
+times_one < search.
+Subgoal 2:
+
+Variables: N1
+IH : forall N, nat N * -> times N (s z) N
+H2 : nat N1 *
+============================
+ times (s N1) (s z) (s N1)
+
+times_one < apply IH to H2.
+Subgoal 2:
+
+Variables: N1
+IH : forall N, nat N * -> times N (s z) N
+H2 : nat N1 *
+H3 : times N1 (s z) N1
+============================
+ times (s N1) (s z) (s N1)
+
+times_one < apply plus_one to H2.
+Subgoal 2:
+
+Variables: N1
+IH : forall N, nat N * -> times N (s z) N
+H2 : nat N1 *
+H3 : times N1 (s z) N1
+H4 : plus N1 (s z) (s N1)
+============================
+ times (s N1) (s z) (s N1)
+
+times_one < search.
+Proof completed.
+Abella < Theorem times_one_simpl : 
+forall A B, times (s z) A B -> A = B.
+
+
+============================
+ forall A B, times (s z) A B -> A = B
+
+times_one_simpl < induction on 1.
+
+IH : forall A B, times (s z) A B * -> A = B
+============================
+ forall A B, times (s z) A B @ -> A = B
+
+times_one_simpl < intros.
+
+Variables: A B
+IH : forall A B, times (s z) A B * -> A = B
+H1 : times (s z) A B @
+============================
+ A = B
+
+times_one_simpl < case H1.
+
+Variables: A B N'
+IH : forall A B, times (s z) A B * -> A = B
+H2 : times z A N' *
+H3 : plus N' A B
+============================
+ A = B
+
+times_one_simpl < case H2.
+
+Variables: A B
+IH : forall A B, times (s z) A B * -> A = B
+H3 : plus z A B
+============================
+ A = B
+
+times_one_simpl < case H3.
+
+Variables: B
+IH : forall A B, times (s z) A B * -> A = B
+============================
+ B = B
+
+times_one_simpl < search.
+Proof completed.
+Abella < Theorem times_succ' : 
+forall M N MN, nat M -> nat N -> nat MN -> times M N MN ->
+  (exists K, nat K /\ plus MN M K /\ times M (s N) K).
+
+
+============================
+ forall M N MN, nat M -> nat N -> nat MN -> times M N MN ->
+   (exists K, nat K /\ plus MN M K /\ times M (s N) K)
+
+times_succ' < induction on 4.
+
+IH : forall M N MN, nat M -> nat N -> nat MN -> times M N MN * ->
+       (exists K, nat K /\ plus MN M K /\ times M (s N) K)
+============================
+ forall M N MN, nat M -> nat N -> nat MN -> times M N MN @ ->
+   (exists K, nat K /\ plus MN M K /\ times M (s N) K)
+
+times_succ' < intros.
+
+Variables: M N MN
+IH : forall M N MN, nat M -> nat N -> nat MN -> times M N MN * ->
+       (exists K, nat K /\ plus MN M K /\ times M (s N) K)
+H1 : nat M
+H2 : nat N
+H3 : nat MN
+H4 : times M N MN @
+============================
+ exists K, nat K /\ plus MN M K /\ times M (s N) K
+
+times_succ' < case H4.
+Subgoal 1:
+
+Variables: N
+IH : forall M N MN, nat M -> nat N -> nat MN -> times M N MN * ->
+       (exists K, nat K /\ plus MN M K /\ times M (s N) K)
+H1 : nat z
+H2 : nat N
+H3 : nat z
+============================
+ exists K, nat K /\ plus z z K /\ times z (s N) K
+
+Subgoal 2 is:
+ exists K1, nat K1 /\ plus MN (s K) K1 /\ times (s K) (s N) K1
+
+times_succ' < search.
+Subgoal 2:
+
+Variables: N MN N' K
+IH : forall M N MN, nat M -> nat N -> nat MN -> times M N MN * ->
+       (exists K, nat K /\ plus MN M K /\ times M (s N) K)
+H1 : nat (s K)
+H2 : nat N
+H3 : nat MN
+H5 : times K N N' *
+H6 : plus N' N MN
+============================
+ exists K1, nat K1 /\ plus MN (s K) K1 /\ times (s K) (s N) K1
+
+times_succ' < case H1 (keep).
+Subgoal 2:
+
+Variables: N MN N' K
+IH : forall M N MN, nat M -> nat N -> nat MN -> times M N MN * ->
+       (exists K, nat K /\ plus MN M K /\ times M (s N) K)
+H1 : nat (s K)
+H2 : nat N
+H3 : nat MN
+H5 : times K N N' *
+H6 : plus N' N MN
+H7 : nat K
+============================
+ exists K1, nat K1 /\ plus MN (s K) K1 /\ times (s K) (s N) K1
+
+times_succ' < apply times_nat to H5 H7 H2.
+Subgoal 2:
+
+Variables: N MN N' K
+IH : forall M N MN, nat M -> nat N -> nat MN -> times M N MN * ->
+       (exists K, nat K /\ plus MN M K /\ times M (s N) K)
+H1 : nat (s K)
+H2 : nat N
+H3 : nat MN
+H5 : times K N N' *
+H6 : plus N' N MN
+H7 : nat K
+H8 : nat N'
+============================
+ exists K1, nat K1 /\ plus MN (s K) K1 /\ times (s K) (s N) K1
+
+times_succ' < apply IH to H7 H2 H8 H5.
+Subgoal 2:
+
+Variables: N MN N' K K1
+IH : forall M N MN, nat M -> nat N -> nat MN -> times M N MN * ->
+       (exists K, nat K /\ plus MN M K /\ times M (s N) K)
+H1 : nat (s K)
+H2 : nat N
+H3 : nat MN
+H5 : times K N N' *
+H6 : plus N' N MN
+H7 : nat K
+H8 : nat N'
+H9 : nat K1
+H10 : plus N' K K1
+H11 : times K (s N) K1
+============================
+ exists K1, nat K1 /\ plus MN (s K) K1 /\ times (s K) (s N) K1
+
+times_succ' < apply succ_nat to H2.
+Subgoal 2:
+
+Variables: N MN N' K K1
+IH : forall M N MN, nat M -> nat N -> nat MN -> times M N MN * ->
+       (exists K, nat K /\ plus MN M K /\ times M (s N) K)
+H1 : nat (s K)
+H2 : nat N
+H3 : nat MN
+H5 : times K N N' *
+H6 : plus N' N MN
+H7 : nat K
+H8 : nat N'
+H9 : nat K1
+H10 : plus N' K K1
+H11 : times K (s N) K1
+H12 : nat (s N)
+============================
+ exists K1, nat K1 /\ plus MN (s K) K1 /\ times (s K) (s N) K1
+
+times_succ' < apply plus_total' to H9 H12.
+Subgoal 2:
+
+Variables: N MN N' K K1 K2
+IH : forall M N MN, nat M -> nat N -> nat MN -> times M N MN * ->
+       (exists K, nat K /\ plus MN M K /\ times M (s N) K)
+H1 : nat (s K)
+H2 : nat N
+H3 : nat MN
+H5 : times K N N' *
+H6 : plus N' N MN
+H7 : nat K
+H8 : nat N'
+H9 : nat K1
+H10 : plus N' K K1
+H11 : times K (s N) K1
+H12 : nat (s N)
+H13 : nat K2
+H14 : plus K1 (s N) K2
+============================
+ exists K1, nat K1 /\ plus MN (s K) K1 /\ times (s K) (s N) K1
+
+times_succ' < exists K2.
+Subgoal 2:
+
+Variables: N MN N' K K1 K2
+IH : forall M N MN, nat M -> nat N -> nat MN -> times M N MN * ->
+       (exists K, nat K /\ plus MN M K /\ times M (s N) K)
+H1 : nat (s K)
+H2 : nat N
+H3 : nat MN
+H5 : times K N N' *
+H6 : plus N' N MN
+H7 : nat K
+H8 : nat N'
+H9 : nat K1
+H10 : plus N' K K1
+H11 : times K (s N) K1
+H12 : nat (s N)
+H13 : nat K2
+H14 : plus K1 (s N) K2
+============================
+ nat K2 /\ plus MN (s K) K2 /\ times (s K) (s N) K2
+
+times_succ' < apply plus_total' to H3 H1.
+Subgoal 2:
+
+Variables: N MN N' K K1 K2 K3
+IH : forall M N MN, nat M -> nat N -> nat MN -> times M N MN * ->
+       (exists K, nat K /\ plus MN M K /\ times M (s N) K)
+H1 : nat (s K)
+H2 : nat N
+H3 : nat MN
+H5 : times K N N' *
+H6 : plus N' N MN
+H7 : nat K
+H8 : nat N'
+H9 : nat K1
+H10 : plus N' K K1
+H11 : times K (s N) K1
+H12 : nat (s N)
+H13 : nat K2
+H14 : plus K1 (s N) K2
+H15 : nat K3
+H16 : plus MN (s K) K3
+============================
+ nat K2 /\ plus MN (s K) K2 /\ times (s K) (s N) K2
+
+times_succ' < apply plus_swaprl to H16.
+Subgoal 2:
+
+Variables: N MN N' K K1 K2 K3
+IH : forall M N MN, nat M -> nat N -> nat MN -> times M N MN * ->
+       (exists K, nat K /\ plus MN M K /\ times M (s N) K)
+H1 : nat (s K)
+H2 : nat N
+H3 : nat MN
+H5 : times K N N' *
+H6 : plus N' N MN
+H7 : nat K
+H8 : nat N'
+H9 : nat K1
+H10 : plus N' K K1
+H11 : times K (s N) K1
+H12 : nat (s N)
+H13 : nat K2
+H14 : plus K1 (s N) K2
+H15 : nat K3
+H16 : plus MN (s K) K3
+H17 : plus (s MN) K K3
+============================
+ nat K2 /\ plus MN (s K) K2 /\ times (s K) (s N) K2
+
+times_succ' < apply plus_succ to H6.
+Subgoal 2:
+
+Variables: N MN N' K K1 K2 K3
+IH : forall M N MN, nat M -> nat N -> nat MN -> times M N MN * ->
+       (exists K, nat K /\ plus MN M K /\ times M (s N) K)
+H1 : nat (s K)
+H2 : nat N
+H3 : nat MN
+H5 : times K N N' *
+H6 : plus N' N MN
+H7 : nat K
+H8 : nat N'
+H9 : nat K1
+H10 : plus N' K K1
+H11 : times K (s N) K1
+H12 : nat (s N)
+H13 : nat K2
+H14 : plus K1 (s N) K2
+H15 : nat K3
+H16 : plus MN (s K) K3
+H17 : plus (s MN) K K3
+H18 : plus N' (s N) (s MN)
+============================
+ nat K2 /\ plus MN (s K) K2 /\ times (s K) (s N) K2
+
+times_succ' < apply augend_nat to H17 H7 H15.
+Subgoal 2:
+
+Variables: N MN N' K K1 K2 K3
+IH : forall M N MN, nat M -> nat N -> nat MN -> times M N MN * ->
+       (exists K, nat K /\ plus MN M K /\ times M (s N) K)
+H1 : nat (s K)
+H2 : nat N
+H3 : nat MN
+H5 : times K N N' *
+H6 : plus N' N MN
+H7 : nat K
+H8 : nat N'
+H9 : nat K1
+H10 : plus N' K K1
+H11 : times K (s N) K1
+H12 : nat (s N)
+H13 : nat K2
+H14 : plus K1 (s N) K2
+H15 : nat K3
+H16 : plus MN (s K) K3
+H17 : plus (s MN) K K3
+H18 : plus N' (s N) (s MN)
+H19 : nat (s MN)
+============================
+ nat K2 /\ plus MN (s K) K2 /\ times (s K) (s N) K2
+
+times_succ' < apply plus_comm to H19 H18.
+Subgoal 2:
+
+Variables: N MN N' K K1 K2 K3
+IH : forall M N MN, nat M -> nat N -> nat MN -> times M N MN * ->
+       (exists K, nat K /\ plus MN M K /\ times M (s N) K)
+H1 : nat (s K)
+H2 : nat N
+H3 : nat MN
+H5 : times K N N' *
+H6 : plus N' N MN
+H7 : nat K
+H8 : nat N'
+H9 : nat K1
+H10 : plus N' K K1
+H11 : times K (s N) K1
+H12 : nat (s N)
+H13 : nat K2
+H14 : plus K1 (s N) K2
+H15 : nat K3
+H16 : plus MN (s K) K3
+H17 : plus (s MN) K K3
+H18 : plus N' (s N) (s MN)
+H19 : nat (s MN)
+H20 : plus (s N) N' (s MN)
+============================
+ nat K2 /\ plus MN (s K) K2 /\ times (s K) (s N) K2
+
+times_succ' < apply plus_assoc to H20 H17.
+Subgoal 2:
+
+Variables: N MN N' K K1 K2 K3 BC
+IH : forall M N MN, nat M -> nat N -> nat MN -> times M N MN * ->
+       (exists K, nat K /\ plus MN M K /\ times M (s N) K)
+H1 : nat (s K)
+H2 : nat N
+H3 : nat MN
+H5 : times K N N' *
+H6 : plus N' N MN
+H7 : nat K
+H8 : nat N'
+H9 : nat K1
+H10 : plus N' K K1
+H11 : times K (s N) K1
+H12 : nat (s N)
+H13 : nat K2
+H14 : plus K1 (s N) K2
+H15 : nat K3
+H16 : plus MN (s K) K3
+H17 : plus (s MN) K K3
+H18 : plus N' (s N) (s MN)
+H19 : nat (s MN)
+H20 : plus (s N) N' (s MN)
+H21 : plus N' K BC
+H22 : plus (s N) BC K3
+============================
+ nat K2 /\ plus MN (s K) K2 /\ times (s K) (s N) K2
+
+times_succ' < apply plus_comm to H15 H22.
+Subgoal 2:
+
+Variables: N MN N' K K1 K2 K3 BC
+IH : forall M N MN, nat M -> nat N -> nat MN -> times M N MN * ->
+       (exists K, nat K /\ plus MN M K /\ times M (s N) K)
+H1 : nat (s K)
+H2 : nat N
+H3 : nat MN
+H5 : times K N N' *
+H6 : plus N' N MN
+H7 : nat K
+H8 : nat N'
+H9 : nat K1
+H10 : plus N' K K1
+H11 : times K (s N) K1
+H12 : nat (s N)
+H13 : nat K2
+H14 : plus K1 (s N) K2
+H15 : nat K3
+H16 : plus MN (s K) K3
+H17 : plus (s MN) K K3
+H18 : plus N' (s N) (s MN)
+H19 : nat (s MN)
+H20 : plus (s N) N' (s MN)
+H21 : plus N' K BC
+H22 : plus (s N) BC K3
+H23 : plus BC (s N) K3
+============================
+ nat K2 /\ plus MN (s K) K2 /\ times (s K) (s N) K2
+
+times_succ' < apply plus_det to H10 H21.
+Subgoal 2:
+
+Variables: N MN N' K K2 K3 BC
+IH : forall M N MN, nat M -> nat N -> nat MN -> times M N MN * ->
+       (exists K, nat K /\ plus MN M K /\ times M (s N) K)
+H1 : nat (s K)
+H2 : nat N
+H3 : nat MN
+H5 : times K N N' *
+H6 : plus N' N MN
+H7 : nat K
+H8 : nat N'
+H9 : nat BC
+H10 : plus N' K BC
+H11 : times K (s N) BC
+H12 : nat (s N)
+H13 : nat K2
+H14 : plus BC (s N) K2
+H15 : nat K3
+H16 : plus MN (s K) K3
+H17 : plus (s MN) K K3
+H18 : plus N' (s N) (s MN)
+H19 : nat (s MN)
+H20 : plus (s N) N' (s MN)
+H21 : plus N' K BC
+H22 : plus (s N) BC K3
+H23 : plus BC (s N) K3
+============================
+ nat K2 /\ plus MN (s K) K2 /\ times (s K) (s N) K2
+
+times_succ' < apply plus_det to H14 H23.
+Subgoal 2:
+
+Variables: N MN N' K K3 BC
+IH : forall M N MN, nat M -> nat N -> nat MN -> times M N MN * ->
+       (exists K, nat K /\ plus MN M K /\ times M (s N) K)
+H1 : nat (s K)
+H2 : nat N
+H3 : nat MN
+H5 : times K N N' *
+H6 : plus N' N MN
+H7 : nat K
+H8 : nat N'
+H9 : nat BC
+H10 : plus N' K BC
+H11 : times K (s N) BC
+H12 : nat (s N)
+H13 : nat K3
+H14 : plus BC (s N) K3
+H15 : nat K3
+H16 : plus MN (s K) K3
+H17 : plus (s MN) K K3
+H18 : plus N' (s N) (s MN)
+H19 : nat (s MN)
+H20 : plus (s N) N' (s MN)
+H21 : plus N' K BC
+H22 : plus (s N) BC K3
+H23 : plus BC (s N) K3
+============================
+ nat K3 /\ plus MN (s K) K3 /\ times (s K) (s N) K3
+
+times_succ' < search.
+Proof completed.
+Abella < Theorem times_incr : 
+forall A B AB ABB, nat ABB -> times A B AB -> plus AB B ABB ->
+  times (s A) B ABB.
+
+
+============================
+ forall A B AB ABB, nat ABB -> times A B AB -> plus AB B ABB ->
+   times (s A) B ABB
+
+times_incr < search.
+Proof completed.
+Abella < Theorem times_succl : 
+forall A B C, nat A -> nat B -> nat C -> times A B C ->
+  (exists D, nat D /\ times (s A) B D /\ plus C B D).
+
+
+============================
+ forall A B C, nat A -> nat B -> nat C -> times A B C ->
+   (exists D, nat D /\ times (s A) B D /\ plus C B D)
+
+times_succl < induction on 4.
+
+IH : forall A B C, nat A -> nat B -> nat C -> times A B C * ->
+       (exists D, nat D /\ times (s A) B D /\ plus C B D)
+============================
+ forall A B C, nat A -> nat B -> nat C -> times A B C @ ->
+   (exists D, nat D /\ times (s A) B D /\ plus C B D)
+
+times_succl < intros.
+
+Variables: A B C
+IH : forall A B C, nat A -> nat B -> nat C -> times A B C * ->
+       (exists D, nat D /\ times (s A) B D /\ plus C B D)
+H1 : nat A
+H2 : nat B
+H3 : nat C
+H4 : times A B C @
+============================
+ exists D, nat D /\ times (s A) B D /\ plus C B D
+
+times_succl < case H4.
+Subgoal 1:
+
+Variables: B
+IH : forall A B C, nat A -> nat B -> nat C -> times A B C * ->
+       (exists D, nat D /\ times (s A) B D /\ plus C B D)
+H1 : nat z
+H2 : nat B
+H3 : nat z
+============================
+ exists D, nat D /\ times (s z) B D /\ plus z B D
+
+Subgoal 2 is:
+ exists D, nat D /\ times (s (s K)) B D /\ plus C B D
+
+times_succl < search.
+Subgoal 2:
+
+Variables: B C N' K
+IH : forall A B C, nat A -> nat B -> nat C -> times A B C * ->
+       (exists D, nat D /\ times (s A) B D /\ plus C B D)
+H1 : nat (s K)
+H2 : nat B
+H3 : nat C
+H5 : times K B N' *
+H6 : plus N' B C
+============================
+ exists D, nat D /\ times (s (s K)) B D /\ plus C B D
+
+times_succl < case H1.
+Subgoal 2:
+
+Variables: B C N' K
+IH : forall A B C, nat A -> nat B -> nat C -> times A B C * ->
+       (exists D, nat D /\ times (s A) B D /\ plus C B D)
+H2 : nat B
+H3 : nat C
+H5 : times K B N' *
+H6 : plus N' B C
+H7 : nat K
+============================
+ exists D, nat D /\ times (s (s K)) B D /\ plus C B D
+
+times_succl < apply augend_nat to H6 H2 H3.
+Subgoal 2:
+
+Variables: B C N' K
+IH : forall A B C, nat A -> nat B -> nat C -> times A B C * ->
+       (exists D, nat D /\ times (s A) B D /\ plus C B D)
+H2 : nat B
+H3 : nat C
+H5 : times K B N' *
+H6 : plus N' B C
+H7 : nat K
+H8 : nat N'
+============================
+ exists D, nat D /\ times (s (s K)) B D /\ plus C B D
+
+times_succl < apply IH to H7 H2 H8 H5.
+Subgoal 2:
+
+Variables: B C N' K D
+IH : forall A B C, nat A -> nat B -> nat C -> times A B C * ->
+       (exists D, nat D /\ times (s A) B D /\ plus C B D)
+H2 : nat B
+H3 : nat C
+H5 : times K B N' *
+H6 : plus N' B C
+H7 : nat K
+H8 : nat N'
+H9 : nat D
+H10 : times (s K) B D
+H11 : plus N' B D
+============================
+ exists D, nat D /\ times (s (s K)) B D /\ plus C B D
+
+times_succl < apply plus_det to H6 H11.
+Subgoal 2:
+
+Variables: B N' K D
+IH : forall A B C, nat A -> nat B -> nat C -> times A B C * ->
+       (exists D, nat D /\ times (s A) B D /\ plus C B D)
+H2 : nat B
+H3 : nat D
+H5 : times K B N' *
+H6 : plus N' B D
+H7 : nat K
+H8 : nat N'
+H9 : nat D
+H10 : times (s K) B D
+H11 : plus N' B D
+============================
+ exists D1, nat D1 /\ times (s (s K)) B D1 /\ plus D B D1
+
+times_succl < apply plus_total' to H9 H2.
+Subgoal 2:
+
+Variables: B N' K D K1
+IH : forall A B C, nat A -> nat B -> nat C -> times A B C * ->
+       (exists D, nat D /\ times (s A) B D /\ plus C B D)
+H2 : nat B
+H3 : nat D
+H5 : times K B N' *
+H6 : plus N' B D
+H7 : nat K
+H8 : nat N'
+H9 : nat D
+H10 : times (s K) B D
+H11 : plus N' B D
+H12 : nat K1
+H13 : plus D B K1
+============================
+ exists D1, nat D1 /\ times (s (s K)) B D1 /\ plus D B D1
+
+times_succl < exists K1.
+Subgoal 2:
+
+Variables: B N' K D K1
+IH : forall A B C, nat A -> nat B -> nat C -> times A B C * ->
+       (exists D, nat D /\ times (s A) B D /\ plus C B D)
+H2 : nat B
+H3 : nat D
+H5 : times K B N' *
+H6 : plus N' B D
+H7 : nat K
+H8 : nat N'
+H9 : nat D
+H10 : times (s K) B D
+H11 : plus N' B D
+H12 : nat K1
+H13 : plus D B K1
+============================
+ nat K1 /\ times (s (s K)) B K1 /\ plus D B K1
+
+times_succl < search.
+Proof completed.
+Abella < Theorem times_comm' : 
+forall M N K, nat M -> nat N -> nat K -> times M N K -> times N M K.
+
+
+============================
+ forall M N K, nat M -> nat N -> nat K -> times M N K -> times N M K
+
+times_comm' < induction on 4.
+
+IH : forall M N K, nat M -> nat N -> nat K -> times M N K * -> times N M K
+============================
+ forall M N K, nat M -> nat N -> nat K -> times M N K @ -> times N M K
+
+times_comm' < intros.
+
+Variables: M N K
+IH : forall M N K, nat M -> nat N -> nat K -> times M N K * -> times N M K
+H1 : nat M
+H2 : nat N
+H3 : nat K
+H4 : times M N K @
+============================
+ times N M K
+
+times_comm' < case H4.
+Subgoal 1:
+
+Variables: N
+IH : forall M N K, nat M -> nat N -> nat K -> times M N K * -> times N M K
+H1 : nat z
+H2 : nat N
+H3 : nat z
+============================
+ times N z z
+
+Subgoal 2 is:
+ times N (s K1) K
+
+times_comm' < apply times_zero to H2.
+Subgoal 1:
+
+Variables: N
+IH : forall M N K, nat M -> nat N -> nat K -> times M N K * -> times N M K
+H1 : nat z
+H2 : nat N
+H3 : nat z
+H5 : times N z z
+============================
+ times N z z
+
+Subgoal 2 is:
+ times N (s K1) K
+
+times_comm' < search.
+Subgoal 2:
+
+Variables: N K N' K1
+IH : forall M N K, nat M -> nat N -> nat K -> times M N K * -> times N M K
+H1 : nat (s K1)
+H2 : nat N
+H3 : nat K
+H5 : times K1 N N' *
+H6 : plus N' N K
+============================
+ times N (s K1) K
+
+times_comm' < case H1.
+Subgoal 2:
+
+Variables: N K N' K1
+IH : forall M N K, nat M -> nat N -> nat K -> times M N K * -> times N M K
+H2 : nat N
+H3 : nat K
+H5 : times K1 N N' *
+H6 : plus N' N K
+H7 : nat K1
+============================
+ times N (s K1) K
+
+times_comm' < apply augend_nat to H6 H2 H3.
+Subgoal 2:
+
+Variables: N K N' K1
+IH : forall M N K, nat M -> nat N -> nat K -> times M N K * -> times N M K
+H2 : nat N
+H3 : nat K
+H5 : times K1 N N' *
+H6 : plus N' N K
+H7 : nat K1
+H8 : nat N'
+============================
+ times N (s K1) K
+
+times_comm' < apply IH to H7 H2 H8 H5.
+Subgoal 2:
+
+Variables: N K N' K1
+IH : forall M N K, nat M -> nat N -> nat K -> times M N K * -> times N M K
+H2 : nat N
+H3 : nat K
+H5 : times K1 N N' *
+H6 : plus N' N K
+H7 : nat K1
+H8 : nat N'
+H9 : times N K1 N'
+============================
+ times N (s K1) K
+
+times_comm' < apply plus_comm to H3 H6.
+Subgoal 2:
+
+Variables: N K N' K1
+IH : forall M N K, nat M -> nat N -> nat K -> times M N K * -> times N M K
+H2 : nat N
+H3 : nat K
+H5 : times K1 N N' *
+H6 : plus N' N K
+H7 : nat K1
+H8 : nat N'
+H9 : times N K1 N'
+H10 : plus N N' K
+============================
+ times N (s K1) K
+
+times_comm' < apply times_succ' to H2 H7 H8 H9.
+Subgoal 2:
+
+Variables: N K N' K1 K2
+IH : forall M N K, nat M -> nat N -> nat K -> times M N K * -> times N M K
+H2 : nat N
+H3 : nat K
+H5 : times K1 N N' *
+H6 : plus N' N K
+H7 : nat K1
+H8 : nat N'
+H9 : times N K1 N'
+H10 : plus N N' K
+H11 : nat K2
+H12 : plus N' N K2
+H13 : times N (s K1) K2
+============================
+ times N (s K1) K
+
+times_comm' < apply plus_det to H6 H12.
+Subgoal 2:
+
+Variables: N N' K1 K2
+IH : forall M N K, nat M -> nat N -> nat K -> times M N K * -> times N M K
+H2 : nat N
+H3 : nat K2
+H5 : times K1 N N' *
+H6 : plus N' N K2
+H7 : nat K1
+H8 : nat N'
+H9 : times N K1 N'
+H10 : plus N N' K2
+H11 : nat K2
+H12 : plus N' N K2
+H13 : times N (s K1) K2
+============================
+ times N (s K1) K2
+
+times_comm' < search.
+Proof completed.
+Abella < Theorem distribute : 
+forall X Y Z YpZ T, nat X -> nat Y -> nat Z -> nat YpZ -> nat T ->
+  plus Y Z YpZ -> times X YpZ T ->
+  (exists XtY XtZ, nat XtY /\ nat XtZ /\ times X Y XtY /\ times X Z XtZ /\
+       plus XtY XtZ T).
+
+
+============================
+ forall X Y Z YpZ T, nat X -> nat Y -> nat Z -> nat YpZ -> nat T ->
+   plus Y Z YpZ -> times X YpZ T ->
+   (exists XtY XtZ, nat XtY /\ nat XtZ /\ times X Y XtY /\ times X Z XtZ /\
+        plus XtY XtZ T)
+
+distribute < induction on 1.
+
+IH : forall X Y Z YpZ T, nat X * -> nat Y -> nat Z -> nat YpZ -> nat T ->
+       plus Y Z YpZ -> times X YpZ T ->
+       (exists XtY XtZ, nat XtY /\ nat XtZ /\ times X Y XtY /\
+            times X Z XtZ /\ plus XtY XtZ T)
+============================
+ forall X Y Z YpZ T, nat X @ -> nat Y -> nat Z -> nat YpZ -> nat T ->
+   plus Y Z YpZ -> times X YpZ T ->
+   (exists XtY XtZ, nat XtY /\ nat XtZ /\ times X Y XtY /\ times X Z XtZ /\
+        plus XtY XtZ T)
+
+distribute < intros.
+
+Variables: X Y Z YpZ T
+IH : forall X Y Z YpZ T, nat X * -> nat Y -> nat Z -> nat YpZ -> nat T ->
+       plus Y Z YpZ -> times X YpZ T ->
+       (exists XtY XtZ, nat XtY /\ nat XtZ /\ times X Y XtY /\
+            times X Z XtZ /\ plus XtY XtZ T)
+H1 : nat X @
+H2 : nat Y
+H3 : nat Z
+H4 : nat YpZ
+H5 : nat T
+H6 : plus Y Z YpZ
+H7 : times X YpZ T
+============================
+ exists XtY XtZ, nat XtY /\ nat XtZ /\ times X Y XtY /\ times X Z XtZ /\
+   plus XtY XtZ T
+
+distribute < case H1.
+Subgoal 1:
+
+Variables: Y Z YpZ T
+IH : forall X Y Z YpZ T, nat X * -> nat Y -> nat Z -> nat YpZ -> nat T ->
+       plus Y Z YpZ -> times X YpZ T ->
+       (exists XtY XtZ, nat XtY /\ nat XtZ /\ times X Y XtY /\
+            times X Z XtZ /\ plus XtY XtZ T)
+H2 : nat Y
+H3 : nat Z
+H4 : nat YpZ
+H5 : nat T
+H6 : plus Y Z YpZ
+H7 : times z YpZ T
+============================
+ exists XtY XtZ, nat XtY /\ nat XtZ /\ times z Y XtY /\ times z Z XtZ /\
+   plus XtY XtZ T
+
+Subgoal 2 is:
+ exists XtY XtZ, nat XtY /\ nat XtZ /\ times (s N) Y XtY /\
+   times (s N) Z XtZ /\ plus XtY XtZ T
+
+distribute < case H7.
+Subgoal 1:
+
+Variables: Y Z YpZ
+IH : forall X Y Z YpZ T, nat X * -> nat Y -> nat Z -> nat YpZ -> nat T ->
+       plus Y Z YpZ -> times X YpZ T ->
+       (exists XtY XtZ, nat XtY /\ nat XtZ /\ times X Y XtY /\
+            times X Z XtZ /\ plus XtY XtZ T)
+H2 : nat Y
+H3 : nat Z
+H4 : nat YpZ
+H5 : nat z
+H6 : plus Y Z YpZ
+============================
+ exists XtY XtZ, nat XtY /\ nat XtZ /\ times z Y XtY /\ times z Z XtZ /\
+   plus XtY XtZ z
+
+Subgoal 2 is:
+ exists XtY XtZ, nat XtY /\ nat XtZ /\ times (s N) Y XtY /\
+   times (s N) Z XtZ /\ plus XtY XtZ T
+
+distribute < search.
+Subgoal 2:
+
+Variables: Y Z YpZ T N
+IH : forall X Y Z YpZ T, nat X * -> nat Y -> nat Z -> nat YpZ -> nat T ->
+       plus Y Z YpZ -> times X YpZ T ->
+       (exists XtY XtZ, nat XtY /\ nat XtZ /\ times X Y XtY /\
+            times X Z XtZ /\ plus XtY XtZ T)
+H2 : nat Y
+H3 : nat Z
+H4 : nat YpZ
+H5 : nat T
+H6 : plus Y Z YpZ
+H7 : times (s N) YpZ T
+H8 : nat N *
+============================
+ exists XtY XtZ, nat XtY /\ nat XtZ /\ times (s N) Y XtY /\
+   times (s N) Z XtZ /\ plus XtY XtZ T
+
+distribute < case H7.
+Subgoal 2:
+
+Variables: Y Z YpZ T N N'
+IH : forall X Y Z YpZ T, nat X * -> nat Y -> nat Z -> nat YpZ -> nat T ->
+       plus Y Z YpZ -> times X YpZ T ->
+       (exists XtY XtZ, nat XtY /\ nat XtZ /\ times X Y XtY /\
+            times X Z XtZ /\ plus XtY XtZ T)
+H2 : nat Y
+H3 : nat Z
+H4 : nat YpZ
+H5 : nat T
+H6 : plus Y Z YpZ
+H8 : nat N *
+H9 : times N YpZ N'
+H10 : plus N' YpZ T
+============================
+ exists XtY XtZ, nat XtY /\ nat XtZ /\ times (s N) Y XtY /\
+   times (s N) Z XtZ /\ plus XtY XtZ T
+
+distribute < apply augend_nat to H10 H4 H5.
+Subgoal 2:
+
+Variables: Y Z YpZ T N N'
+IH : forall X Y Z YpZ T, nat X * -> nat Y -> nat Z -> nat YpZ -> nat T ->
+       plus Y Z YpZ -> times X YpZ T ->
+       (exists XtY XtZ, nat XtY /\ nat XtZ /\ times X Y XtY /\
+            times X Z XtZ /\ plus XtY XtZ T)
+H2 : nat Y
+H3 : nat Z
+H4 : nat YpZ
+H5 : nat T
+H6 : plus Y Z YpZ
+H8 : nat N *
+H9 : times N YpZ N'
+H10 : plus N' YpZ T
+H11 : nat N'
+============================
+ exists XtY XtZ, nat XtY /\ nat XtZ /\ times (s N) Y XtY /\
+   times (s N) Z XtZ /\ plus XtY XtZ T
+
+distribute < apply IH to H8 H2 H3 H4 H11 H6 H9.
+Subgoal 2:
+
+Variables: Y Z YpZ T N N' XtY XtZ
+IH : forall X Y Z YpZ T, nat X * -> nat Y -> nat Z -> nat YpZ -> nat T ->
+       plus Y Z YpZ -> times X YpZ T ->
+       (exists XtY XtZ, nat XtY /\ nat XtZ /\ times X Y XtY /\
+            times X Z XtZ /\ plus XtY XtZ T)
+H2 : nat Y
+H3 : nat Z
+H4 : nat YpZ
+H5 : nat T
+H6 : plus Y Z YpZ
+H8 : nat N *
+H9 : times N YpZ N'
+H10 : plus N' YpZ T
+H11 : nat N'
+H12 : nat XtY
+H13 : nat XtZ
+H14 : times N Y XtY
+H15 : times N Z XtZ
+H16 : plus XtY XtZ N'
+============================
+ exists XtY XtZ, nat XtY /\ nat XtZ /\ times (s N) Y XtY /\
+   times (s N) Z XtZ /\ plus XtY XtZ T
+
+distribute < apply plus_perm4 to H5 H16 H6 H10.
+Subgoal 2:
+
+Variables: Y Z YpZ T N N' XtY XtZ AC BD
+IH : forall X Y Z YpZ T, nat X * -> nat Y -> nat Z -> nat YpZ -> nat T ->
+       plus Y Z YpZ -> times X YpZ T ->
+       (exists XtY XtZ, nat XtY /\ nat XtZ /\ times X Y XtY /\
+            times X Z XtZ /\ plus XtY XtZ T)
+H2 : nat Y
+H3 : nat Z
+H4 : nat YpZ
+H5 : nat T
+H6 : plus Y Z YpZ
+H8 : nat N *
+H9 : times N YpZ N'
+H10 : plus N' YpZ T
+H11 : nat N'
+H12 : nat XtY
+H13 : nat XtZ
+H14 : times N Y XtY
+H15 : times N Z XtZ
+H16 : plus XtY XtZ N'
+H17 : plus XtY Y AC
+H18 : plus XtZ Z BD
+H19 : plus AC BD T
+============================
+ exists XtY XtZ, nat XtY /\ nat XtZ /\ times (s N) Y XtY /\
+   times (s N) Z XtZ /\ plus XtY XtZ T
+
+distribute < apply augend_nat' to H19 H5.
+Subgoal 2:
+
+Variables: Y Z YpZ T N N' XtY XtZ AC BD
+IH : forall X Y Z YpZ T, nat X * -> nat Y -> nat Z -> nat YpZ -> nat T ->
+       plus Y Z YpZ -> times X YpZ T ->
+       (exists XtY XtZ, nat XtY /\ nat XtZ /\ times X Y XtY /\
+            times X Z XtZ /\ plus XtY XtZ T)
+H2 : nat Y
+H3 : nat Z
+H4 : nat YpZ
+H5 : nat T
+H6 : plus Y Z YpZ
+H8 : nat N *
+H9 : times N YpZ N'
+H10 : plus N' YpZ T
+H11 : nat N'
+H12 : nat XtY
+H13 : nat XtZ
+H14 : times N Y XtY
+H15 : times N Z XtZ
+H16 : plus XtY XtZ N'
+H17 : plus XtY Y AC
+H18 : plus XtZ Z BD
+H19 : plus AC BD T
+H20 : nat AC
+============================
+ exists XtY XtZ, nat XtY /\ nat XtZ /\ times (s N) Y XtY /\
+   times (s N) Z XtZ /\ plus XtY XtZ T
+
+distribute < apply times_incr to H20 H14 H17.
+Subgoal 2:
+
+Variables: Y Z YpZ T N N' XtY XtZ AC BD
+IH : forall X Y Z YpZ T, nat X * -> nat Y -> nat Z -> nat YpZ -> nat T ->
+       plus Y Z YpZ -> times X YpZ T ->
+       (exists XtY XtZ, nat XtY /\ nat XtZ /\ times X Y XtY /\
+            times X Z XtZ /\ plus XtY XtZ T)
+H2 : nat Y
+H3 : nat Z
+H4 : nat YpZ
+H5 : nat T
+H6 : plus Y Z YpZ
+H8 : nat N *
+H9 : times N YpZ N'
+H10 : plus N' YpZ T
+H11 : nat N'
+H12 : nat XtY
+H13 : nat XtZ
+H14 : times N Y XtY
+H15 : times N Z XtZ
+H16 : plus XtY XtZ N'
+H17 : plus XtY Y AC
+H18 : plus XtZ Z BD
+H19 : plus AC BD T
+H20 : nat AC
+H21 : times (s N) Y AC
+============================
+ exists XtY XtZ, nat XtY /\ nat XtZ /\ times (s N) Y XtY /\
+   times (s N) Z XtZ /\ plus XtY XtZ T
+
+distribute < apply addend_nat to H19 H5.
+Subgoal 2:
+
+Variables: Y Z YpZ T N N' XtY XtZ AC BD
+IH : forall X Y Z YpZ T, nat X * -> nat Y -> nat Z -> nat YpZ -> nat T ->
+       plus Y Z YpZ -> times X YpZ T ->
+       (exists XtY XtZ, nat XtY /\ nat XtZ /\ times X Y XtY /\
+            times X Z XtZ /\ plus XtY XtZ T)
+H2 : nat Y
+H3 : nat Z
+H4 : nat YpZ
+H5 : nat T
+H6 : plus Y Z YpZ
+H8 : nat N *
+H9 : times N YpZ N'
+H10 : plus N' YpZ T
+H11 : nat N'
+H12 : nat XtY
+H13 : nat XtZ
+H14 : times N Y XtY
+H15 : times N Z XtZ
+H16 : plus XtY XtZ N'
+H17 : plus XtY Y AC
+H18 : plus XtZ Z BD
+H19 : plus AC BD T
+H20 : nat AC
+H21 : times (s N) Y AC
+H22 : nat BD
+============================
+ exists XtY XtZ, nat XtY /\ nat XtZ /\ times (s N) Y XtY /\
+   times (s N) Z XtZ /\ plus XtY XtZ T
+
+distribute < apply times_incr to H22 H15 H18.
+Subgoal 2:
+
+Variables: Y Z YpZ T N N' XtY XtZ AC BD
+IH : forall X Y Z YpZ T, nat X * -> nat Y -> nat Z -> nat YpZ -> nat T ->
+       plus Y Z YpZ -> times X YpZ T ->
+       (exists XtY XtZ, nat XtY /\ nat XtZ /\ times X Y XtY /\
+            times X Z XtZ /\ plus XtY XtZ T)
+H2 : nat Y
+H3 : nat Z
+H4 : nat YpZ
+H5 : nat T
+H6 : plus Y Z YpZ
+H8 : nat N *
+H9 : times N YpZ N'
+H10 : plus N' YpZ T
+H11 : nat N'
+H12 : nat XtY
+H13 : nat XtZ
+H14 : times N Y XtY
+H15 : times N Z XtZ
+H16 : plus XtY XtZ N'
+H17 : plus XtY Y AC
+H18 : plus XtZ Z BD
+H19 : plus AC BD T
+H20 : nat AC
+H21 : times (s N) Y AC
+H22 : nat BD
+H23 : times (s N) Z BD
+============================
+ exists XtY XtZ, nat XtY /\ nat XtZ /\ times (s N) Y XtY /\
+   times (s N) Z XtZ /\ plus XtY XtZ T
+
+distribute < search.
+Proof completed.
+Abella < Theorem undistr_times_plus : 
+forall X Y Z XtY XtZ XtYpXtZ, nat X -> nat Y -> nat Z -> nat XtY ->
+  nat XtZ -> nat XtYpXtZ -> times X Y XtY -> times X Z XtZ ->
+  plus XtY XtZ XtYpXtZ ->
+  (exists YpZ XtYpZ, nat YpZ /\ nat XtYpZ /\ times Y Z YpZ /\
+       times X YpZ XtYpZ).
+
+
+============================
+ forall X Y Z XtY XtZ XtYpXtZ, nat X -> nat Y -> nat Z -> nat XtY ->
+   nat XtZ -> nat XtYpXtZ -> times X Y XtY -> times X Z XtZ ->
+   plus XtY XtZ XtYpXtZ ->
+   (exists YpZ XtYpZ, nat YpZ /\ nat XtYpZ /\ times Y Z YpZ /\
+        times X YpZ XtYpZ)
+
+undistr_times_plus < induction on 1.
+
+IH : forall X Y Z XtY XtZ XtYpXtZ, nat X * -> nat Y -> nat Z -> nat XtY ->
+       nat XtZ -> nat XtYpXtZ -> times X Y XtY -> times X Z XtZ ->
+       plus XtY XtZ XtYpXtZ ->
+       (exists YpZ XtYpZ, nat YpZ /\ nat XtYpZ /\ times Y Z YpZ /\
+            times X YpZ XtYpZ)
+============================
+ forall X Y Z XtY XtZ XtYpXtZ, nat X @ -> nat Y -> nat Z -> nat XtY ->
+   nat XtZ -> nat XtYpXtZ -> times X Y XtY -> times X Z XtZ ->
+   plus XtY XtZ XtYpXtZ ->
+   (exists YpZ XtYpZ, nat YpZ /\ nat XtYpZ /\ times Y Z YpZ /\
+        times X YpZ XtYpZ)
+
+undistr_times_plus < intros.
+
+Variables: X Y Z XtY XtZ XtYpXtZ
+IH : forall X Y Z XtY XtZ XtYpXtZ, nat X * -> nat Y -> nat Z -> nat XtY ->
+       nat XtZ -> nat XtYpXtZ -> times X Y XtY -> times X Z XtZ ->
+       plus XtY XtZ XtYpXtZ ->
+       (exists YpZ XtYpZ, nat YpZ /\ nat XtYpZ /\ times Y Z YpZ /\
+            times X YpZ XtYpZ)
+H1 : nat X @
+H2 : nat Y
+H3 : nat Z
+H4 : nat XtY
+H5 : nat XtZ
+H6 : nat XtYpXtZ
+H7 : times X Y XtY
+H8 : times X Z XtZ
+H9 : plus XtY XtZ XtYpXtZ
+============================
+ exists YpZ XtYpZ, nat YpZ /\ nat XtYpZ /\ times Y Z YpZ /\ times X YpZ XtYpZ
+
+undistr_times_plus < case H1.
+Subgoal 1:
+
+Variables: Y Z XtY XtZ XtYpXtZ
+IH : forall X Y Z XtY XtZ XtYpXtZ, nat X * -> nat Y -> nat Z -> nat XtY ->
+       nat XtZ -> nat XtYpXtZ -> times X Y XtY -> times X Z XtZ ->
+       plus XtY XtZ XtYpXtZ ->
+       (exists YpZ XtYpZ, nat YpZ /\ nat XtYpZ /\ times Y Z YpZ /\
+            times X YpZ XtYpZ)
+H2 : nat Y
+H3 : nat Z
+H4 : nat XtY
+H5 : nat XtZ
+H6 : nat XtYpXtZ
+H7 : times z Y XtY
+H8 : times z Z XtZ
+H9 : plus XtY XtZ XtYpXtZ
+============================
+ exists YpZ XtYpZ, nat YpZ /\ nat XtYpZ /\ times Y Z YpZ /\ times z YpZ XtYpZ
+
+Subgoal 2 is:
+ exists YpZ XtYpZ, nat YpZ /\ nat XtYpZ /\ times Y Z YpZ /\
+   times (s N) YpZ XtYpZ
+
+undistr_times_plus < case H7.
+Subgoal 1:
+
+Variables: Y Z XtZ XtYpXtZ
+IH : forall X Y Z XtY XtZ XtYpXtZ, nat X * -> nat Y -> nat Z -> nat XtY ->
+       nat XtZ -> nat XtYpXtZ -> times X Y XtY -> times X Z XtZ ->
+       plus XtY XtZ XtYpXtZ ->
+       (exists YpZ XtYpZ, nat YpZ /\ nat XtYpZ /\ times Y Z YpZ /\
+            times X YpZ XtYpZ)
+H2 : nat Y
+H3 : nat Z
+H4 : nat z
+H5 : nat XtZ
+H6 : nat XtYpXtZ
+H8 : times z Z XtZ
+H9 : plus z XtZ XtYpXtZ
+============================
+ exists YpZ XtYpZ, nat YpZ /\ nat XtYpZ /\ times Y Z YpZ /\ times z YpZ XtYpZ
+
+Subgoal 2 is:
+ exists YpZ XtYpZ, nat YpZ /\ nat XtYpZ /\ times Y Z YpZ /\
+   times (s N) YpZ XtYpZ
+
+undistr_times_plus < case H8.
+Subgoal 1:
+
+Variables: Y Z XtYpXtZ
+IH : forall X Y Z XtY XtZ XtYpXtZ, nat X * -> nat Y -> nat Z -> nat XtY ->
+       nat XtZ -> nat XtYpXtZ -> times X Y XtY -> times X Z XtZ ->
+       plus XtY XtZ XtYpXtZ ->
+       (exists YpZ XtYpZ, nat YpZ /\ nat XtYpZ /\ times Y Z YpZ /\
+            times X YpZ XtYpZ)
+H2 : nat Y
+H3 : nat Z
+H4 : nat z
+H5 : nat z
+H6 : nat XtYpXtZ
+H9 : plus z z XtYpXtZ
+============================
+ exists YpZ XtYpZ, nat YpZ /\ nat XtYpZ /\ times Y Z YpZ /\ times z YpZ XtYpZ
+
+Subgoal 2 is:
+ exists YpZ XtYpZ, nat YpZ /\ nat XtYpZ /\ times Y Z YpZ /\
+   times (s N) YpZ XtYpZ
+
+undistr_times_plus < case H9.
+Subgoal 1:
+
+Variables: Y Z
+IH : forall X Y Z XtY XtZ XtYpXtZ, nat X * -> nat Y -> nat Z -> nat XtY ->
+       nat XtZ -> nat XtYpXtZ -> times X Y XtY -> times X Z XtZ ->
+       plus XtY XtZ XtYpXtZ ->
+       (exists YpZ XtYpZ, nat YpZ /\ nat XtYpZ /\ times Y Z YpZ /\
+            times X YpZ XtYpZ)
+H2 : nat Y
+H3 : nat Z
+H4 : nat z
+H5 : nat z
+H6 : nat z
+============================
+ exists YpZ XtYpZ, nat YpZ /\ nat XtYpZ /\ times Y Z YpZ /\ times z YpZ XtYpZ
+
+Subgoal 2 is:
+ exists YpZ XtYpZ, nat YpZ /\ nat XtYpZ /\ times Y Z YpZ /\
+   times (s N) YpZ XtYpZ
+
+undistr_times_plus < apply times_total' to H2 H3.
+Subgoal 1:
+
+Variables: Y Z K
+IH : forall X Y Z XtY XtZ XtYpXtZ, nat X * -> nat Y -> nat Z -> nat XtY ->
+       nat XtZ -> nat XtYpXtZ -> times X Y XtY -> times X Z XtZ ->
+       plus XtY XtZ XtYpXtZ ->
+       (exists YpZ XtYpZ, nat YpZ /\ nat XtYpZ /\ times Y Z YpZ /\
+            times X YpZ XtYpZ)
+H2 : nat Y
+H3 : nat Z
+H4 : nat z
+H5 : nat z
+H6 : nat z
+H10 : nat K
+H11 : times Y Z K
+============================
+ exists YpZ XtYpZ, nat YpZ /\ nat XtYpZ /\ times Y Z YpZ /\ times z YpZ XtYpZ
+
+Subgoal 2 is:
+ exists YpZ XtYpZ, nat YpZ /\ nat XtYpZ /\ times Y Z YpZ /\
+   times (s N) YpZ XtYpZ
+
+undistr_times_plus < search.
+Subgoal 2:
+
+Variables: Y Z XtY XtZ XtYpXtZ N
+IH : forall X Y Z XtY XtZ XtYpXtZ, nat X * -> nat Y -> nat Z -> nat XtY ->
+       nat XtZ -> nat XtYpXtZ -> times X Y XtY -> times X Z XtZ ->
+       plus XtY XtZ XtYpXtZ ->
+       (exists YpZ XtYpZ, nat YpZ /\ nat XtYpZ /\ times Y Z YpZ /\
+            times X YpZ XtYpZ)
+H2 : nat Y
+H3 : nat Z
+H4 : nat XtY
+H5 : nat XtZ
+H6 : nat XtYpXtZ
+H7 : times (s N) Y XtY
+H8 : times (s N) Z XtZ
+H9 : plus XtY XtZ XtYpXtZ
+H10 : nat N *
+============================
+ exists YpZ XtYpZ, nat YpZ /\ nat XtYpZ /\ times Y Z YpZ /\
+   times (s N) YpZ XtYpZ
+
+undistr_times_plus < case H7.
+Subgoal 2:
+
+Variables: Y Z XtY XtZ XtYpXtZ N N'
+IH : forall X Y Z XtY XtZ XtYpXtZ, nat X * -> nat Y -> nat Z -> nat XtY ->
+       nat XtZ -> nat XtYpXtZ -> times X Y XtY -> times X Z XtZ ->
+       plus XtY XtZ XtYpXtZ ->
+       (exists YpZ XtYpZ, nat YpZ /\ nat XtYpZ /\ times Y Z YpZ /\
+            times X YpZ XtYpZ)
+H2 : nat Y
+H3 : nat Z
+H4 : nat XtY
+H5 : nat XtZ
+H6 : nat XtYpXtZ
+H8 : times (s N) Z XtZ
+H9 : plus XtY XtZ XtYpXtZ
+H10 : nat N *
+H11 : times N Y N'
+H12 : plus N' Y XtY
+============================
+ exists YpZ XtYpZ, nat YpZ /\ nat XtYpZ /\ times Y Z YpZ /\
+   times (s N) YpZ XtYpZ
+
+undistr_times_plus < case H8.
+Subgoal 2:
+
+Variables: Y Z XtY XtZ XtYpXtZ N N' N'1
+IH : forall X Y Z XtY XtZ XtYpXtZ, nat X * -> nat Y -> nat Z -> nat XtY ->
+       nat XtZ -> nat XtYpXtZ -> times X Y XtY -> times X Z XtZ ->
+       plus XtY XtZ XtYpXtZ ->
+       (exists YpZ XtYpZ, nat YpZ /\ nat XtYpZ /\ times Y Z YpZ /\
+            times X YpZ XtYpZ)
+H2 : nat Y
+H3 : nat Z
+H4 : nat XtY
+H5 : nat XtZ
+H6 : nat XtYpXtZ
+H9 : plus XtY XtZ XtYpXtZ
+H10 : nat N *
+H11 : times N Y N'
+H12 : plus N' Y XtY
+H13 : times N Z N'1
+H14 : plus N'1 Z XtZ
+============================
+ exists YpZ XtYpZ, nat YpZ /\ nat XtYpZ /\ times Y Z YpZ /\
+   times (s N) YpZ XtYpZ
+
+undistr_times_plus < apply augend_nat to H12 H2 H4.
+Subgoal 2:
+
+Variables: Y Z XtY XtZ XtYpXtZ N N' N'1
+IH : forall X Y Z XtY XtZ XtYpXtZ, nat X * -> nat Y -> nat Z -> nat XtY ->
+       nat XtZ -> nat XtYpXtZ -> times X Y XtY -> times X Z XtZ ->
+       plus XtY XtZ XtYpXtZ ->
+       (exists YpZ XtYpZ, nat YpZ /\ nat XtYpZ /\ times Y Z YpZ /\
+            times X YpZ XtYpZ)
+H2 : nat Y
+H3 : nat Z
+H4 : nat XtY
+H5 : nat XtZ
+H6 : nat XtYpXtZ
+H9 : plus XtY XtZ XtYpXtZ
+H10 : nat N *
+H11 : times N Y N'
+H12 : plus N' Y XtY
+H13 : times N Z N'1
+H14 : plus N'1 Z XtZ
+H15 : nat N'
+============================
+ exists YpZ XtYpZ, nat YpZ /\ nat XtYpZ /\ times Y Z YpZ /\
+   times (s N) YpZ XtYpZ
+
+undistr_times_plus < apply augend_nat to H14 H3 H5.
+Subgoal 2:
+
+Variables: Y Z XtY XtZ XtYpXtZ N N' N'1
+IH : forall X Y Z XtY XtZ XtYpXtZ, nat X * -> nat Y -> nat Z -> nat XtY ->
+       nat XtZ -> nat XtYpXtZ -> times X Y XtY -> times X Z XtZ ->
+       plus XtY XtZ XtYpXtZ ->
+       (exists YpZ XtYpZ, nat YpZ /\ nat XtYpZ /\ times Y Z YpZ /\
+            times X YpZ XtYpZ)
+H2 : nat Y
+H3 : nat Z
+H4 : nat XtY
+H5 : nat XtZ
+H6 : nat XtYpXtZ
+H9 : plus XtY XtZ XtYpXtZ
+H10 : nat N *
+H11 : times N Y N'
+H12 : plus N' Y XtY
+H13 : times N Z N'1
+H14 : plus N'1 Z XtZ
+H15 : nat N'
+H16 : nat N'1
+============================
+ exists YpZ XtYpZ, nat YpZ /\ nat XtYpZ /\ times Y Z YpZ /\
+   times (s N) YpZ XtYpZ
+
+undistr_times_plus < apply plus_total' to H15 H16.
+Subgoal 2:
+
+Variables: Y Z XtY XtZ XtYpXtZ N N' N'1 K
+IH : forall X Y Z XtY XtZ XtYpXtZ, nat X * -> nat Y -> nat Z -> nat XtY ->
+       nat XtZ -> nat XtYpXtZ -> times X Y XtY -> times X Z XtZ ->
+       plus XtY XtZ XtYpXtZ ->
+       (exists YpZ XtYpZ, nat YpZ /\ nat XtYpZ /\ times Y Z YpZ /\
+            times X YpZ XtYpZ)
+H2 : nat Y
+H3 : nat Z
+H4 : nat XtY
+H5 : nat XtZ
+H6 : nat XtYpXtZ
+H9 : plus XtY XtZ XtYpXtZ
+H10 : nat N *
+H11 : times N Y N'
+H12 : plus N' Y XtY
+H13 : times N Z N'1
+H14 : plus N'1 Z XtZ
+H15 : nat N'
+H16 : nat N'1
+H17 : nat K
+H18 : plus N' N'1 K
+============================
+ exists YpZ XtYpZ, nat YpZ /\ nat XtYpZ /\ times Y Z YpZ /\
+   times (s N) YpZ XtYpZ
+
+undistr_times_plus < apply IH to H10 H2 H3 H15 H16 H17 H11 H13 H18.
+Subgoal 2:
+
+Variables: Y Z XtY XtZ XtYpXtZ N N' N'1 K YpZ XtYpZ
+IH : forall X Y Z XtY XtZ XtYpXtZ, nat X * -> nat Y -> nat Z -> nat XtY ->
+       nat XtZ -> nat XtYpXtZ -> times X Y XtY -> times X Z XtZ ->
+       plus XtY XtZ XtYpXtZ ->
+       (exists YpZ XtYpZ, nat YpZ /\ nat XtYpZ /\ times Y Z YpZ /\
+            times X YpZ XtYpZ)
+H2 : nat Y
+H3 : nat Z
+H4 : nat XtY
+H5 : nat XtZ
+H6 : nat XtYpXtZ
+H9 : plus XtY XtZ XtYpXtZ
+H10 : nat N *
+H11 : times N Y N'
+H12 : plus N' Y XtY
+H13 : times N Z N'1
+H14 : plus N'1 Z XtZ
+H15 : nat N'
+H16 : nat N'1
+H17 : nat K
+H18 : plus N' N'1 K
+H19 : nat YpZ
+H20 : nat XtYpZ
+H21 : times Y Z YpZ
+H22 : times N YpZ XtYpZ
+============================
+ exists YpZ XtYpZ, nat YpZ /\ nat XtYpZ /\ times Y Z YpZ /\
+   times (s N) YpZ XtYpZ
+
+undistr_times_plus < apply succ_nat to H10.
+Subgoal 2:
+
+Variables: Y Z XtY XtZ XtYpXtZ N N' N'1 K YpZ XtYpZ
+IH : forall X Y Z XtY XtZ XtYpXtZ, nat X * -> nat Y -> nat Z -> nat XtY ->
+       nat XtZ -> nat XtYpXtZ -> times X Y XtY -> times X Z XtZ ->
+       plus XtY XtZ XtYpXtZ ->
+       (exists YpZ XtYpZ, nat YpZ /\ nat XtYpZ /\ times Y Z YpZ /\
+            times X YpZ XtYpZ)
+H2 : nat Y
+H3 : nat Z
+H4 : nat XtY
+H5 : nat XtZ
+H6 : nat XtYpXtZ
+H9 : plus XtY XtZ XtYpXtZ
+H10 : nat N *
+H11 : times N Y N'
+H12 : plus N' Y XtY
+H13 : times N Z N'1
+H14 : plus N'1 Z XtZ
+H15 : nat N'
+H16 : nat N'1
+H17 : nat K
+H18 : plus N' N'1 K
+H19 : nat YpZ
+H20 : nat XtYpZ
+H21 : times Y Z YpZ
+H22 : times N YpZ XtYpZ
+H23 : nat (s N)
+============================
+ exists YpZ XtYpZ, nat YpZ /\ nat XtYpZ /\ times Y Z YpZ /\
+   times (s N) YpZ XtYpZ
+
+undistr_times_plus < apply times_total' to H23 H19.
+Subgoal 2:
+
+Variables: Y Z XtY XtZ XtYpXtZ N N' N'1 K YpZ XtYpZ K1
+IH : forall X Y Z XtY XtZ XtYpXtZ, nat X * -> nat Y -> nat Z -> nat XtY ->
+       nat XtZ -> nat XtYpXtZ -> times X Y XtY -> times X Z XtZ ->
+       plus XtY XtZ XtYpXtZ ->
+       (exists YpZ XtYpZ, nat YpZ /\ nat XtYpZ /\ times Y Z YpZ /\
+            times X YpZ XtYpZ)
+H2 : nat Y
+H3 : nat Z
+H4 : nat XtY
+H5 : nat XtZ
+H6 : nat XtYpXtZ
+H9 : plus XtY XtZ XtYpXtZ
+H10 : nat N *
+H11 : times N Y N'
+H12 : plus N' Y XtY
+H13 : times N Z N'1
+H14 : plus N'1 Z XtZ
+H15 : nat N'
+H16 : nat N'1
+H17 : nat K
+H18 : plus N' N'1 K
+H19 : nat YpZ
+H20 : nat XtYpZ
+H21 : times Y Z YpZ
+H22 : times N YpZ XtYpZ
+H23 : nat (s N)
+H24 : nat K1
+H25 : times (s N) YpZ K1
+============================
+ exists YpZ XtYpZ, nat YpZ /\ nat XtYpZ /\ times Y Z YpZ /\
+   times (s N) YpZ XtYpZ
+
+undistr_times_plus < search.
+Proof completed.
+Abella < Theorem times_assoc' : 
+forall A B C AB ABC, nat A -> nat B -> nat C -> nat AB -> nat ABC ->
+  times A B AB -> times AB C ABC ->
+  (exists BC, times B C BC /\ times A BC ABC).
+
+
+============================
+ forall A B C AB ABC, nat A -> nat B -> nat C -> nat AB -> nat ABC ->
+   times A B AB -> times AB C ABC ->
+   (exists BC, times B C BC /\ times A BC ABC)
+
+times_assoc' < induction on 6.
+
+IH : forall A B C AB ABC, nat A -> nat B -> nat C -> nat AB -> nat ABC ->
+       times A B AB * -> times AB C ABC ->
+       (exists BC, times B C BC /\ times A BC ABC)
+============================
+ forall A B C AB ABC, nat A -> nat B -> nat C -> nat AB -> nat ABC ->
+   times A B AB @ -> times AB C ABC ->
+   (exists BC, times B C BC /\ times A BC ABC)
+
+times_assoc' < intros.
+
+Variables: A B C AB ABC
+IH : forall A B C AB ABC, nat A -> nat B -> nat C -> nat AB -> nat ABC ->
+       times A B AB * -> times AB C ABC ->
+       (exists BC, times B C BC /\ times A BC ABC)
+H1 : nat A
+H2 : nat B
+H3 : nat C
+H4 : nat AB
+H5 : nat ABC
+H6 : times A B AB @
+H7 : times AB C ABC
+============================
+ exists BC, times B C BC /\ times A BC ABC
+
+times_assoc' < case H6.
+Subgoal 1:
+
+Variables: B C ABC
+IH : forall A B C AB ABC, nat A -> nat B -> nat C -> nat AB -> nat ABC ->
+       times A B AB * -> times AB C ABC ->
+       (exists BC, times B C BC /\ times A BC ABC)
+H1 : nat z
+H2 : nat B
+H3 : nat C
+H4 : nat z
+H5 : nat ABC
+H7 : times z C ABC
+============================
+ exists BC, times B C BC /\ times z BC ABC
+
+Subgoal 2 is:
+ exists BC, times B C BC /\ times (s K) BC ABC
+
+times_assoc' < case H7.
+Subgoal 1:
+
+Variables: B C
+IH : forall A B C AB ABC, nat A -> nat B -> nat C -> nat AB -> nat ABC ->
+       times A B AB * -> times AB C ABC ->
+       (exists BC, times B C BC /\ times A BC ABC)
+H1 : nat z
+H2 : nat B
+H3 : nat C
+H4 : nat z
+H5 : nat z
+============================
+ exists BC, times B C BC /\ times z BC z
+
+Subgoal 2 is:
+ exists BC, times B C BC /\ times (s K) BC ABC
+
+times_assoc' < apply times_total' to H2 H3.
+Subgoal 1:
+
+Variables: B C K
+IH : forall A B C AB ABC, nat A -> nat B -> nat C -> nat AB -> nat ABC ->
+       times A B AB * -> times AB C ABC ->
+       (exists BC, times B C BC /\ times A BC ABC)
+H1 : nat z
+H2 : nat B
+H3 : nat C
+H4 : nat z
+H5 : nat z
+H8 : nat K
+H9 : times B C K
+============================
+ exists BC, times B C BC /\ times z BC z
+
+Subgoal 2 is:
+ exists BC, times B C BC /\ times (s K) BC ABC
+
+times_assoc' < search.
+Subgoal 2:
+
+Variables: B C AB ABC N' K
+IH : forall A B C AB ABC, nat A -> nat B -> nat C -> nat AB -> nat ABC ->
+       times A B AB * -> times AB C ABC ->
+       (exists BC, times B C BC /\ times A BC ABC)
+H1 : nat (s K)
+H2 : nat B
+H3 : nat C
+H4 : nat AB
+H5 : nat ABC
+H7 : times AB C ABC
+H8 : times K B N' *
+H9 : plus N' B AB
+============================
+ exists BC, times B C BC /\ times (s K) BC ABC
+
+times_assoc' < case H1.
+Subgoal 2:
+
+Variables: B C AB ABC N' K
+IH : forall A B C AB ABC, nat A -> nat B -> nat C -> nat AB -> nat ABC ->
+       times A B AB * -> times AB C ABC ->
+       (exists BC, times B C BC /\ times A BC ABC)
+H2 : nat B
+H3 : nat C
+H4 : nat AB
+H5 : nat ABC
+H7 : times AB C ABC
+H8 : times K B N' *
+H9 : plus N' B AB
+H10 : nat K
+============================
+ exists BC, times B C BC /\ times (s K) BC ABC
+
+times_assoc' < apply times_comm' to H4 H3 H5 H7.
+Subgoal 2:
+
+Variables: B C AB ABC N' K
+IH : forall A B C AB ABC, nat A -> nat B -> nat C -> nat AB -> nat ABC ->
+       times A B AB * -> times AB C ABC ->
+       (exists BC, times B C BC /\ times A BC ABC)
+H2 : nat B
+H3 : nat C
+H4 : nat AB
+H5 : nat ABC
+H7 : times AB C ABC
+H8 : times K B N' *
+H9 : plus N' B AB
+H10 : nat K
+H11 : times C AB ABC
+============================
+ exists BC, times B C BC /\ times (s K) BC ABC
+
+times_assoc' < apply augend_nat to H9 H2 H4.
+Subgoal 2:
+
+Variables: B C AB ABC N' K
+IH : forall A B C AB ABC, nat A -> nat B -> nat C -> nat AB -> nat ABC ->
+       times A B AB * -> times AB C ABC ->
+       (exists BC, times B C BC /\ times A BC ABC)
+H2 : nat B
+H3 : nat C
+H4 : nat AB
+H5 : nat ABC
+H7 : times AB C ABC
+H8 : times K B N' *
+H9 : plus N' B AB
+H10 : nat K
+H11 : times C AB ABC
+H12 : nat N'
+============================
+ exists BC, times B C BC /\ times (s K) BC ABC
+
+times_assoc' < apply distribute to H3 H12 H2 H4 H5 H9 H11.
+Subgoal 2:
+
+Variables: B C AB ABC N' K XtY XtZ
+IH : forall A B C AB ABC, nat A -> nat B -> nat C -> nat AB -> nat ABC ->
+       times A B AB * -> times AB C ABC ->
+       (exists BC, times B C BC /\ times A BC ABC)
+H2 : nat B
+H3 : nat C
+H4 : nat AB
+H5 : nat ABC
+H7 : times AB C ABC
+H8 : times K B N' *
+H9 : plus N' B AB
+H10 : nat K
+H11 : times C AB ABC
+H12 : nat N'
+H13 : nat XtY
+H14 : nat XtZ
+H15 : times C N' XtY
+H16 : times C B XtZ
+H17 : plus XtY XtZ ABC
+============================
+ exists BC, times B C BC /\ times (s K) BC ABC
+
+times_assoc' < apply times_comm' to H3 H12 H13 H15.
+Subgoal 2:
+
+Variables: B C AB ABC N' K XtY XtZ
+IH : forall A B C AB ABC, nat A -> nat B -> nat C -> nat AB -> nat ABC ->
+       times A B AB * -> times AB C ABC ->
+       (exists BC, times B C BC /\ times A BC ABC)
+H2 : nat B
+H3 : nat C
+H4 : nat AB
+H5 : nat ABC
+H7 : times AB C ABC
+H8 : times K B N' *
+H9 : plus N' B AB
+H10 : nat K
+H11 : times C AB ABC
+H12 : nat N'
+H13 : nat XtY
+H14 : nat XtZ
+H15 : times C N' XtY
+H16 : times C B XtZ
+H17 : plus XtY XtZ ABC
+H18 : times N' C XtY
+============================
+ exists BC, times B C BC /\ times (s K) BC ABC
+
+times_assoc' < apply IH to H10 H2 H3 H12 H13 H8 H18.
+Subgoal 2:
+
+Variables: B C AB ABC N' K XtY XtZ BC
+IH : forall A B C AB ABC, nat A -> nat B -> nat C -> nat AB -> nat ABC ->
+       times A B AB * -> times AB C ABC ->
+       (exists BC, times B C BC /\ times A BC ABC)
+H2 : nat B
+H3 : nat C
+H4 : nat AB
+H5 : nat ABC
+H7 : times AB C ABC
+H8 : times K B N' *
+H9 : plus N' B AB
+H10 : nat K
+H11 : times C AB ABC
+H12 : nat N'
+H13 : nat XtY
+H14 : nat XtZ
+H15 : times C N' XtY
+H16 : times C B XtZ
+H17 : plus XtY XtZ ABC
+H18 : times N' C XtY
+H19 : times B C BC
+H20 : times K BC XtY
+============================
+ exists BC, times B C BC /\ times (s K) BC ABC
+
+times_assoc' < apply times_nat to H19 H2 H3.
+Subgoal 2:
+
+Variables: B C AB ABC N' K XtY XtZ BC
+IH : forall A B C AB ABC, nat A -> nat B -> nat C -> nat AB -> nat ABC ->
+       times A B AB * -> times AB C ABC ->
+       (exists BC, times B C BC /\ times A BC ABC)
+H2 : nat B
+H3 : nat C
+H4 : nat AB
+H5 : nat ABC
+H7 : times AB C ABC
+H8 : times K B N' *
+H9 : plus N' B AB
+H10 : nat K
+H11 : times C AB ABC
+H12 : nat N'
+H13 : nat XtY
+H14 : nat XtZ
+H15 : times C N' XtY
+H16 : times C B XtZ
+H17 : plus XtY XtZ ABC
+H18 : times N' C XtY
+H19 : times B C BC
+H20 : times K BC XtY
+H21 : nat BC
+============================
+ exists BC, times B C BC /\ times (s K) BC ABC
+
+times_assoc' < apply times_comm' to H2 H3 H21 H19.
+Subgoal 2:
+
+Variables: B C AB ABC N' K XtY XtZ BC
+IH : forall A B C AB ABC, nat A -> nat B -> nat C -> nat AB -> nat ABC ->
+       times A B AB * -> times AB C ABC ->
+       (exists BC, times B C BC /\ times A BC ABC)
+H2 : nat B
+H3 : nat C
+H4 : nat AB
+H5 : nat ABC
+H7 : times AB C ABC
+H8 : times K B N' *
+H9 : plus N' B AB
+H10 : nat K
+H11 : times C AB ABC
+H12 : nat N'
+H13 : nat XtY
+H14 : nat XtZ
+H15 : times C N' XtY
+H16 : times C B XtZ
+H17 : plus XtY XtZ ABC
+H18 : times N' C XtY
+H19 : times B C BC
+H20 : times K BC XtY
+H21 : nat BC
+H22 : times C B BC
+============================
+ exists BC, times B C BC /\ times (s K) BC ABC
+
+times_assoc' < apply times_det to H16 H22.
+Subgoal 2:
+
+Variables: B C AB ABC N' K XtY BC
+IH : forall A B C AB ABC, nat A -> nat B -> nat C -> nat AB -> nat ABC ->
+       times A B AB * -> times AB C ABC ->
+       (exists BC, times B C BC /\ times A BC ABC)
+H2 : nat B
+H3 : nat C
+H4 : nat AB
+H5 : nat ABC
+H7 : times AB C ABC
+H8 : times K B N' *
+H9 : plus N' B AB
+H10 : nat K
+H11 : times C AB ABC
+H12 : nat N'
+H13 : nat XtY
+H14 : nat BC
+H15 : times C N' XtY
+H16 : times C B BC
+H17 : plus XtY BC ABC
+H18 : times N' C XtY
+H19 : times B C BC
+H20 : times K BC XtY
+H21 : nat BC
+H22 : times C B BC
+============================
+ exists BC, times B C BC /\ times (s K) BC ABC
+
+times_assoc' < search.
+Proof completed.
+Abella < 

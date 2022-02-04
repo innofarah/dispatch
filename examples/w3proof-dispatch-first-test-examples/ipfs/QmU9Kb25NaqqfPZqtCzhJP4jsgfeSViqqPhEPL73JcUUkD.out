@@ -1,0 +1,113 @@
+Welcome to Abella 2.0.8-dev.
+Abella < Specification "nat".
+Reading specification "nat".
+
+Abella < Import "defnat".
+Importing from "defnat".
+
+Abella < Theorem lt_z : 
+forall N, nat N -> lt z (s N).
+
+
+============================
+ forall N, nat N -> lt z (s N)
+
+lt_z < induction on 1.
+
+IH : forall N, nat N * -> lt z (s N)
+============================
+ forall N, nat N @ -> lt z (s N)
+
+lt_z < intros.
+
+Variables: N
+IH : forall N, nat N * -> lt z (s N)
+H1 : nat N @
+============================
+ lt z (s N)
+
+lt_z < case H1.
+Subgoal 1:
+
+IH : forall N, nat N * -> lt z (s N)
+============================
+ lt z (s z)
+
+Subgoal 2 is:
+ lt z (s (s N1))
+
+lt_z < search.
+Subgoal 2:
+
+Variables: N1
+IH : forall N, nat N * -> lt z (s N)
+H2 : nat N1 *
+============================
+ lt z (s (s N1))
+
+lt_z < apply IH to H2.
+Subgoal 2:
+
+Variables: N1
+IH : forall N, nat N * -> lt z (s N)
+H2 : nat N1 *
+H3 : lt z (s N1)
+============================
+ lt z (s (s N1))
+
+lt_z < search.
+Proof completed.
+Abella < Theorem lt_s : 
+forall N1 N2, lt N1 N2 -> lt (s N1) (s N2).
+
+
+============================
+ forall N1 N2, lt N1 N2 -> lt (s N1) (s N2)
+
+lt_s < induction on 1.
+
+IH : forall N1 N2, lt N1 N2 * -> lt (s N1) (s N2)
+============================
+ forall N1 N2, lt N1 N2 @ -> lt (s N1) (s N2)
+
+lt_s < intros.
+
+Variables: N1 N2
+IH : forall N1 N2, lt N1 N2 * -> lt (s N1) (s N2)
+H1 : lt N1 N2 @
+============================
+ lt (s N1) (s N2)
+
+lt_s < case H1.
+Subgoal 1:
+
+Variables: N1
+IH : forall N1 N2, lt N1 N2 * -> lt (s N1) (s N2)
+============================
+ lt (s N1) (s (s N1))
+
+Subgoal 2 is:
+ lt (s N1) (s (s N4))
+
+lt_s < search.
+Subgoal 2:
+
+Variables: N1 N4
+IH : forall N1 N2, lt N1 N2 * -> lt (s N1) (s N2)
+H2 : lt N1 N4 *
+============================
+ lt (s N1) (s (s N4))
+
+lt_s < apply IH to H2.
+Subgoal 2:
+
+Variables: N1 N4
+IH : forall N1 N2, lt N1 N2 * -> lt (s N1) (s N2)
+H2 : lt N1 N4 *
+H3 : lt (s N1) (s N4)
+============================
+ lt (s N1) (s (s N4))
+
+lt_s < search.
+Proof completed.
+Abella < 

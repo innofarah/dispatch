@@ -1,0 +1,49 @@
+Welcome to Abella 2.0.8-dev.
+Abella < Specification "nat".
+Reading specification "nat".
+
+Abella < Import "defnat".
+Importing from "defnat".
+
+Abella < Import "defalgos".
+Importing from "defalgos".
+
+Abella < Theorem mod_total_strong : 
+forall N M, nat N -> lt_acc N -> nat M -> (exists R, nat R /\ mod N (s M) R).
+
+
+============================
+ forall N M, nat N -> lt_acc N -> nat M -> (exists R, nat R /\ mod N (s M) R)
+
+mod_total_strong < induction on 2.
+
+IH : forall N M, nat N -> lt_acc N * -> nat M ->
+       (exists R, nat R /\ mod N (s M) R)
+============================
+ forall N M, nat N -> lt_acc N @ -> nat M ->
+   (exists R, nat R /\ mod N (s M) R)
+
+mod_total_strong < intros.
+
+Variables: N M
+IH : forall N M, nat N -> lt_acc N * -> nat M ->
+       (exists R, nat R /\ mod N (s M) R)
+H1 : nat N
+H2 : lt_acc N @
+H3 : nat M
+============================
+ exists R, nat R /\ mod N (s M) R
+
+mod_total_strong < case H2.
+
+Variables: N M
+IH : forall N M, nat N -> lt_acc N * -> nat M ->
+       (exists R, nat R /\ mod N (s M) R)
+H1 : nat N
+H3 : nat M
+H4 : forall M, lt M N -> lt_acc M *
+============================
+ exists R, nat R /\ mod N (s M) R
+
+mod_total_strong < apply sub_total to H1 _ with N2 = s M.
+Error: Could not find hypothesis or lemma sub_total

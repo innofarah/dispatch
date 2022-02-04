@@ -1,0 +1,4 @@
+Specification "nat". 
+
+Import "ipfs://QmPYwRuiMAzn3j3xy3L38bgQZQrxgvBP81f7XBVRxnvBvZ".
+Import "https://raw.githubusercontent.com/innofarah/abella-examples/main/even-odd.thm".

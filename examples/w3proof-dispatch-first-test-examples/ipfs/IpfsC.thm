@@ -1,0 +1,3 @@
+Specification "nat".
+
+Import "IpfsB".

@@ -1,0 +1,104 @@
+Welcome to Abella 2.0.8-dev.
+Abella < Specification "nat".
+Reading specification "nat".
+
+Abella < Import "ipfs://QmSvHkahEWR5LYCkKppKAipMWDdTNZybPem43fJAh8BdKy".
+Importing from "QmSvHkahEWR5LYCkKppKAipMWDdTNZybPem43fJAh8BdKy".
+
+Abella < Import "ipfs://QmV128HEtk6d5c1Z8AQp1ktRuqEQRdAhRsdYtS8miKbG7a".
+Importing from "QmV128HEtk6d5c1Z8AQp1ktRuqEQRdAhRsdYtS8miKbG7a".
+
+Abella < Theorem mod_total : 
+forall N M, nat N -> nat M -> (exists R, nat R /\ mod N (s M) R).
+
+
+============================
+ forall N M, nat N -> nat M -> (exists R, nat R /\ mod N (s M) R)
+
+mod_total < intros.
+
+Variables: N M
+H1 : nat N
+H2 : nat M
+============================
+ exists R, nat R /\ mod N (s M) R
+
+mod_total < apply nat_acc to H1.
+
+Variables: N M
+H1 : nat N
+H2 : nat M
+H3 : lt_acc N
+============================
+ exists R, nat R /\ mod N (s M) R
+
+mod_total < apply mod_total_strong to H1 H3 H2.
+
+Variables: N M R
+H1 : nat N
+H2 : nat M
+H3 : lt_acc N
+H4 : nat R
+H5 : mod N (s M) R
+============================
+ exists R, nat R /\ mod N (s M) R
+
+mod_total < search.
+Proof completed.
+Abella < Theorem mod_lt : 
+forall N M R, mod N M R -> lt R M.
+
+
+============================
+ forall N M R, mod N M R -> lt R M
+
+mod_lt < induction on 1.
+
+IH : forall N M R, mod N M R * -> lt R M
+============================
+ forall N M R, mod N M R @ -> lt R M
+
+mod_lt < intros.
+
+Variables: N M R
+IH : forall N M R, mod N M R * -> lt R M
+H1 : mod N M R @
+============================
+ lt R M
+
+mod_lt < case H1.
+Subgoal 1:
+
+Variables: M R
+IH : forall N M R, mod N M R * -> lt R M
+H2 : lt R M
+============================
+ lt R M
+
+Subgoal 2 is:
+ lt R M
+
+mod_lt < search.
+Subgoal 2:
+
+Variables: N M R N'
+IH : forall N M R, mod N M R * -> lt R M
+H2 : sub N M N'
+H3 : mod N' M R *
+============================
+ lt R M
+
+mod_lt < apply IH to H3.
+Subgoal 2:
+
+Variables: N M R N'
+IH : forall N M R, mod N M R * -> lt R M
+H2 : sub N M N'
+H3 : mod N' M R *
+H4 : lt R M
+============================
+ lt R M
+
+mod_lt < search.
+Proof completed.
+Abella < 

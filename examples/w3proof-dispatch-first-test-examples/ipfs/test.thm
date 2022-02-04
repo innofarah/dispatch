@@ -1,0 +1,49 @@
+%% Use well-founded induction to prove the totality of Euclid's GCD algorithm.
+%% Well-foundedness is characterized by using the idea of accessibility
+%% (e.g. see https://coq.inria.fr/library/Coq.Init.Wf.html).
+%%
+%% Author: Todd Wilson
+%%
+
+%% Import "ipfs://QmRwW94pzveMfKgThpfnmRVib6rw4bRZgxC3BHcV2KJv7X". --> The import cannot be before the declaration of the types -> error: imported file makes reference to unknown types ((in the main file))
+
+%%%% Natural numbers
+
+Specification "nat".
+
+
+Import "ipfs://QmSvHkahEWR5LYCkKppKAipMWDdTNZybPem43fJAh8BdKy".
+
+Import "ipfs://QmU9Kb25NaqqfPZqtCzhJP4jsgfeSViqqPhEPL73JcUUkD".
+Import "ipfs://QmU9Kb25NaqqfPZqtCzhJP4jsgfeSViqqPhEPL73JcUUkD".
+
+
+%%%% Algorithms
+
+Import "defalgos".
+
+%%%% Properties of algorithms
+
+Import "ipfs://QmQW3wzHwfyCH7LmXFX9a8QUG9WCFWDUajxWSjdpo1WdUq".
+
+Import "ipfs://QmNcGVPAD9rJpN3THfSkShezjvXr74GTkP4cQtDbVwR1FA".
+  
+
+Import "ipfs://QmV128HEtk6d5c1Z8AQp1ktRuqEQRdAhRsdYtS8miKbG7a".
+
+Import "th6".
+
+% Totality of gcd N M D, by strong induction on m
+Theorem gcd_total_strong : forall N M,
+  nat N -> nat M -> lt_acc M ->
+    exists D, nat D /\ gcd N M D.
+induction on 3. intros. case H3.
+  case H2.
+    search.
+    apply mod_total to H1 H5. apply mod_lt to H7. apply H4 to H8. %\
+       apply IH to _ H6 H9 with N = s N1. search.
+
+Theorem gcd_total : forall N M,
+  nat N -> nat M ->
+    exists D, nat D /\ gcd N M D.
+intros. apply nat_acc to H2. apply gcd_total_strong to H1 H2 H3. search.

@@ -1,0 +1,109 @@
+
+Import "nats".
+
+
+Define even : nat -> prop by
+  even z ;
+  even (s (s N)) := even N.
+
+Define odd : nat -> prop by
+  odd (s z) ;
+  odd (s (s N)) := odd N.
+
+Theorem two-even : even (s (s z)).
+unfold. search. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%    Fibonacci numbers     (DM 25 Oct 2016)              %%%%
+%%%%                                                        %%%%
+%%%%    The main theorem proved below is that (fib N) = N   %%%%
+%%%%    if and only if N is a member of the set {0, 1, 5}.  %%%%
+%%%%                                                        %%%%
+%%%%    There is a similar theorem not yet attempted:       %%%%
+%%%%    (fib N) = N*N if and only if N is a member of the   %%%%
+%%%%    set {0, 1, 12}.                                     %%%%
+%%%%                                                        %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Import "order".
+
+Define fib : nat -> nat -> prop by
+  fib z z 
+; fib (s z) (s z)
+; fib (s (s N)) F := exists F1 F2, fib N F1 /\ fib (s N) F2 /\ plus F1 F2 F.
+
+
+Theorem fib_three : forall F, fib (s (s (s z))) F -> F = (s (s z)).
+  intros. case H1. case  H2. case  H3. case  H5. case  H6. case  H7.
+          case H4. case H8. search.
+Theorem fib_four : forall F, fib (s (s (s (s z)))) F -> F = (s (s (s z))).
+  intros. case H1. case  H2. case  H5. case  H6. case  H7. case  H3. case H8.
+          case H9. case H11. case H12. case H13. case H10. case H14. 
+          case H4. case H15. search.
+Theorem fib_five : forall F, fib (s (s (s (s (s z))))) F -> F = (s (s (s (s (s z))))).
+  intros. case H1. apply fib_three to H2. apply fib_four to H3.
+          case H4. case H5. case H6. search.
+Theorem fib_six : forall F, fib (s (s (s (s (s (s z)))))) F ->
+                         F = (s (s (s (s (s (s (s (s z)))))))).
+  intros. case H1. apply fib_four to H2. apply fib_five to H3.
+          case H4. case H5. case H6. case H7. search.
+Theorem fib_seven : forall F, fib (s (s (s (s (s (s (s z))))))) F -> 
+                           F = (s (s (s (s (s (s (s (s (s (s (s (s (s z))))))))))))).
+  intros. case H1. apply fib_five to H2.  apply fib_six to H3.
+  case H4. case H5. case H6. case H7. case H8. case H9. search.
+Theorem fib_det : forall A B C, fib A B -> fib A C -> B = C.
+  induction on 1. intros. case H1. 
+    case H2. search.
+    case H2. search.
+    case H2. apply IH to H3 H6. apply IH to H4 H7.
+      apply plus_det to H5 H8. search.
+Theorem fib_type : forall N, nat N -> (forall F, fib N F -> nat F) /\ (forall F, fib (s N) F -> nat F).
+  induction on 1. intros. case H1.
+  split. intros. case H2. search. intros. case H2. search.
+  apply IH to H2. split.
+    search.
+    intros. case H5. apply H3 to H6. apply H4 to H7. apply plus_type2 to H10 H8. search.
+  
+% There are at least three solutions to the fibonacci equation (fib N) = N.
+Theorem three_solutions : forall N, (N = z \/ N = (s z) \/ N = (s (s (s (s (s z)))))) -> fib N N.
+  intros. case H1. search. search. search.
+% The converse of this theorem takes a bit more work
+Theorem plus_greater : forall X Y Z N,
+   nat N -> nat X -> nat Y -> greater X N -> greater Y (s N) -> plus X Y Z -> greater Z (s (s N)).
+  induction on 1. intros. case H1.
+  case H4. case H5. case H6. case H7. case H2. apply plus_type2 to H3 H8.
+     apply plus_comm to H10 H8. case H11. case H12. search.
+  case H4. case H5. case H2. case H3. case H6. assert nat (s N3).
+  apply plus_type2 to H13 H12. apply plus_comm to H14 H12.
+  case H15. case H14. apply plus_comm to H17 H16.
+  apply IH to H7 H10 H11 H8 H9 H18. unfold. apply greater-succ to H19. search.
+Theorem fib_bounding : forall N, nat N -> 
+      (forall F, (fib    (s (s (s (s (s (s N))))))  F -> greater F    (s (s (s (s (s (s N)))))))) /\ 
+      (forall F, (fib (s (s (s (s (s (s (s N))))))) F -> greater F (s (s (s (s (s (s (s N))))))))).
+  induction on 1. intros. case H1. split.
+   intros. apply fib_six to H2. search 10.
+   intros. apply fib_seven to H2. search 10.
+  apply IH to H2. split. search.
+  intros. case H5. apply H3 to H6. apply H4 to H7.
+  assert nat (s (s (s (s (s (s N1)))))). search 10.
+  apply fib_type to H11. apply H12 to H6. apply H13 to H7.
+  apply plus_greater to H11 H14 H15 H9 H10 H8. search.
+Theorem only_three_solutions :
+ forall N, nat N -> fib N N -> (N = z \/ N = (s z) \/ N = (s (s (s (s (s z)))))).
+  intros.
+  assert nat (s (s (s (s (s z))))). search 10.
+  apply trichotomy to H3. apply H4 to H1. case H5.
+  case H6. search.
+  case H7. search. 
+  case H8. case H2. case H9. case H10. case H11.
+  case H9. apply fib_three to H2.
+  case H10. apply fib_four to H2.
+  case H11.
+  search.
+  case H6. case H7. case H8. case H9. case H10. case H11. 
+  case H1. case H12. case H13. case H14. case H15. case H16.
+  apply fib_bounding to H17. apply H18 to H2.
+  assert (s (s (s (s (s (s N1)))))) = (s (s (s (s (s (s N1)))))).
+  assert nat (s (s (s (s (s (s N1)))))). search 10.
+  apply trichotomyC to H22 H22 H20 H21.
+
