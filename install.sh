@@ -17,7 +17,6 @@ ipfs init
 # to install w3proof-dispatch
 #sudo apt install npm
 #cleaning
-rm package-lock.json
 sudo npm uninstall w3proof-dispatch -g
 nvm use system
 npm uninstall -g a_module
@@ -28,6 +27,7 @@ source ~/.nvm/nvm.sh
 cd ..
 cd w3proof-dispatch
 sudo npm i -g
+sudo npm ci
 
 echo "
 ----------------------------------------------------------------------------------------------------------------------------
