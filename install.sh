@@ -7,6 +7,7 @@ source ~/.bashrc
 # install node latest stable version:
 nvm install --lts
 # install ipfs (according to the ipfs website instructionS):
+cd ..
 wget https://dist.ipfs.io/go-ipfs/v0.11.0/go-ipfs_v0.11.0_linux-amd64.tar.gz
 tar -xvzf go-ipfs_v0.11.0_linux-amd64.tar.gz
 cd go-ipfs
@@ -15,4 +16,5 @@ ipfs init
 # to install w3proof-dispatch
 sudo apt install npm
 cd ..
+cd w3proof-dispatch
 npm install -g
