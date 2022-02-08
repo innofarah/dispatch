@@ -1,10 +1,4 @@
 #!/bin/sh
-rm package-lock.json
-sudo npm uninstall w3proof-dispatch -g
-nvm use system
-npm uninstall -g a_module
-source ~/.bashrc
-source ~/.nvm/nvm.sh
 # to install the latest stable node version through nvm, first install nvm:
 sudo apt-get curl
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
@@ -22,6 +16,15 @@ sudo bash install.sh
 ipfs init
 # to install w3proof-dispatch
 #sudo apt install npm
+#cleaning
+rm package-lock.json
+sudo npm uninstall w3proof-dispatch -g
+nvm use system
+npm uninstall -g a_module
+nvm use --lts
+source ~/.bashrc
+source ~/.nvm/nvm.sh
+## installing 
 cd ..
 cd w3proof-dispatch
 sudo npm i -g
