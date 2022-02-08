@@ -17,4 +17,4 @@ ipfs init
 sudo apt install npm
 cd ..
 cd w3proof-dispatch
-npm install -g
+npm i -g
