@@ -4,6 +4,7 @@
 sudo apt-get curl
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 source ~/.bashrc
+source ~/.nvm/nvm.sh
 # install node latest stable version:
 nvm install --lts
 nvm use --lts
@@ -15,7 +16,7 @@ cd go-ipfs
 sudo bash install.sh
 ipfs init
 # to install w3proof-dispatch
-sudo apt install npm
+#sudo apt install npm
 cd ..
 cd w3proof-dispatch
-npm i -g
+sudo npm install -g
