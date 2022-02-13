@@ -20,7 +20,7 @@ ipfs init
 sudo npm uninstall w3proof-dispatch -g
 nvm use system
 npm uninstall -g a_module
-nvm use --lts
+nvm use stable
 source ~/.bashrc
 source ~/.nvm/nvm.sh
 ## installing 
