@@ -7,7 +7,7 @@ fi
 
 
 # to install the latest stable node version through nvm, first install nvm:
-apt-get install curl
+sudo apt-get install curl
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 source ~/.bashrc
 source ~/.nvm/nvm.sh
@@ -20,12 +20,12 @@ apt-get install wget
 wget https://dist.ipfs.io/go-ipfs/v0.11.0/go-ipfs_v0.11.0_linux-amd64.tar.gz
 tar -xvzf go-ipfs_v0.11.0_linux-amd64.tar.gz
 cd go-ipfs
-bash install.sh
+sudo bash install.sh
 ipfs init
 # to install w3proof-dispatch
 #apt install npm
 #cleaning
-npm uninstall w3proof-dispatch -g
+sudo npm uninstall w3proof-dispatch -g
 nvm use system
 npm uninstall -g a_module
 nvm use stable
@@ -34,8 +34,8 @@ source ~/.nvm/nvm.sh
 ## installing 
 cd ..
 cd w3proof-dispatch
-npm i -g
-npm ci
+sudo npm i -g
+sudo npm ci
 
 echo "
 ----------------------------------------------------------------------------------------------------------------------------
