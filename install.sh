@@ -6,7 +6,7 @@ source ~/.bashrc
 source ~/.nvm/nvm.sh
 # install node latest stable version:
 nvm install --lts
-nvm use --lts
+nvm use stable
 # install ipfs (according to the ipfs website instructionS):
 cd ..
 wget https://dist.ipfs.io/go-ipfs/v0.11.0/go-ipfs_v0.11.0_linux-amd64.tar.gz
