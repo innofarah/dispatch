@@ -13,7 +13,7 @@ source ~/.bashrc
 source ~/.zshrc
 source ~/.nvm/nvm.sh
 # install node latest stable version:
-nvm install --lts
+nvm install --lts n
 nvm use stable
 # install ipfs (according to the ipfs website instructionS):
 cd ..
