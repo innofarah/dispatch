@@ -1,6 +1,6 @@
 #!/bin/sh
 # to install the latest stable node version through nvm, first install nvm:
-sudo apt-get curl
+sudo apt-get install curl
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 source ~/.bashrc
 source ~/.nvm/nvm.sh
