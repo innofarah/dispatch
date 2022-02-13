@@ -1,7 +1,7 @@
 #!/bin/sh
 
 if [ $EUID != 0 ]; then
-    su "$0" "$@"
+    sudo "$0" "$@"
     exit $?
 fi
 
