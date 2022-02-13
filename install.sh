@@ -1,4 +1,11 @@
 #!/bin/sh
+
+if [ $EUID != 0 ]; then
+    sudo "$0" "$@"
+    exit $?
+fi
+
+
 # to install the latest stable node version through nvm, first install nvm:
 apt-get install curl
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
