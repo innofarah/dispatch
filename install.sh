@@ -6,29 +6,29 @@ source ~/.bashrc
 #source ~/.zshrc
 source ~/.nvm/nvm.sh
 # install node latest stable version:
-nvm install stable
-nvm use stable
+nvm install 16.14.0
+nvm use 16.14.0
 # install ipfs (according to the ipfs website instructionS):
 cd ..
-apt-get install wget
+sudo apt-get install wget
 wget https://dist.ipfs.io/go-ipfs/v0.11.0/go-ipfs_v0.11.0_linux-amd64.tar.gz
 tar -xvzf go-ipfs_v0.11.0_linux-amd64.tar.gz
 cd go-ipfs
-bash install.sh
+sudo bash install.sh
 ipfs init
 # to install w3proof-dispatch
-apt install npm
+sudo apt-get install npm
 #cleaning
 sudo npm uninstall w3proof-dispatch -g
 nvm use system
 npm uninstall -g a_module
-nvm use stable
+nvm use 16.14.0
 source ~/.bashrc
 source ~/.nvm/nvm.sh
 ## installing 
 cd ..
 cd w3proof-dispatch
-npm i -g
+npm install -g
 npm ci
 
 echo "
