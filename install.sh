@@ -1,17 +1,5 @@
-#!/bin/sh
-
-if [ $EUID != 0 ]; then
-    sudo "$0" "$@"
-    exit $?
-fi
-
-
 # to install the latest stable node version through nvm, first install nvm:
-apt-get install curl
-
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-
+sudo apt-get install curl
 
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 source ~/.bashrc
@@ -31,7 +19,7 @@ ipfs init
 # to install w3proof-dispatch
 apt install npm
 #cleaning
-npm uninstall w3proof-dispatch -g
+sudo npm uninstall w3proof-dispatch -g
 nvm use system
 npm uninstall -g a_module
 nvm use stable
