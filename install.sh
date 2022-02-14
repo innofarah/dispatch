@@ -3,7 +3,7 @@ sudo apt-get install curl
 
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 source ~/.bashrc
-source ~/.zshrc
+#source ~/.zshrc
 source ~/.nvm/nvm.sh
 # install node latest stable version:
 nvm install stable
