@@ -3,6 +3,7 @@ const { exec, execSync } = require('child_process')
 
 let config = "", gateway = ""
 
+module.exports = { mainget }
 
 let importFullDag = (ipfsPath, ipfsStation) => {
     let parts = ipfsPath.split("/")
@@ -63,7 +64,7 @@ let constructFile = (ipfsPath, localDirectoryPath) => {
 
 }
 
-export let mainget = (ipfsPath, directory, ipfsStation) => {
+let mainget = (ipfsPath, directory, ipfsStation) => {
     try {
         let configFile = fs.readFileSync("config.json")
         config = JSON.parse(configFile)
