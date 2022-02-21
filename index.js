@@ -16,10 +16,7 @@
 
 const { program } = require('commander')
 
-const { main } = require('./publish.js')
-const { setweb3token } = require('./publish.js')
-const { setgateway } = require('./publish.js')
-const { listconfig } = require('./publish.js')
+const { main, setweb3token, setgateway, listconfig } = require('./publish.js')
 const { mainget } = require('./get.js')
 
 program
