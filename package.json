@@ -4,17 +4,23 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "npx babel src --out-dir dist | npx babel node_modules",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "innofarah",
   "license": "ISC",
   "dependencies": {
-    "chalk": "^5.0.0",
     "commander": "^9.0.0",
-    "conf": "^10.1.1",
     "web3.storage": "^3.1.0"
   },
   "bin": {
-    "w3proof-dispatch": "./index.js"
+    "w3proof-dispatch": "index.js"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.5",
+    "@babel/preset-env": "^7.16.11",
+    "babel-loader": "^8.2.3",
+    "webpack": "^5.69.1",
+    "webpack-cli": "^4.9.2"
   }
 }
