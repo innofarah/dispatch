@@ -3,8 +3,6 @@ const { exec, execSync } = require('child_process')
 
 let config = "", gateway = ""
 
-module.exports = { mainget }
-
 let importFullDag = (ipfsPath, ipfsStation) => {
     let parts = ipfsPath.split("/")
     let cid = parts[0]
@@ -96,4 +94,5 @@ let mainget = (ipfsPath, directory, ipfsStation) => {
 
 }
 
+module.exports = { mainget }
 //mainget()
