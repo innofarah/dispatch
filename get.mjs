@@ -1,5 +1,5 @@
-import fs from 'fs'
-import { exec, execSync } from 'child_process';
+const { fs } = require('fs')
+const { exec, execSync } = require('child_process')
 
 let config = "", gateway = ""
 
