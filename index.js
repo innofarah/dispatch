@@ -16,11 +16,11 @@
 
 const { program } = require('commander')
 
-const { main } = require('./publish.mjs')
-const { setweb3token } = require('./publish.mjs')
-const { setgateway } = require('./publish.mjs')
-const { listconfig } = require('./publish.mjs')
-const { mainget } = require('./get.mjs')
+const { main } = require('./publish.js')
+const { setweb3token } = require('./publish.js')
+const { setgateway } = require('./publish.js')
+const { listconfig } = require('./publish.js')
+const { mainget } = require('./get.js')
 
 program
     .command('publish <mainAssetName> <mainAssetType> <directoryPath> <target>')
