@@ -13,7 +13,7 @@
 // w3proof-dispatch list-config 
 
 // w3proof-dispatch get ipfspath directory local/gateway -- let the user choose if he wants to retreive the file through the specified gateway or through his ipfs node daemon
-const { exec } = require('pkg')
+
 const { program } require('commander')
 
 const { main } require('./publish.mjs')
