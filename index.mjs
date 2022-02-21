@@ -14,13 +14,13 @@
 
 // w3proof-dispatch get ipfspath directory local/gateway -- let the user choose if he wants to retreive the file through the specified gateway or through his ipfs node daemon
 
-const { program } require('commander')
+const { program } = require('commander')
 
-const { main } require('./publish.mjs')
-const { setweb3token } require('./publish.mjs')
-const { setgateway } require('./publish.mjs')
-const { listconfig } require('./publish.mjs')
-const { mainget } require('./get.mjs')
+const { main } = require('./publish.mjs')
+const { setweb3token } = require('./publish.mjs')
+const { setgateway } = require('./publish.mjs')
+const { listconfig } = require('./publish.mjs')
+const { mainget } = require('./get.mjs')
 
 program
     .command('publish <mainAssetName> <mainAssetType> <directoryPath> <target>')
