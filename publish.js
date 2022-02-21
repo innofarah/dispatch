@@ -6,7 +6,6 @@ const { CarReader } = require('@ipld/car');
 let queueGlobal = []
 let publishedObjs = {}
 let config = "", gateway = "", web3Token = "", web3Client = ""
-module.exports = { main, setweb3token, setgateway, listconfig}
 
 let setweb3token = (token) => {
     let configFile = fs.readFileSync("config.json")
@@ -311,3 +310,4 @@ let main = (mainAssetName, mainAssetType, directoryPath, target) => {
     execSync("rm tmpJSON.json")
 }
 
+module.exports = { main, setweb3token, setgateway, listconfig}
