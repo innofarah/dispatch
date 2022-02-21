@@ -6,22 +6,23 @@ const { CarReader } = require('@ipld/car');
 let queueGlobal = []
 let publishedObjs = {}
 let config = "", gateway = "", web3Token = "", web3Client = ""
+module.exports = { main, setweb3token, setgateway, listconfig}
 
-export let setweb3token = (token) => {
+let setweb3token = (token) => {
     let configFile = fs.readFileSync("config.json")
     config = JSON.parse(configFile)
     config["my-web3.storage-api-token"] = token
     fs.writeFileSync("config.json", JSON.stringify(config))
 }
 
-export let setgateway = (gateway) => {
+let setgateway = (gateway) => {
     let configFile = fs.readFileSync("config.json")
     config = JSON.parse(configFile)
     config["my-gateway"] = gateway
     fs.writeFileSync("config.json", JSON.stringify(config))
 }
 
-export let listconfig = () => {
+let listconfig = () => {
     let configFile = fs.readFileSync("config.json")
     config = JSON.parse(configFile)
     Object.entries(config).forEach(element => {
@@ -274,7 +275,7 @@ let publishFinalDag = async (cid) => {
     //console.log(await web3Client.status(cid1))
 }
 
-export let main = (mainAssetName, mainAssetType, directoryPath, target) => {
+let main = (mainAssetName, mainAssetType, directoryPath, target) => {
     try {
         let configFile = fs.readFileSync("config.json")
         config = JSON.parse(configFile)
