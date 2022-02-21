@@ -1,7 +1,7 @@
-import fs from 'fs'
-import { exec, execSync } from 'child_process';
-import { Web3Storage, getFilesFromPath } from 'web3.storage';
-import { CarReader } from '@ipld/car';
+const fs = require('fs')
+const { exec, execSync } = require('child_process');
+const { Web3Storage, getFilesFromPath } = require('web3.storage');
+const { CarReader } = require('@ipld/car');
 
 let queueGlobal = []
 let publishedObjs = {}
