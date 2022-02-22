@@ -2,19 +2,19 @@
   "name": "w3proof-dispatch",
   "version": "1.0.10",
   "description": "",
-  "main": "index.js",
+  "main": "./src/index.js",
   "scripts": {
-    "build": "npx babel src --out-dir dist | npx babel node_modules",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "innofarah",
   "license": "ISC",
   "dependencies": {
     "commander": "^9.0.0",
+    "pkg": "^5.5.2",
     "web3.storage": "^3.1.0"
   },
   "bin": {
-    "w3proof-dispatch": "index.js"
+    "w3proof-dispatch": "./src/index.js"
   },
   "devDependencies": {
     "@babel/core": "^7.17.5",
