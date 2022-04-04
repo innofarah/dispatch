@@ -12,7 +12,6 @@
     "axios": "^0.26.1",
     "commander": "^9.0.0",
     "node-fetch": "^2.6.7",
-    "node-wget-promise": "^0.1.6",
     "pkg": "^5.5.2",
     "web3.storage": "^3.1.0",
     "wget-improved": "^3.3.0"
