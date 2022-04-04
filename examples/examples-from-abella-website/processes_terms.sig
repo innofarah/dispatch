@@ -1,5 +1,7 @@
 sig processes_terms.
 
+accum_sig whatever.
+
 kind pt type.
 
 %lsc terms
