@@ -1,0 +1,5 @@
+Import "file3".
+Importing from "file3".
+Running: abella "file3.thm" -o "file3".out -c "file3.thc".
+
+
