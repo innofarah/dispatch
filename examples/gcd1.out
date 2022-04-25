@@ -1,4 +1,4 @@
-Specification "gcd".
+Specification "ipfs://bafyreiahokfup3fbc3ujzvb2sxcaqjewmg4i4iks2oluh2zhqohgshq5uy".
 
 Theorem sub_total_tt : 
 forall X Y, {less X Y tt} -> (exists Z, {sub Y X Z}).

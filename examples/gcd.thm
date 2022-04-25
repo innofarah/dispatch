@@ -5,9 +5,9 @@
 %% Adapted from the %reduces example in the Twelf User's Guide:
 %% http://www.cs.cmu.edu/~twelf/guide-1-4/twelf_8.html#SEC47
 
-Specification "gcd".
+Specification "ipfs://bafyreiahokfup3fbc3ujzvb2sxcaqjewmg4i4iks2oluh2zhqohgshq5uy".
 
-Import "gcd1".
+Import "ipfs://bafyreifuu4v7kh2pwxn6ljbnpza5iu4df55prpziaazxipftkztr3axufy".
 
 Theorem less_total : forall X Y,
   {nat X} -> {nat Y} -> exists B, {bool B} /\ {less X Y B}.

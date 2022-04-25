@@ -5,11 +5,7 @@
 
 module gcd.
 
-nat z.
-nat (s N) :- nat N.
-
-bool tt.
-bool ff.
+accumulate gcd0.
 
 sub X z X.
 sub (s X) (s Y) Z :- sub X Y Z.
