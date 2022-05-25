@@ -1,0 +1,11 @@
+Kind     nat     type.
+
+
+Import "ipfs://bafyreicucntho6usblbwejyyl333bp7rk3ukfmynhe6gbxqgxmrqyazyem".
+
+Theorem ack2 : forall A B,
+nat A -> nat B -> exists E, nat E /\ ack A B E.
+skip.
+
+Theorem test : forall A, nat A -> nat A.
+search.

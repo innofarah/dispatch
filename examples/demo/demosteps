@@ -1,0 +1,11 @@
+1. publish-signed basic + import cid in order
+2. publish order + import cid in monotone
+3. publish fibonacci
+4. get-execution cidfib -> thms in basic should be skipped
+
+------
+
+from above
+1. publish-signed monotone + import cid in fibonacci
+2. publish fibonacci
+3. get-execution cidfib -> only thms in fib should not be skipped + we would have 2 keys as 2 assertions exist in the structure

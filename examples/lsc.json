@@ -1,8 +1,0 @@
-[{ "type": "top_command", "range": [ 0, 0, 1, 32, 0, 1 ],
-  "command": "Specification \"processes_terms\"", "id": 0 },
-{ "type": "top_command", "range": [ 303, 303, 13, 916, 862, 29 ],
-  "command": "Define red_db_ker : pt -> pt -> pt -> prop,\t\nred_db : pt -> pt -> prop,\t\nred_ls_ker : pt -> (pt -> pt) -> (pt -> pt) -> prop,\t\nred_ls : pt -> pt -> prop by \nred_db_ker (abs U) V (subex U V);\nred_db_ker (subex U V) W (subex U1 V) := nabla x, red_db_ker (U x) W (U1 x);\nred_db (app U V) W := red_db_ker U V W;\nred_ls_ker W x\\x x\\W;\nred_ls_ker W (x\\app (U1 x) (V x)) (x\\app (U2 x) (V x)) := red_ls_ker W U1 U2;\nred_ls_ker W (x\\subex (U1 x) (V x)) (x\\subex (U2 x) (V x)) := nabla y, red_ls_ker W (x\\U1 x y) (x\\U2 x y);\nred_ls (subex U W) (subex V W) := red_ls_ker W U V",
-  "id": 1 },
-{ "type": "top_command", "range": [ 961, 961, 33, 1170, 1134, 37 ],
-  "command": "Define evc_cl : (pt -> pt -> prop) -> pt -> pt -> prop by \nevc_cl R U V := R U V;\nevc_cl R (app U W) (app V W) := evc_cl R U V;\nevc_cl R (subex U W) (subex V W) := nabla x, evc_cl R (U x) (V x)",
-  "id": 2 }]
