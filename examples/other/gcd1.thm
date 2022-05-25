@@ -1,0 +1,13 @@
+Specification "gcd".
+
+Theorem sub_total_tt : forall X Y,
+  {less X Y tt} -> exists Z, {sub Y X Z}.
+induction on 1. intros. case H1.
+  search.
+  apply IH to H2. search.
+
+Theorem sub_total_ff : forall X Y,
+  {less X Y ff} -> exists Z, {sub X Y Z}.
+induction on 1. intros. case H1.
+  search.
+  apply IH to H2. search.
