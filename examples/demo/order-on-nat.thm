@@ -1,0 +1,131 @@
+Import "nat".
+
+Define less : nat -> nat -> prop by
+  less zero (succ N)
+; less (succ N) (succ M) := less N M.
+
+Define greater : nat -> nat -> prop by
+  greater (succ N) zero
+; greater (succ N) (succ M) := greater N M.
+
+Define lesseq : nat -> nat -> prop by
+  lesseq zero zero
+; lesseq zero (succ N)
+; lesseq (succ N) (succ M) := lesseq N M.
+
+Define greatereq : nat -> nat -> prop by
+  greatereq N zero
+; greatereq (succ N) (succ M) := greatereq N M.
+
+Define max : nat -> nat -> nat -> prop by
+   max zero zero zero
+ ; max zero (succ N) (succ N)
+ ; max (succ N) zero (succ N)
+ ; max (succ N) (succ M) (succ P) := max N M P.
+
+Theorem greater_less : forall N M, greater N M -> less M N.
+  induction on 1. intros pivot. pivot: case pivot. search. add: apply IH to pivot. search.
+
+Theorem less_greater : forall N M, less N M -> greater M N.
+  induction on 1. intros pivot. pivot: case pivot. search. add: apply IH to pivot. search.
+
+Theorem simple_less : forall N, nat N -> less N (succ N).
+  induction on 1. intros. case H1. search.  apply IH to H2. search.
+
+Theorem succ_greater : forall N, nat N -> greater (succ N) N.
+  induction on 1. intros pivot. pivot: case pivot. search.
+  add: apply IH to pivot. search.
+
+Theorem greater_greater : forall N M, nat M -> greater N (succ M) -> greater N M.
+  induction on 1. intros pivot aux. pivot: case pivot. aux: case aux. search.
+  aux: case aux. add: apply IH to pivot aux. search. 
+
+Theorem greater_greater2 : forall N M, nat M -> greater N M -> greater (succ N) M.
+  induction on 1. intros pivot aux. pivot: case pivot. search.
+  apply greater_greater to pivot aux. search.
+
+Theorem greater_succ : forall N M, nat N -> nat M -> greater N M -> N = (succ M) \/ greater N (succ M).
+  induction on 2. intros aux pivot aux.
+  pivot: case pivot. case aux1. aux: case aux. case aux.  search. search.
+  aux1: case aux1. aux: case aux. add: apply IH to aux pivot aux1. case add.
+    search. search.
+
+Theorem less_succ : forall N M, nat N -> nat M -> less N M -> (succ N) = M \/ less (succ N) M.
+  induction on 2. intros aux pivot aux.  pivot: case pivot. 
+    case aux1. 
+    aux: case aux. pivot: case pivot. search. search.
+    aux1: case aux1. add: apply  IH to aux pivot aux1. add: case add.
+     search. search.
+
+Theorem dichotomy : forall N M, nat N -> nat M -> (lesseq N M \/ lesseq M (succ N)).
+  induction on 1. induction on 2. intros pivot. pivot: case pivot. case H1.
+    left. search.
+    left. search.
+    apply IH to pivot H1. case H1.
+     right. search.
+     case H2. apply IH1 to pivot H3. case H5.
+       left. search. right. search.
+     apply IH1 to pivot H3. case H5.
+     left. search. right. search.
+
+Theorem lesseq_less : forall N M, lesseq N M -> N = M \/ less N M.
+  induction on 1. intros pivot. pivot: case pivot. search. search.
+  add: apply IH to pivot. add: case add. search. search.
+
+Theorem lesseq_eq : forall N, nat N -> lesseq N N.
+  induction on 1. intros pivot. pivot: case pivot.
+   search.
+   apply IH to pivot. search.
+
+Theorem lesseq_trans : forall N M P, lesseq N M -> lesseq M P -> lesseq N P.
+  induction on 1. intros pivot aux. pivot: case pivot. search. 
+  aux: case aux. search.
+  aux: case aux. apply IH to pivot aux. search.
+
+Theorem lesseq_type : forall N M, lesseq N M -> nat N.
+  induction on 1. intros pivot. pivot: case pivot.
+   search. search. apply IH to pivot. search.
+
+Theorem lesseq_succ : forall N M, lesseq N M -> lesseq N (succ M).
+  induction on 1. intros pivot. pivot: case pivot. 
+    search. search. apply IH to pivot. search.
+
+Theorem lesseq_anitsym : forall N M, lesseq N M -> lesseq M N -> N = M.
+  induction on 1. intros pivot leq. pivot: case pivot.
+    search.
+    case leq.
+    leq: case leq. add: apply IH to pivot leq. search.
+
+Theorem greater_trans : forall N M P, greater N M -> greater M P -> greater N P.
+  induction on 1. intros pivot aux. pivot: case pivot. case aux.
+  aux: case aux. search.
+  apply IH to pivot aux. search.
+
+Theorem trichotomy : forall N, nat N -> forall M, nat M -> (greater N M \/ N = M \/ less N M).
+  induction on 1. intros pivot aux. pivot: case pivot.
+  aux: case aux. search. search.
+  add: apply IH to pivot. add: apply add to aux. add1: case add1.
+  add: apply greater_greater2 to aux add1. search.
+  add: apply succ_greater to aux. search.
+  add: apply less_succ to pivot aux add1. case add2. search. search.
+
+Theorem trichotomyA : forall N M, nat N -> nat M -> less N M -> N = M -> false.
+  induction on 3. intros. case H4. case H3. case H1. case H2. apply IH to H6 H7 H5 _.
+
+Theorem trichotomyB : forall N M, nat N -> nat M -> less N M -> greater N M -> false.
+  induction on 3. intros. case H4. case H3.
+    case H1. case H2. case H3. apply IH to H6 H7 H8 H5.
+
+Theorem trichotomyC : forall N M, nat N -> nat M -> greater N M -> N = M -> false.
+  induction on 3. intros. case H4. case H3. case H1. case H2. apply IH to H6 H7 H5 _.
+
+Theorem max_is_max : forall N M P, nat P -> max N M P -> (P = N \/ P = M).
+ induction on 1. intros. case H1.
+   case H2. search.
+   case H2.
+     right. search.
+     left. search.
+     apply IH to H3 H4. case H5. search. search.
+
+
+

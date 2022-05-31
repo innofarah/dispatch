@@ -1,0 +1,35 @@
+Import "nat".
+
+Define ack : nat -> nat -> nat -> prop by
+  ack zero N (succ N) ;
+  ack (succ M) zero R := ack M (succ zero) R ;
+  ack (succ M) (succ N) R := exists R', ack (succ M) N R' /\ ack M R' R.
+
+Theorem ack_type1 : forall M N R, ack M N R -> nat M.
+  induction on 1. intros pivot. case pivot.
+    search. 
+    apply IH to H1. search.
+    apply IH to H2. search.
+
+Theorem ack_type2 : forall M N R, ack M N R -> nat N -> nat R.
+  induction on 1. intros. apply ack_type1 to H1. case H1.
+    search. case H3. case H5. apply IH to H4 _. search.
+    case H4. apply IH to H7 _. apply IH to H8 H9. search.
+    case H2. apply IH to H4 H6. apply IH to H5 H7. search.
+
+Theorem ack_determ : forall x y a1 a2, ack x y a1 -> ack x y a2 -> a1 = a2.
+ induction on 1. intros. case H1.
+   case H2. search.
+   case H2.  apply IH to H3 H4. search.
+   case H2.  apply IH to H3 H5. apply IH to H4 H6. search.
+
+%% The proof of the following theorem uses both nested inductions and
+%% an explicit contraction on an assumption (via the keep keyword).
+
+Theorem ack_total : forall M N, nat M -> nat N -> exists R, nat R /\ ack M N R.
+induction on 1. induction on 2. intros. case H1 (keep).
+  search.
+  case H2.
+    apply IH to H3 _ with N = (succ zero). search.
+    apply IH1 to H1 H4. apply IH to H3 H5. search.
+

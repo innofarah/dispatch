@@ -1,0 +1,214 @@
+Import "nat".
+Import "order-on-nat".
+Import "arith".
+Import "monotone".
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%    Fibonacci numbers     (DM 25 Oct 2016)              %%%%
+%%%%                                                        %%%%
+%%%%    The main theorem proved below is that (fib N) = N   %%%%
+%%%%    if and only if N is a member of the set {0, 1, 5}.  %%%%
+%%%%                                                        %%%%
+%%%%    There is a similar theorem not yet attempted:       %%%%
+%%%%    (fib N) = N*N if and only if N is a member of the   %%%%
+%%%%    set {0, 1, 12}.                                     %%%%
+%%%%                                                        %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Define fib : nat -> nat -> prop by
+  fib zero zero 
+; fib (succ zero) (succ zero)
+; fib (succ (succ N)) F := exists F1 F2, fib N F1 /\ fib (succ N) F2 /\ plus F1 F2 F.
+
+Theorem fib_three : forall F, fib (succ (succ (succ zero))) F -> F = (succ (succ zero)).
+  intros fb.
+  fb: case fb. 
+  fb: case fb.
+  fc: case fb1.
+      case fc.
+      case fc1.
+      case fc2.
+ fb2: case fb2.
+      case fb2.
+      search.
+
+Theorem fib_four : forall F, fib (succ (succ (succ (succ zero)))) F -> F = (succ (succ (succ zero))).
+  intros. case H1. case  H2. case  H5. case  H6. case  H7. case  H3. case H8.
+          case H9. case H11. case H12. case H13. case H10. case H14. 
+          case H4. case H15. search.
+
+Theorem fib_five : forall F, fib (succ (succ (succ (succ (succ zero))))) F -> F = (succ (succ (succ (succ (succ zero))))).
+  intros. case H1. apply fib_three to H2. apply fib_four to H3.
+          case H4. case H5. case H6. search.
+
+Theorem fib_six : forall F, fib (succ (succ (succ (succ (succ (succ zero)))))) F ->
+                         F = (succ (succ (succ (succ (succ (succ (succ (succ zero)))))))).
+  intros. case H1. apply fib_four to H2. apply fib_five to H3.
+          case H4. case H5. case H6. case H7. search.
+
+Theorem fib_seven : forall F, fib (succ (succ (succ (succ (succ (succ (succ zero))))))) F -> 
+                           F = (succ (succ (succ (succ (succ (succ (succ (succ (succ (succ (succ (succ (succ zero))))))))))))).
+  intros. case H1. apply fib_five to H2.  apply fib_six to H3.
+  case H4. case H5. case H6. case H7. case H8. case H9. search.
+
+Theorem fib_det : forall A B C, fib A B -> fib A C -> B = C.
+  induction on 1. intros. case H1. 
+    case H2. search.
+    case H2. search.
+    case H2. apply IH to H3 H6. apply IH to H4 H7.
+      apply plus_det to H5 H8. search.
+
+Theorem fib_type : forall N, nat N -> (forall F, fib N F -> nat F) /\ (forall F, fib (succ N) F -> nat F).
+  induction on 1. intros. case H1.
+  split. intros. case H2. search. intros. case H2. search.
+  apply IH to H2. split.
+    search.
+    intros. case H5. apply H3 to H6. apply H4 to H7. apply plus_type2 to H10 H8. search.
+  
+% There are at least three solutions to the fibonacci equation (fib N) = N.
+
+Theorem three_solutions : forall N, (N = zero \/ N = (succ zero) \/ N = (succ (succ (succ (succ (succ zero)))))) -> fib N N.
+  intros. case H1. search. search. search.
+
+% The converse of this theorem takes a bit more work
+
+Theorem plus_greater : forall X Y Z N, nat N -> nat X -> nat Y -> greater X N -> greater Y (succ N) -> plus X Y Z -> greater Z (succ (succ N)).
+  induction on 1. intros. case H1.
+  case H4. case H5. case H6. case H7. case H2. apply plus_type2 to H3 H8.
+     apply plus_comm to H10 H8. case H11. case H12. search.
+  case H4. case H5. case H2. case H3. case H6. assert nat (succ N3).
+  apply plus_type2 to H13 H12. apply plus_comm to H14 H12.
+  case H15. case H14. apply plus_comm to H17 H16.
+  apply IH to H7 H10 H11 H8 H9 H18. unfold. assert nat (succ (succ N1)). 
+  apply greater_greater2 to H20 H19. search.
+
+Theorem fib_bounding : forall N, nat N -> 
+      (forall F, (fib    (succ (succ (succ (succ (succ (succ N))))))  F -> greater F    (succ (succ (succ (succ (succ (succ N)))))))) /\ 
+      (forall F, (fib (succ (succ (succ (succ (succ (succ (succ N))))))) F -> greater F (succ (succ (succ (succ (succ (succ (succ N))))))))).
+  induction on 1. intros. case H1. split.
+   intros. apply fib_six to H2. search 10.
+   intros. apply fib_seven to H2. search 10.
+  apply IH to H2. split. search.
+  intros. case H5. apply H3 to H6. apply H4 to H7.
+  assert nat (succ (succ (succ (succ (succ (succ N1)))))). search 10.
+  apply fib_type to H11. apply H12 to H6. apply H13 to H7.
+  apply plus_greater to H11 H14 H15 H9 H10 H8. search.
+
+Theorem only_three_solutions : forall N, nat N -> fib N N -> (N = zero \/ N = (succ zero) \/ N = (succ (succ (succ (succ (succ zero)))))).
+  intros.
+  assert nat (succ (succ (succ (succ (succ zero))))). search 10.
+  apply trichotomy to H3. apply H4 to H1. case H5.
+  case H6. search.
+  case H7. search. 
+  case H8. case H2. case H9. case H10. case H11.
+  case H9. apply fib_three to H2.
+  case H10. apply fib_four to H2.
+  case H11.
+  search.
+  case H6. case H7. case H8. case H9. case H10. case H11. 
+  case H1. case H12. case H13. case H14. case H15. case H16.
+  apply fib_bounding to H17. apply H18 to H2.
+  assert (succ (succ (succ (succ (succ (succ N1)))))) = (succ (succ (succ (succ (succ (succ N1)))))).
+  assert nat (succ (succ (succ (succ (succ (succ N1)))))). search 10.
+  apply trichotomyC to H22 H22 H20 H21.
+
+
+Theorem fib_eight : forall F, fib (succ (succ (succ (succ (succ (succ (succ (succ zero)))))))) F -> 
+                           F = (succ (succ (succ (succ (succ (succ (succ (succ (succ (succ (succ
+                               (succ (succ (succ (succ (succ (succ (succ (succ (succ (succ
+                               zero))))))))))))))))))))).
+  intros. case H1. apply fib_six to H2. apply fib_seven to H3.
+  H: case H4. H: case H. H: case H. H: case H. H: case H. H: case H. H: case H.
+  H: case H. H: case H.
+  search.
+
+Theorem fib_nine : forall F, fib (succ (succ (succ (succ (succ (succ (succ (succ (succ zero))))))))) F -> 
+                           F = (succ (succ (succ (succ (succ (succ
+                               (succ (succ (succ (succ (succ (succ
+                               (succ (succ (succ (succ (succ (succ
+                               (succ (succ (succ (succ (succ (succ
+                               (succ (succ (succ (succ (succ (succ
+                               (succ (succ (succ (succ
+                               zero)))))))))))))))))))))))))))))))))).
+  intros. case H1. apply fib_seven to H2. apply fib_eight to H3.
+  H: case H4. H: case H. H: case H. H: case H. H: case H. H: case H. H: case H.
+  H: case H. H: case H. H: case H. H: case H. H: case H. H: case H.
+  H: case H. 
+  search.
+
+Theorem fib_ten : forall F, fib (succ (succ (succ (succ (succ (succ (succ (succ (succ (succ zero)))))))))) F -> 
+                           F = (succ (succ (succ (succ (succ (succ (succ (succ (succ (succ (succ (succ
+                               (succ (succ (succ (succ (succ (succ (succ (succ (succ (succ (succ (succ
+                               (succ (succ (succ (succ (succ (succ (succ (succ (succ (succ (succ (succ
+                               (succ (succ (succ (succ (succ (succ (succ (succ (succ (succ (succ (succ
+                               (succ (succ (succ (succ (succ (succ (succ zero))))))))))))))))))))))))
+                                ))))))))))))))))))))))))))))))).
+  intros. case H1. apply fib_eight to H2. apply fib_nine to H3.
+  H: case H4. H: case H. H: case H. H: case H. H: case H. H: case H. H: case H.
+  H: case H.  H: case H. H: case H. H: case H. H: case H. H: case H.
+  H: case H.  H: case H. H: case H. H: case H. H: case H. H: case H.
+  H: case H.  H: case H. H: case H. 
+  search.
+
+Theorem fib_eleven : forall F, fib (succ (succ (succ (succ (succ (succ (succ (succ (succ (succ (succ zero))))))))))) F -> 
+                            F = 
+	(succ (succ (succ (succ (succ (succ (succ (succ (succ (succ (succ
+	(succ (succ (succ (succ (succ (succ (succ (succ (succ (succ (succ
+	(succ (succ (succ (succ (succ (succ (succ (succ (succ (succ (succ
+	(succ (succ (succ (succ (succ (succ (succ (succ (succ (succ (succ
+	(succ (succ (succ (succ (succ (succ (succ (succ (succ (succ (succ
+	(succ (succ (succ (succ (succ (succ (succ (succ (succ (succ (succ
+	(succ (succ (succ (succ (succ (succ (succ (succ (succ (succ (succ
+	(succ (succ (succ (succ (succ (succ (succ (succ (succ (succ (succ
+	(succ zero))))))))))))))))))))))))
+	))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))).
+  intros. case H1. apply fib_nine to H2. apply fib_ten to H3.
+  H: case H4. H: case H. H: case H. H: case H. H: case H. H: case H.
+  H: case H. H: case H. H: case H. H: case H. H: case H. H: case H.
+  H: case H. H: case H. H: case H. H: case H. H: case H. H: case H.
+  H: case H. H: case H. H: case H. H: case H. H: case H. H: case H.
+  H: case H. H: case H. H: case H. H: case H. H: case H. H: case H. 
+  H: case H. H: case H. H: case H. H: case H. H: case H. 
+  search.
+
+
+Theorem fib_twelve : forall F, fib (succ (succ (succ (succ (succ (succ (succ (succ (succ (succ (succ (succ zero)))))))))))) F -> 
+                            F = 
+(succ (succ (succ (succ (succ (succ (succ (succ (succ (succ (succ
+(succ (succ (succ (succ (succ (succ (succ (succ (succ (succ (succ
+(succ (succ (succ (succ (succ (succ (succ (succ (succ (succ (succ
+(succ (succ (succ (succ (succ (succ (succ (succ (succ (succ (succ
+(succ (succ (succ (succ (succ (succ (succ (succ (succ (succ (succ
+(succ (succ (succ (succ (succ (succ (succ (succ (succ (succ (succ
+(succ (succ (succ (succ (succ (succ (succ (succ (succ (succ (succ
+(succ (succ (succ (succ (succ (succ (succ (succ (succ (succ (succ
+(succ (succ (succ (succ (succ (succ (succ (succ (succ (succ (succ
+(succ (succ (succ (succ (succ (succ (succ (succ (succ (succ (succ
+(succ (succ (succ (succ (succ (succ (succ (succ (succ (succ (succ
+(succ (succ (succ (succ (succ (succ (succ (succ (succ (succ (succ
+(succ (succ (succ (succ (succ (succ (succ (succ (succ (succ (succ
+(succ zero)))))))))))))))))))))))))))))))))))))))))))))))))))))))
+)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+)))))))))))))))))))))))).
+  intros. case H1. apply fib_ten to H2. apply fib_eleven to H3.
+  H: case H4. H: case H. H: case H. H: case H. H: case H. H: case H.
+  H: case H. H: case H. H: case H. H: case H. H: case H. H: case H.
+  H: case H. H: case H. H: case H. H: case H. H: case H. H: case H.
+  H: case H. H: case H. H: case H. H: case H. H: case H. H: case H.
+  H: case H. H: case H. H: case H. H: case H. H: case H. H: case H. 
+  H: case H. H: case H. H: case H. H: case H. H: case H. 
+  H: case H. H: case H. H: case H. H: case H. H: case H. H: case H.
+  H: case H. H: case H. H: case H. H: case H. H: case H. H: case H.
+  H: case H. H: case H. H: case H. H: case H. H: case H. H: case H.
+  H: case H. H: case H. H: case H. 
+  search.
+
+%% The following is yet to be proved
+
+Theorem bounded : forall N F Sq,
+  nat N -> 
+  less (succ (succ (succ (succ (succ (succ (succ (succ (succ (succ (succ (succ zero)))))))))))) N -> 
+  fib N F -> times N N Sq -> less Sq F.
+%induction on 3. intros. case H3.
+skip.
+
