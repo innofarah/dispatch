@@ -1,0 +1,59 @@
+{
+    "zero-nonzero": {
+        "cidFormula": "bafyreib7hgivyrz47iwmyt6z5wotdsfa5mchs2cqnypiij2m5pwsvn6kte",
+        "formula": "forall N, nat N -> (N = zero \\/ exists M, nat M /\\ N = (succ M))",
+        "sigmaFormula": [
+            "Kind nat      type",
+            "Type zero     nat",
+            "Type succ     nat -> nat",
+            "Define nat : nat -> prop by nat zero ; nat (succ N) := nat N."
+        ],
+        "sequents": [
+            {
+                "lemmas": [],
+                "signer": "-----BEGIN PUBLIC KEY-----\nMFIwEAYHKoZIzj0CAQYFK4EEAAMDPgAELeytXKlDCJ8z9DbFyM1iuiSiGts85Bzb\n0ib5rplWaGnqO9H/3pgW8XSgoFLawd6xuunUCsqngo7wLthm\n-----END PUBLIC KEY-----\n"
+            }
+        ]
+    },
+    "decide-eq": {
+        "cidFormula": "bafyreifhy65wkjhvoz5wkrmblh3rqpea4eyblrcd4yfepsvmph2onedtrm",
+        "formula": "forall N, nat N -> forall M, nat M -> ((N = M -> false) \\/ (N = M))",
+        "sigmaFormula": [
+            "Kind nat      type",
+            "Type zero     nat",
+            "Type succ     nat -> nat",
+            "Define nat : nat -> prop by nat zero ; nat (succ N) := nat N."
+        ],
+        "sequents": [
+            {
+                "lemmas": [
+                    {
+                        "name": "zero-nonzero",
+                        "formula": "forall N, nat N -> (N = zero \\/ exists M, nat M /\\ N = (succ M))",
+                        "sigma": [
+                            "Kind nat      type",
+                            "Type zero     nat",
+                            "Type succ     nat -> nat",
+                            "Define nat : nat -> prop by nat zero ; nat (succ N) := nat N."
+                        ]
+                    },
+                    {
+                        "name": "zero-nonzero",
+                        "formula": "forall N, nat N -> (N = zero \\/ exists M, nat M /\\ N = (succ M))",
+                        "sigma": [
+                            "Kind nat      type",
+                            "Type zero     nat",
+                            "Type succ     nat -> nat",
+                            "Define nat : nat -> prop by nat zero ; nat (succ N) := nat N."
+                        ]
+                    }
+                ],
+                "signer": "-----BEGIN PUBLIC KEY-----\nMFIwEAYHKoZIzj0CAQYFK4EEAAMDPgAELeytXKlDCJ8z9DbFyM1iuiSiGts85Bzb\n0ib5rplWaGnqO9H/3pgW8XSgoFLawd6xuunUCsqngo7wLthm\n-----END PUBLIC KEY-----\n"
+            },
+            {
+                "lemmas": [],
+                "signer": "-----BEGIN PUBLIC KEY-----\nMFIwEAYHKoZIzj0CAQYFK4EEAAMDPgAELeytXKlDCJ8z9DbFyM1iuiSiGts85Bzb\n0ib5rplWaGnqO9H/3pgW8XSgoFLawd6xuunUCsqngo7wLthm\n-----END PUBLIC KEY-----\n"
+            }
+        ]
+    }
+}
