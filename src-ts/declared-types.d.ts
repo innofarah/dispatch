@@ -1,4 +1,3 @@
-
 type config = {
     "my-gateway": string,
     "my-web3.storage-api-token": string

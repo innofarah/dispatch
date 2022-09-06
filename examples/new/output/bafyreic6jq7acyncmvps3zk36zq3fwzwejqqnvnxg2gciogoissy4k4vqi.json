@@ -11,7 +11,7 @@
         "sequents": [
             {
                 "lemmas": [],
-                "signer": "-----BEGIN PUBLIC KEY-----\nMFIwEAYHKoZIzj0CAQYFK4EEAAMDPgAELeytXKlDCJ8z9DbFyM1iuiSiGts85Bzb\n0ib5rplWaGnqO9H/3pgW8XSgoFLawd6xuunUCsqngo7wLthm\n-----END PUBLIC KEY-----\n"
+                "signer": "22f363b82059249fdbd1a09075f727711d8c7528ee9e4acfe8efc71bd9517180"
             }
         ]
     },
@@ -48,11 +48,11 @@
                         ]
                     }
                 ],
-                "signer": "-----BEGIN PUBLIC KEY-----\nMFIwEAYHKoZIzj0CAQYFK4EEAAMDPgAELeytXKlDCJ8z9DbFyM1iuiSiGts85Bzb\n0ib5rplWaGnqO9H/3pgW8XSgoFLawd6xuunUCsqngo7wLthm\n-----END PUBLIC KEY-----\n"
+                "signer": "22f363b82059249fdbd1a09075f727711d8c7528ee9e4acfe8efc71bd9517180"
             },
             {
                 "lemmas": [],
-                "signer": "-----BEGIN PUBLIC KEY-----\nMFIwEAYHKoZIzj0CAQYFK4EEAAMDPgAELeytXKlDCJ8z9DbFyM1iuiSiGts85Bzb\n0ib5rplWaGnqO9H/3pgW8XSgoFLawd6xuunUCsqngo7wLthm\n-----END PUBLIC KEY-----\n"
+                "signer": "22f363b82059249fdbd1a09075f727711d8c7528ee9e4acfe8efc71bd9517180"
             }
         ]
     }
