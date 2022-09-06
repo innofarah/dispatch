@@ -10,32 +10,32 @@ setup()
 
 program
     .command('keygen <profileName>')
-    .description('generate a public-private key pair with a profile name to be used when publishing. These will be added to your profiles config file. BE CAREFUL ABOUT KEEPING YOUR PRIVATE KEYS PRIVATE !')
+    .description('generate a PPK pair.')
     .action(keygen)
 program
     .command('set-web3token <token>')
-    .description('set your own web3.storage api token to be able to publish through web3.storage api')
+    .description('set your web3.storage api token.')
     .action(setweb3token)
 
 program
     .command('set-gateway <gateway>')
-    .description('set the gateway through which files are retreived. The default is set to http://dweb.link')
+    .description('set your gateway.\n')
     .action(setgateway)
 
 program
     .command('list-config')
-    .description('list the configuration parameters - ex: gateway, web3.storage api token')
+    .description('list config params.')
     .action(listconfig)
 
 program
     .command('publish-signed <fileName> <profileName> <directoryPath> <target>')
-    .description('publish the standard format .json file generated from abella (or other) theorem files with signature by the specified profile, and you can specify <target> as either "local" or "cloud" for publishing through web3.storage service. <directoryPath> takes the path of the directory containing the file starting from the directory of execution, ex "a/b/c.')
+    .description('publish-sign standard format sequents file.')
     .action(publishCommand)
 
 
 program
     .command('get <CID> <directoryPath>')
-    .description('constructs the standard format file to be consumed by abella (or other) with the name theGivenCID.json (in case the given cid refers to a sequent, assertion, or sequence object type). <directoryPath> takes the path of the directory to construct the resulting file in (starting from the directory of execution).')
+    .description('construct standard format output-to-prover file.')
     .action(getCommand)
 
 
