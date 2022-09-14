@@ -56,8 +56,7 @@ let keygen = (profileName: string) => { // now just using default parameters
             format: 'pem'
         }
     });
-    //console.log("private key : " + privateKey)
-    //console.log("public key : " + publicKey)
+  
     // create a profile and add it to the profiles file
     let fingerPrint = crypt.createHash('sha256').update(publicKey).digest('hex')
 
@@ -102,7 +101,6 @@ let setgateway = (gateway: string) => {
         console.log(err)
     }
 }
-
 
 let listconfig = () => {
     let configFile = fs.readFileSync(configpath)

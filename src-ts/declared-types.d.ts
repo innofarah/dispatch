@@ -16,19 +16,15 @@ type cid = string
 
 type ipfsLink = { "/": cid }
 
-type asset = formula | sequent | sequence
-
 type formula = {  
-    "format": "asset",
-    "assetType": "formula",
+    "format": "formula",
     "name": string,
     "formula": string,
-    "sigma": [string]
+    "Sigma": [string]
 }
 
 type sequent = {
-    "format": "asset",
-    "assetType": "sequent",
+    "format": "sequent",
     "lemmas": [ipfsLink],
     "conclusion": ipfsLink
 }
@@ -36,23 +32,12 @@ type sequent = {
 type assertion = {
     "format": "assertion",
     "principal": string,
-    "asset": ipfsLink,
+    "sequent": ipfsLink,
     "signature": string
 }
 
 type sequence = {
-    "format": "asset",
-    "assetType": "sequence",
+    "format": "sequence",
     "name" : string,
     "sequents": [ipfsLink]
-    //"sequents": { [key: string]: ipfsLink }
 }
-
-
-
-/*type trustInfo = {
-    "principalsToTrustList": Set<string>,
-    "unverifiedAssertionsList": { [key: cid]: assertion },
-    "verifiedAssertionsList": { [key: cid]: assertion },
-    "unsignedObjectsList": { [key: cid]: asset },
-}*/

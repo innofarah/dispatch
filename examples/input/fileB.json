@@ -1,0 +1,29 @@
+{
+    "plus_succ": {
+        "Sigma": [
+            "Kind nat      type",
+            "Type zero     nat",
+            "Type succ     nat -> nat",
+            "Define nat : nat -> prop by nat zero ; nat (succ N) := nat N"
+        ],
+        "conclusion": "forall M N K, plus M N K -> plus M (s N) (s K)",
+        "lemmas": [
+            []
+        ]
+    },
+    "plus_comm": {
+        "Sigma": [
+            "Kind nat      type",
+            "Type zero     nat",
+            "Type succ     nat -> nat",
+            "Define nat : nat -> prop by nat zero ; nat (succ N) := nat N"
+        ],
+        "conclusion": "forall M N K, nat K -> plus M N K -> plus N M K",
+        "lemmas": [
+            [
+                "ipfs:bafyreid6i52bv5lz75ku6qbu3gshohwozs4kbazjdsetxkp5icqf4ezfwi",
+                "plus_succ"
+            ]
+        ]
+    }
+}

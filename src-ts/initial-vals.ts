@@ -6,5 +6,4 @@ const configpath = confdirpath +  "/config.json"
 const keystorepath = confdirpath + "/keystore.json"
 const profilespath = confdirpath + "/profiles.json"
 
-
 export = { configpath, confdirpath, keystorepath, profilespath }

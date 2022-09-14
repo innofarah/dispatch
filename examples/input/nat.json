@@ -1,0 +1,31 @@
+{
+    "zero-nonzero": {
+        "Sigma": [
+            "Kind nat      type",
+            "Type zero     nat",
+            "Type succ     nat -> nat",
+            "Define nat : nat -> prop by nat zero ; nat (succ N) := nat N."
+        ],
+        "conclusion": "forall N, nat N -> (N = zero \\/ exists M, nat M /\\ N = (succ M))",
+        "lemmas": [
+            []
+        ]
+    },
+    "decide-eq": {
+        "Sigma": [
+            "Kind nat      type",
+            "Type zero     nat",
+            "Type succ     nat -> nat",
+            "Define nat : nat -> prop by nat zero ; nat (succ N) := nat N."
+        ],
+        "conclusion": "forall N, nat N -> forall M, nat M -> ((N = M -> false) \\/ (N = M))",
+        "lemmas": [
+            [
+                "zero-nonzero",
+                "ipfs:bafyreib7hgivyrz47iwmyt6z5wotdsfa5mchs2cqnypiij2m5pwsvn6kte"
+            ],
+            []
+        ]
+    }
+}
+

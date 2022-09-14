@@ -18,12 +18,12 @@ let publishCommand = async (filename: string, profileName: string, directoryPath
 
         // publish all formula objects first (to have all the cids ready before publishing a sequent in case a formula is listed as lemma)
         for (let conclusionName of Object.keys(theorems)) {
-            await publishFormula(conclusionName, theorems[conclusionName]["conclusion"], theorems[conclusionName]["sigma"])
+            await publishFormula(conclusionName, theorems[conclusionName]["conclusion"], theorems[conclusionName]["Sigma"])
         }
 
         for (let conclusionName of Object.keys(theorems)) {
 
-            let sequentsLemmas: [[string]] = theorems[conclusionName]["sequentsLemmas"]
+            let sequentsLemmas: [[string]] = theorems[conclusionName]["lemmas"]
             for (let sequentLemmas of sequentsLemmas) {
                 await publishSequent(conclusionName, sequentLemmas)
             }
@@ -37,7 +37,7 @@ let publishCommand = async (filename: string, profileName: string, directoryPath
 
 
         let sequenceCid = await publishSequence(filename, publishedAssertions) //for now publish sequence as composed of assertions signed by the same profile
-        console.log("The root cid of the published sequence of assertions by profile: " + profileName + " is " + sequenceCid)
+        console.log("Input from Prover Published: The root cid of the published sequence of assertions by profile: " + profileName + " is " + sequenceCid)
 
         // if cloud (global), publish the final sequence cid (dag) through the web3.storage api
         if (storage == "cloud") {
@@ -52,11 +52,10 @@ let publishCommand = async (filename: string, profileName: string, directoryPath
 
 let publishFormula = async (formulaName: string, formula: string, sigma: [string]) => {
     let th = {
-        "format": "asset",
-        "assetType": "formula",
+        "format": "formula",
         "name": formulaName,
         "formula": formula,
-        "sigma": sigma
+        "Sigma": sigma
     }
 
     let cid = await ipfsAddObj(th)
@@ -91,8 +90,7 @@ let publishSequent = async (conclusionName: string, lemmas: [string]) => {
 
 
     let seq = {
-        "format": "asset",
-        "assetType": "sequent",
+        "format": "sequent",
         "lemmas": lemmasIpfs,
         "conclusion": { "/": publishedFormulas[conclusionName] }
     }
@@ -116,14 +114,14 @@ let publishAssertion = async (sequentCid: string, profileName: string) => {
             let assertion = {
                 "format": "assertion",
                 "principal": profile["public-key"],
-                "asset": { "/": sequentCid },
+                "sequent": { "/": sequentCid },
                 "signature": signature
             }
 
             let assertionCid = await ipfsAddObj(assertion)
             publishedAssertions.push(assertionCid)
         }
-        else throw new Error("given profile name does not exist")
+        else throw new Error("ERROR: given profile name does not exist")
     } catch (error) {
         console.error(error);
         process.exit(0)
@@ -137,13 +135,10 @@ let publishSequence = async (sequenceName: string, sequentsCids: string[]) => {
     }
 
     let sequence = {
-        "format": "asset",
-        "assetType": "sequence",
+        "format": "sequence",
         "name": sequenceName,
         "sequents": sequentsLinks
     }
-
-    console.log(sequence)
 
     let sequenceCid = await ipfsAddObj(sequence)
     return sequenceCid
@@ -158,7 +153,7 @@ let ipfsAddObj = async (obj: {}) => {
         fs.unlinkSync('tmpJSON.json')
         return output.substring(0, output.length - 1)
     } catch (error) {
-        console.error("adding object to ipfs failed");
+        console.error("ERROR: adding object to ipfs failed");
         return ""
     }
 }
@@ -175,7 +170,7 @@ let publishDagToCloud = async (cid: string) => {
             web3Client = new Web3Storage({ token: web3Token })
         }
         else {
-            throw new Error("setting a web3.storage token is required as the chosen mode for publishing is 'cloud' and not 'local'.")
+            throw new Error("ERROR: setting a web3.storage token is required as the chosen mode for publishing is 'cloud' and not 'local'.")
         }
         let cmd = "ipfs dag export " + cid + " > tmpcar.car"
         execSync(cmd, { encoding: 'utf-8' })
@@ -193,8 +188,5 @@ let publishDagToCloud = async (cid: string) => {
         console.log(err)
     }
 }
-
-
-// principal argument would be the name of a profile, initially configured in the user's local configuration file for w3proof-dispatch
 
 export = { publishCommand }
