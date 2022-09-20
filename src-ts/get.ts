@@ -23,7 +23,7 @@ let getCommand = async (cid: string, directoryPath: string) => {
             if (mainObjFormat == "assertion") {
                 if (verifySignature(mainObj)) {
                     let sequent = await ipfsGetObj(mainObj["sequent"]["/"])
-                    await processSequent(sequent, result, mainObj["principal"])
+                    await processSequent(sequent, result, mainObj["agent"])
                 } else throw new Error("ERROR: Assertion not verified.")
             }
             else if (mainObjFormat == "formula") await processFormula(mainObj)
@@ -97,7 +97,7 @@ let processSequence = async (obj: {}, result: {}) => {
         if (isAssertion(entry)) {
             if (verifySignature(entry)) {
                 let sequent = await ipfsGetObj(entry["sequent"]["/"])
-                await processSequent(sequent, result, entry["principal"])
+                await processSequent(sequent, result, entry["agent"])
             }
             else {
                 console.log("ERROR: Assertion not verified")
@@ -179,7 +179,7 @@ let ensureFullDAG = async (cid) => {
 
 let isAssertion = (obj: {}) => {
     if (Object.keys(obj).length == 4 && "format" in obj && obj["format"] == "assertion") {
-        return ("principal" in obj && "sequent" in obj && "signature" in obj)
+        return ("agent" in obj && "sequent" in obj && "signature" in obj)
     }
     return false
 }
@@ -207,7 +207,7 @@ let isFormula = (obj: {}) => {
 
 let verifySignature = (assertion: {}) => {
     let signature = assertion["signature"]
-    let claimedPublicKey = assertion["principal"]
+    let claimedPublicKey = assertion["agent"]
     // the data to verify : here it's the asset's cid in the object
     let dataToVerify = assertion["sequent"]["/"]
 

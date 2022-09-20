@@ -31,7 +31,7 @@ type sequent = {
 
 type assertion = {
     "format": "assertion",
-    "principal": string,
+    "agent": string,
     "sequent": ipfsLink,
     "signature": string
 }

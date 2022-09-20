@@ -113,7 +113,7 @@ let publishAssertion = async (sequentCid: string, profileName: string) => {
 
             let assertion = {
                 "format": "assertion",
-                "principal": profile["public-key"],
+                "agent": profile["public-key"],
                 "sequent": { "/": sequentCid },
                 "signature": signature
             }
