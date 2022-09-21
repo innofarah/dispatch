@@ -1,4 +1,4 @@
-Import "ipfs:bafyreigm32vqfhsqxrpodk6ynuehe3niteqhp7gu65ie2dlltn6dew7pwu".
+Import "ipfs:bafyreiaph24hx6stscaombnusrf2vdsql2jberzb373253vac3u5kqnjjm".
 
 Theorem plus_succ :
  forall M N K, plus M N K -> plus M (s N) (s K).

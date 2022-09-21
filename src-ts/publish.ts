@@ -188,6 +188,7 @@ let publishDagToCloud = async (cid: string) => {
         const reader = await CarReader.fromIterable(inStream)
         const cid1 = await web3Client.putCar(reader)
         console.log("DAG successfully published to web3.storage!")
+        console.log("root cid: " + cid)
         fs.unlink('tmpcar.car', (err) => {
             if (err) throw err
         })
