@@ -51,15 +51,23 @@ let publishCommand = async (filename: string, profileName: string, directoryPath
 }
 
 let publishFormula = async (formulaName: string, formula: string, sigma: [string]) => {
+
     let th = {
         "format": "formula",
-        "name": formulaName,
         "formula": formula,
         "Sigma": sigma
     }
 
     let cid = await ipfsAddObj(th)
-    publishedFormulas[formulaName] = cid
+
+    let thNamed = {
+        "format": "named-formula",
+        "name": formulaName,
+        "formula": { "/": cid }
+    }
+
+    let cidNamed = await ipfsAddObj(thNamed)
+    publishedFormulas[formulaName] = cidNamed
 
 }
 

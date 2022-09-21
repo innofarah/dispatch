@@ -18,9 +18,14 @@ type ipfsLink = { "/": cid }
 
 type formula = {  
     "format": "formula",
-    "name": string,
     "formula": string,
     "Sigma": [string]
+}
+
+type namedFormula = {
+    "format": "named-formula",
+    "name": string,
+    "formula": ipfsLink
 }
 
 type sequent = {

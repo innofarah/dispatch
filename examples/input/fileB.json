@@ -21,7 +21,7 @@
         "conclusion": "forall M N K, nat K -> plus M N K -> plus N M K",
         "lemmas": [
             [
-                "ipfs:bafyreid6i52bv5lz75ku6qbu3gshohwozs4kbazjdsetxkp5icqf4ezfwi",
+                "ipfs:bafyreid6ivhia73vhfaclmii23orwsdrhngt3d646wmcp6opup5vqhqvru",
                 "plus_succ"
             ]
         ]

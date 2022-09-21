@@ -16,7 +16,7 @@ let getCommand = async (cid: string, directoryPath: string) => {
     try {
         let mainObj = await ipfsGetObj(cid)
         if (Object.keys(mainObj).length != 0) { // test if mainObj != {}
-            if (!isFormula(mainObj) && !isSequent(mainObj) && !isAssertion(mainObj) && !isSequence(mainObj))
+            if (!isFormula(mainObj) && !isNamedFormula(mainObj) && !isSequent(mainObj) && !isAssertion(mainObj) && !isSequence(mainObj))
                 throw new Error("ERROR: Retrieved object has unknown/invalid format.")
 
             let mainObjFormat = mainObj["format"]
@@ -26,7 +26,7 @@ let getCommand = async (cid: string, directoryPath: string) => {
                     await processSequent(sequent, result, mainObj["agent"])
                 } else throw new Error("ERROR: Assertion not verified.")
             }
-            else if (mainObjFormat == "formula") await processFormula(mainObj)
+            else if (mainObjFormat == "formula" || mainObjFormat == "named-formula") await processFormula(mainObj)
             else if (mainObjFormat == "sequent") await processSequent(mainObj, result, "")
             else if (mainObjFormat == "sequence") await processSequence(mainObj, result)
         } else throw new Error("ERROR: Retrieved object is empty.")
@@ -48,9 +48,9 @@ let processFormula = async (obj: {}) => {
 
 let processSequent = async (obj: {}, result: {}, signer: string) => {
     let lemmas = obj["lemmas"]
-    let conclusion = await ipfsGetObj(obj["conclusion"]["/"])
+    let namedConclusion = await ipfsGetObj(obj["conclusion"]["/"])
     let entry = {}
-    let theoremName = conclusion["name"]
+    let theoremName = namedConclusion["name"]
     if (result[theoremName]) {
         // test if different cidformula => error, exit
         // if same cidformula => entry = outputObj[theoremName]
@@ -61,9 +61,10 @@ let processSequent = async (obj: {}, result: {}, signer: string) => {
         }
     }
     else {
-        entry["cidFormula"] = obj["conclusion"]["/"]
-        entry["formula"] = conclusion["formula"]
-        entry["SigmaFormula"] = conclusion["Sigma"]
+        entry["cidFormula"] = obj["conclusion"]["/"]    // cid of named formula - could change it to raw formula
+        let formula = await ipfsGetObj(namedConclusion["formula"]["/"])
+        entry["formula"] = formula["formula"]
+        entry["SigmaFormula"] = formula["Sigma"]
         entry["sequents"] = []
     }
 
@@ -114,8 +115,10 @@ let unfoldLemmas = async (lemmas: []) => {
     // fix to add checks
     let lemmaFormulaObjects = []
     for (let lemma of lemmas) {
-        let formulaObject = await ipfsGetObj(lemma["/"])
-        lemmaFormulaObjects.push({"name": formulaObject["name"], "cidFormula": lemma["/"], "formula": formulaObject["formula"], "SigmaFormula": formulaObject["Sigma"] })
+        let namedformulaObject = await ipfsGetObj(lemma["/"])
+        let formulaObject = await ipfsGetObj(namedformulaObject["formula"]["/"])
+        lemmaFormulaObjects.push({"name": namedformulaObject["name"], "cidFormula": lemma["/"], 
+                                  "formula": formulaObject["formula"], "SigmaFormula": formulaObject["Sigma"] })
     }
 
     return lemmaFormulaObjects
@@ -137,8 +140,9 @@ let ipfsGetObj = async (cid: string) => {
 let ensureFullDAG = async (cid) => {
     try {
         //test if it exists locally / or tries to retrieve the missing links in case the ipfs daemon is activated
-        let cmd = "ipfs dag export " + cid + " > tmpp.car"
+        let cmd = "ipfs dag export -p " + cid + " > tmpp.car"
         // for now : causes a problem if we use an address with slashes "/" since ipfs export doesn't support it currently
+        console.log("ipfs daemon working on retrieving DAG .. Please be patient ..")
         execSync(cmd, { encoding: 'utf-8' }) // this fails if there are missing links from the local ipfs repo / or unsuccessful to retrieve in case the ipfs daemon is activated
         fs.unlink('tmpp.car', (err) => {
             if (err) throw err;
@@ -199,8 +203,15 @@ let isSequence = (obj: {}) => {
 }
 
 let isFormula = (obj: {}) => {
-    if (Object.keys(obj).length == 4 && "format" in obj && obj["format"] == "formula") {
-        return ("name" in obj && "formula" in obj && "Sigma" in obj)
+    if (Object.keys(obj).length == 3 && "format" in obj && obj["format"] == "formula") {
+        return ("formula" in obj && "Sigma" in obj)
+    }
+    return false
+}
+
+let isNamedFormula = (obj: {}) => {
+    if (Object.keys(obj).length == 3 && "format" in obj && obj["format"] == "named-formula") {
+        return ("name" in obj && "formula" in obj)
     }
     return false
 }
