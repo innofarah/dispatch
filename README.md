@@ -1,5 +1,7 @@
 # Instructions
 
+> Note: these instructions are temporary and subject to change.
+
 Welcome to the instructions page for w3proof-dispatch!
 
 ## Requirements
