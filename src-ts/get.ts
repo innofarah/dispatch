@@ -9,7 +9,7 @@ import initialVals = require("./initial-vals")
 const { configpath, profilespath, keystorepath } = initialVals
 
 
-// cid refers to: formula, sequent, assertion, or sequence
+// cid refers to: formula, sequent, assertion, or sequence // for now
 let getCommand = async (cid: string, directoryPath: string) => {
     let result = {}
     await ensureFullDAG(cid)
