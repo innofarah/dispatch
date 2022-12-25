@@ -12,6 +12,7 @@ program
     .command('keygen')
     .description('generate a PPK pair.\n')
     .argument('<profile-name>', 'name for the key pair.\n')
+    .argument('<target>', 'target for this profile. Could be "local" or "cloud".')
     .action(keygen)
 program
     .command('set-web3token')
@@ -31,11 +32,8 @@ program
     .action(listconfig)
 program
     .command('publish')
-    .description('publish standard format sequents file as a collection of signed sequents by a profile.\n')
-    .argument('<file-name>', 'name of the file without the .json extension.\n')
-    .argument('<profile-name>', 'name of the profile used for signing each sequent.\n')
-    .argument('<directory-path>', 'path of directory containing the file starting from directory of execution.\n')
-    .argument('<target>', 'takes values: "local"->pin locally or "cloud"->pin through web3.storage.\n')
+    .description('publish one of the standard format inputs for dispatch. For example, a "sequence" signed by a profile.\n')
+    .argument('<input-path>', 'path for the input file\n')
     .action(publishCommand)
 program
     .command('get')

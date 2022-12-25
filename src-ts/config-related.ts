@@ -27,7 +27,7 @@ let setup = () => {
 
 }
 
-let keygen = (profileName: string) => { // now just using default parameters
+let keygen = (profileName: string, target: string) => { // now just using default parameters
     /* const {
         publicKey,
         privateKey
@@ -63,6 +63,7 @@ let keygen = (profileName: string) => { // now just using default parameters
     let profiles = JSON.parse(fs.readFileSync(profilespath))
     let newProfile = {
         "name": profileName,
+        "target": target,
         "public-key": publicKey,
         "private-key": privateKey,
         "fingerprint": fingerPrint
