@@ -39,8 +39,17 @@ program
     .command('get')
     .description('construct standard format input-to-prover file.\n')
     .argument('<CID>', 'ipfs content identifier for the structure to get.\n')
-    .argument('<directory-path', 'container directory starting from directory of execution.\n')
+    .argument('<directory-path>', 'container directory starting from directory of execution.\n')
     .action(getCommand)
+
+/*
+program
+    .command('get')
+    .description('construct standard format .json file according to retrieved object type.\n')
+    .argument('<CID>', 'ipfs content identifier for the structure to get.\n')
+    .option('-fp, --filepath <string>', 'path of file to write the constructed output in. Example: output/myfile.json.\n            default value is CID.json in the current directory.')
+    .action(getCommand)
+*/    
 
 program.parse()
 

@@ -1,0 +1,23 @@
+{
+    "output-for": "bafyreidmdx23zj4r3e6ohbjmw7lnjcq4yzbjlh3vhkueiu6gdde2fhpp3e",
+    "format": "named-formula",
+    "named-formula": {
+        "name": "plus_comm",
+        "cid-formula": "bafyreieowbpysjs6yz3qb2vri2wsyyrkysd2kmo75nkak2iqisjgbqkld4",
+        "language": "ipfs:bafkreibczlhu5a6tyibqpwvuuaaqga7njlyyn5v37qttyapzjpwbidcjvq",
+        "content": "forall M N K, nat K -> plus M N K -> plus N M K",
+        "declarations": "bafyreigj6k3epo7pyldmg45wlqhrgo442vqfpgmzhoq4zqylp74mrptg7u"
+    },
+    "declarations": {
+        "bafyreigj6k3epo7pyldmg45wlqhrgo442vqfpgmzhoq4zqylp74mrptg7u": {
+            "language": "ipfs:bafkreibczlhu5a6tyibqpwvuuaaqga7njlyyn5v37qttyapzjpwbidcjvq",
+            "content": [
+                "Kind nat      type",
+                "Type zero     nat",
+                "Type succ     nat -> nat",
+                "Define nat : nat -> prop by nat zero ; nat (succ N) := nat N",
+                "Define plus : nat -> nat -> nat -> prop by plus z N N ; plus (s M) N (s K) := plus M N K"
+            ]
+        }
+    }
+}
