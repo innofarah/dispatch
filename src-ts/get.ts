@@ -216,7 +216,6 @@ let getSequence = async (cidObj: string, obj: {}, result: {}) => {
 
     result["output-for"] = cidObj
     result["format"] = "sequence"
-    result["language"] = obj["language"]
     result["name"] = obj["name"]
     result["assertions"] = []
     result["named-formulas"] = {}

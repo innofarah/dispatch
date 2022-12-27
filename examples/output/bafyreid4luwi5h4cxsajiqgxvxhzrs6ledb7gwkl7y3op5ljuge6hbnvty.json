@@ -1,7 +1,6 @@
 {
-    "output-for": "bafyreigmcoq7yekijpooxzhc72dbod3svsatayv32ggriia6e3deforauu",
+    "output-for": "bafyreid4luwi5h4cxsajiqgxvxhzrs6ledb7gwkl7y3op5ljuge6hbnvty",
     "format": "sequence",
-    "language": "ipfs:bafkreicwbhw5hc3ble7puleit773fmqassjrhy6xry4klsu6fh7kjarzwu",
     "name": "fib",
     "assertions": [
         {

@@ -52,7 +52,6 @@ type assertion = {
 
 type sequence = {
     "format": "sequence",
-    "language": string,
     "name" : string,
     "assertions": [ipldLink]
 }

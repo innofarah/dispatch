@@ -61,28 +61,16 @@ let publishSequenceCommand = async (input: {}) => { // expected input is a json 
             await publishFormula(language, name, namedFormulas[name]["content"], namedFormulas[name]["declarations"])
         }
 
-        /*for (let conclusionName of Object.keys(sequents)) {
-            await publishFormula(language, conclusionName, sequents[conclusionName]["conclusion"], sequents[conclusionName]["declarations"])
-        }*/
-
         for (let sequent of sequents) {
             await publishSequent(sequent)
         }
-     
-        /*for (let conclusionName of Object.keys(sequents)) {
-
-            let sequentsLemmas: [[string]] = sequents[conclusionName]["lemmas"]
-            for (let sequentLemmas of sequentsLemmas) {
-                await publishSequent(conclusionName, sequentLemmas)
-            }
-        }*/
 
         for (let sequentCid of publishedSequents) {
 
             await publishAssertion(sequentCid, profile)
         }
 
-        let sequenceCid = await publishSequence(givenSequenceName, publishedAssertions, language) //for now publish sequence as composed of assertions signed by the same profile
+        let sequenceCid = await publishSequence(givenSequenceName, publishedAssertions) //for now publish sequence as composed of assertions signed by the same profile
         console.log("Input from Prover Published: The root cid of the published sequence of assertions by profile: " + profile + " is " + sequenceCid)
 
         // if cloud (global), publish the final sequence cid (dag) through the web3.storage api
@@ -220,15 +208,14 @@ let publishAssertion = async (sequentCid: string, profileName: string) => {
     }
 }
 
-let publishSequence = async (sequenceName: string, assertionsCids: string[], language: string) => {
+let publishSequence = async (sequenceName: string, assertionsCids: string[]) => {
     let assertionsLinks = []
     for (let cid of assertionsCids) {
         assertionsLinks.push({ "/": cid })
     }
 
     let sequence = {
-        "format": "sequence",
-        "language": language, 
+        "format": "sequence", 
         "name": sequenceName,
         "assertions": assertionsLinks
     }

@@ -39,8 +39,8 @@ let isAssertion = (obj: {}) => {
 }
 
 let isSequence = (obj: {}) => {
-    if (Object.keys(obj).length == 4 && "format" in obj && obj["format"] == "sequence") {
-        return ("language" in obj && "name" in obj && "assertions" in obj)
+    if (Object.keys(obj).length == 3 && "format" in obj && obj["format"] == "sequence") {
+        return ("name" in obj && "assertions" in obj)
     }
     return false
 }
