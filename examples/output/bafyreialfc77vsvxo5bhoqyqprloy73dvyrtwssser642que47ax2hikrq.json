@@ -1,0 +1,170 @@
+{
+    "output-for": "bafyreialfc77vsvxo5bhoqyqprloy73dvyrtwssser642que47ax2hikrq",
+    "format": "sequence",
+    "name": "fib",
+    "assertions": [
+        {
+            "agent": "1f1cc63ce622905141f16db539f4a8a61af2fe0a2c0961190e56dec750736cfc",
+            "conclusion": "bafyreiasr5ebyim5xe3hmjm6ufu3urx66c3we62nsvcftunjuywvxtwfl4",
+            "lemmas": []
+        },
+        {
+            "agent": "1f1cc63ce622905141f16db539f4a8a61af2fe0a2c0961190e56dec750736cfc",
+            "conclusion": "bafyreig6o3a2mhu665gvmaqqri7ryd3u4ffh6nibndkt2pxzqphgp6o7w4",
+            "lemmas": []
+        },
+        {
+            "agent": "1f1cc63ce622905141f16db539f4a8a61af2fe0a2c0961190e56dec750736cfc",
+            "conclusion": "bafyreiel7eczo4cwq2w6cuv4zqo2xu6gtirgy4q2arqbje3wwngy25apve",
+            "lemmas": []
+        },
+        {
+            "agent": "1f1cc63ce622905141f16db539f4a8a61af2fe0a2c0961190e56dec750736cfc",
+            "conclusion": "bafyreigyjdeckew2q4dtognzmixhyvelcemdrrqa5wclurc23dh4w7dcxy",
+            "lemmas": []
+        },
+        {
+            "agent": "1f1cc63ce622905141f16db539f4a8a61af2fe0a2c0961190e56dec750736cfc",
+            "conclusion": "bafyreigoy2j4libkmo4jupjrds7wcb2naxddopdwrvnmnozgqgnbimnz44",
+            "lemmas": []
+        },
+        {
+            "agent": "1f1cc63ce622905141f16db539f4a8a61af2fe0a2c0961190e56dec750736cfc",
+            "conclusion": "bafyreiesbozqgofq4deupqbpqljhrkxrh7msyybs2koqvalxdpsinsu6wa",
+            "lemmas": []
+        },
+        {
+            "agent": "1f1cc63ce622905141f16db539f4a8a61af2fe0a2c0961190e56dec750736cfc",
+            "conclusion": "bafyreihzez7n47666z2pal66n7wtjsxy3az3ssqecxnohr7nljphvqzhze",
+            "lemmas": []
+        },
+        {
+            "agent": "1f1cc63ce622905141f16db539f4a8a61af2fe0a2c0961190e56dec750736cfc",
+            "conclusion": "bafyreiaia7cw23u6bgx33b66r4xw2ulb3bwitoaddxvxcau7u4uurpgo2i",
+            "lemmas": []
+        },
+        {
+            "agent": "1f1cc63ce622905141f16db539f4a8a61af2fe0a2c0961190e56dec750736cfc",
+            "conclusion": "bafyreidqbsydbqcff2kdpzcf7gjm65lurfskhsfs5fsdlgkphecehmsl3i",
+            "lemmas": []
+        },
+        {
+            "agent": "1f1cc63ce622905141f16db539f4a8a61af2fe0a2c0961190e56dec750736cfc",
+            "conclusion": "bafyreif4gdtuwbvu66oxbqkinawxy7wka332lkyejg6345rio2ltgefebm",
+            "lemmas": []
+        },
+        {
+            "agent": "1f1cc63ce622905141f16db539f4a8a61af2fe0a2c0961190e56dec750736cfc",
+            "conclusion": "bafyreic72aaq5puegzorwsu6s7k2zzuhpib6wcauspydlde6zrbzhseriy",
+            "lemmas": []
+        },
+        {
+            "agent": "1f1cc63ce622905141f16db539f4a8a61af2fe0a2c0961190e56dec750736cfc",
+            "conclusion": "bafyreid53ibrmzsxctcqodqpxkiqpmy6uud26fel4pvmxputu4yiigszya",
+            "lemmas": []
+        }
+    ],
+    "named-formulas": {
+        "bafyreiasr5ebyim5xe3hmjm6ufu3urx66c3we62nsvcftunjuywvxtwfl4": {
+            "name": "fib2",
+            "cid-formula": "bafyreiedcvzefviiczr4pbosod4v5kzkftm44qjlphcbqzdu76vdxvupu4",
+            "language": "ipfs:bafkreicwbhw5hc3ble7puleit773fmqassjrhy6xry4klsu6fh7kjarzwu",
+            "content": "fib (s (s z)) (s z)",
+            "declaration": "bafyreia2ghwtywbqbhpmuvgltrskl72vw7s25y46buq3ei6px2flycxqnu"
+        },
+        "bafyreig6o3a2mhu665gvmaqqri7ryd3u4ffh6nibndkt2pxzqphgp6o7w4": {
+            "name": "fib3",
+            "cid-formula": "bafyreigjiqlm6nyklapww4j5m3zvoo4jlqe2fgaip2j3r4ezkokt6mv7w4",
+            "language": "ipfs:bafkreicwbhw5hc3ble7puleit773fmqassjrhy6xry4klsu6fh7kjarzwu",
+            "content": "fib (s (s (s z))) (s (s z))",
+            "declaration": "bafyreia2ghwtywbqbhpmuvgltrskl72vw7s25y46buq3ei6px2flycxqnu"
+        },
+        "bafyreiel7eczo4cwq2w6cuv4zqo2xu6gtirgy4q2arqbje3wwngy25apve": {
+            "name": "fib4",
+            "cid-formula": "bafyreiatsx5r45bg6cw5wdctfl53ylh7l6mdualcfrvztvp42mvgusih6i",
+            "language": "ipfs:bafkreicwbhw5hc3ble7puleit773fmqassjrhy6xry4klsu6fh7kjarzwu",
+            "content": "fib (s (s (s (s z)))) (s (s (s z)))",
+            "declaration": "bafyreia2ghwtywbqbhpmuvgltrskl72vw7s25y46buq3ei6px2flycxqnu"
+        },
+        "bafyreigyjdeckew2q4dtognzmixhyvelcemdrrqa5wclurc23dh4w7dcxy": {
+            "name": "fib5",
+            "cid-formula": "bafyreihfmmhzkmxbvhz2wfh26qcqqtyny6e5tijbm34vpck2wfl7ki4m7m",
+            "language": "ipfs:bafkreicwbhw5hc3ble7puleit773fmqassjrhy6xry4klsu6fh7kjarzwu",
+            "content": "fib (s (s (s (s (s z))))) (s (s (s (s (s z)))))",
+            "declaration": "bafyreia2ghwtywbqbhpmuvgltrskl72vw7s25y46buq3ei6px2flycxqnu"
+        },
+        "bafyreigoy2j4libkmo4jupjrds7wcb2naxddopdwrvnmnozgqgnbimnz44": {
+            "name": "fib6",
+            "cid-formula": "bafyreid3cm57q745non6ltz3ipn4zsltzx5yysudizc2o3qbhoarks677a",
+            "language": "ipfs:bafkreicwbhw5hc3ble7puleit773fmqassjrhy6xry4klsu6fh7kjarzwu",
+            "content": "fib (s (s (s (s (s (s z)))))) (s (s (s (s (s (s (s (s z))))))))",
+            "declaration": "bafyreia2ghwtywbqbhpmuvgltrskl72vw7s25y46buq3ei6px2flycxqnu"
+        },
+        "bafyreiesbozqgofq4deupqbpqljhrkxrh7msyybs2koqvalxdpsinsu6wa": {
+            "name": "fib7",
+            "cid-formula": "bafyreibmehhz4aghcegifgi5cdto55jdtgwvroh5hfema7ttuher5bcg24",
+            "language": "ipfs:bafkreicwbhw5hc3ble7puleit773fmqassjrhy6xry4klsu6fh7kjarzwu",
+            "content": "fib (s (s (s (s (s (s (s z))))))) (s (s (s (s (s (s (s (s (s (s (s (s (s z)))))))))))))",
+            "declaration": "bafyreia2ghwtywbqbhpmuvgltrskl72vw7s25y46buq3ei6px2flycxqnu"
+        },
+        "bafyreihzez7n47666z2pal66n7wtjsxy3az3ssqecxnohr7nljphvqzhze": {
+            "name": "fib8",
+            "cid-formula": "bafyreidis2gdxrjvuwxyiqnmwvvizcg4yxo4xysfogkxgnl2bpkmim44jq",
+            "language": "ipfs:bafkreicwbhw5hc3ble7puleit773fmqassjrhy6xry4klsu6fh7kjarzwu",
+            "content": "fib (s (s (s (s (s (s (s (s z)))))))) (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s z)))))))))))))))))))))",
+            "declaration": "bafyreia2ghwtywbqbhpmuvgltrskl72vw7s25y46buq3ei6px2flycxqnu"
+        },
+        "bafyreiaia7cw23u6bgx33b66r4xw2ulb3bwitoaddxvxcau7u4uurpgo2i": {
+            "name": "fib9",
+            "cid-formula": "bafyreibpnky33pxxuiz5sbophq4zgnmexik4fcbwhho4c5ogyuyqdbjbre",
+            "language": "ipfs:bafkreicwbhw5hc3ble7puleit773fmqassjrhy6xry4klsu6fh7kjarzwu",
+            "content": "fib (s (s (s (s (s (s (s (s (s z))))))))) (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s z))))))))))))))))))))))))))))))))))",
+            "declaration": "bafyreia2ghwtywbqbhpmuvgltrskl72vw7s25y46buq3ei6px2flycxqnu"
+        },
+        "bafyreidqbsydbqcff2kdpzcf7gjm65lurfskhsfs5fsdlgkphecehmsl3i": {
+            "name": "fib10",
+            "cid-formula": "bafyreih2xxjewpk2dnkbzfp3eev4a373kuk6it3une2sksi6m5anbt3c2y",
+            "language": "ipfs:bafkreicwbhw5hc3ble7puleit773fmqassjrhy6xry4klsu6fh7kjarzwu",
+            "content": "fib (s (s (s (s (s (s (s (s (s (s z)))))))))) (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s z)))))))))))))))))))))))))))))))))))))))))))))))))))))))",
+            "declaration": "bafyreia2ghwtywbqbhpmuvgltrskl72vw7s25y46buq3ei6px2flycxqnu"
+        },
+        "bafyreif4gdtuwbvu66oxbqkinawxy7wka332lkyejg6345rio2ltgefebm": {
+            "name": "fib11",
+            "cid-formula": "bafyreiek4kz2k32s5azy6en3u2hggdut563ocucoxve2kqijsn4rdltezi",
+            "language": "ipfs:bafkreicwbhw5hc3ble7puleit773fmqassjrhy6xry4klsu6fh7kjarzwu",
+            "content": "fib (s (s (s (s (s (s (s (s (s (s (s z))))))))))) (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s z)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))",
+            "declaration": "bafyreia2ghwtywbqbhpmuvgltrskl72vw7s25y46buq3ei6px2flycxqnu"
+        },
+        "bafyreic72aaq5puegzorwsu6s7k2zzuhpib6wcauspydlde6zrbzhseriy": {
+            "name": "fib12",
+            "cid-formula": "bafyreihsmenrmozp2ralnttqcasrz4crwbmm2u23hczau6faqhbvayzhky",
+            "language": "ipfs:bafkreicwbhw5hc3ble7puleit773fmqassjrhy6xry4klsu6fh7kjarzwu",
+            "content": "fib (s (s (s (s (s (s (s (s (s (s (s (s z)))))))))))) (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s z))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))",
+            "declaration": "bafyreia2ghwtywbqbhpmuvgltrskl72vw7s25y46buq3ei6px2flycxqnu"
+        },
+        "bafyreid53ibrmzsxctcqodqpxkiqpmy6uud26fel4pvmxputu4yiigszya": {
+            "name": "fib13",
+            "cid-formula": "bafyreicfg4nqjg3pu4z3sssrxcei5vchzm5gjlxehhngm5i27yfnaxigwu",
+            "language": "ipfs:bafkreicwbhw5hc3ble7puleit773fmqassjrhy6xry4klsu6fh7kjarzwu",
+            "content": "fib (s (s (s (s (s (s (s (s (s (s (s (s (s z))))))))))))) (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s z)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))",
+            "declaration": "bafyreia2ghwtywbqbhpmuvgltrskl72vw7s25y46buq3ei6px2flycxqnu"
+        }
+    },
+    "declarations": {
+        "bafyreia2ghwtywbqbhpmuvgltrskl72vw7s25y46buq3ei6px2flycxqnu": {
+            "language": "ipfs:bafkreicwbhw5hc3ble7puleit773fmqassjrhy6xry4klsu6fh7kjarzwu",
+            "content": [
+                "kind nat  type",
+                "type z    nat",
+                "type s    nat -> nat",
+                "type plus nat -> nat -> nat -> o",
+                "type fib         nat -> nat -> o",
+                "plus z N N",
+                "plus (s N) M (s P) :- plus N M P",
+                "fib z z",
+                "fib (s z) (s z)",
+                "fib (s (s N)) F :- fib N F1, fib (s N) F2, plus F1 F2 F"
+            ]
+        }
+    }
+}

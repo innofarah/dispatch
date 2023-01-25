@@ -1,116 +1,133 @@
 {
-    "input-for": "fib",
-
     "format": "sequence",
-
-    "language": "ipfs:bafkreicwbhw5hc3ble7puleit773fmqassjrhy6xry4klsu6fh7kjarzwu",
-
-    "profile": "lambdaProlog-farah-cloud",
-
-    "sequents": [
+    "name": "fib",
+    "assertions": [
         {
+            "profile": "lambdaProlog-farah",
             "conclusion": "fib2",
             "lemmas": []
         },
         {
+            "profile": "lambdaProlog-farah",
             "conclusion": "fib3",
             "lemmas": []
         },
         {
+            "profile": "lambdaProlog-farah",
             "conclusion": "fib4",
             "lemmas": []
         },
         {
+            "profile": "lambdaProlog-farah",
             "conclusion": "fib5",
             "lemmas": []
         },
         {
+            "profile": "lambdaProlog-farah",
             "conclusion": "fib6",
             "lemmas": []
         },
         {
+            "profile": "lambdaProlog-farah",
             "conclusion": "fib7",
             "lemmas": []
         },
         {
+            "profile": "lambdaProlog-farah",
             "conclusion": "fib8",
             "lemmas": []
         },
         {
+            "profile": "lambdaProlog-farah",
             "conclusion": "fib9",
             "lemmas": []
         },
         {
+            "profile": "lambdaProlog-farah",
             "conclusion": "fib10",
             "lemmas": []
         },
         {
+            "profile": "lambdaProlog-farah",
             "conclusion": "fib11",
             "lemmas": []
         },
         {
+            "profile": "lambdaProlog-farah",
             "conclusion": "fib12",
             "lemmas": []
         },
         {
+            "profile": "lambdaProlog-farah",
             "conclusion": "fib13",
             "lemmas": []
         }
     ],
-
     "named-formulas": {
         "fib2": {
+            "language": "ipfs:bafkreicwbhw5hc3ble7puleit773fmqassjrhy6xry4klsu6fh7kjarzwu",
             "content": "fib (s (s z)) (s z)",
-            "declarations": "fib"
+            "declaration": "fib"
         },
         "fib3": {
+            "language": "ipfs:bafkreicwbhw5hc3ble7puleit773fmqassjrhy6xry4klsu6fh7kjarzwu",
             "content": "fib (s (s (s z))) (s (s z))",
-            "declarations": "fib"
+            "declaration": "fib"
         },
         "fib4": {
+            "language": "ipfs:bafkreicwbhw5hc3ble7puleit773fmqassjrhy6xry4klsu6fh7kjarzwu",
             "content": "fib (s (s (s (s z)))) (s (s (s z)))",
-            "declarations": "fib"
+            "declaration": "fib"
         },
         "fib5": {
+            "language": "ipfs:bafkreicwbhw5hc3ble7puleit773fmqassjrhy6xry4klsu6fh7kjarzwu",
             "content": "fib (s (s (s (s (s z))))) (s (s (s (s (s z)))))",
-            "declarations": "fib"
+            "declaration": "fib"
         },
         "fib6": {
+            "language": "ipfs:bafkreicwbhw5hc3ble7puleit773fmqassjrhy6xry4klsu6fh7kjarzwu",
             "content": "fib (s (s (s (s (s (s z)))))) (s (s (s (s (s (s (s (s z))))))))",
-            "declarations": "fib"
+            "declaration": "fib"
         },
         "fib7": {
+            "language": "ipfs:bafkreicwbhw5hc3ble7puleit773fmqassjrhy6xry4klsu6fh7kjarzwu",
             "content": "fib (s (s (s (s (s (s (s z))))))) (s (s (s (s (s (s (s (s (s (s (s (s (s z)))))))))))))",
-            "declarations": "fib"
+            "declaration": "fib"
         },
         "fib8": {
+            "language": "ipfs:bafkreicwbhw5hc3ble7puleit773fmqassjrhy6xry4klsu6fh7kjarzwu",
             "content": "fib (s (s (s (s (s (s (s (s z)))))))) (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s z)))))))))))))))))))))",
-            "declarations": "fib"
+            "declaration": "fib"
         },
         "fib9": {
+            "language": "ipfs:bafkreicwbhw5hc3ble7puleit773fmqassjrhy6xry4klsu6fh7kjarzwu",
             "content": "fib (s (s (s (s (s (s (s (s (s z))))))))) (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s z))))))))))))))))))))))))))))))))))",
-            "declarations": "fib"
+            "declaration": "fib"
         },
         "fib10": {
+            "language": "ipfs:bafkreicwbhw5hc3ble7puleit773fmqassjrhy6xry4klsu6fh7kjarzwu",
             "content": "fib (s (s (s (s (s (s (s (s (s (s z)))))))))) (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s z)))))))))))))))))))))))))))))))))))))))))))))))))))))))",
-            "declarations": "fib"
+            "declaration": "fib"
         },
         "fib11": {
+            "language": "ipfs:bafkreicwbhw5hc3ble7puleit773fmqassjrhy6xry4klsu6fh7kjarzwu",
             "content": "fib (s (s (s (s (s (s (s (s (s (s (s z))))))))))) (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s z)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))",
-            "declarations": "fib"
+            "declaration": "fib"
         },
         "fib12": {
+            "language": "ipfs:bafkreicwbhw5hc3ble7puleit773fmqassjrhy6xry4klsu6fh7kjarzwu",
             "content": "fib (s (s (s (s (s (s (s (s (s (s (s (s z)))))))))))) (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s z))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))",
-            "declarations": "fib"
+            "declaration": "fib"
         },
         "fib13": {
+            "language": "ipfs:bafkreicwbhw5hc3ble7puleit773fmqassjrhy6xry4klsu6fh7kjarzwu",
             "content": "fib (s (s (s (s (s (s (s (s (s (s (s (s (s z))))))))))))) (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s z)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))",
-            "declarations": "fib"
+            "declaration": "fib"
         }
     },
-
     "declarations": {
         "fib": {
+            "language": "ipfs:bafkreicwbhw5hc3ble7puleit773fmqassjrhy6xry4klsu6fh7kjarzwu",
             "content": [
                 "kind nat  type",
                 "type z    nat",
@@ -118,7 +135,7 @@
                 "type plus nat -> nat -> nat -> o",
                 "type fib         nat -> nat -> o",
                 "plus z N N",
-                "plus (s N) M (s P) :- plus N M P",            
+                "plus (s N) M (s P) :- plus N M P",
                 "fib z z",
                 "fib (s z) (s z)",
                 "fib (s (s N)) F :- fib N F1, fib (s N) F2, plus F1 F2 F"

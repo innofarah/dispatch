@@ -1,0 +1,59 @@
+{
+    "C": [
+        {
+            "agent": "K4",
+            "lemmas": []
+        }
+    ],
+    "P": [
+        {
+            "agent": "K7",
+            "lemmas": ["C"]
+        },
+        {
+            "agent": "K6",
+            "lemmas":["J", "M"]
+        }
+    ],
+    "A": [
+        {
+            "agent": "K1",
+            "lemmas": [
+                "P"
+            ]
+        },
+        {
+            "agent": "K2",
+            "lemmas": [
+                "D",
+                "F"
+            ]
+        }
+    ],
+    "B": [
+        {
+            "agent": "K3",
+            "lemmas": [
+                "L",
+                "M"
+            ]
+        },
+        {
+            "agent": "K5",
+            "lemmas": [
+                "J",
+                "M"
+            ]
+        }
+    ],
+    "N": [
+        {
+            "agent": "K2",
+            "lemmas": [
+                "A",
+                "B",
+                "C"
+            ]
+        }
+    ]
+}

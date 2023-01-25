@@ -1,13 +1,13 @@
 {
-    "output-for": "bafyreieowbpysjs6yz3qb2vri2wsyyrkysd2kmo75nkak2iqisjgbqkld4",
-    "format": "formula",
-    "formula": {
+    "format": "named-formula",
+    "named-formula": {
+        "name": "plus_comm",
         "language": "ipfs:bafkreibczlhu5a6tyibqpwvuuaaqga7njlyyn5v37qttyapzjpwbidcjvq",
         "content": "forall M N K, nat K -> plus M N K -> plus N M K",
-        "declarations": "bafyreigj6k3epo7pyldmg45wlqhrgo442vqfpgmzhoq4zqylp74mrptg7u"
+        "declaration": "plus"
     },
     "declarations": {
-        "bafyreigj6k3epo7pyldmg45wlqhrgo442vqfpgmzhoq4zqylp74mrptg7u": {
+        "plus": {
             "language": "ipfs:bafkreibczlhu5a6tyibqpwvuuaaqga7njlyyn5v37qttyapzjpwbidcjvq",
             "content": [
                 "Kind nat      type",

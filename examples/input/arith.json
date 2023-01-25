@@ -1,0 +1,41 @@
+{
+    "format": "sequence",
+    "name": "arith",
+    "assertions": [
+        {
+            "profile": "lambdaProlog-farah",
+            "conclusion": "plus112",
+            "lemmas": []
+        },
+        {
+            "profile": "lambdaProlog-farah",
+            "conclusion": "plus213",
+            "lemmas": []
+        }
+    ],
+    "named-formulas": {
+        "plus112": {
+            "language": "ipfs:bafkreicwbhw5hc3ble7puleit773fmqassjrhy6xry4klsu6fh7kjarzwu",
+            "content": "plus (succ zero) (succ zero) (succ (succ zero))",
+            "declaration": "arith"
+        },
+        "plus213": {
+            "language": "ipfs:bafkreicwbhw5hc3ble7puleit773fmqassjrhy6xry4klsu6fh7kjarzwu",
+            "content": "plus (succ (succ zero)) (succ zero) (succ (succ (succ zero)))",
+            "declaration": "arith"
+        }
+    },
+    "declarations": {
+        "arith": {
+            "language": "ipfs:bafkreicwbhw5hc3ble7puleit773fmqassjrhy6xry4klsu6fh7kjarzwu",
+            "content": [
+                "kind nat   type.",
+                "type zero  nat.",
+                "type succ  nat -> nat.",
+                "type plus  nat -> nat -> nat -> o.",
+                "plus zero N N.",
+                "plus (succ N) M (succ P) :- plus N M P."
+            ]
+        }
+    }
+}
