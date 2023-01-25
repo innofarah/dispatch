@@ -5,7 +5,6 @@ type config = {
 
 type profile = {
     "name": string,
-    "target": "local" | "cloud"
     "private-key": string,
     "public-key": string,
     "fingerprint": string
@@ -15,11 +14,13 @@ type cid = string
 
 type ipldLink = { "/": cid }
 
+type target = "local" | "cloud" // to be an argument for the `publish` command --> `dispatch publish /file.json target`
+
 //type ipfsLink = { "ipfs": cid }
 
 
-type declarations = {
-    "format": "declarations",
+type declaration = {
+    "format": "declaration",
     "language": string,
     "content": ipldLink 
 }
@@ -28,7 +29,7 @@ type formula = {
     "format": "formula",
     "language": string,
     "content": ipldLink,
-    "declarations": ipldLink
+    "declaration": ipldLink
 }
 
 type namedFormula = {
@@ -42,6 +43,19 @@ type sequent = {
     "lemmas": [ipldLink],
     "conclusion": ipldLink
 }
+
+/*type sequent = {
+    "format": "sequent",
+    "lemmas": [ipldLink],
+    "conclusion": ipldLink,
+    "evidence": ipldLink | ""
+}
+
+type evidence = {
+    "format": "evidence",
+    "language": string,
+    "content": ipldLink
+}*/
 
 type assertion = {
     "format": "assertion",

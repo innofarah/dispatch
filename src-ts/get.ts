@@ -1,17 +1,11 @@
 const fs = require('fs')
-const { execSync } = require('child_process')
-const crypto = require('crypto')
-const util = require('util')
-const stream = require('stream')
-const fetch = require('node-fetch').default
 
-import initialVals = require("./initial-vals")
-import verification = require("./verifications")
-const { configpath, profilespath, keystorepath } = initialVals
-const { isDeclarations, isFormula, isNamedFormula, isSequent, isAssertion, isSequence, verifySignature } = verification
+import utilities = require("./utilities")
+const { isDeclaration, isFormula, isNamedFormula, isSequent, isAssertion, isSequence, 
+    verifySignature, fingerPrint, ipfsGetObj, ensureFullDAG } = utilities
 
 // we need a general get <cid> command that works according to "format":
-// declarations ->
+// declaration ->
 // formula ->
 // named-formula ->
 // sequent ->
@@ -36,14 +30,14 @@ let getCommand = async (cid: string, directoryPath) => {
     try {
         let mainObj = await ipfsGetObj(cid)
         if (Object.keys(mainObj).length != 0) { // test if mainObj != {}
-            if (!isDeclarations(mainObj) && !isFormula(mainObj) && !isNamedFormula(mainObj) && !isSequent(mainObj) && !isAssertion(mainObj) && !isSequence(mainObj))
+            if (!isDeclaration(mainObj) && !isFormula(mainObj) && !isNamedFormula(mainObj) && !isSequent(mainObj) && !isAssertion(mainObj) && !isSequence(mainObj))
                 throw new Error("ERROR: Retrieved object has unknown/invalid format.")
 
             let mainObjFormat = mainObj["format"]
 
             // for now we will implement only "sequence" get
-            if (mainObjFormat == "declarations") {
-                await getDeclarations(cid, mainObj, result)
+            if (mainObjFormat == "declaration") {
+                await getDeclaration(cid, mainObj, result)
             }
             else if (mainObjFormat == "named-formula") {
                 await getNamedFormula(cid, mainObj, result)
@@ -84,27 +78,27 @@ let processFormula = async (cid: string, result: {}, named: boolean) => {
 
     output["language"] = mainObj["language"]
     output["content"] = await ipfsGetObj(mainObj["content"]["/"])
-    output["declarations"] = mainObj["declarations"]["/"]
+    output["declaration"] = mainObj["declaration"]["/"]
 
-    let cidDeclarations = mainObj["declarations"]["/"]
-    if (!result["declarations"][cidDeclarations]) {
-        result["declarations"][cidDeclarations] = await processDeclarations(cidDeclarations, result)
+    let cidDeclaration = mainObj["declaration"]["/"]
+    if (!result["declarations"][cidDeclaration]) {
+        result["declarations"][cidDeclaration] = await processDeclaration(cidDeclaration, result)
     }
         
     return output
 }
 
-let processDeclarations = async (cid: string, result: {}) => {
-    let declarationsObj = await ipfsGetObj(cid)
+let processDeclaration = async (cid: string, result: {}) => {
+    let declarationObj = await ipfsGetObj(cid)
 
-    let declarationsOutput = {}
+    let declarationOutput = {}
 
-    declarationsOutput["language"] = declarationsObj["language"]
+    declarationOutput["language"] = declarationObj["language"]
 
-    let content = await ipfsGetObj(declarationsObj["content"]["/"])
-    declarationsOutput["content"] = content
+    let content = await ipfsGetObj(declarationObj["content"]["/"])
+    declarationOutput["content"] = content
 
-    return declarationsOutput
+    return declarationOutput
 }
 
 let processAssertion = async (assertion: {}, result: {}) => {
@@ -144,13 +138,14 @@ let processSequent = async (cid: string, result: {}) => {
     return sequentOutput
 }
 
-let getDeclarations = async (cidObj: string, obj: {}, result: {}) => {
+let getDeclaration = async (cidObj: string, obj: {}, result: {}) => {
     result["output-for"] = cidObj
-    result["format"] = "declarations"
+    result["format"] = "declaration"
+    result["declarations"] = {}
 
-    let declarationsOutput = await processDeclarations(cidObj, result)
+    let declarationOutput = await processDeclaration(cidObj, result)
 
-    result["declaration"] = declarationsOutput
+    result["declarations"][cidObj] = declarationOutput
 }
 
 let getFormula = async (cidObj: string, obj: {}, result: {}) => {
@@ -233,81 +228,6 @@ let getSequence = async (cidObj: string, obj: {}, result: {}) => {
         }
         else {
             console.log("ERROR: Assertion not verified")
-            process.exit(1)
-        }
-    }
-}
-
-let fingerPrint = (agent: string) => {
-    let keystore = JSON.parse(fs.readFileSync(keystorepath))
-    let fingerPrint
-    if (keystore[agent]) {
-        fingerPrint = keystore[agent]
-    }
-    else {
-        fingerPrint = crypto.createHash('sha256').update(agent).digest('hex')
-        keystore[agent] = fingerPrint
-        fs.writeFileSync(keystorepath, JSON.stringify(keystore))
-    }
-    return fingerPrint
-}
-
-// --------------------------
-// for retrieval from ipfs
-// --------------------------
-
-let ipfsGetObj = async (cid: string) => {
-    try {
-        let cmd = "ipfs dag get " + cid + " > " + cid + ".json"
-        execSync(cmd, { encoding: 'utf-8' })
-        let obj = JSON.parse(fs.readFileSync(cid + ".json"))
-        fs.unlinkSync(cid + ".json")
-        return obj
-    } catch (error) {
-        console.error("ERROR: getting object from ipfs failed");
-        return {}
-    }
-}
-
-let ensureFullDAG = async (cid) => {
-    try {
-        //test if it exists locally / or tries to retrieve the missing links in case the ipfs daemon is activated
-        let cmd = "ipfs dag export -p " + cid + " > tmpp.car"
-        // for now : causes a problem if we use an address with slashes "/" since ipfs export doesn't support it currently
-        console.log("ipfs daemon working on retrieving DAG .. Please be patient ..")
-        execSync(cmd, { encoding: 'utf-8' }) // this fails if there are missing links from the local ipfs repo / or unsuccessful to retrieve in case the ipfs daemon is activated
-        fs.unlink('tmpp.car', (err) => {
-            if (err) throw err;
-        });
-    } catch (err) {
-        console.log("There are missing links that were not found in the local ipfs cache OR the ipfs daemon (if activated) has not been able to find them, trying to retrieve them from the specified gateway ..")
-        let config = JSON.parse(fs.readFileSync(configpath))
-        let gateway
-        if (config["my-gateway"]) gateway = config["my-gateway"]
-        else {
-            console.log("ERROR: gateway should be specified as trying to retreive data through it .. ")
-            process.exit(1)
-        }
-        let url = gateway + "/api/v0/dag/export?arg=" + cid
-        //let result = await axios.get(url)
-        // problem here: we need to return the result as a stream to properly create the .car file from it -> axios not sufficient
-
-        try {
-            const streamPipeline = util.promisify(stream.pipeline);
-
-            const response = await fetch(url);
-
-            if (!response.ok) throw new Error(`unexpected response ${response.statusText}`);
-
-            await streamPipeline(response.body, fs.createWriteStream('tmpp.car'));
-
-            //fs.writeFileSync("tmpp.car", response.body)
-            execSync("ipfs dag import tmpp.car", { encoding: 'utf-8' })
-            fs.unlink('tmpp.car', (err) => {
-                if (err) throw err;
-            });
-        } catch (err) {
-            console.log(err)
             process.exit(1)
         }
     }

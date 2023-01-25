@@ -3,7 +3,7 @@ const crypt = require('crypto')
 
 //const { configpath, confdirpath, keystorepath, profilespath } = require('./initial-vals')
 import initialVals = require("./initial-vals")
-const { configpath, confdirpath, keystorepath, profilespath } = initialVals
+const { configpath, confdirpath, keystorepath, profilespath, allowlistpath } = initialVals
 
 let setup = () => {
     // try to read ~/.config/w3proof-dispatch/config.json --> create if doesn't exist
@@ -24,10 +24,13 @@ let setup = () => {
         fs.writeFileSync(profilespath, JSON.stringify({}))
     }
 
+    if (!fs.existsSync(allowlistpath)) {
+        fs.writeFileSync(allowlistpath, JSON.stringify([]))
+    }
 
 }
 
-let keygen = (profileName: string, target: string) => { // now just using default parameters
+let keygen = (profileName: string) => { // now just using default parameters
     /* const {
         publicKey,
         privateKey
@@ -61,9 +64,8 @@ let keygen = (profileName: string, target: string) => { // now just using defaul
     let fingerPrint = crypt.createHash('sha256').update(publicKey).digest('hex')
 
     let profiles = JSON.parse(fs.readFileSync(profilespath))
-    let newProfile = {
+    let newProfile: profile = {
         "name": profileName,
-        "target": target,
         "public-key": publicKey,
         "private-key": privateKey,
         "fingerprint": fingerPrint
@@ -103,10 +105,23 @@ let setgateway = (gateway: string) => {
     }
 }
 
+let trustagent = (agent: string) => {
+    let allowlistFile = fs.readFileSync(allowlistpath)
+    let allowList = JSON.parse(allowlistFile)  
+    allowList.push(agent)
+    allowList = Array.from(new Set(allowList)) // agent listed only once
+    try {
+        fs.writeFileSync(allowlistpath, JSON.stringify(allowList))
+    }
+    catch (err) {
+        console.log(err)
+    }
+}
+
 let listconfig = () => {
     let configFile = fs.readFileSync(configpath)
     let config = JSON.parse(configFile)
     console.log(config)
 }
 
-export = { setup, keygen, setweb3token, setgateway, listconfig }
+export = { setup, keygen, setweb3token, setgateway, trustagent, listconfig }
