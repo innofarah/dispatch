@@ -24,6 +24,9 @@ let getCommand = async (cid: string, directoryPath) => {
         outputPath = cid + ".json" // the default value for the output file path
     }*/
 
+
+// cid refers to: formula, sequent, assertion, or sequence // for now
+let getCommand = async (cid: string, directoryPath: string) => {
     let result = {}
     await ensureFullDAG(cid)
 
