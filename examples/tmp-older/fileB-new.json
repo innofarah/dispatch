@@ -1,0 +1,25 @@
+{
+    "language": "ipfs:bafkreibczlhu5a6tyibqpwvuuaaqga7njlyyn5v37qttyapzjpwbidcjvq",
+
+    "sequents": {
+        "plus_succ": {
+            "declarations": "plus",
+            "conclusion": "forall M N K, plus M N K -> plus M (s N) (s K)",
+            "lemmas": [[]]
+        },
+        "plus_comm": {
+            "declarations": "plus",
+            "conclusion": "forall M N K, nat K -> plus M N K -> plus N M K",
+            "lemmas": [
+                [
+                    "ipld:bafyreig6gggntfqw34md23qvys4mp5qo76vcvaxhy73h7gktuzhiv4rxii",
+                    "plus_succ"
+                ]
+            ]
+        }
+    },
+
+    "declarations": {
+        "plus": "ipld:bafyreigj6k3epo7pyldmg45wlqhrgo442vqfpgmzhoq4zqylp74mrptg7u"
+    }
+}

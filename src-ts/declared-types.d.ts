@@ -3,46 +3,69 @@ type config = {
     "my-web3.storage-api-token": string
 }
 
-type storage = "local" | "cloud"
-
 type profile = {
     "name": string,
-    "public-key": string,
     "private-key": string,
+    "public-key": string,
     "fingerprint": string
 }
 
 type cid = string
 
-type ipfsLink = { "/": cid }
+type ipldLink = { "/": cid }
+
+type target = "local" | "cloud" // to be an argument for the `publish` command --> `dispatch publish /file.json target`
+
+//type ipfsLink = { "ipfs": cid }
+
+
+type declaration = {
+    "format": "declaration",
+    "language": string,
+    "content": ipldLink 
+}
 
 type formula = {  
     "format": "formula",
-    "formula": string,
-    "Sigma": [string]
+    "language": string,
+    "content": ipldLink,
+    "declaration": ipldLink
 }
 
 type namedFormula = {
     "format": "named-formula",
     "name": string,
-    "formula": ipfsLink
+    "formula": ipldLink
 }
 
 type sequent = {
     "format": "sequent",
-    "lemmas": [ipfsLink],
-    "conclusion": ipfsLink
+    "lemmas": [ipldLink],
+    "conclusion": ipldLink
 }
+
+/*type sequent = {
+    "format": "sequent",
+    "lemmas": [ipldLink],
+    "conclusion": ipldLink,
+    "evidence": ipldLink | ""
+}
+
+type evidence = {
+    "format": "evidence",
+    "language": string,
+    "content": ipldLink
+}*/
 
 type assertion = {
     "format": "assertion",
+    "sequent": ipldLink,
     "agent": string,
-    "sequent": ipfsLink,
     "signature": string
 }
 
 type sequence = {
     "format": "sequence",
     "name" : string,
-    "sequents": [ipfsLink]
+    "assertions": [ipldLink]
 }

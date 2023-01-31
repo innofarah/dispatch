@@ -1,0 +1,40 @@
+{
+    "input-for": "fileB",
+
+    "format": "sequence",
+
+    "language": "ipfs:bafkreibczlhu5a6tyibqpwvuuaaqga7njlyyn5v37qttyapzjpwbidcjvq",
+ 
+    "profile": "abella-farah-cloud",
+
+    "sequents": [
+        {
+            "conclusion": "plus_succ",
+            "lemmas": []
+        },
+        {
+            "conclusion": "plus_comm",
+            "lemmas": [
+                "ipld:bafyreig6gggntfqw34md23qvys4mp5qo76vcvaxhy73h7gktuzhiv4rxii",
+                "plus_succ"
+            ]
+        }
+    ], 
+
+    "named-formulas": {
+        "plus_succ": {
+            "content": "forall M N K, plus M N K -> plus M (s N) (s K)",
+            "declarations": "plus"
+        },
+        "plus_comm": {
+            "content": "forall M N K, nat K -> plus M N K -> plus N M K",
+            "declarations": "plus"
+        }
+    },
+
+    "declarations": {
+        "plus": {
+            "content": "ipld:bafyreigj6k3epo7pyldmg45wlqhrgo442vqfpgmzhoq4zqylp74mrptg7u"
+        }
+    }
+}
