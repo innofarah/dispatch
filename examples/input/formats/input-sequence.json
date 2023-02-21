@@ -3,12 +3,14 @@
     "name": "fileB",
     "assertions": [
         {
-            "profile": "abella-farah-cloud",
+            "agentProfile": "key-to-an-agentProfile existing in dispatch .config -> this has a well-defined structure understandable by dispatch (public-key, private-key ..)",
+            "toolProfile": "key-to-a-toolProfile existing in dispatch .config -> could refer to any structure or to an existing cid (dispatch either understands 'ipld:existingtoolcid' or just publishes the whole structure and links it as a new toolLink)",
             "conclusion": "plus_succ",
             "lemmas": []
         },
         {
-            "profile": "abella-farah-cloud",
+            "agentProfile": "key-to-an-agentProfile existing in dispatch .config -> this has a well-defined structure understandable by dispatch (public-key, private-key ..)",
+            "toolProfile": "key-to-a-toolProfile existing in dispatch .config -> could refer to any structure or to an existing cid (dispatch either understands 'ipld:existingtoolcid' or just publishes the whole structure and links it as a new toolLink)",
             "conclusion": "plus_comm",
             "lemmas": [
                 "ipld:bafyreic3j4uvpbde6cnz45rfkddvlvlf7go3qrs5lolvaunbfjtrrhgq3e",
