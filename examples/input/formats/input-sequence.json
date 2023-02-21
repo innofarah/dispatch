@@ -20,12 +20,12 @@
         "plus_succ": {
             "language": "ipfs:bafkreibczlhu5a6tyibqpwvuuaaqga7njlyyn5v37qttyapzjpwbidcjvq",
             "content": "forall M N K, plus M N K -> plus M (s N) (s K)",
-            "declaration": "plus"
+            "declarations": ["plus"]
         },
         "plus_comm": {
             "language": "ipfs:bafkreibczlhu5a6tyibqpwvuuaaqga7njlyyn5v37qttyapzjpwbidcjvq",
             "content": "forall M N K, nat K -> plus M N K -> plus N M K",
-            "declaration": "plus"
+            "declaration": ["plus"]
         }
     },
     "declarations": {

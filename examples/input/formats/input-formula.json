@@ -4,7 +4,7 @@
     "formula": {
         "language": "ipfs:bafkreibczlhu5a6tyibqpwvuuaaqga7njlyyn5v37qttyapzjpwbidcjvq",
         "content": "forall M N K, nat K -> plus M N K -> plus N M K",
-        "declaration": "plus"
+        "declarations": ["plus"]
     },
     "declarations": {
         "plus": {

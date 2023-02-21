@@ -12,7 +12,7 @@
         "plus_zero": {
             "language": "ipfs:bafkreibczlhu5a6tyibqpwvuuaaqga7njlyyn5v37qttyapzjpwbidcjvq",
             "content": "forall N, nat N -> plus N z N",
-            "declaration": "plus"
+            "declarations": ["plus"]
         }
     },
     "declarations": {

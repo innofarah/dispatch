@@ -17,12 +17,12 @@
         "plus112": {
             "language": "ipfs:bafkreicwbhw5hc3ble7puleit773fmqassjrhy6xry4klsu6fh7kjarzwu",
             "content": "plus (succ zero) (succ zero) (succ (succ zero))",
-            "declaration": "arith"
+            "declarations": ["arith"]
         },
         "plus213": {
             "language": "ipfs:bafkreicwbhw5hc3ble7puleit773fmqassjrhy6xry4klsu6fh7kjarzwu",
             "content": "plus (succ (succ zero)) (succ zero) (succ (succ (succ zero)))",
-            "declaration": "arith"
+            "declarations": ["arith"]
         }
     },
     "declarations": {
