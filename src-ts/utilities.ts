@@ -8,9 +8,11 @@ const { execSync } = require('child_process')
 const util = require('util')
 const stream = require('stream')
 const fetch = require('node-fetch').default
+const { Web3Storage } = require('web3.storage')
+const { CarReader } = require('@ipld/car')
 
 import initialVals = require("./initial-vals")
-const { configpath, profilespath, keystorepath, allowlistpath } = initialVals
+const { configpath, agentprofilespath, toolprofilespath, keystorepath, allowlistpath } = initialVals
 
 
 let isDeclaration = (obj: {}) => {
@@ -153,5 +155,72 @@ let ensureFullDAG = async (cid) => {
     }
 }
 
+// --------------------------
+// for adding to ipfs (+cloud)
+// --------------------------
+
+let ipfsAddObj = async (obj: {}) => {
+    try {
+        fs.writeFileSync("tmpJSON.json", JSON.stringify(obj))
+        let addcmd = "ipfs dag put tmpJSON.json --pin"
+        let output = execSync(addcmd, { encoding: 'utf-8' })
+
+        fs.unlinkSync('tmpJSON.json')
+        return output.substring(0, output.length - 1)
+    } catch (error) {
+        console.error("ERROR: adding object to ipfs failed");
+        return ""
+    }
+}
+
+// subject to change, check if adding as file is the correct (and better) thing to do for declarations content and formula string
+/*let ipfsAddFile = async (data: string) => {
+    try {
+        fs.writeFileSync("tmpFile.txt", data)
+        let addcmd = "ipfs add tmpFile.txt --cid-version 1 --pin"
+        let output = execSync(addcmd, { encoding: 'utf-8' })
+
+        fs.unlinkSync('tmpFile.txt')
+        //return output.substring(0, output.length - 1)
+        return output.split(" ")[1] // not really best way to do it (must us nodjs ipfs api not cmd)
+    } catch (error) {
+        console.error("ERROR: adding object to ipfs failed");
+        return ""
+    }
+}*/
+
+let publishDagToCloud = async (cid: string) => {
+    let web3Token, web3Client
+
+    try {
+        let config = JSON.parse(fs.readFileSync(configpath))
+
+        if (config["my-web3.storage-api-token"]
+            && config["my-web3.storage-api-token"] != "**insert your token here**") {
+            web3Token = config["my-web3.storage-api-token"]
+            web3Client = new Web3Storage({ token: web3Token })
+        }
+        else {
+            throw new Error("ERROR: setting a web3.storage token is required as the chosen mode for publishing is 'cloud' and not 'local'.")
+        }
+        let cmd = "ipfs dag export " + cid + " > tmpcar.car"
+        execSync(cmd, { encoding: 'utf-8' })
+        const inStream = fs.createReadStream('tmpcar.car')
+        // read and parse the entire stream in one go, this will cache the contents of
+        // the car in memory so is not suitable for large files.
+        const reader = await CarReader.fromIterable(inStream)
+        const cid1 = await web3Client.putCar(reader)
+        console.log("DAG successfully published to web3.storage!")
+        console.log("root cid: " + cid)
+        fs.unlink('tmpcar.car', (err) => {
+            if (err) throw err
+        })
+
+    } catch (err) {
+        console.log(err)
+    }
+}
+
 export = { isDeclaration, isFormula, isNamedFormula, isSequent, isAssertion, 
-    isSequence, verifySignature, fingerPrint, inAllowList, ipfsGetObj, ensureFullDAG }
+    isSequence, verifySignature, fingerPrint, inAllowList, ipfsGetObj, ensureFullDAG, 
+    ipfsAddObj, publishDagToCloud }

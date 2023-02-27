@@ -1,15 +1,18 @@
 const fs = require('fs')
 const crypt = require('crypto')
 
-//const { configpath, confdirpath, keystorepath, profilespath } = require('./initial-vals')
+//const { configpath, confdirpath, keystorepath, agentprofilespath } = require('./initial-vals')
 import initialVals = require("./initial-vals")
-const { configpath, confdirpath, keystorepath, profilespath, allowlistpath } = initialVals
+const { configpath, confdirpath, keystorepath, agentprofilespath, toolprofilespath, allowlistpath } = initialVals
+
+import utilities = require("./utilities")
+const { ipfsAddObj, publishDagToCloud } = utilities
 
 let setup = () => {
     // try to read ~/.config/w3proof-dispatch/config.json --> create if doesn't exist
     if (!fs.existsSync(configpath)) {
         fs.mkdirSync(confdirpath, { recursive: true }) // it creates any directory in the specified path if it does not exist
-        let configObj = { 
+        let configObj = {
             "my-gateway": "http://dweb.link",
             "my-web3.storage-api-token": "**insert your token here**",
         }
@@ -20,8 +23,11 @@ let setup = () => {
         fs.writeFileSync(keystorepath, JSON.stringify({}))
     }
 
-    if (!fs.existsSync(profilespath)) {
-        fs.writeFileSync(profilespath, JSON.stringify({}))
+    if (!fs.existsSync(agentprofilespath)) {
+        fs.writeFileSync(agentprofilespath, JSON.stringify({}))
+    }
+    if (!fs.existsSync(toolprofilespath)) {
+        fs.writeFileSync(toolprofilespath, JSON.stringify({}))
     }
 
     if (!fs.existsSync(allowlistpath)) {
@@ -30,7 +36,7 @@ let setup = () => {
 
 }
 
-let keygen = (profileName: string) => { // now just using default parameters
+let createAgent = (profileName: string) => { // now just using default parameters
     /* const {
         publicKey,
         privateKey
@@ -59,12 +65,12 @@ let keygen = (profileName: string) => { // now just using default parameters
             format: 'pem'
         }
     });
-  
+
     // create a profile and add it to the profiles file
     let fingerPrint = crypt.createHash('sha256').update(publicKey).digest('hex')
 
-    let profiles = JSON.parse(fs.readFileSync(profilespath))
-    let newProfile: profile = {
+    let profiles = JSON.parse(fs.readFileSync(agentprofilespath))
+    let newProfile: agentProfile = {
         "name": profileName,
         "public-key": publicKey,
         "private-key": privateKey,
@@ -74,7 +80,42 @@ let keygen = (profileName: string) => { // now just using default parameters
     profiles[profileName] = newProfile
 
     try {
-        fs.writeFileSync(profilespath, JSON.stringify(profiles))
+        fs.writeFileSync(agentprofilespath, JSON.stringify(profiles))
+        console.log("Agent profile " + profileName + " created successfully!")
+    }
+    catch (err) {
+        console.log(err)
+    }
+}
+
+let createTool = async (toolProfileName: string, inputType: "file" | "cid", input: string) => {
+    let toolCid = ""
+    if (inputType == "file") {
+        try {
+            let data = JSON.parse(fs.readFileSync(input)) //assuming the data is json
+            // but maybe it's not?
+            //let data = fs.readFileSync(input)
+            toolCid = await ipfsAddObj(data)
+        }
+        catch (err) {
+            console.log(err)
+            process.exit(process.exitCode)
+        }
+    }
+    else if (inputType == "cid") toolCid = input
+
+    let toolProfile = {
+        "name": toolProfileName,
+        "tool": toolCid
+    }
+
+    let toolProfiles = JSON.parse(fs.readFileSync(toolprofilespath))
+    toolProfiles[toolProfileName] = toolProfile
+
+    try {
+        fs.writeFileSync(toolprofilespath, JSON.stringify(toolProfiles))
+        console.log("Tool profile " + toolProfileName + " created successfully!")
+
     }
     catch (err) {
         console.log(err)
@@ -105,7 +146,7 @@ let setgateway = (gateway: string) => {
     }
 }
 
-let trustagent = (agent: string) => {
+/*let trustagent = (agent: string) => {
     let allowlistFile = fs.readFileSync(allowlistpath)
     let allowList = JSON.parse(allowlistFile)  
     allowList.push(agent)
@@ -116,7 +157,7 @@ let trustagent = (agent: string) => {
     catch (err) {
         console.log(err)
     }
-}
+}*/
 
 let listconfig = () => {
     let configFile = fs.readFileSync(configpath)
@@ -124,4 +165,4 @@ let listconfig = () => {
     console.log(config)
 }
 
-export = { setup, keygen, setweb3token, setgateway, trustagent, listconfig }
+export = { setup, createAgent, createTool, setweb3token, setgateway, listconfig }

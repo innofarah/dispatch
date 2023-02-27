@@ -15,7 +15,7 @@ const { isDeclaration, isFormula, isNamedFormula, isSequent, isAssertion, isSequ
 // dispatch will produce an output for all these object types, and a consumer (prover for ex) would decide what format it reads and how it should read it.
 
 //let getCommand = async (cid: string, filepath) => {
-let getCommand = async (cid: string, directoryPath) => {
+//let getCommand = async (cid: string, directoryPath) => {
     /*let outputPath  
     if (Object.values(filepath).length != 0) {
         outputPath =  Object.values(filepath)

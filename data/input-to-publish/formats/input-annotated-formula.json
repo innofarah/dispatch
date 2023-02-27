@@ -1,23 +1,12 @@
 {
-    "format": "sequent",
-    "sequent": {
-        "conclusion": "plus_comm",
-        "lemmas": [
-            "ipld:bafyreic3j4uvpbde6cnz45rfkddvlvlf7go3qrs5lolvaunbfjtrrhgq3e",
-            "plus_succ"
-        ]
-    },
-    "named-formulas": {
-        "plus_comm": {
+    "format": "annotated-formula",
+    "annotated-formula": {
+        "formula": {
             "language": "ipfs:bafkreibczlhu5a6tyibqpwvuuaaqga7njlyyn5v37qttyapzjpwbidcjvq",
             "content": "forall M N K, nat K -> plus M N K -> plus N M K",
             "declarations": ["plus"]
         },
-        "plus_succ": {
-            "language": "ipfs:bafkreibczlhu5a6tyibqpwvuuaaqga7njlyyn5v37qttyapzjpwbidcjvq",
-            "content": "forall M N K, plus M N K -> plus M (s N) (s K)",
-            "declarations": ["plus"]
-        }
+        "annotation": ["any"]
     },
     "declarations": {
         "plus": {

@@ -1,15 +1,23 @@
 {
     "format": "assertion",
     "assertion": {
-        "agentProfile": "key-to-an-agentProfile existing in dispatch .config -> this has a well-defined structure understandable by dispatch (public-key, private-key ..)",
-        "toolProfile": "key-to-a-toolProfile existing in dispatch .config -> could refer to any structure or to an existing cid (dispatch either understands 'ipld:existingtoolcid' or just publishes the whole structure and links it as a new toolLink)",
-        "conclusion": "plus_comm",
-        "lemmas": [
-            "ipld:bafyreic3j4uvpbde6cnz45rfkddvlvlf7go3qrs5lolvaunbfjtrrhgq3e",
-            "plus_succ"
-        ]
+        "agent": "localAgent",
+        "statement": {
+            "format": "annotated-production",
+            "production": {
+                "tool": "abella-vtesttool",
+                "sequent": {
+                    "conclusion": "plus_comm",
+                    "dependencies": [
+                        "ipld:bafyreihlmwbmfeinhjx6vb66oa4pikyfqwggqh6iqxj3qrpni65jjeuzie",
+                        "plus_succ"
+                    ]
+                }
+            },
+            "annotation": ["part of the language - dispatch doesn't read it"]
+        }
     },
-    "named-formulas": {
+    "formulas": {
         "plus_comm": {
             "language": "ipfs:bafkreibczlhu5a6tyibqpwvuuaaqga7njlyyn5v37qttyapzjpwbidcjvq",
             "content": "forall M N K, nat K -> plus M N K -> plus N M K",

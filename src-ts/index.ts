@@ -3,7 +3,7 @@
 const { program } = require('commander')
 
 const { publishCommand } = require('./publish.js')
-const { setup, keygen, setweb3token, setgateway, trustagent, listconfig } = require('./config-related.js')
+const { setup, createAgent, createTool, setweb3token, setgateway, trustagent, listconfig } = require('./config-related.js')
 const { getCommand } = require('./get.js')
 //const { trustwhoCommand } = require('./trusting.js')
 //const { whatISay, doISay } = require('./trusting-old.js')
@@ -12,10 +12,17 @@ const { lookup } = require('./lookup.js')
 setup()
 
 program
-    .command('keygen')
-    .description('generate a PPK pair.\n')
-    .argument('<profile-name>', 'name for the key pair.\n')
-    .action(keygen)
+    .command('create-agent')
+    .description('generate an agent profile with a PPK pair.\n')
+    .argument('<agent-profile-name>', 'name for the agent profile.\n')
+    .action(createAgent)
+program
+    .command('create-tool')
+    .description('add a new tool profile from a new or existing (cid) tool description.\n')
+    .argument('<tool-profile-name>', 'name for the tool profile.\n')
+    .argument('<input-type>', 'type for your input: takes "file" or "cid".\n')
+    .argument('<input>', 'the input for the created tool profile. A filepath or cid.\n')
+    .action(createTool)
 program
     .command('set-web3token')
     .description('set your web3.storage api token.\n')
@@ -28,18 +35,18 @@ program
     .argument('<gateway>', 'preferred default ipfs gateway.\n'
     + 'the default is set to "https://dweb.link".\n')
     .action(setgateway)
-program
+/*program
     .command('trust-agent')
     .description('add an agent to your allow list.\n')
     .argument('<agent>', 'public key of the agent (fingerprint)\n')
-    .action(trustagent)
+    .action(trustagent)*/
 program
     .command('list-config')
     .description('list config params.\n')
     .action(listconfig)
 program
     .command('publish')
-    .description('publish one of the standard format inputs for dispatch. For example, a "sequence" signed by a profile.\n')
+    .description('publish one of the standard format inputs for dispatch.\n')
     .argument('<input-path>', 'path for the input file\n')
     .argument('<target>', '"local" to pin only on local ipfs node, "cloud to pin on web3.storage" (web3token should be specified in this case)')
     .action(publishCommand)

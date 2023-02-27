@@ -5,15 +5,20 @@ type config = {
     "my-web3.storage-api-token": string
 }
 
-type profile = {
+type agentProfile = {
     "name": string,
     "private-key": string,
     "public-key": string,
     "fingerprint": string
 }
+
+type toolProfile = {
+    "name": string,
+    "toolLink": toolLink
+}
+
 //*************************//
 /* for local configuration */
-
 
 type target = "local" | "cloud" // to be an argument for the `publish` command --> `dispatch publish /file.json target`
 
@@ -26,16 +31,12 @@ type ipldLink = { "/": cid }
 type publicKey = string
 type digitalSignature = string
 type languageLink = ipldLink
-type rawDeclarationLink = ipldLink
-type namedDeclarationLink = ipldLink
-type declarationLink = rawDeclarationLink | namedDeclarationLink
-type rawFormulaLink = ipldLink
-type namedFormulaLink = ipldLink
-type formulaLink = rawFormulaLink | namedFormulaLink
+type declarationLink = ipldLink
+type formulaLink = ipldLink
 type sequentLink = ipldLink
 type toolLink = ipldLink
 type productionLink = ipldLink
-type claimLink = productionLink
+type annotatedProductionLink = ipldLink
 type assertionLink = ipldLink
 /****************************/
 /* For Illustration Purposes */
@@ -43,52 +44,44 @@ type assertionLink = ipldLink
 
 /* Global Object Types */
 /****************************/
-type rawDeclaration = {
+
+/* Core Types */
+type declaration = {
     "format": "declaration",
     "language": languageLink,
     "content": ipldLink
 }
 
-type namedDeclaration = { // originally (locally) possibly given name as meta-data (the global name is the cid) - maybe remove it later from being a single attribute if we include a more general "meta-data" field
-    "format": "named-declaration",
-    "language": languageLink,
-    "name": string,
-    "content": ipldLink
-}
-
-type declaration = rawDeclaration | namedDeclaration
-
-type rawFormula = {
+type formula = {
     "format": "formula",
     "language": languageLink,
     "content": ipldLink,
-    "declarations": [declarationLink]
+    "declarations": declarationLink[]
 }
-
-type namedFormula = { // originally (locally) possibly given name as meta-data (the global name is the cid)
-    "format": "named-formula",
-    "name": string,
-    "formula": rawFormula
-}
-
-type formula = rawFormula | namedFormula
 
 type sequent = {
     "format": "sequent",
-    "lemmas": [formulaLink], // a lemma, is a dependency on some other formula; when to include it is specific to each publishing agent/tool: doesn't matter from the global view
+    "dependencies": formulaLink[], // a lemma, is a dependency on some other formula; when to include it is specific to each publishing agent/tool: doesn't matter from the global view
     // means that "the provability (being able to reach) of conclusion depends on that of the lemmas"
     "conclusion": formulaLink
 }
 
+type tool = {
+    "format": "tool",
+    "content": ipldLink
+}
+
+// maybe also add "language" as a type later.
+
 // having a sequent as a standalone object (instead of putting "lemmas" and "conclusion" here directly) has the benefit of it having a unique identifier for maybe other uses
 // also, possible that several productions can refer to same sequent? 
 // "tool" as an [input] -> output medium -- function, routine? :: cid not need to refer to an explicit tool identifying description (tool in the literal sense: software..), maybe other things as well?
-// the "tool" could be empty ("none") -> in such case, a production will denote a sequent directly: in case an agent want to assert something without specifying a tool
+// the "tool" could be empty ("none")(null) -> in such case, a production will denote a sequent directly: in case an agent want to assert something without specifying a tool
 // having a tool identifier means: possible to decide whether to trust or not
 type production = {
     "format": "production",
     "sequent": sequentLink,
-    "tool": toolLink | "none"
+    "tool": toolLink | null
 }
 
 // the meaning of an "assertion": a signed claim 
@@ -97,16 +90,58 @@ type production = {
 //--> where "says" means: digitally signing by crypto key
 type assertion = {
     "format": "assertion",
-    "claim": productionLink
+    "statement": productionLink | annotatedProductionLink // productionLink for now, claim is more general so more could be added later
     "agent": publicKey,
     "signature": digitalSignature
 }
 
+/* Core Types */
+
+
+/* Annotated Object Types */
+// atomic annotation objects
+type annotatedDeclaration = {
+    "format": "annotated-declaration",
+    "declaration": declarationLink,
+    "annotation": ipldLink
+}
+
+type annotatedFormula = {
+    "format": "annotated-formula",
+    "formula": formulaLink,
+    "annotation": ipldLink
+}
+
+type annotatedSequent = {
+    "format": "annotated-sequent",
+    "sequent": sequentLink,
+    "annotation": ipldLink
+}
+
+type annotatedProduction =  {
+    "format": "annotated-production",
+    "production": productionLink,
+    "annotation": ipldLink
+}
+
+/*type annotation = {
+    "format": "annotation",
+    "content": ipldLink // sequent, formula, production, ..
+    "annotation": ipldLink // {}
+}*/
+
+/* Annotated Object Types */
+
+
+/* Collection Object Types */
 // a sequence of assertions(assertionProduction): ONE possible collection type; many can potentially be added
 type sequence = {
     "format": "sequence",
     "name": string,
-    "assertions": [assertionProductionLink]
+    "assertions": assertionProductionLink[]
 }
+
+// collection type of annotations could be added later, etc..
+
 /****************************/
 /* Global Object Types */
