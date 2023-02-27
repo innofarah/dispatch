@@ -14,7 +14,7 @@ type agentProfile = {
 
 type toolProfile = {
     "name": string,
-    "toolLink": toolLink
+    "tool": cid
 }
 
 //*************************//
@@ -36,8 +36,14 @@ type formulaLink = ipldLink
 type sequentLink = ipldLink
 type toolLink = ipldLink
 type productionLink = ipldLink
-type annotatedProductionLink = ipldLink
 type assertionLink = ipldLink
+type annotatedDeclarationLink = ipldLink
+type annotatedFormulaLink = ipldLink
+type annotatedSequentLink = ipldLink
+type annotatedProductionLink = ipldLink
+type globalTypeLink = declarationLink | formulaLink | sequentLink | productionLink | assertionLink
+                        | annotatedDeclarationLink | annotatedFormulaLink 
+                        | annotatedSequentLink | annotatedProductionLink
 /****************************/
 /* For Illustration Purposes */
 
@@ -134,12 +140,13 @@ type annotatedProduction =  {
 
 
 /* Collection Object Types */
-// a sequence of assertions(assertionProduction): ONE possible collection type; many can potentially be added
-type sequence = {
-    "format": "sequence",
+// a general collection type: just refers to links of objects: ONE possible collection type; many can potentially be added
+type collection = {
+    "format": "collection",
     "name": string,
-    "assertions": assertionProductionLink[]
+    "elements": globalTypeLink[]
 }
+// is a collection an "annotated" type by nature or not? 
 
 // collection type of annotations could be added later, etc..
 

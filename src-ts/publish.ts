@@ -74,11 +74,11 @@ let publishCommand = async (inputPath: string, target: target) => {
             cid = await publishAssertion(assertionObj, input)
             console.log("published assertion object of cid: " + cid)
         }
-        else if (format == "sequence") { // sequence of assertions
-            let nameSequence = input["name"]
-            let assertionsObj = input["assertions"]
-            cid = await publishSequence(assertionsObj, input, nameSequence)
-            console.log("published sequence (of assertions) object of cid: " + cid)
+        else if (format == "collection") { // collection of links to global objects
+            let name = input["name"]
+            let elements = input["elements"]
+            cid = await publishCollection(name, elements, input)
+            console.log("published collection object of cid: " + cid)
         }
         else {
             console.error(new Error("unknown input format"))
@@ -440,22 +440,47 @@ let publishAssertion = async (assertionObj: {}, input: {}) => {
     }
 }
 
-let publishSequence = async (assertionsObj: [], input: {}, nameSequence: string) => {
-    let assertionsLinks = []
-    for (let assertionObj of assertionsObj) {
-        let cidAssertion = await publishAssertion(assertionObj, input)
-        assertionsLinks.push({ "/": cidAssertion })
+// also needs more checking
+let publishGeneric = async (element: {}, input: {}) => {
+    let cid = ""
+    let actualElement = element["element"]
+    if (element["format"] == "declaration")
+        cid = await publishDeclaration(actualElement)
+    else if (element["format"] == "annotated-declaration")
+        cid = await publishAnnotatedDeclaration(actualElement)
+    else if (element["format"] == "formula")
+        cid = await publishFormula(actualElement, input)
+    else if (element["format"] == "annotated-formula")
+        cid = await publishAnnotatedFormula(actualElement, input)
+    else if (element["format"] == "sequent")
+        cid = await publishSequent(actualElement, input)
+    else if (element["format"] == "annotated-sequent")
+        cid = await publishAnnotatedSequent(actualElement, input)
+    else if (element["format"] == "production")
+        cid = await publishProduction(actualElement, input)
+    else if (element["format"] == "annotated-production")
+        cid = await publishAnnotatedProduction(actualElement, input)
+    else if (element["format"] == "assertion")
+        cid = await publishAssertion(actualElement, input)
+    return cid
+}
+
+let publishCollection = async (name: string, elements: [], input: {}) => {
+    let elementsLinks = []
+    for (let element of elements) {
+        let cidElement = await publishGeneric(element, input)
+        elementsLinks.push({ "/": cidElement })
     }
 
-    let sequenceGlobal = {
-        "format": "sequence",
-        "name": nameSequence,
-        "assertions": assertionsLinks
+    let collectionGlobal = {
+        "format": "collection",
+        "name": name,
+        "elements": elementsLinks
     }
 
-    let cidSequence = await ipfsAddObj(sequenceGlobal)
+    let cidCollection = await ipfsAddObj(collectionGlobal)
 
-    return cidSequence
+    return cidCollection
 }
 
 export = { publishCommand }

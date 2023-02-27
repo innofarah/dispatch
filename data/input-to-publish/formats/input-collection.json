@@ -1,0 +1,62 @@
+{
+    "format": "collection",
+    "name": "fileB",
+    "elements": [
+        {
+            "format": "assertion",
+            "element": {
+                "agent": "localAgent",
+                "statement": {
+                    "format": "annotated-production",
+                    "production": {
+                        "tool": "abella-vtesttool",
+                        "sequent": {
+                            "conclusion": "plus_comm",
+                            "dependencies": [
+                                "ipld:bafyreihlmwbmfeinhjx6vb66oa4pikyfqwggqh6iqxj3qrpni65jjeuzie",
+                                "plus_succ"
+                            ]
+                        }
+                    },
+                    "annotation": [
+                        "part of the language - dispatch doesn't read it"
+                    ]
+                }
+            }
+        },
+        {
+            "format": "assertion",
+            "element": {
+                "agent": "localAgent",
+                "statement": {
+                    "format": "production",
+                    "production": {
+                        "tool": "abella-vtesttool",
+                        "sequent": {
+                            "conclusion": "plus_succ",
+                            "dependencies": []
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "formulas": {
+        "plus_succ": {
+            "language": "ipfs:bafkreibczlhu5a6tyibqpwvuuaaqga7njlyyn5v37qttyapzjpwbidcjvq",
+            "content": "forall M N K, plus M N K -> plus M (s N) (s K)",
+            "declarations": ["plus"]
+        },
+        "plus_comm": {
+            "language": "ipfs:bafkreibczlhu5a6tyibqpwvuuaaqga7njlyyn5v37qttyapzjpwbidcjvq",
+            "content": "forall M N K, nat K -> plus M N K -> plus N M K",
+            "declarations": ["plus"]
+        }
+    },
+    "declarations": {
+        "plus": {
+            "language": "ipfs:bafkreibczlhu5a6tyibqpwvuuaaqga7njlyyn5v37qttyapzjpwbidcjvq",
+            "content": "ipld:bafyreia4m2rkjud4jdregjtajo3v4yws5cuor5hf3pytkok2j2cq7b7aye"
+        }
+    }
+}
