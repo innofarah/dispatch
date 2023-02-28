@@ -77,7 +77,11 @@ type tool = {
     "content": ipldLink
 }
 
-// maybe also add "language" as a type later.
+// maybe also add "language" as a type later --> maybe add more structure to it later
+type language = {
+    "format": "language",
+    "content": ipldLink
+}
 
 // having a sequent as a standalone object (instead of putting "lemmas" and "conclusion" here directly) has the benefit of it having a unique identifier for maybe other uses
 // also, possible that several productions can refer to same sequent? 
