@@ -2,13 +2,13 @@
 {
     "format": "formula",    
     "formula": {
-        "language": "ipfs:bafkreibczlhu5a6tyibqpwvuuaaqga7njlyyn5v37qttyapzjpwbidcjvq",
+        "language": "abella-language",
         "content": "forall M N K, nat K -> plus M N K -> plus N M K",
         "declarations": ["plus"]
     },
     "declarations": {
         "plus": {
-            "language": "ipfs:bafkreibczlhu5a6tyibqpwvuuaaqga7njlyyn5v37qttyapzjpwbidcjvq",
+            "language": "abella-language",
             "content": [
                 "Kind nat      type",
                 "Type zero     nat",

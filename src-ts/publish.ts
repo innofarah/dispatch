@@ -3,7 +3,7 @@ const { execSync } = require('child_process');
 const crypto = require('crypto')
 
 import initialVals = require("./initial-vals")
-const { configpath, toolprofilespath, agentprofilespath } = initialVals
+const { configpath, toolprofilespath, languagespath, agentprofilespath } = initialVals
 
 import utilities = require("./utilities")
 const { ipfsAddObj, publishDagToCloud } = utilities
@@ -105,8 +105,19 @@ let publishDeclaration = async (declarationObj: {}) => {
     let cidLanguage = "", cidContent = "", cidDeclaration = ""
 
     if (typeof language == "string" && language.startsWith("ipld:"))
-        cidLanguage = language.split(":")[1] // should add checking here that cid refers to correct type (in general not just here)
-    else cidLanguage = await ipfsAddObj(language)
+        cidLanguage = language.split(":")[1]
+    else {
+        try {
+            let languages = JSON.parse(fs.readFileSync(languagespath))
+            if (languages[language]) { // assuming the cids in languages are of "format"="language" --> check later
+                cidLanguage = languages[language]["language"]
+            }
+            else throw new Error("ERROR: given language record name does not exist")
+        } catch (error) {
+            console.error(error);
+            process.exit(0)
+        }
+    }
 
     if (typeof content == "string" && content.startsWith("ipld:"))
         cidContent = content.split(":")[1]
@@ -165,7 +176,18 @@ let publishFormula = async (formulaObj: {}, input: {}) => {
 
     if (typeof language == "string" && language.startsWith("ipld:"))
         cidLanguage = language.split(":")[1]
-    else cidLanguage = await ipfsAddObj(language)
+    else {
+        try {
+            let languages = JSON.parse(fs.readFileSync(languagespath))
+            if (languages[language]) { // assuming the cids in languages are of "format"="language" --> check later
+                cidLanguage = languages[language]["language"]
+            }
+            else throw new Error("ERROR: given language record name does not exist")
+        } catch (error) {
+            console.error(error);
+            process.exit(0)
+        }
+    }
 
     if (typeof content == "string" && content.startsWith("ipld:"))
         cidContent = content.split(":")[1]
@@ -333,7 +355,7 @@ let publishProduction = async (productionObj: {}, input: {}) => {
     else {
         try {
             let toolProfiles = JSON.parse(fs.readFileSync(toolprofilespath))
-            if (toolProfiles[tool]) {
+            if (toolProfiles[tool]) { // assuming the cids in toolProfiles are of "format"="tool" --> check later
                 cidTool = toolProfiles[tool]["tool"]
             }
             else throw new Error("ERROR: given toolProfile name does not exist")

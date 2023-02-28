@@ -9,11 +9,11 @@
                 "statement": {
                     "format": "annotated-production",
                     "production": {
-                        "tool": "abella-vtesttool",
+                        "tool": "abella-testing-ipfs",
                         "sequent": {
                             "conclusion": "plus_comm",
                             "dependencies": [
-                                "ipld:bafyreihlmwbmfeinhjx6vb66oa4pikyfqwggqh6iqxj3qrpni65jjeuzie",
+                                "ipld:bafyreihbyj2o72fo27uiyrezbqkscgce4lo3bghpj5loflqpmlxqxizt5q",
                                 "plus_succ"
                             ]
                         }
@@ -31,7 +31,7 @@
                 "statement": {
                     "format": "production",
                     "production": {
-                        "tool": "abella-vtesttool",
+                        "tool": "abella-testing-ipfs",
                         "sequent": {
                             "conclusion": "plus_succ",
                             "dependencies": []
@@ -43,19 +43,19 @@
     ],
     "formulas": {
         "plus_succ": {
-            "language": "ipfs:bafkreibczlhu5a6tyibqpwvuuaaqga7njlyyn5v37qttyapzjpwbidcjvq",
+            "language": "abella-language",
             "content": "forall M N K, plus M N K -> plus M (s N) (s K)",
             "declarations": ["plus"]
         },
         "plus_comm": {
-            "language": "ipfs:bafkreibczlhu5a6tyibqpwvuuaaqga7njlyyn5v37qttyapzjpwbidcjvq",
+            "language": "abella-language",
             "content": "forall M N K, nat K -> plus M N K -> plus N M K",
             "declarations": ["plus"]
         }
     },
     "declarations": {
         "plus": {
-            "language": "ipfs:bafkreibczlhu5a6tyibqpwvuuaaqga7njlyyn5v37qttyapzjpwbidcjvq",
+            "language": "abella-language",
             "content": "ipld:bafyreia4m2rkjud4jdregjtajo3v4yws5cuor5hf3pytkok2j2cq7b7aye"
         }
     }

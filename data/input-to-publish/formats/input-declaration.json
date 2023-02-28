@@ -1,7 +1,7 @@
 {
     "format": "declaration",
     "declaration": {
-        "language": "ipfs:bafkreibczlhu5a6tyibqpwvuuaaqga7njlyyn5v37qttyapzjpwbidcjvq",
+        "language": "abella-language",
         "content": [
             "Kind nat      type",
             "Type zero     nat",

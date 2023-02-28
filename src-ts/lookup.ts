@@ -1,8 +1,8 @@
 const fs = require('fs')
 
 import utilities = require("./utilities")
-const { isSequent, isAssertion, isSequence,
-    verifySignature, fingerPrint, inAllowList, ipfsGetObj, ensureFullDAG } = utilities
+//const { isSequent, isAssertion, isSequence,
+//    verifySignature, fingerPrint, inAllowList, ipfsGetObj, ensureFullDAG } = utilities
 
 let getResult = async (cidFormula: string, assertionsList: {}, resultUnits: {}, path: [string]) => {
 

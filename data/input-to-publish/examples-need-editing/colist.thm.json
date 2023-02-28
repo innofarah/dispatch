@@ -1,0 +1,391 @@
+{
+    "format": "collection",
+    "name": "colist",
+    "elements": [
+        {
+            "format": "assertion",
+            "element": {
+                "agent": "localAgent",
+                "statement": {
+                    "format": "annotated-production",
+                    "annotation": "eqi_take",
+                    "production": {
+                        "tool": "abella-vtesttool",
+                        "sequent": {
+                            "conclusion": "eqi_take",
+                            "dependencies": []
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "format": "assertion",
+            "element": {
+                "agent": "localAgent",
+                "statement": {
+                    "format": "annotated-production",
+                    "annotation": "eqi_sym",
+                    "production": {
+                        "tool": "abella-vtesttool",
+                        "sequent": {
+                            "conclusion": "eqi_sym",
+                            "dependencies": []
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "format": "assertion",
+            "element": {
+                "agent": "localAgent",
+                "statement": {
+                    "format": "annotated-production",
+                    "annotation": "eqi_eqf",
+                    "production": {
+                        "tool": "abella-vtesttool",
+                        "sequent": {
+                            "conclusion": "eqi_eqf",
+                            "dependencies": [
+                                "eqi_take",
+                                "eqi_sym",
+                                "eqi_take"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "format": "assertion",
+            "element": {
+                "agent": "localAgent",
+                "statement": {
+                    "format": "annotated-production",
+                    "annotation": "eqf_nil",
+                    "production": {
+                        "tool": "abella-vtesttool",
+                        "sequent": {
+                            "conclusion": "eqf_nil",
+                            "dependencies": []
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "format": "assertion",
+            "element": {
+                "agent": "localAgent",
+                "statement": {
+                    "format": "annotated-production",
+                    "annotation": "eqf_cons",
+                    "production": {
+                        "tool": "abella-vtesttool",
+                        "sequent": {
+                            "conclusion": "eqf_cons",
+                            "dependencies": []
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "format": "assertion",
+            "element": {
+                "agent": "localAgent",
+                "statement": {
+                    "format": "annotated-production",
+                    "annotation": "eqf_sym",
+                    "production": {
+                        "tool": "abella-vtesttool",
+                        "sequent": {
+                            "conclusion": "eqf_sym",
+                            "dependencies": []
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "format": "assertion",
+            "element": {
+                "agent": "localAgent",
+                "statement": {
+                    "format": "annotated-production",
+                    "annotation": "eqf_downward",
+                    "production": {
+                        "tool": "abella-vtesttool",
+                        "sequent": {
+                            "conclusion": "eqf_downward",
+                            "dependencies": []
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "format": "assertion",
+            "element": {
+                "agent": "localAgent",
+                "statement": {
+                    "format": "annotated-production",
+                    "annotation": "eqf_eqi",
+                    "production": {
+                        "tool": "abella-vtesttool",
+                        "sequent": {
+                            "conclusion": "eqf_eqi",
+                            "dependencies": [
+                                "eqf_downward",
+                                "eqf_cons",
+                                "eqf_nil"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "format": "assertion",
+            "element": {
+                "agent": "localAgent",
+                "statement": {
+                    "format": "annotated-production",
+                    "annotation": "coapp_assoc",
+                    "production": {
+                        "tool": "abella-vtesttool",
+                        "sequent": {
+                            "conclusion": "coapp_assoc",
+                            "dependencies": []
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "formulas": {
+        "eqf_sym": {
+            "language": {
+                "name": "Abella",
+                "version": "2.0.9-ipfs-65bbedfbc2893504d33235a836459197",
+                "tag": "Abella 2.0.9-ipfs-65bbedfbc2893504d33235a836459197"
+            },
+            "content": ": forall L R, eqf L R -> eqf R L",
+            "declarations": [
+                "eqf_sym!sigma"
+            ]
+        },
+        "eqi_eqf": {
+            "language": {
+                "name": "Abella",
+                "version": "2.0.9-ipfs-65bbedfbc2893504d33235a836459197",
+                "tag": "Abella 2.0.9-ipfs-65bbedfbc2893504d33235a836459197"
+            },
+            "content": ": forall L R, eqi L R -> eqf L R",
+            "declarations": [
+                "eqi_eqf!sigma"
+            ]
+        },
+        "coapp_assoc": {
+            "language": {
+                "name": "Abella",
+                "version": "2.0.9-ipfs-65bbedfbc2893504d33235a836459197",
+                "tag": "Abella 2.0.9-ipfs-65bbedfbc2893504d33235a836459197"
+            },
+            "content": ": forall A B C AB ABC BC, coapp A B AB -> coapp AB C ABC -> coapp B C BC ->\n    coapp A BC ABC",
+            "declarations": [
+                "coapp_assoc!sigma"
+            ]
+        },
+        "eqf_downward": {
+            "language": {
+                "name": "Abella",
+                "version": "2.0.9-ipfs-65bbedfbc2893504d33235a836459197",
+                "tag": "Abella 2.0.9-ipfs-65bbedfbc2893504d33235a836459197"
+            },
+            "content": ": forall X L R, eqf (X :: L) (X :: R) -> eqf L R",
+            "declarations": [
+                "eqf_downward!sigma"
+            ]
+        },
+        "eqf_eqi": {
+            "language": {
+                "name": "Abella",
+                "version": "2.0.9-ipfs-65bbedfbc2893504d33235a836459197",
+                "tag": "Abella 2.0.9-ipfs-65bbedfbc2893504d33235a836459197"
+            },
+            "content": ": forall L R, colist L -> eqf L R -> eqi L R",
+            "declarations": [
+                "eqf_eqi!sigma"
+            ]
+        },
+        "eqf_cons": {
+            "language": {
+                "name": "Abella",
+                "version": "2.0.9-ipfs-65bbedfbc2893504d33235a836459197",
+                "tag": "Abella 2.0.9-ipfs-65bbedfbc2893504d33235a836459197"
+            },
+            "content": ": forall X L R, eqf (X :: L) R -> (exists S, R = X :: S)",
+            "declarations": [
+                "eqf_cons!sigma"
+            ]
+        },
+        "eqi_sym": {
+            "language": {
+                "name": "Abella",
+                "version": "2.0.9-ipfs-65bbedfbc2893504d33235a836459197",
+                "tag": "Abella 2.0.9-ipfs-65bbedfbc2893504d33235a836459197"
+            },
+            "content": ": forall L R, eqi L R -> eqi R L",
+            "declarations": [
+                "eqi_sym!sigma"
+            ]
+        },
+        "eqi_take": {
+            "language": {
+                "name": "Abella",
+                "version": "2.0.9-ipfs-65bbedfbc2893504d33235a836459197",
+                "tag": "Abella 2.0.9-ipfs-65bbedfbc2893504d33235a836459197"
+            },
+            "content": ": forall L R S N, eqi L R -> tk N L S -> tk N R S",
+            "declarations": [
+                "eqi_take!sigma"
+            ]
+        },
+        "eqf_nil": {
+            "language": {
+                "name": "Abella",
+                "version": "2.0.9-ipfs-65bbedfbc2893504d33235a836459197",
+                "tag": "Abella 2.0.9-ipfs-65bbedfbc2893504d33235a836459197"
+            },
+            "content": ": forall L, eqf nil L -> L = nil",
+            "declarations": [
+                "eqf_nil!sigma"
+            ]
+        }
+    },
+    "declarations": {
+        "eqf_sym!sigma": {
+            "language": {
+                "name": "Abella",
+                "version": "2.0.9-ipfs-65bbedfbc2893504d33235a836459197",
+                "tag": "Abella 2.0.9-ipfs-65bbedfbc2893504d33235a836459197"
+            },
+            "content": [
+                "Kind nat type",
+                "Type z nat",
+                "Type s nat -> nat",
+                "Define tk : nat -> (list o) -> (list o) -> prop by tk z L nil := true; tk N nil nil := true; tk (s N) (X :: L) (X :: R) := tk N L R",
+                "Define eqf : (list o) -> (list o) -> prop by eqf L R := (forall (N : nat) (S : list o), tk N L S -> tk N R S) /\\ (forall (N : nat) (S : list o), tk N R S -> tk N L S)"
+            ]
+        },
+        "coapp_assoc!sigma": {
+            "language": {
+                "name": "Abella",
+                "version": "2.0.9-ipfs-65bbedfbc2893504d33235a836459197",
+                "tag": "Abella 2.0.9-ipfs-65bbedfbc2893504d33235a836459197"
+            },
+            "content": [
+                "CoDefine coapp : (list o) -> (list o) -> (list o) -> prop by coapp (X :: A) B (X :: C) := coapp A B C; coapp nil (X :: B) (X :: C) := coapp nil B C; coapp nil nil nil := true"
+            ]
+        },
+        "eqf_downward!sigma": {
+            "language": {
+                "name": "Abella",
+                "version": "2.0.9-ipfs-65bbedfbc2893504d33235a836459197",
+                "tag": "Abella 2.0.9-ipfs-65bbedfbc2893504d33235a836459197"
+            },
+            "content": [
+                "Kind nat type",
+                "Type z nat",
+                "Type s nat -> nat",
+                "Define tk : nat -> (list o) -> (list o) -> prop by tk z L nil := true; tk N nil nil := true; tk (s N) (X :: L) (X :: R) := tk N L R",
+                "Define eqf : (list o) -> (list o) -> prop by eqf L R := (forall (N : nat) (S : list o), tk N L S -> tk N R S) /\\ (forall (N : nat) (S : list o), tk N R S -> tk N L S)"
+            ]
+        },
+        "eqf_nil!sigma": {
+            "language": {
+                "name": "Abella",
+                "version": "2.0.9-ipfs-65bbedfbc2893504d33235a836459197",
+                "tag": "Abella 2.0.9-ipfs-65bbedfbc2893504d33235a836459197"
+            },
+            "content": [
+                "Kind nat type",
+                "Type z nat",
+                "Type s nat -> nat",
+                "Define tk : nat -> (list o) -> (list o) -> prop by tk z L nil := true; tk N nil nil := true; tk (s N) (X :: L) (X :: R) := tk N L R",
+                "Define eqf : (list o) -> (list o) -> prop by eqf L R := (forall (N : nat) (S : list o), tk N L S -> tk N R S) /\\ (forall (N : nat) (S : list o), tk N R S -> tk N L S)"
+            ]
+        },
+        "eqi_eqf!sigma": {
+            "language": {
+                "name": "Abella",
+                "version": "2.0.9-ipfs-65bbedfbc2893504d33235a836459197",
+                "tag": "Abella 2.0.9-ipfs-65bbedfbc2893504d33235a836459197"
+            },
+            "content": [
+                "Kind nat type",
+                "Type z nat",
+                "Type s nat -> nat",
+                "CoDefine eqi : (list o) -> (list o) -> prop by eqi nil nil := true; eqi (X :: L) (X :: R) := eqi L R",
+                "Define tk : nat -> (list o) -> (list o) -> prop by tk z L nil := true; tk N nil nil := true; tk (s N) (X :: L) (X :: R) := tk N L R",
+                "Define eqf : (list o) -> (list o) -> prop by eqf L R := (forall (N : nat) (S : list o), tk N L S -> tk N R S) /\\ (forall (N : nat) (S : list o), tk N R S -> tk N L S)"
+            ]
+        },
+        "eqi_take!sigma": {
+            "language": {
+                "name": "Abella",
+                "version": "2.0.9-ipfs-65bbedfbc2893504d33235a836459197",
+                "tag": "Abella 2.0.9-ipfs-65bbedfbc2893504d33235a836459197"
+            },
+            "content": [
+                "Kind nat type",
+                "Type z nat",
+                "Type s nat -> nat",
+                "CoDefine eqi : (list o) -> (list o) -> prop by eqi nil nil := true; eqi (X :: L) (X :: R) := eqi L R",
+                "Define tk : nat -> (list o) -> (list o) -> prop by tk z L nil := true; tk N nil nil := true; tk (s N) (X :: L) (X :: R) := tk N L R"
+            ]
+        },
+        "eqf_cons!sigma": {
+            "language": {
+                "name": "Abella",
+                "version": "2.0.9-ipfs-65bbedfbc2893504d33235a836459197",
+                "tag": "Abella 2.0.9-ipfs-65bbedfbc2893504d33235a836459197"
+            },
+            "content": [
+                "Kind nat type",
+                "Type z nat",
+                "Type s nat -> nat",
+                "Define tk : nat -> (list o) -> (list o) -> prop by tk z L nil := true; tk N nil nil := true; tk (s N) (X :: L) (X :: R) := tk N L R",
+                "Define eqf : (list o) -> (list o) -> prop by eqf L R := (forall (N : nat) (S : list o), tk N L S -> tk N R S) /\\ (forall (N : nat) (S : list o), tk N R S -> tk N L S)"
+            ]
+        },
+        "eqf_eqi!sigma": {
+            "language": {
+                "name": "Abella",
+                "version": "2.0.9-ipfs-65bbedfbc2893504d33235a836459197",
+                "tag": "Abella 2.0.9-ipfs-65bbedfbc2893504d33235a836459197"
+            },
+            "content": [
+                "Kind nat type",
+                "Type z nat",
+                "Type s nat -> nat",
+                "CoDefine colist : (list o) -> prop by colist nil := true; colist (X :: L) := colist L",
+                "CoDefine eqi : (list o) -> (list o) -> prop by eqi nil nil := true; eqi (X :: L) (X :: R) := eqi L R",
+                "Define tk : nat -> (list o) -> (list o) -> prop by tk z L nil := true; tk N nil nil := true; tk (s N) (X :: L) (X :: R) := tk N L R",
+                "Define eqf : (list o) -> (list o) -> prop by eqf L R := (forall (N : nat) (S : list o), tk N L S -> tk N R S) /\\ (forall (N : nat) (S : list o), tk N R S -> tk N L S)"
+            ]
+        },
+        "eqi_sym!sigma": {
+            "language": {
+                "name": "Abella",
+                "version": "2.0.9-ipfs-65bbedfbc2893504d33235a836459197",
+                "tag": "Abella 2.0.9-ipfs-65bbedfbc2893504d33235a836459197"
+            },
+            "content": [
+                "CoDefine eqi : (list o) -> (list o) -> prop by eqi nil nil := true; eqi (X :: L) (X :: R) := eqi L R"
+            ]
+        }
+    }
+}

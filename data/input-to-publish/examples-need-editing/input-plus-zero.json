@@ -1,9 +1,14 @@
+
 {
-    "output-for": "bafyreicrz3krx25vwkd6v2ucbiw75oaktshb66fx2eovrxlfr3eyhbnpqa",
-    "format": "declaration",
+    "format": "formula",    
+    "formula": {
+        "language": "abella-language",
+        "content": "forall N, nat N -> plus N z N",
+        "declarations": ["plus"]
+    },
     "declarations": {
-        "bafyreicrz3krx25vwkd6v2ucbiw75oaktshb66fx2eovrxlfr3eyhbnpqa": {
-            "language": "ipfs:bafkreibczlhu5a6tyibqpwvuuaaqga7njlyyn5v37qttyapzjpwbidcjvq",
+        "plus": {
+            "language": "abella-language",
             "content": [
                 "Kind nat      type",
                 "Type zero     nat",

@@ -3,7 +3,7 @@
 const { program } = require('commander')
 
 const { publishCommand } = require('./publish.js')
-const { setup, createAgent, createTool, setweb3token, setgateway, trustagent, listconfig } = require('./config-related.js')
+const { setup, createAgent, createTool, createLanguage, setweb3token, setgateway, trustagent, listconfig } = require('./config-related.js')
 const { getCommand } = require('./get.js')
 //const { trustwhoCommand } = require('./trusting.js')
 //const { whatISay, doISay } = require('./trusting-old.js')
@@ -18,11 +18,18 @@ program
     .action(createAgent)
 program
     .command('create-tool')
-    .description('add a new tool profile from a new or existing (cid) tool description.\n')
+    .description('add a new tool profile from a new or existing ("tool" format cid) tool description.\n')
     .argument('<tool-profile-name>', 'name for the tool profile.\n')
-    .argument('<input-type>', 'type for your input: takes "file" or "cid".\n')
-    .argument('<input>', 'the input for the created tool profile. A filepath or cid.\n')
+    .argument('<input-type>', 'type for your input: takes "file" or "json" or "cid".\n')
+    .argument('<input>', 'the input for the created tool profile. A filepath (text or json) or cid.\n')
     .action(createTool)
+program
+    .command('create-language')
+    .description('add a new language record from a new or existing ("language" format cid) language description.\n')
+    .argument('<language-record-name>', 'name for the language record.\n')
+    .argument('<input-type>', 'type for your input: takes "file" or "json" or "cid".\n')
+    .argument('<input>', 'the input for the created language record. A filepath (text or json) or cid.\n')
+    .action(createLanguage)
 program
     .command('set-web3token')
     .description('set your web3.storage api token.\n')
