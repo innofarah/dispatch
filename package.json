@@ -4,7 +4,7 @@
   "description": "",
   "main": "./src/index.js",
   "scripts": {
-    "build": "webpack && pkg build/w3proof-dispatch.js --out-path executables/"
+    "build": "(cd src-ts && tsc) && webpack && pkg build/w3proof-dispatch.js --out-path executables/"
   },
   "author": "innofarah",
   "license": "ISC",
