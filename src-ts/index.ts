@@ -20,15 +20,15 @@ program
     .command('create-tool')
     .description('add a new tool profile from a new or existing ("tool" format cid) tool description.\n')
     .argument('<tool-profile-name>', 'name for the tool profile.\n')
-    .argument('<input-type>', 'type for your input: takes "file" or "json" or "cid".\n')
-    .argument('<input>', 'the input for the created tool profile. A filepath (text or json) or cid.\n')
+    .argument('<input-type>', 'type for your input: takes "file" for a text input, "json" or "cid".\n')
+    .argument('<input>', 'the input for the created tool profile. A filepath or cid.\n')
     .action(createTool)
 program
     .command('create-language')
-    .description('add a new language record from a new or existing ("language" format cid) language description.\n')
-    .argument('<language-record-name>', 'name for the language record.\n')
-    .argument('<input-type>', 'type for your input: takes "file" or "json" or "cid".\n')
-    .argument('<input>', 'the input for the created language record. A filepath (text or json) or cid.\n')
+    .description('add a new language profile from a new or existing ("language" format cid) language description.\n')
+    .argument('<language-profile-name>', 'name for the language profule.\n')
+    .argument('<input-type>', 'type for your input: takes "file" for a text input, "json" or "cid".\n')
+    .argument('<input>', 'the input for the created language record. A filepath or cid.\n')
     .action(createLanguage)
 program
     .command('set-web3token')
@@ -59,9 +59,9 @@ program
     .action(publishCommand)
 program
     .command('get')
-    .description('construct standard format input-to-prover file.\n')
+    .description('construct standard format output-from-dispatch/input-to-prover(consumer) file.\n')
     .argument('<CID>', 'ipfs content identifier for the structure to get.\n')
-    .argument('<directory-path>', 'container directory starting from directory of execution.\n')
+    .argument('<directory-path>', 'directory-path to output the result in, starting from directory of execution.\n')
     .action(getCommand)
 /*program
     .command('trustwho')
@@ -86,7 +86,7 @@ program
     .description('construct trust results for a given formula starting from a list of assertions.\n')
     .argument('<formula-cid>', 'the target formula cid.\n')
     .argument('<input>', 'path of the searchable file - containing a list of assertion cids: ["cid1", "cid2", ..].\n')
-    .argument('<directory-path>', 'container directory starting from directory of execution.\n')
+    .argument('<directory-path>', 'directory-path to output the result in, starting from directory of execution.\n')
     .action(lookup)
 
 /*
