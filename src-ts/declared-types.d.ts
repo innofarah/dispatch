@@ -31,18 +31,18 @@ type ipldLink = { "/": cid }
 type publicKey = string
 type digitalSignature = string
 type languageLink = ipldLink
-type declarationLink = ipldLink
+type contextLink = ipldLink
 type formulaLink = ipldLink
 type sequentLink = ipldLink
 type toolLink = ipldLink
 type productionLink = ipldLink
 type assertionLink = ipldLink
-type annotatedDeclarationLink = ipldLink
+type annotatedContextLink = ipldLink
 type annotatedFormulaLink = ipldLink
 type annotatedSequentLink = ipldLink
 type annotatedProductionLink = ipldLink
-type globalTypeLink = declarationLink | formulaLink | sequentLink | productionLink | assertionLink
-                        | annotatedDeclarationLink | annotatedFormulaLink 
+type globalTypeLink = contextLink | formulaLink | sequentLink | productionLink | assertionLink
+                        | annotatedContextLink | annotatedFormulaLink 
                         | annotatedSequentLink | annotatedProductionLink
 /****************************/
 /* For Illustration Purposes */
@@ -52,8 +52,15 @@ type globalTypeLink = declarationLink | formulaLink | sequentLink | productionLi
 /****************************/
 
 /* Core Types */
-type declaration = {
-    "format": "declaration",
+
+// --> maybe add more structure to it later
+type language = {
+    "format": "language",
+    "content": ipldLink
+}
+
+type context = {
+    "format": "context",
     "language": languageLink,
     "content": ipldLink
 }
@@ -62,7 +69,7 @@ type formula = {
     "format": "formula",
     "language": languageLink,
     "content": ipldLink,
-    "declarations": declarationLink[]
+    "context": contextLink[]
 }
 
 type sequent = {
@@ -77,12 +84,6 @@ type tool = {
     "content": ipldLink
 }
 
-// maybe also add "language" as a type later --> maybe add more structure to it later
-type language = {
-    "format": "language",
-    "content": ipldLink
-}
-
 // having a sequent as a standalone object (instead of putting "lemmas" and "conclusion" here directly) has the benefit of it having a unique identifier for maybe other uses
 // also, possible that several productions can refer to same sequent? 
 // "tool" as an [input] -> output medium -- function, routine? :: cid not need to refer to an explicit tool identifying description (tool in the literal sense: software..), maybe other things as well?
@@ -91,7 +92,7 @@ type language = {
 type production = {
     "format": "production",
     "sequent": sequentLink,
-    "tool": toolLink | null
+    "mode": toolLink | null | "axiom" | "conjecture"
 }
 
 // the meaning of an "assertion": a signed claim 
@@ -100,7 +101,7 @@ type production = {
 //--> where "says" means: digitally signing by crypto key
 type assertion = {
     "format": "assertion",
-    "statement": productionLink | annotatedProductionLink // productionLink for now, claim is more general so more could be added later
+    "claim": productionLink | annotatedProductionLink // productionLink for now, claim is more general so more could be added later
     "agent": publicKey,
     "signature": digitalSignature
 }
@@ -110,9 +111,9 @@ type assertion = {
 
 /* Annotated Object Types */
 // atomic annotation objects
-type annotatedDeclaration = {
-    "format": "annotated-declaration",
-    "declaration": declarationLink,
+type annotatedContext = {
+    "format": "annotated-context",
+    "context": contextLink,
     "annotation": ipldLink
 }
 
