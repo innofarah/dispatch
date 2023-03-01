@@ -1,0 +1,17 @@
+{
+    "format": "assertion",
+    "assertion": {
+        "agent": "anotherAgent",
+        "statement": {
+            "format": "annotated-production",
+            "production": {
+                "tool": "abella-testing-ipfs",
+                "sequent": {
+                    "conclusion": "ipld:bafyreihbyj2o72fo27uiyrezbqkscgce4lo3bghpj5loflqpmlxqxizt5q",
+                    "dependencies": []
+                }
+            },
+            "annotation": ["part of the language - dispatch doesn't read it"]
+        }
+    }
+}

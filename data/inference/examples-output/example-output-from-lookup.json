@@ -1,0 +1,332 @@
+[
+    {
+        "dependencies": ["C"],
+        "via": []
+    },
+    {
+        "dependencies": [
+            "B", "A"
+        ],
+        "via": [
+            {
+                "agent": "K4",
+                "tool": "T1"
+            }
+        ]
+    },
+    {
+        "dependencies": [
+            "B", "P"
+        ],
+        "via": [
+            {
+                "agent": "K1",
+                "tool": "T8"
+            }, {
+                "agent": "K4",
+                "tool": "T1"
+            }
+        ]
+    },
+    {
+        "dependencies": [
+            "B", "J", "M"
+        ],
+        "via": [
+            {
+                "agent": "K6",
+                "tool": "T7"
+            }, {
+                "agent": "K1",
+                "tool": "T8"
+            }, {
+                "agent": "K4",
+                "tool": "T1"
+            }
+        ]
+    }, {
+        "dependencies": [
+            "B", "D", "F"
+        ],
+        "via": [
+            {
+                "agent": "K2",
+                "tool": "T9"
+            }, {
+                "agent": "K4",
+                "tool": "T1"
+            }
+        ]
+    }, {
+        "dependencies": [
+            "P", "A"
+        ],
+        "via": [
+            {
+                "agent": "K8",
+                "tool": "T3"
+            }, {
+                "agent": "K4",
+                "tool": "T1"
+            }
+        ]
+    }, {
+        "dependencies": ["P"],
+        "via": [
+            {
+                "agent": "K8",
+                "tool": "T3"
+            }, {
+                "agent": "K1",
+                "tool": "T8"
+            }, {
+                "agent": "K4",
+                "tool": "T1"
+            }
+        ]
+    }, {
+        "dependencies": [
+            "P", "J", "M"
+        ],
+        "via": [
+            {
+                "agent": "K8",
+                "tool": "T3"
+            }, {
+                "agent": "K6",
+                "tool": "T7"
+            }, {
+                "agent": "K1",
+                "tool": "T8"
+            }, {
+                "agent": "K4",
+                "tool": "T1"
+            }
+        ]
+    }, {
+        "dependencies": [
+            "P", "D", "F"
+        ],
+        "via": [
+            {
+                "agent": "K8",
+                "tool": "T3"
+            }, {
+                "agent": "K2",
+                "tool": "T9"
+            }, {
+                "agent": "K4",
+                "tool": "T1"
+            }
+        ]
+    }, {
+        "dependencies": [
+            "J", "M", "A"
+        ],
+        "via": [
+            {
+                "agent": "K6",
+                "tool": "T7"
+            }, {
+                "agent": "K8",
+                "tool": "T3"
+            }, {
+                "agent": "K4",
+                "tool": "T1"
+            }
+        ]
+    }, {
+        "dependencies": [
+            "J", "M", "P"
+        ],
+        "via": [
+            {
+                "agent": "K6",
+                "tool": "T7"
+            }, {
+                "agent": "K8",
+                "tool": "T3"
+            }, {
+                "agent": "K1",
+                "tool": "T8"
+            }, {
+                "agent": "K4",
+                "tool": "T1"
+            }
+        ]
+    }, {
+        "dependencies": [
+            "J", "M"
+        ],
+        "via": [
+            {
+                "agent": "K6",
+                "tool": "T7"
+            }, {
+                "agent": "K8",
+                "tool": "T3"
+            }, {
+                "agent": "K1",
+                "tool": "T8"
+            }, {
+                "agent": "K4",
+                "tool": "T1"
+            }
+        ]
+    }, {
+        "dependencies": [
+            "J", "M", "D", "F"
+        ],
+        "via": [
+            {
+                "agent": "K6",
+                "tool": "T7"
+            }, {
+                "agent": "K8",
+                "tool": "T3"
+            }, {
+                "agent": "K2",
+                "tool": "T9"
+            }, {
+                "agent": "K4",
+                "tool": "T1"
+            }
+        ]
+    }, {
+        "dependencies": [
+            "L", "M", "A"
+        ],
+        "via": [
+            {
+                "agent": "K3",
+                "tool": "T4"
+            }, {
+                "agent": "K4",
+                "tool": "T1"
+            }
+        ]
+    }, {
+        "dependencies": [
+            "L", "M", "P"
+        ],
+        "via": [
+            {
+                "agent": "K3",
+                "tool": "T4"
+            }, {
+                "agent": "K1",
+                "tool": "T8"
+            }, {
+                "agent": "K4",
+                "tool": "T1"
+            }
+        ]
+    }, {
+        "dependencies": [
+            "L", "M", "J"
+        ],
+        "via": [
+            {
+                "agent": "K3",
+                "tool": "T4"
+            }, {
+                "agent": "K6",
+                "tool": "T7"
+            }, {
+                "agent": "K1",
+                "tool": "T8"
+            }, {
+                "agent": "K4",
+                "tool": "T1"
+            }
+        ]
+    }, {
+        "dependencies": [
+            "L", "M", "D", "F"
+        ],
+        "via": [
+            {
+                "agent": "K3",
+                "tool": "T4"
+            }, {
+                "agent": "K2",
+                "tool": "T9"
+            }, {
+                "agent": "K4",
+                "tool": "T1"
+            }
+        ]
+    }, {
+        "dependencies": [
+            "J", "M", "A"
+        ],
+        "via": [
+            {
+                "agent": "K5",
+                "tool": "T5"
+            }, {
+                "agent": "K4",
+                "tool": "T1"
+            }
+        ]
+    }, {
+        "dependencies": [
+            "J", "M", "P"
+        ],
+        "via": [
+            {
+                "agent": "K5",
+                "tool": "T5"
+            }, {
+                "agent": "K1",
+                "tool": "T8"
+            }, {
+                "agent": "K4",
+                "tool": "T1"
+            }
+        ]
+    }, {
+        "dependencies": [
+            "J", "M"
+        ],
+        "via": [
+            {
+                "agent": "K5",
+                "tool": "T5"
+            }, {
+                "agent": "K6",
+                "tool": "T7"
+            }, {
+                "agent": "K1",
+                "tool": "T8"
+            }, {
+                "agent": "K4",
+                "tool": "T1"
+            }
+        ]
+    }, {
+        "dependencies": [
+            "J", "M", "D", "F"
+        ],
+        "via": [
+            {
+                "agent": "K5",
+                "tool": "T5"
+            }, {
+                "agent": "K2",
+                "tool": "T9"
+            }, {
+                "agent": "K4",
+                "tool": "T1"
+            }
+        ]
+    }, {
+        "dependencies": ["V"],
+        "via": [
+            {
+                "agent": "K5",
+                "tool": "T2"
+            }
+        ]
+    }
+]

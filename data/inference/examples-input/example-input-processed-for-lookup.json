@@ -2,28 +2,33 @@
     "C": [
         {
             "agent": "K4",
-            "lemmas": ["B", "A"]
+            "tool": "T1",
+            "dependencies": ["B", "A"]
         },
         {
             "agent": "K5",
-            "lemmas": ["V"]
+            "tool": "T2",
+            "dependencies": ["V"]
         }
     ],
     "B": [
         {
             "agent":"K8",
-            "lemmas":["P"]
+            "tool": "T3",
+            "dependencies":["P"]
         },
         {
             "agent": "K3",
-            "lemmas": [
+            "tool": "T4",
+            "dependencies": [
                 "L",
                 "M"
             ]
         },
         {
             "agent": "K5",
-            "lemmas": [
+            "tool": "T5",
+            "dependencies": [
                 "J",
                 "M"
             ]
@@ -32,23 +37,27 @@
     "P": [
         {
             "agent": "K7",
-            "lemmas": ["C"]
+            "tool": "T6",
+            "dependencies": ["C"]
         },
         {
             "agent": "K6",
-            "lemmas":["J", "M"]
+            "tool": "T7",
+            "dependencies": ["J", "M"]
         }
     ],
     "A": [
         {
             "agent": "K1",
-            "lemmas": [
+            "tool": "T8",
+            "dependencies": [
                 "P"
             ]
         },
         {
             "agent": "K2",
-            "lemmas": [
+            "tool": "T9",
+            "dependencies": [
                 "D",
                 "F"
             ]
@@ -57,7 +66,8 @@
     "N": [
         {
             "agent": "K2",
-            "lemmas": [
+            "tool": "T10",
+            "dependencies": [
                 "A",
                 "B",
                 "C"

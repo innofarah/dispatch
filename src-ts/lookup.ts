@@ -1,15 +1,14 @@
 const fs = require('fs')
 
 import utilities = require("./utilities")
-//const { isSequent, isAssertion, isSequence,
-//    verifySignature, fingerPrint, inAllowList, ipfsGetObj, ensureFullDAG } = utilities
+const { isAssertion, verifySignature, fingerPrint, ipfsGetObj, ensureFullDAG } = utilities
 
 let getResult = async (cidFormula: string, assertionsList: {}, resultUnits: {}, path: [string]) => {
 
     let result = []
 
     // for the formula itself
-    result.push({ "lemmas": [cidFormula], "agents": [] }) //
+    result.push({ "dependencies": [cidFormula], "via": [] }) //
 
     // if the formula exists in the file
     if (assertionsList[cidFormula]) {
@@ -18,29 +17,29 @@ let getResult = async (cidFormula: string, assertionsList: {}, resultUnits: {}, 
 
         for (let assertion of desiredRecord) {
             let ignoreAssertion = false
-            let lemmas = assertion["lemmas"]
-            for (let lemma of lemmas) {
-                // if lemma == cidFormula ? --> ignore assertion? (not useful?--just add adds useless combinations)
-                // if (lemma == cidFormula || path.includes(lemma))
-                if (path.includes(lemma)) ignoreAssertion = true
+            let dependencies = assertion["dependencies"]
+            for (let dep of dependencies) {
+                // if dependency == cidFormula ? --> ignore assertion? (not useful?--just add adds useless combinations)
+                // if (dependency == cidFormula || path.includes(dependency))
+                if (path.includes(dep)) ignoreAssertion = true
                 // if not computed previously
-                if (!resultUnits[lemma] && !ignoreAssertion) {
-                    if (assertionsList[lemma]) { // if lemma exists in the file, compute and save its result
-                        path.push(lemma)
-                        resultUnits[lemma] = await getResult(lemma, assertionsList, resultUnits, path)
+                if (!resultUnits[dep] && !ignoreAssertion) {
+                    if (assertionsList[dep]) { // if dependency exists in the file, compute and save its result
+                        path.push(dep)
+                        resultUnits[dep] = await getResult(dep, assertionsList, resultUnits, path)
                         path.pop()
                     }
                 }
             }
-            // after computing (if not previously done) the resultUnit for each lemma
+            // after computing (if not previously done) the resultUnit for each dependency
             if (!ignoreAssertion) {
                 let combinations = await getAllCombinationsFrom(assertion, resultUnits)
                 for (let combination of combinations) {
                     // maybe here it's best for now to remove repetitions
-                    // in "lemmas" and "agents"
+                    // in "dependencies" and "via"
                     result.push({
-                        "lemmas": [...new Set(combination["lemmas"])],
-                        "agents": [...new Set(combination["agents"])]
+                        "dependencies": [...new Set(combination["dependencies"])],
+                        "via": [...new Set(combination["via"])]
                     }
                     )
                     //result.push(combination)
@@ -55,51 +54,52 @@ let getResult = async (cidFormula: string, assertionsList: {}, resultUnits: {}, 
 // A, B, C |- N,  |- N,  A |- N
 let getAllCombinationsFrom = async (assertion: {}, resultUnits: {}) => {
     // combination of 
-    let combinations = [] // combination of form {"lemmas": [], "agents": []}
+    let combinations = [] // combination of form {"dependencies": [], "via": []}
 
-    let lemmas = assertion["lemmas"]
+    let dependencies = assertion["dependencies"]
     let agent = assertion["agent"]
+    let tool = assertion["tool"]
 
-    // consider 2 initial cases: no lemmas -- one lemma:
-    // no lemmas: we should return 
-    // with combinations = [{"lemmas":[], "agents": [agent]}]
-    if (lemmas.length == 0) return [{ "lemmas": [], "agents": [agent] }]
-    // one lemmas: we should return the resultUnits[lemma] as it is since one lemma, no combinations with other lemmas
+    // consider 2 initial cases: no dependencies -- one dependency:
+    // no dependencies: we should return 
+    // with combinations = [{"dependencies":[], "via": [..]}]
+    if (dependencies.length == 0) return [{ "dependencies": [], "via": [{ agent, tool }] }]
+    // one dependencies: we should return the resultUnits[dependency] as it is since one dependency, no combinations with other dependencies
     // but with adding the current agent? 
-    else if (lemmas.length == 1) {
-        //console.log("here " + lemmas[0])
+    else if (dependencies.length == 1) {
+        //console.log("here " + dependencies[0])
         //console.log(resultUnits)
-        if (resultUnits[lemmas[0]]) {
+        if (resultUnits[dependencies[0]]) {
 
-            for (let unit of resultUnits[lemmas[0]]) {
-                let agentsPlus = unit["agents"].concat([agent])
-                //console.log(agentsPlus)
-                let newUnit = { "lemmas": unit["lemmas"], "agents": agentsPlus }
+            for (let unit of resultUnits[dependencies[0]]) {
+                let viaPlus = unit["via"].concat([{ agent, tool }])
+                //console.log(viaPlus)
+                let newUnit = { "dependencies": unit["dependencies"], "via": viaPlus }
                 combinations.push(newUnit)
             }
             return combinations
         }
-        else { // if the lemma didn't exist anywhere in the file
-            return [{ "lemmas": lemmas, "agents": [agent] }]
+        else { // if the dependency didn't exist anywhere in the file
+            return [{ "dependencies": dependencies, "via": [{ agent, tool }] }]
         }
     }
 
 
-    // now if lemmas.length >= 2
+    // now if dependencies.length >= 2
 
-    // if resultUnits[lemma] is undefined --> terminating case
-    // if resultUnits[lemma] is contains the lemma itself -> terminating case
+    // if resultUnits[dependency] is undefined --> terminating case
+    // if resultUnits[dependency] is contains the dependency itself -> terminating case
     let localResults = {}
-    for (let lemma of lemmas) {
-        if (resultUnits[lemma]) { // if defined; if the lemma existed in the searchset (in the file)
-            localResults[lemma] = resultUnits[lemma]
+    for (let dep of dependencies) {
+        if (resultUnits[dep]) { // if defined; if the dependency existed in the searchset (in the file)
+            localResults[dep] = resultUnits[dep]
         }
-        // if resultUnits[lemma] is not defined, we need to only use the lemma (cidFormula) itself for combination
-        else localResults[lemma] = [{ "lemmas": [lemma], "agents": [] }]
+        // if resultUnits[dependency] is not defined, we need to only use the dependency (cidFormula) itself for combination
+        else localResults[dep] = [{ "dependencies": [dep], "via": [] }]
         // but even if it's defined we also need to use it for combination (which was added in getResult)
     }
 
-    // now we have localResults consisting of a list of combinations (records) per lemma
+    // now we have localResults consisting of a list of combinations (records) per dependency
 
     // compute cartesian product for each 2 sets incrementally until reach end? 
 
@@ -111,26 +111,26 @@ let getAllCombinationsFrom = async (assertion: {}, resultUnits: {}) => {
     }
 
     for (let unit of tmp) {
-        combinations.push({ "lemmas": unit["lemmas"], "agents": unit["agents"].concat([agent]) })
+        combinations.push({ "dependencies": unit["dependencies"], "via": unit["via"].concat([{ agent, tool }]) })
     }
     return combinations
 
 }
 
-let getCartesian = async (fst: [{ "lemmas": [string], "agents": [string] }], snd: [{ "lemmas": [string], "agents": [string] }]) => {
+let getCartesian = async (fst: [{ "dependencies": [string], "via": [{}] }], snd: [{ "dependencies": [string], "via": [{}] }]) => {
 
     let cartesian = []
 
-    let lemmasFst, lemmasSnd, agentsFst, agentsSnd
+    let dependenciesFst, dependenciesSnd, viaFst, viaSnd
 
     for (let unitFst of fst) {
-        lemmasFst = unitFst["lemmas"]
-        agentsFst = unitFst["agents"]
+        dependenciesFst = unitFst["dependencies"]
+        viaFst = unitFst["via"]
         for (let unitSnd of snd) {
-            lemmasSnd = unitSnd["lemmas"]
-            agentsSnd = unitSnd["agents"]
+            dependenciesSnd = unitSnd["dependencies"]
+            viaSnd = unitSnd["via"]
             cartesian.push(
-                { "lemmas": lemmasFst.concat(lemmasSnd), "agents": agentsFst.concat(agentsSnd) }
+                { "dependencies": dependenciesFst.concat(dependenciesSnd), "via": viaFst.concat(viaSnd) }
             )
         }
     }
@@ -138,17 +138,75 @@ let getCartesian = async (fst: [{ "lemmas": [string], "agents": [string] }], snd
     return cartesian
 }
 
-// expected filepath: of file assertion-list-for-lookup.json; this is considered to produced from assertioncidlist (do later)
-// assuming that the assertions existing in this file have their signatures verified previously.
-let lookup = async (cidFormula: string, filepath: string) => {
+let processAssertion = async (cid: string, result: {}) => {
+    await ensureFullDAG(cid)
+    let obj = await ipfsGetObj(cid)
+    if (isAssertion(obj)) {
+        let assertion = obj
+        if (verifySignature(assertion)) {
+            let agent = fingerPrint(assertion["agent"])
+            let statement = await ipfsGetObj(assertion["statement"]["/"])
+            let production = {}
+            if (statement["format"] == "production")
+                production = statement
+            else if (statement["format"] == "annotated-production")
+                production = await ipfsGetObj(statement["production"]["/"])
+            let sequent = await ipfsGetObj(production["sequent"]["/"])
+            let conclusionCid = sequent["conclusion"]["/"]
+            let dependenciesCids = []
+            for (let depLink of sequent["dependencies"]) {
+                dependenciesCids.push(depLink["/"])
+            }
+            let toolCid = production["tool"]["/"]
+            let unit = {
+                "agent": agent,
+                "tool": toolCid,
+                "dependencies": dependenciesCids
+            }
+            if (!result[conclusionCid])
+                result[conclusionCid] = [unit]
+            else result[conclusionCid].push(unit)
+        }
+    }
+}
 
+let processAssertionList = async (assertionList: []) => {
+    //should this list be forced to be all assertions?  -> check later, now we assume it is all assertions
+    let result = {}
+    for (let cid of assertionList) {
+        await processAssertion(cid, result)
+        // processAssertion will only add the 
+        // information for cids of "assertion" format (after it verifies that the object is of assertion correct type)
+        // also it will ignore an assertion if the signature is invalid
+        // it will ignore any other cid "format"
+    }
+    return result
+}
+
+// expected filepath: of file assertion-list-for-lookup.json; this is considered to produced from assertioncidlist (do later)
+let lookup = async (cidFormula: string, filepath: string, directoryPath: string) => {
+    // must check that formula is of the correct "format" later
     let resultUnits = {}
 
-    let assertionsListJSON = JSON.parse(fs.readFileSync(filepath))
+    let assertionList = JSON.parse(fs.readFileSync(filepath))
+    // change here to just read an assertionList of the actual assertions cids,
+    // and then dispatch shall produce from it the format that getResult(..) shall read
 
-    let result = await getResult(cidFormula, assertionsListJSON, resultUnits, [cidFormula])
+    let processedAssertionList = await processAssertionList(assertionList)
+    //console.log(processedAssertionList)
+
+    let result = await getResult(cidFormula, processedAssertionList, resultUnits, [cidFormula])
     //return result
-    console.log(result)
+    //console.log(result)
+    try {
+
+        if (!fs.existsSync(directoryPath)) fs.mkdirSync(directoryPath, { recursive: true })
+        fs.writeFileSync(directoryPath + "/" + cidFormula + ".json", JSON.stringify(result))
+        console.log("the result of lookup for the formula: " + cidFormula + 
+        " was output in the file " + directoryPath + "/" + cidFormula + ".json")
+    } catch (err) {
+        console.error(err)
+    }
 }
 
 export = { lookup }
