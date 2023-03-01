@@ -84,7 +84,7 @@ program
 program
     .command('lookup')
     .description('construct trust results for a given formula starting from a list of assertions.\n')
-    .argument('<formula-cid>', 'the target formula cid.\n')
+    .argument('<formula-CID>', 'the target formula cid.\n')
     .argument('<input>', 'path of the searchable file - containing a list of assertion cids: ["cid1", "cid2", ..].\n')
     .argument('<directory-path>', 'directory-path to output the result in, starting from directory of execution.\n')
     .action(lookup)
