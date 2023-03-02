@@ -2,12 +2,12 @@
     "format": "assertion",
     "assertion": {
         "agent": "anotherAgent",
-        "statement": {
+        "claim": {
             "format": "annotated-production",
             "production": {
-                "tool": "abella-testing-ipfs",
+                "mode": "abella-testing-ipfs",
                 "sequent": {
-                    "conclusion": "ipld:bafyreihbyj2o72fo27uiyrezbqkscgce4lo3bghpj5loflqpmlxqxizt5q",
+                    "conclusion": "ipld:bafyreihw6ggod5k5nvrfs7a3prtvjoqd6t3unymbh3bklqdy6mydpfrime",
                     "dependencies": []
                 }
             },
