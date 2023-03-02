@@ -74,7 +74,7 @@ type formula = {
 
 type sequent = {
     "format": "sequent",
-    "dependencies": formulaLink[], // a lemma, is a dependency on some other formula; when to include it is specific to each publishing agent/tool: doesn't matter from the global view
+    "dependencies": formulaLink[], // a lemma, is a dependency on some other formula; when to include it is specific to each publishing agent/mode: doesn't matter from the global view
     // means that "the provability (being able to reach) of conclusion depends on that of the lemmas"
     "conclusion": formulaLink
 }
@@ -86,8 +86,9 @@ type tool = {
 
 // having a sequent as a standalone object (instead of putting "lemmas" and "conclusion" here directly) has the benefit of it having a unique identifier for maybe other uses
 // also, possible that several productions can refer to same sequent? 
-// "tool" as an [input] -> output medium -- function, routine? :: cid not need to refer to an explicit tool identifying description (tool in the literal sense: software..), maybe other things as well?
-// the "tool" could be empty ("none")(null) -> in such case, a production will denote a sequent directly: in case an agent want to assert something without specifying a tool
+// "mode"/tool as an [input] -> output medium -- function, routine? :: cid not need to refer to an explicit tool identifying description (tool in the literal sense: software..), maybe other things as well?
+// the "mode" could be empty ("none")(null) -> in such case, a production will denote a sequent directly: in case an agent want to assert something without specifying a mode
+// for now, we say that "mode" could be null, "axiom", "conjecture", or toolLink. However, this is extensible
 // having a tool identifier means: possible to decide whether to trust or not
 type production = {
     "format": "production",
@@ -97,7 +98,7 @@ type production = {
 
 // the meaning of an "assertion": a signed claim 
 //--> the claim could be a "production" or ..
-//--> case of "production": "I say (with confidence: It's up to you now to trust me or not) that I produced this sequent|product using this tool (where tool could be unspecified(none))"
+//--> case of "production": "I say (with confidence: It's up to you now to trust me or not) that I produced this sequent|product in this mode (where mode could be unspecified(none))"
 //--> where "says" means: digitally signing by crypto key
 type assertion = {
     "format": "assertion",

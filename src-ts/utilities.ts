@@ -14,21 +14,21 @@ import initialVals = require("./initial-vals")
 const { configpath, agentprofilespath, toolprofilespath, keystorepath, allowlistpath } = initialVals
 
 
-let isDeclaration = (obj: {}) => {
-    if (Object.keys(obj).length == 3 && "format" in obj && obj["format"] == "declaration") {
+let isContext = (obj: {}) => {
+    if (Object.keys(obj).length == 3 && "format" in obj && obj["format"] == "context") {
         return ("language" in obj && "content" in obj)
     }
 }
 
-let isAnnotatedDeclaration = (obj: {}) => {
-    if (Object.keys(obj).length == 3 && "format" in obj && obj["format"] == "annotated-declaration") {
-        return ("declaration" in obj && "annotation" in obj)
+let isAnnotatedContext = (obj: {}) => {
+    if (Object.keys(obj).length == 3 && "format" in obj && obj["format"] == "annotated-context") {
+        return ("context" in obj && "annotation" in obj)
     }
 }
 
 let isFormula = (obj: {}) => {
     if (Object.keys(obj).length == 4 && "format" in obj && obj["format"] == "formula") {
-        return ("language" in obj && "content" in obj && "declarations" in obj)
+        return ("language" in obj && "content" in obj && "context" in obj)
     }
     return false
 }
@@ -70,7 +70,7 @@ let isLanguage = (obj: {}) => {
 
 let isProduction = (obj: {}) => {
     if (Object.keys(obj).length == 3 && "format" in obj && obj["format"] == "production") {
-        return ("sequent" in obj && "tool" in obj)
+        return ("sequent" in obj && "mode" in obj)
     }
     return false
 }
@@ -84,7 +84,7 @@ let isAnnotatedProduction = (obj: {}) => {
 
 let isAssertion = (obj: {}) => {
     if (Object.keys(obj).length == 4 && "format" in obj && obj["format"] == "assertion") {
-        return ("agent" in obj && "statement" in obj && "signature" in obj)
+        return ("agent" in obj && "claim" in obj && "signature" in obj)
     }
     return false
 }
@@ -99,10 +99,10 @@ let isCollection = (obj: {}) => {
 // the standard format types to publish and get
 let isOfSpecifiedTypes = (obj: {}) => {
     return (
-        isDeclaration(obj) || isFormula(obj)
+        isContext(obj) || isFormula(obj)
         || isSequent(obj) || isProduction(obj)
         || isAssertion(obj) || isCollection(obj)
-        || isAnnotatedDeclaration(obj) || isAnnotatedFormula(obj)
+        || isAnnotatedContext(obj) || isAnnotatedFormula(obj)
         || isAnnotatedSequent(obj) || isAnnotatedProduction(obj)
     )
 }
@@ -111,7 +111,7 @@ let verifySignature = (assertion: {}) => {
     let signature = assertion["signature"]
     let claimedPublicKey = assertion["agent"]
     // the data to verify : here it's the asset's cid in the object
-    let dataToVerify = assertion["statement"]["/"]
+    let dataToVerify = assertion["claim"]["/"]
 
     const verify = crypto.createVerify('SHA256')
     verify.write(dataToVerify)
@@ -271,8 +271,8 @@ let publishDagToCloud = async (cid: string) => {
     }
 }
 
-export = { isOfSpecifiedTypes, isDeclaration, isFormula, isSequent, isProduction, isAssertion, 
-            isCollection, isAnnotatedDeclaration, isAnnotatedFormula, isAnnotatedSequent, 
+export = { isOfSpecifiedTypes, isContext, isFormula, isSequent, isProduction, isAssertion, 
+            isCollection, isAnnotatedContext, isAnnotatedFormula, isAnnotatedSequent, 
             isAnnotatedProduction,
             verifySignature, fingerPrint, inAllowList, ipfsGetObj, ensureFullDAG, 
             ipfsAddObj, publishDagToCloud }
