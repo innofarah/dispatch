@@ -119,7 +119,7 @@ let processFormula = async (obj: {}, result: {}) => {
 
     for (let contextLink of mainObj["context"]) {
         let cidContext = contextLink["/"]
-        output["contexts"].push(cidContext)
+        output["context"].push(cidContext)
         if (!result["contexts"][cidContext]) {
             let contextObj = await ipfsGetObj(cidContext)
             result["contexts"][cidContext] = await processContext(contextObj, result)

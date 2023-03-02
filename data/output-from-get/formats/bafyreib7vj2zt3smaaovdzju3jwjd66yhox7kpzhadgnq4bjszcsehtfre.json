@@ -1,0 +1,56 @@
+{
+    "output-for": "bafyreib7vj2zt3smaaovdzju3jwjd66yhox7kpzhadgnq4bjszcsehtfre",
+    "format": "annotated-sequent",
+    "annotated-sequent": {
+        "sequent": {
+            "conclusion": "bafyreieysj5wtzzi6jx64octfttrpaij5k7qpniimlojdhazzgvgdjsih4",
+            "dependencies": [
+                "bafyreihw6ggod5k5nvrfs7a3prtvjoqd6t3unymbh3bklqdy6mydpfrime",
+                "bafyreiawv2xo62nkwoto2cw77gwbcpef3etezwdhv52wy34xanwntg6ztq"
+            ]
+        },
+        "annotation": [
+            "any"
+        ]
+    },
+    "formulas": {
+        "bafyreieysj5wtzzi6jx64octfttrpaij5k7qpniimlojdhazzgvgdjsih4": {
+            "language": "bafyreidytsnnzmr7mcmd4abvy4ufp7rwhlrff6wqskfc2ua4bkrdwt72g4",
+            "content": "forall M N K, nat K -> plus M N K -> plus N M K",
+            "context": [
+                "bafyreifitbc5ywrbxrvnykdohxxc5d6yvdsxebmpfbxtxilwknxgwcqgaa"
+            ]
+        },
+        "bafyreihw6ggod5k5nvrfs7a3prtvjoqd6t3unymbh3bklqdy6mydpfrime": {
+            "language": "bafyreidytsnnzmr7mcmd4abvy4ufp7rwhlrff6wqskfc2ua4bkrdwt72g4",
+            "content": "forall N, nat N -> plus N z N",
+            "context": [
+                "bafyreifitbc5ywrbxrvnykdohxxc5d6yvdsxebmpfbxtxilwknxgwcqgaa"
+            ]
+        },
+        "bafyreiawv2xo62nkwoto2cw77gwbcpef3etezwdhv52wy34xanwntg6ztq": {
+            "language": "bafyreidytsnnzmr7mcmd4abvy4ufp7rwhlrff6wqskfc2ua4bkrdwt72g4",
+            "content": "forall M N K, plus M N K -> plus M (s N) (s K)",
+            "context": [
+                "bafyreifitbc5ywrbxrvnykdohxxc5d6yvdsxebmpfbxtxilwknxgwcqgaa"
+            ]
+        }
+    },
+    "contexts": {
+        "bafyreifitbc5ywrbxrvnykdohxxc5d6yvdsxebmpfbxtxilwknxgwcqgaa": {
+            "language": "bafyreidytsnnzmr7mcmd4abvy4ufp7rwhlrff6wqskfc2ua4bkrdwt72g4",
+            "content": [
+                "Kind nat      type",
+                "Type zero     nat",
+                "Type succ     nat -> nat",
+                "Define nat : nat -> prop by nat zero ; nat (succ N) := nat N",
+                "Define plus : nat -> nat -> nat -> prop by plus z N N ; plus (s M) N (s K) := plus M N K"
+            ]
+        }
+    },
+    "languages": {
+        "bafyreidytsnnzmr7mcmd4abvy4ufp7rwhlrff6wqskfc2ua4bkrdwt72g4": {
+            "content": "!! This is the Abella prover language-cid !!"
+        }
+    }
+}

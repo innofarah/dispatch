@@ -1,0 +1,68 @@
+{
+    "output-for": "bafyreibqcfizlioukzzaflrsg7i7ee2fk6jin5zrhphq3ira34jfzg5fxa",
+    "format": "annotated-production",
+    "annotated-production": {
+        "production": {
+            "sequent": {
+                "conclusion": "bafyreieysj5wtzzi6jx64octfttrpaij5k7qpniimlojdhazzgvgdjsih4",
+                "dependencies": [
+                    "bafyreihw6ggod5k5nvrfs7a3prtvjoqd6t3unymbh3bklqdy6mydpfrime",
+                    "bafyreiawv2xo62nkwoto2cw77gwbcpef3etezwdhv52wy34xanwntg6ztq"
+                ]
+            },
+            "mode": "bafyreiaeoklwmtzrs6hcwpwsjc3i2rkylyi5oylqxengujwgkckpozkiza"
+        },
+        "annotation": [
+            "any"
+        ]
+    },
+    "formulas": {
+        "bafyreieysj5wtzzi6jx64octfttrpaij5k7qpniimlojdhazzgvgdjsih4": {
+            "language": "bafyreidytsnnzmr7mcmd4abvy4ufp7rwhlrff6wqskfc2ua4bkrdwt72g4",
+            "content": "forall M N K, nat K -> plus M N K -> plus N M K",
+            "context": [
+                "bafyreifitbc5ywrbxrvnykdohxxc5d6yvdsxebmpfbxtxilwknxgwcqgaa"
+            ]
+        },
+        "bafyreihw6ggod5k5nvrfs7a3prtvjoqd6t3unymbh3bklqdy6mydpfrime": {
+            "language": "bafyreidytsnnzmr7mcmd4abvy4ufp7rwhlrff6wqskfc2ua4bkrdwt72g4",
+            "content": "forall N, nat N -> plus N z N",
+            "context": [
+                "bafyreifitbc5ywrbxrvnykdohxxc5d6yvdsxebmpfbxtxilwknxgwcqgaa"
+            ]
+        },
+        "bafyreiawv2xo62nkwoto2cw77gwbcpef3etezwdhv52wy34xanwntg6ztq": {
+            "language": "bafyreidytsnnzmr7mcmd4abvy4ufp7rwhlrff6wqskfc2ua4bkrdwt72g4",
+            "content": "forall M N K, plus M N K -> plus M (s N) (s K)",
+            "context": [
+                "bafyreifitbc5ywrbxrvnykdohxxc5d6yvdsxebmpfbxtxilwknxgwcqgaa"
+            ]
+        }
+    },
+    "contexts": {
+        "bafyreifitbc5ywrbxrvnykdohxxc5d6yvdsxebmpfbxtxilwknxgwcqgaa": {
+            "language": "bafyreidytsnnzmr7mcmd4abvy4ufp7rwhlrff6wqskfc2ua4bkrdwt72g4",
+            "content": [
+                "Kind nat      type",
+                "Type zero     nat",
+                "Type succ     nat -> nat",
+                "Define nat : nat -> prop by nat zero ; nat (succ N) := nat N",
+                "Define plus : nat -> nat -> nat -> prop by plus z N N ; plus (s M) N (s K) := plus M N K"
+            ]
+        }
+    },
+    "languages": {
+        "bafyreidytsnnzmr7mcmd4abvy4ufp7rwhlrff6wqskfc2ua4bkrdwt72g4": {
+            "content": "!! This is the Abella prover language-cid !!"
+        }
+    },
+    "tools": {
+        "bafyreiaeoklwmtzrs6hcwpwsjc3i2rkylyi5oylqxengujwgkckpozkiza": {
+            "content": {
+                "etc": "etc",
+                "name": "abellavtesttool",
+                "source": "https://abellaadfasdf.adfasd"
+            }
+        }
+    }
+}
