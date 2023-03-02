@@ -4,9 +4,9 @@
     "formula": {
         "language": "abella-language",
         "content": "forall N, nat N -> plus N z N",
-        "declarations": ["plus"]
+        "context": ["plus"]
     },
-    "declarations": {
+    "contexts": {
         "plus": {
             "language": "abella-language",
             "content": [

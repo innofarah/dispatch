@@ -1,7 +1,7 @@
 {
-    "format": "annotated-declaration",
-    "annotated-declaration": {
-        "declaration": {
+    "format": "annotated-context",
+    "annotated-context": {
+        "context": {
             "language": "abella-language",
             "content": [
                 "Kind nat      type",

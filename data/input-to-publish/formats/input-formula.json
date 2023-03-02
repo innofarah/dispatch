@@ -4,9 +4,9 @@
     "formula": {
         "language": "abella-language",
         "content": "forall M N K, nat K -> plus M N K -> plus N M K",
-        "declarations": ["plus"]
+        "context": ["plus"]
     },
-    "declarations": {
+    "contexts": {
         "plus": {
             "language": "abella-language",
             "content": [

@@ -1,6 +1,6 @@
 {
-    "format": "declaration",
-    "declaration": {
+    "format": "context",
+    "context": {
         "language": "abella-language",
         "content": [
             "Kind nat      type",

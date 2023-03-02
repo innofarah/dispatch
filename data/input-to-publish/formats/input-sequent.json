@@ -3,7 +3,7 @@
     "sequent": {
         "conclusion": "plus_comm",
         "dependencies": [
-            "ipld:bafyreihbyj2o72fo27uiyrezbqkscgce4lo3bghpj5loflqpmlxqxizt5q",
+            "ipld:bafyreihw6ggod5k5nvrfs7a3prtvjoqd6t3unymbh3bklqdy6mydpfrime",
             "plus_succ"
         ]
     },
@@ -11,15 +11,15 @@
         "plus_comm": {
             "language": "abella-language",
             "content": "forall M N K, nat K -> plus M N K -> plus N M K",
-            "declarations": ["plus"]
+            "context": ["plus"]
         },
         "plus_succ": {
             "language": "abella-language",
             "content": "forall M N K, plus M N K -> plus M (s N) (s K)",
-            "declarations": ["plus"]
+            "context": ["plus"]
         }
     },
-    "declarations": {
+    "contexts": {
         "plus": {
             "language": "abella-language",
             "content": [
