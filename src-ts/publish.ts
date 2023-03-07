@@ -19,7 +19,7 @@ let publishCommand = async (inputPath: string, target: target) => {
         let input = JSON.parse(fs.readFileSync(inputPath)) // json file expected
 
         // publish contexts first (because they need to be linked in formulas)
-        // consider an entry in "contexts" (like "fib": ..) in the input file to have two possible values: either [string] or ["ipld:cidcontextobjcet"]
+        // consider an entry in "contexts" (like "fib": ..) in the input file to have two possible values: either [string] or ["damf:cidcontextobjcet"]
         // publish according to "format" in the given input file, first we consider the "sequence" format 
 
         // considering the "format" attribute to be fixed (exists all the time) for all the possible input-formats (considering that input-formats might differ according to format of published objects)
@@ -96,7 +96,7 @@ let publishCommand = async (inputPath: string, target: target) => {
 
 // !!!!!!!!!!!! should add more safety checks - do later (for all the publishing functions)
 let publishContext = async (contextObj: {}) => {
-    // consider an entry in "declaration" (like "fib": ..) in the input file to have two possible values: either [string] or "ipld:ciddeclarationobject"
+    // consider an entry in "declaration" (like "fib": ..) in the input file to have two possible values: either [string] or "damf:ciddeclarationobject"
     // use ipfsAddObj to add the declarations end object
 
     let language = contextObj["language"]
@@ -104,7 +104,7 @@ let publishContext = async (contextObj: {}) => {
 
     let cidLanguage = "", cidContent = "", cidContext = ""
 
-    if (typeof language == "string" && language.startsWith("ipld:"))
+    if (typeof language == "string" && language.startsWith("damf:"))
         cidLanguage = language.split(":")[1]
     else {
         try {
@@ -119,7 +119,7 @@ let publishContext = async (contextObj: {}) => {
         }
     }
 
-    if (typeof content == "string" && content.startsWith("ipld:"))
+    if (typeof content == "string" && content.startsWith("damf:"))
         cidContent = content.split(":")[1]
     else cidContent = await ipfsAddObj(content)
 
@@ -143,13 +143,13 @@ let publishAnnotatedContext = async (annotatedContextObj: {}) => {
 
     let cidContext = "", cidAnnotation = ""
 
-    if (typeof context == "string" && context.startsWith("ipld:"))
+    if (typeof context == "string" && context.startsWith("damf:"))
         cidContext = context.split(":")[1]
     else {
         cidContext = await publishContext(context)
     }
 
-    if (typeof annotation == "string" && annotation.startsWith("ipld:"))
+    if (typeof annotation == "string" && annotation.startsWith("damf:"))
         cidAnnotation = annotation.split(":")[1]
     else {
         cidAnnotation = await ipfsAddObj(annotation)
@@ -174,7 +174,7 @@ let publishFormula = async (formulaObj: {}, input: {}) => {
     let content = formulaObj["content"]
     let cidLanguage = "", cidContent = ""
 
-    if (typeof language == "string" && language.startsWith("ipld:"))
+    if (typeof language == "string" && language.startsWith("damf:"))
         cidLanguage = language.split(":")[1]
     else {
         try {
@@ -189,7 +189,7 @@ let publishFormula = async (formulaObj: {}, input: {}) => {
         }
     }
 
-    if (typeof content == "string" && content.startsWith("ipld:"))
+    if (typeof content == "string" && content.startsWith("damf:"))
         cidContent = content.split(":")[1]
     else cidContent = await ipfsAddObj(content)
 
@@ -198,7 +198,7 @@ let publishFormula = async (formulaObj: {}, input: {}) => {
 
     for (let contextName of contextNames) {
         let contextCid = ""
-        if (contextName.startsWith("ipld:"))
+        if (contextName.startsWith("damf:"))
             contextCid = contextName.split(":")[1]
         else contextCid = await publishContext(input["contexts"][contextName])
         contextLinks.push({ "/": contextCid })
@@ -227,13 +227,13 @@ let publishAnnotatedFormula = async (annotatedFormulaObj: {}, input: {}) => {
 
     let cidFormula = "", cidAnnotation = ""
 
-    if (typeof formula == "string" && formula.startsWith("ipld:"))
+    if (typeof formula == "string" && formula.startsWith("damf:"))
         cidFormula = formula.split(":")[1]
     else {
         cidFormula = await publishFormula(formula, input)
     }
 
-    if (typeof annotation == "string" && annotation.startsWith("ipld:"))
+    if (typeof annotation == "string" && annotation.startsWith("damf:"))
         cidAnnotation = annotation.split(":")[1]
     else {
         cidAnnotation = await ipfsAddObj(annotation)
@@ -257,7 +257,7 @@ let publishSequent = async (sequentObj: {}, input: {}) => {
     let conclusionName = sequentObj["conclusion"]
     let cidConclusion = ""
 
-    if (conclusionName.startsWith("ipld:"))
+    if (conclusionName.startsWith("damf:"))
         cidConclusion = conclusionName.split(":")[1]
     else {
         let conclusionObj = input["formulas"][conclusionName]
@@ -274,7 +274,7 @@ let publishSequent = async (sequentObj: {}, input: {}) => {
     let dependenciesIpfs = [] as ipldLink[]
     for (let dependency of dependenciesNames) {
         let ciddependency = ""
-        if (dependency.startsWith("ipld:")) {
+        if (dependency.startsWith("damf:")) {
             // assuming the cids in "lemmas" should refer to a "formula" object
             //(if we remove the .thc generation and replace it with generation of the output format.json file produced by w3proof-dispatch get)
             ciddependency = dependency.split(":")[1]
@@ -312,13 +312,13 @@ let publishAnnotatedSequent = async (annotatedSequentObj: {}, input: {}) => {
 
     let cidSequent = "", cidAnnotation = ""
 
-    if (typeof sequent == "string" && sequent.startsWith("ipld:"))
+    if (typeof sequent == "string" && sequent.startsWith("damf:"))
         cidSequent = sequent.split(":")[1]
     else {
         cidSequent = await publishSequent(sequent, input)
     }
 
-    if (typeof annotation == "string" && annotation.startsWith("ipld:"))
+    if (typeof annotation == "string" && annotation.startsWith("damf:"))
         cidAnnotation = annotation.split(":")[1]
     else {
         cidAnnotation = await ipfsAddObj(annotation)
@@ -344,8 +344,8 @@ let publishProduction = async (productionObj: {}, input: {}) => {
     let modeValue: toolLink | null | "axiom" | "conjecture" // the currently expected mode values
     let cidTool = "", cidSequent = ""
 
-    // add spec and checks later that sequent is "ipld:.." or {..}
-    if (typeof sequent == "string" && sequent.startsWith("ipld:"))
+    // add spec and checks later that sequent is "damf:.." or {..}
+    if (typeof sequent == "string" && sequent.startsWith("damf:"))
         cidSequent = sequent.split(":")[1]
     else cidSequent = await publishSequent(sequent, input)
 
@@ -360,9 +360,9 @@ let publishProduction = async (productionObj: {}, input: {}) => {
 
     // other than the expected modes keywords, the current specification of a production,
     // and what dispatch expects is a "tool" format cid (either directly put in the input 
-    //as ipld:cid or through a profile name which is specific to dispatch 
+    //as damf:cid or through a profile name which is specific to dispatch 
     //(but the end result is the same, which is the cid of the tool format object))
-    else if (typeof mode == "string" && mode.startsWith("ipld:")) {
+    else if (typeof mode == "string" && mode.startsWith("damf:")) {
         cidTool = mode.split(":")[1]
         modeValue = { "/": cidTool }
     }
@@ -397,13 +397,13 @@ let publishAnnotatedProduction = async (annotatedProductionObj: {}, input: {}) =
 
     let cidProduction = "", cidAnnotation = ""
 
-    if (typeof production == "string" && production.startsWith("ipld:"))
+    if (typeof production == "string" && production.startsWith("damf:"))
         cidProduction = production.split(":")[1]
     else {
         cidProduction = await publishProduction(production, input)
     }
 
-    if (typeof annotation == "string" && annotation.startsWith("ipld:"))
+    if (typeof annotation == "string" && annotation.startsWith("damf:"))
         cidAnnotation = annotation.split(":")[1]
     else {
         cidAnnotation = await ipfsAddObj(annotation)
@@ -429,7 +429,7 @@ let publishAssertion = async (assertionObj: {}, input: {}) => {
     let claim = assertionObj["claim"]
     let cidClaim = ""
 
-    if (typeof claim == "string" && claim.startsWith("ipld:"))
+    if (typeof claim == "string" && claim.startsWith("damf:"))
         cidClaim = claim.split(":")[1]
     else {
         // should do additional checking
