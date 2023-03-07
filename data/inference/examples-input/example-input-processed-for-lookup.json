@@ -2,24 +2,24 @@
     "C": [
         {
             "agent": "K4",
-            "tool": "T1",
+            "mode": "T1",
             "dependencies": ["B", "A"]
         },
         {
             "agent": "K5",
-            "tool": "T2",
+            "mode": "T2",
             "dependencies": ["V"]
         }
     ],
     "B": [
         {
             "agent":"K8",
-            "tool": "T3",
+            "mode": "T3",
             "dependencies":["P"]
         },
         {
             "agent": "K3",
-            "tool": "T4",
+            "mode": "T4",
             "dependencies": [
                 "L",
                 "M"
@@ -27,7 +27,7 @@
         },
         {
             "agent": "K5",
-            "tool": "T5",
+            "mode": "T5",
             "dependencies": [
                 "J",
                 "M"
@@ -37,26 +37,26 @@
     "P": [
         {
             "agent": "K7",
-            "tool": "T6",
+            "mode": "T6",
             "dependencies": ["C"]
         },
         {
             "agent": "K6",
-            "tool": "T7",
+            "mode": "T7",
             "dependencies": ["J", "M"]
         }
     ],
     "A": [
         {
             "agent": "K1",
-            "tool": "T8",
+            "mode": "T8",
             "dependencies": [
                 "P"
             ]
         },
         {
             "agent": "K2",
-            "tool": "T9",
+            "mode": "T9",
             "dependencies": [
                 "D",
                 "F"
@@ -66,7 +66,7 @@
     "N": [
         {
             "agent": "K2",
-            "tool": "T10",
+            "mode": "T10",
             "dependencies": [
                 "A",
                 "B",

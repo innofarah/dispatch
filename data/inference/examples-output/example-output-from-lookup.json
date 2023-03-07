@@ -10,7 +10,7 @@
         "via": [
             {
                 "agent": "K4",
-                "tool": "T1"
+                "mode": "T1"
             }
         ]
     },
@@ -21,10 +21,10 @@
         "via": [
             {
                 "agent": "K1",
-                "tool": "T8"
+                "mode": "T8"
             }, {
                 "agent": "K4",
-                "tool": "T1"
+                "mode": "T1"
             }
         ]
     },
@@ -35,13 +35,13 @@
         "via": [
             {
                 "agent": "K6",
-                "tool": "T7"
+                "mode": "T7"
             }, {
                 "agent": "K1",
-                "tool": "T8"
+                "mode": "T8"
             }, {
                 "agent": "K4",
-                "tool": "T1"
+                "mode": "T1"
             }
         ]
     }, {
@@ -51,10 +51,10 @@
         "via": [
             {
                 "agent": "K2",
-                "tool": "T9"
+                "mode": "T9"
             }, {
                 "agent": "K4",
-                "tool": "T1"
+                "mode": "T1"
             }
         ]
     }, {
@@ -64,10 +64,10 @@
         "via": [
             {
                 "agent": "K8",
-                "tool": "T3"
+                "mode": "T3"
             }, {
                 "agent": "K4",
-                "tool": "T1"
+                "mode": "T1"
             }
         ]
     }, {
@@ -75,13 +75,13 @@
         "via": [
             {
                 "agent": "K8",
-                "tool": "T3"
+                "mode": "T3"
             }, {
                 "agent": "K1",
-                "tool": "T8"
+                "mode": "T8"
             }, {
                 "agent": "K4",
-                "tool": "T1"
+                "mode": "T1"
             }
         ]
     }, {
@@ -91,16 +91,16 @@
         "via": [
             {
                 "agent": "K8",
-                "tool": "T3"
+                "mode": "T3"
             }, {
                 "agent": "K6",
-                "tool": "T7"
+                "mode": "T7"
             }, {
                 "agent": "K1",
-                "tool": "T8"
+                "mode": "T8"
             }, {
                 "agent": "K4",
-                "tool": "T1"
+                "mode": "T1"
             }
         ]
     }, {
@@ -110,13 +110,13 @@
         "via": [
             {
                 "agent": "K8",
-                "tool": "T3"
+                "mode": "T3"
             }, {
                 "agent": "K2",
-                "tool": "T9"
+                "mode": "T9"
             }, {
                 "agent": "K4",
-                "tool": "T1"
+                "mode": "T1"
             }
         ]
     }, {
@@ -126,13 +126,13 @@
         "via": [
             {
                 "agent": "K6",
-                "tool": "T7"
+                "mode": "T7"
             }, {
                 "agent": "K8",
-                "tool": "T3"
+                "mode": "T3"
             }, {
                 "agent": "K4",
-                "tool": "T1"
+                "mode": "T1"
             }
         ]
     }, {
@@ -142,16 +142,16 @@
         "via": [
             {
                 "agent": "K6",
-                "tool": "T7"
+                "mode": "T7"
             }, {
                 "agent": "K8",
-                "tool": "T3"
+                "mode": "T3"
             }, {
                 "agent": "K1",
-                "tool": "T8"
+                "mode": "T8"
             }, {
                 "agent": "K4",
-                "tool": "T1"
+                "mode": "T1"
             }
         ]
     }, {
@@ -161,16 +161,16 @@
         "via": [
             {
                 "agent": "K6",
-                "tool": "T7"
+                "mode": "T7"
             }, {
                 "agent": "K8",
-                "tool": "T3"
+                "mode": "T3"
             }, {
                 "agent": "K1",
-                "tool": "T8"
+                "mode": "T8"
             }, {
                 "agent": "K4",
-                "tool": "T1"
+                "mode": "T1"
             }
         ]
     }, {
@@ -180,16 +180,16 @@
         "via": [
             {
                 "agent": "K6",
-                "tool": "T7"
+                "mode": "T7"
             }, {
                 "agent": "K8",
-                "tool": "T3"
+                "mode": "T3"
             }, {
                 "agent": "K2",
-                "tool": "T9"
+                "mode": "T9"
             }, {
                 "agent": "K4",
-                "tool": "T1"
+                "mode": "T1"
             }
         ]
     }, {
@@ -199,10 +199,10 @@
         "via": [
             {
                 "agent": "K3",
-                "tool": "T4"
+                "mode": "T4"
             }, {
                 "agent": "K4",
-                "tool": "T1"
+                "mode": "T1"
             }
         ]
     }, {
@@ -212,13 +212,13 @@
         "via": [
             {
                 "agent": "K3",
-                "tool": "T4"
+                "mode": "T4"
             }, {
                 "agent": "K1",
-                "tool": "T8"
+                "mode": "T8"
             }, {
                 "agent": "K4",
-                "tool": "T1"
+                "mode": "T1"
             }
         ]
     }, {
@@ -228,16 +228,16 @@
         "via": [
             {
                 "agent": "K3",
-                "tool": "T4"
+                "mode": "T4"
             }, {
                 "agent": "K6",
-                "tool": "T7"
+                "mode": "T7"
             }, {
                 "agent": "K1",
-                "tool": "T8"
+                "mode": "T8"
             }, {
                 "agent": "K4",
-                "tool": "T1"
+                "mode": "T1"
             }
         ]
     }, {
@@ -247,13 +247,13 @@
         "via": [
             {
                 "agent": "K3",
-                "tool": "T4"
+                "mode": "T4"
             }, {
                 "agent": "K2",
-                "tool": "T9"
+                "mode": "T9"
             }, {
                 "agent": "K4",
-                "tool": "T1"
+                "mode": "T1"
             }
         ]
     }, {
@@ -263,10 +263,10 @@
         "via": [
             {
                 "agent": "K5",
-                "tool": "T5"
+                "mode": "T5"
             }, {
                 "agent": "K4",
-                "tool": "T1"
+                "mode": "T1"
             }
         ]
     }, {
@@ -276,13 +276,13 @@
         "via": [
             {
                 "agent": "K5",
-                "tool": "T5"
+                "mode": "T5"
             }, {
                 "agent": "K1",
-                "tool": "T8"
+                "mode": "T8"
             }, {
                 "agent": "K4",
-                "tool": "T1"
+                "mode": "T1"
             }
         ]
     }, {
@@ -292,16 +292,16 @@
         "via": [
             {
                 "agent": "K5",
-                "tool": "T5"
+                "mode": "T5"
             }, {
                 "agent": "K6",
-                "tool": "T7"
+                "mode": "T7"
             }, {
                 "agent": "K1",
-                "tool": "T8"
+                "mode": "T8"
             }, {
                 "agent": "K4",
-                "tool": "T1"
+                "mode": "T1"
             }
         ]
     }, {
@@ -311,13 +311,13 @@
         "via": [
             {
                 "agent": "K5",
-                "tool": "T5"
+                "mode": "T5"
             }, {
                 "agent": "K2",
-                "tool": "T9"
+                "mode": "T9"
             }, {
                 "agent": "K4",
-                "tool": "T1"
+                "mode": "T1"
             }
         ]
     }, {
@@ -325,7 +325,7 @@
         "via": [
             {
                 "agent": "K5",
-                "tool": "T2"
+                "mode": "T2"
             }
         ]
     }
