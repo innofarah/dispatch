@@ -3,7 +3,7 @@
     "sequent": {
         "conclusion": "plus_comm",
         "dependencies": [
-            "ipld:bafyreihw6ggod5k5nvrfs7a3prtvjoqd6t3unymbh3bklqdy6mydpfrime",
+            "damf:bafyreihw6ggod5k5nvrfs7a3prtvjoqd6t3unymbh3bklqdy6mydpfrime",
             "plus_succ"
         ]
     },

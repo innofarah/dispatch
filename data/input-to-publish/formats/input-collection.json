@@ -13,7 +13,7 @@
                         "sequent": {
                             "conclusion": "plus_comm",
                             "dependencies": [
-                                "ipld:bafyreihw6ggod5k5nvrfs7a3prtvjoqd6t3unymbh3bklqdy6mydpfrime",
+                                "damf:bafyreihw6ggod5k5nvrfs7a3prtvjoqd6t3unymbh3bklqdy6mydpfrime",
                                 "plus_succ"
                             ]
                         }
@@ -56,7 +56,7 @@
     "contexts": {
         "plus": {
             "language": "abella-language",
-            "content": "ipld:bafyreia4m2rkjud4jdregjtajo3v4yws5cuor5hf3pytkok2j2cq7b7aye"
+            "content": "damf:bafyreia4m2rkjud4jdregjtajo3v4yws5cuor5hf3pytkok2j2cq7b7aye"
         }
     }
 }
