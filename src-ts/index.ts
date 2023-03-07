@@ -8,6 +8,7 @@ const { getCommand } = require('./get.js')
 //const { trustwhoCommand } = require('./trusting.js')
 //const { whatISay, doISay } = require('./trusting-old.js')
 const { lookup } = require('./lookup.js')
+const { publishDagToCloud} = require('./utilities.js')
 
 setup()
 
@@ -88,6 +89,12 @@ program
     .argument('<input>', 'path of the searchable file - containing a list of assertion cids: ["cid1", "cid2", ..].\n')
     .argument('<directory-path>', 'directory-path to output the result in, starting from directory of execution.\n')
     .action(lookup)
+
+program
+    .command('publish-to-cloud')
+    .description('publish dag to cloud starting from a given cid.\n')
+    .argument('<CID>', 'the root dag cid.\n')
+    .action(publishDagToCloud)
 
 /*
 program
