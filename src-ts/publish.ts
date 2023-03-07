@@ -115,7 +115,7 @@ let publishContext = async (contextObj: {}) => {
             else throw new Error("ERROR: given language record name does not exist")
         } catch (error) {
             console.error(error);
-            process.exit(0)
+            process.exit(1)
         }
     }
 
@@ -185,7 +185,7 @@ let publishFormula = async (formulaObj: {}, input: {}) => {
             else throw new Error("ERROR: given language record name does not exist")
         } catch (error) {
             console.error(error);
-            process.exit(0)
+            process.exit(1)
         }
     }
 
@@ -376,7 +376,7 @@ let publishProduction = async (productionObj: {}, input: {}) => {
             else throw new Error("ERROR: given toolProfile name does not exist")
         } catch (error) {
             console.error(error);
-            process.exit(0)
+            process.exit(1)
         }
     }
 
@@ -473,7 +473,7 @@ let publishAssertion = async (assertionObj: {}, input: {}) => {
         else throw new Error("ERROR: given profile name does not exist")
     } catch (error) {
         console.error(error);
-        process.exit(0)
+        process.exit(1)
     }
 }
 
