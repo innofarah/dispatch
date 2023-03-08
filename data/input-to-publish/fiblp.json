@@ -1,0 +1,289 @@
+{
+    "format": "collection",
+    "name": "fib computations from fib2 to fib13",
+    "elements": [
+        {
+            "format": "assertion",
+            "element": {
+                "agent": "localAgent",
+                "claim": {
+                    "format": "annotated-production",
+                    "production": {
+                        "mode": "damf:bafyreigkqwnwtzv4bivvmyunw5fsjqnunerocqzb6l75qx56kz5rgbxxkm",
+                        "sequent": {
+                            "conclusion": "fib2",
+                            "dependencies": []
+                        }
+                    },
+                    "annotation": {"name": "fib2"}
+                }
+            }
+        },
+        {
+            "format": "assertion",
+            "element": {
+                "agent": "localAgent",
+                "claim": {
+                    "format": "annotated-production",
+                    "production": {
+                        "mode": "damf:bafyreigkqwnwtzv4bivvmyunw5fsjqnunerocqzb6l75qx56kz5rgbxxkm",
+                        "sequent": {
+                            "conclusion": "fib3",
+                            "dependencies": []
+                        }
+                    },
+                    "annotation": {"name": "fib3"}
+                }
+            }
+        },
+        {
+            "format": "assertion",
+            "element": {
+                "agent": "localAgent",
+                "claim": {
+                    "format": "annotated-production",
+                    "production": {
+                        "mode": "damf:bafyreigkqwnwtzv4bivvmyunw5fsjqnunerocqzb6l75qx56kz5rgbxxkm",
+                        "sequent": {
+                            "conclusion": "fib4",
+                            "dependencies": []
+                        }
+                    },
+                    "annotation": {"name": "fib4"}
+                }
+            }
+        },
+        {
+            "format": "assertion",
+            "element": {
+                "agent": "localAgent",
+                "claim": {
+                    "format": "annotated-production",
+                    "production": {
+                        "mode": "damf:bafyreigkqwnwtzv4bivvmyunw5fsjqnunerocqzb6l75qx56kz5rgbxxkm",
+                        "sequent": {
+                            "conclusion": "fib5",
+                            "dependencies": []
+                        }
+                    },
+                    "annotation": {"name": "fib5"}
+                }
+            }
+        },
+        {
+            "format": "assertion",
+            "element": {
+                "agent": "localAgent",
+                "claim": {
+                    "format": "annotated-production",
+                    "production": {
+                        "mode": "damf:bafyreigkqwnwtzv4bivvmyunw5fsjqnunerocqzb6l75qx56kz5rgbxxkm",
+                        "sequent": {
+                            "conclusion": "fib6",
+                            "dependencies": []
+                        }
+                    },
+                    "annotation": {"name": "fib6"}
+                }
+            }
+        },
+        {
+            "format": "assertion",
+            "element": {
+                "agent": "localAgent",
+                "claim": {
+                    "format": "annotated-production",
+                    "production": {
+                        "mode": "damf:bafyreigkqwnwtzv4bivvmyunw5fsjqnunerocqzb6l75qx56kz5rgbxxkm",
+                        "sequent": {
+                            "conclusion": "fib7",
+                            "dependencies": []
+                        }
+                    },
+                    "annotation": {"name": "fib7"}
+                }
+            }
+        },
+        {
+            "format": "assertion",
+            "element": {
+                "agent": "localAgent",
+                "claim": {
+                    "format": "annotated-production",
+                    "production": {
+                        "mode": "damf:bafyreigkqwnwtzv4bivvmyunw5fsjqnunerocqzb6l75qx56kz5rgbxxkm",
+                        "sequent": {
+                            "conclusion": "fib8",
+                            "dependencies": []
+                        }
+                    },
+                    "annotation": {"name": "fib8"}
+                }
+            }
+        },
+        {
+            "format": "assertion",
+            "element": {
+                "agent": "localAgent",
+                "claim": {
+                    "format": "annotated-production",
+                    "production": {
+                        "mode": "damf:bafyreigkqwnwtzv4bivvmyunw5fsjqnunerocqzb6l75qx56kz5rgbxxkm",
+                        "sequent": {
+                            "conclusion": "fib9",
+                            "dependencies": []
+                        }
+                    },
+                    "annotation": {"name": "fib9"}
+                }
+            }
+        },
+        {
+            "format": "assertion",
+            "element": {
+                "agent": "localAgent",
+                "claim": {
+                    "format": "annotated-production",
+                    "production": {
+                        "mode": "damf:bafyreigkqwnwtzv4bivvmyunw5fsjqnunerocqzb6l75qx56kz5rgbxxkm",
+                        "sequent": {
+                            "conclusion": "fib10",
+                            "dependencies": []
+                        }
+                    },
+                    "annotation": {"name": "fib10"}
+                }
+            }
+        },
+        {
+            "format": "assertion",
+            "element": {
+                "agent": "localAgent",
+                "claim": {
+                    "format": "annotated-production",
+                    "production": {
+                        "mode": "damf:bafyreigkqwnwtzv4bivvmyunw5fsjqnunerocqzb6l75qx56kz5rgbxxkm",
+                        "sequent": {
+                            "conclusion": "fib11",
+                            "dependencies": []
+                        }
+                    },
+                    "annotation": {"name": "fib11"}
+                }
+            }
+        },
+        {
+            "format": "assertion",
+            "element": {
+                "agent": "localAgent",
+                "claim": {
+                    "format": "annotated-production",
+                    "production": {
+                        "mode": "damf:bafyreigkqwnwtzv4bivvmyunw5fsjqnunerocqzb6l75qx56kz5rgbxxkm",
+                        "sequent": {
+                            "conclusion": "fib12",
+                            "dependencies": []
+                        }
+                    },
+                    "annotation": {"name": "fib12"}
+                }
+            }
+        },
+        {
+            "format": "assertion",
+            "element": {
+                "agent": "localAgent",
+                "claim": {
+                    "format": "annotated-production",
+                    "production": {
+                        "mode": "damf:bafyreigkqwnwtzv4bivvmyunw5fsjqnunerocqzb6l75qx56kz5rgbxxkm",
+                        "sequent": {
+                            "conclusion": "fib13",
+                            "dependencies": []
+                        }
+                    },
+                    "annotation": {"name": "fib13"}
+                }
+            }
+        }
+    ],
+    "formulas": {
+        "fib2": {
+            "language": "damf:bafyreicebs4jtzzbdr2v57jod7p3ww4e4gqmfsuyuox65fbdpuczadn6me",
+            "content": "fib (s (s z)) (s z)",
+            "context": ["fib"]
+        },
+        "fib3": {
+            "language": "damf:bafyreicebs4jtzzbdr2v57jod7p3ww4e4gqmfsuyuox65fbdpuczadn6me",
+            "content": "fib (s (s (s z))) (s (s z))",
+            "context": ["fib"]
+        },
+        "fib4": {
+            "language": "damf:bafyreicebs4jtzzbdr2v57jod7p3ww4e4gqmfsuyuox65fbdpuczadn6me",
+            "content": "fib (s (s (s (s z)))) (s (s (s z)))",
+            "context": ["fib"]
+        },
+        "fib5": {
+            "language": "damf:bafyreicebs4jtzzbdr2v57jod7p3ww4e4gqmfsuyuox65fbdpuczadn6me",
+            "content": "fib (s (s (s (s (s z))))) (s (s (s (s (s z)))))",
+            "context": ["fib"]
+        },
+        "fib6": {
+            "language": "damf:bafyreicebs4jtzzbdr2v57jod7p3ww4e4gqmfsuyuox65fbdpuczadn6me",
+            "content": "fib (s (s (s (s (s (s z)))))) (s (s (s (s (s (s (s (s z))))))))",
+            "context": ["fib"]
+        },
+        "fib7": {
+            "language": "damf:bafyreicebs4jtzzbdr2v57jod7p3ww4e4gqmfsuyuox65fbdpuczadn6me",
+            "content": "fib (s (s (s (s (s (s (s z))))))) (s (s (s (s (s (s (s (s (s (s (s (s (s z)))))))))))))",
+            "context": ["fib"]
+        },
+        "fib8": {
+            "language": "damf:bafyreicebs4jtzzbdr2v57jod7p3ww4e4gqmfsuyuox65fbdpuczadn6me",
+            "content": "fib (s (s (s (s (s (s (s (s z)))))))) (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s z)))))))))))))))))))))",
+            "context": ["fib"]
+        },
+        "fib9": {
+            "language": "damf:bafyreicebs4jtzzbdr2v57jod7p3ww4e4gqmfsuyuox65fbdpuczadn6me",
+            "content": "fib (s (s (s (s (s (s (s (s (s z))))))))) (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s z))))))))))))))))))))))))))))))))))",
+            "context": ["fib"]
+        },
+        "fib10": {
+            "language": "damf:bafyreicebs4jtzzbdr2v57jod7p3ww4e4gqmfsuyuox65fbdpuczadn6me",
+            "content": "fib (s (s (s (s (s (s (s (s (s (s z)))))))))) (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s z)))))))))))))))))))))))))))))))))))))))))))))))))))))))",
+            "context": ["fib"]
+        },
+        "fib11": {
+            "language": "damf:bafyreicebs4jtzzbdr2v57jod7p3ww4e4gqmfsuyuox65fbdpuczadn6me",
+            "content": "fib (s (s (s (s (s (s (s (s (s (s (s z))))))))))) (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s z)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))",
+            "context": ["fib"]
+        },
+        "fib12": {
+            "language": "damf:bafyreicebs4jtzzbdr2v57jod7p3ww4e4gqmfsuyuox65fbdpuczadn6me",
+            "content": "fib (s (s (s (s (s (s (s (s (s (s (s (s z)))))))))))) (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s z))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))",
+            "context": ["fib"]
+        },
+        "fib13": {
+            "language": "damf:bafyreicebs4jtzzbdr2v57jod7p3ww4e4gqmfsuyuox65fbdpuczadn6me",
+            "content": "fib (s (s (s (s (s (s (s (s (s (s (s (s (s z))))))))))))) (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s z)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))",
+            "context": ["fib"]
+        }
+    },
+    "contexts": {
+        "fib": {
+            "language": "damf:bafyreicebs4jtzzbdr2v57jod7p3ww4e4gqmfsuyuox65fbdpuczadn6me",
+            "content": [
+                "kind nat  type",
+                "type z    nat",
+                "type s    nat -> nat",
+                "type plus nat -> nat -> nat -> o",
+                "type fib         nat -> nat -> o",
+                "plus z N N",
+                "plus (s N) M (s P) :- plus N M P",
+                "fib z z",
+                "fib (s z) (s z)",
+                "fib (s (s N)) F :- fib N F1, fib (s N) F2, plus F1 F2 F"
+            ]
+        }
+    }
+}
