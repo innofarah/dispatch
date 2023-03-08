@@ -1,0 +1,62 @@
+{
+    "format": "collection",
+    "name": "fileB",
+    "elements": [
+        {
+            "format": "assertion",
+            "element": {
+                "agent": "localAgent",
+                "claim": {
+                    "format": "annotated-production",
+                    "production": {
+                        "mode": "abella-testing-ipfs",
+                        "sequent": {
+                            "conclusion": "plus_comm",
+                            "dependencies": [
+                                "damf:bafyreihw6ggod5k5nvrfs7a3prtvjoqd6t3unymbh3bklqdy6mydpfrime",
+                                "plus_succ"
+                            ]
+                        }
+                    },
+                    "annotation": [
+                        "part of the language - dispatch doesn't read it"
+                    ]
+                }
+            }
+        },
+        {
+            "format": "assertion",
+            "element": {
+                "agent": "localAgent",
+                "claim": {
+                    "format": "production",
+                    "production": {
+                        "mode": "abella-testing-ipfs",
+                        "sequent": {
+                            "conclusion": "plus_succ",
+                            "dependencies": []
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "formulas": {
+        "plus_succ": {
+            "language": "abella-language",
+            "content": "forall M N K, plus M N K -> plus M (s N) (s K)",
+            "context": ["plus"]
+        },
+        "plus_comm": {
+            "language": "abella-language",
+            "content": "forall M N K, nat K -> plus M N K -> plus N M K",
+            "context": ["plus"]
+        }
+    },
+    "contexts": {
+        "plus": {
+            "language": "abella-language",
+            "content": "damf:bafyreia4m2rkjud4jdregjtajo3v4yws5cuor5hf3pytkok2j2cq7b7aye"
+        }
+    }
+}

@@ -1,0 +1,348 @@
+{
+    "output-for": "bafyreictj5qy4bxwm4tqfuof2fyrxtjgpppobkwyuvh4xc2birqhcplzum",
+    "format": "collection",
+    "name": "fib computations from fib2 to fib13",
+    "elements": [
+        {
+            "format": "assertion",
+            "element": {
+                "agent": "f1f778e0eb75ce859e10987b2bf7c3969b130bb5ecde98dfaceadd7a0a3c5b65",
+                "claim": {
+                    "format": "annotated-production",
+                    "production": {
+                        "sequent": {
+                            "conclusion": "bafyreibeoxixgwsp2uptx2vlehvnsnvdktncf2tuwosklk6mfrmb2i6nga",
+                            "dependencies": []
+                        },
+                        "mode": "bafyreigkqwnwtzv4bivvmyunw5fsjqnunerocqzb6l75qx56kz5rgbxxkm"
+                    },
+                    "annotation": {
+                        "name": "fib2"
+                    }
+                }
+            }
+        },
+        {
+            "format": "assertion",
+            "element": {
+                "agent": "f1f778e0eb75ce859e10987b2bf7c3969b130bb5ecde98dfaceadd7a0a3c5b65",
+                "claim": {
+                    "format": "annotated-production",
+                    "production": {
+                        "sequent": {
+                            "conclusion": "bafyreiepsqf4426hsbqjs66ahaxild3nxeolpl4jqivvwyy5qxrjtllfey",
+                            "dependencies": []
+                        },
+                        "mode": "bafyreigkqwnwtzv4bivvmyunw5fsjqnunerocqzb6l75qx56kz5rgbxxkm"
+                    },
+                    "annotation": {
+                        "name": "fib3"
+                    }
+                }
+            }
+        },
+        {
+            "format": "assertion",
+            "element": {
+                "agent": "f1f778e0eb75ce859e10987b2bf7c3969b130bb5ecde98dfaceadd7a0a3c5b65",
+                "claim": {
+                    "format": "annotated-production",
+                    "production": {
+                        "sequent": {
+                            "conclusion": "bafyreihyxluw53n3bgtsoehlgr2o2zmadoou5oefpg47rzs4q5q2bwj7nm",
+                            "dependencies": []
+                        },
+                        "mode": "bafyreigkqwnwtzv4bivvmyunw5fsjqnunerocqzb6l75qx56kz5rgbxxkm"
+                    },
+                    "annotation": {
+                        "name": "fib4"
+                    }
+                }
+            }
+        },
+        {
+            "format": "assertion",
+            "element": {
+                "agent": "f1f778e0eb75ce859e10987b2bf7c3969b130bb5ecde98dfaceadd7a0a3c5b65",
+                "claim": {
+                    "format": "annotated-production",
+                    "production": {
+                        "sequent": {
+                            "conclusion": "bafyreienoyhoqrvjcrac7w3fddqr4dqwfsfvasbi5eaju5pzgkepvhcdu4",
+                            "dependencies": []
+                        },
+                        "mode": "bafyreigkqwnwtzv4bivvmyunw5fsjqnunerocqzb6l75qx56kz5rgbxxkm"
+                    },
+                    "annotation": {
+                        "name": "fib5"
+                    }
+                }
+            }
+        },
+        {
+            "format": "assertion",
+            "element": {
+                "agent": "f1f778e0eb75ce859e10987b2bf7c3969b130bb5ecde98dfaceadd7a0a3c5b65",
+                "claim": {
+                    "format"    : "annotated-production",
+                    "production": {
+                        "sequent": {
+                            "conclusion": "bafyreiemcm5si35wwzgusxgosx2yj4jv5tyz5y26k6f4hdynbxoknqaf6y",
+                            "dependencies": []
+                        },
+                        "mode": "bafyreigkqwnwtzv4bivvmyunw5fsjqnunerocqzb6l75qx56kz5rgbxxkm"
+                    },
+                    "annotation": {
+                        "name": "fib6"
+                    }
+                }
+            }
+        },
+        {
+            "format": "assertion",
+            "element": {
+                "agent": "f1f778e0eb75ce859e10987b2bf7c3969b130bb5ecde98dfaceadd7a0a3c5b65",
+                "claim": {
+                    "format": "annotated-production",
+                    "production": {
+                        "sequent": {
+                            "conclusion": "bafyreigzrxfdtjgcbzqo2a4i3vbn42ymlh6ghtqagj2lrkgoewia3pjmwi",
+                            "dependencies": []
+                        },
+                        "mode": "bafyreigkqwnwtzv4bivvmyunw5fsjqnunerocqzb6l75qx56kz5rgbxxkm"
+                    },
+                    "annotation": {
+                        "name": "fib7"
+                    }
+                }
+            }
+        },
+        {
+            "format": "assertion",
+            "element": {
+                "agent": "f1f778e0eb75ce859e10987b2bf7c3969b130bb5ecde98dfaceadd7a0a3c5b65",
+                "claim": {
+                    "format": "annotated-production",
+                    "production": {
+                        "sequent": {
+                            "conclusion": "bafyreihy5agywawuhlxpaq4nlb4ikravlqjdzppgxmh4rwj23l7z5rwd7y",
+                            "dependencies": []
+                        },
+                        "mode": "bafyreigkqwnwtzv4bivvmyunw5fsjqnunerocqzb6l75qx56kz5rgbxxkm"
+                    },
+                    "annotation": {
+                        "name": "fib8"
+                    }
+                }
+            }
+        },
+        {
+            "format": "assertion",
+            "element": {
+                "agent": "f1f778e0eb75ce859e10987b2bf7c3969b130bb5ecde98dfaceadd7a0a3c5b65",
+                "claim": {
+                    "format": "annotated-production",
+                    "production": {
+                        "sequent": {
+                            "conclusion": "bafyreibilwgvxphasovcfaynlf6b23jlk73zaqocmoi5jh4t4dwwahheai",
+                            "dependencies": []
+                        },
+                        "mode": "bafyreigkqwnwtzv4bivvmyunw5fsjqnunerocqzb6l75qx56kz5rgbxxkm"
+                    },
+                    "annotation": {
+                        "name": "fib9"
+                    }
+                }
+            }
+        },
+        {
+            "format": "assertion",
+            "element": {
+                "agent": "f1f778e0eb75ce859e10987b2bf7c3969b130bb5ecde98dfaceadd7a0a3c5b65",
+                "claim": {
+                    "format": "annotated-production",
+                    "production": {
+                        "sequent": {
+                            "conclusion": "bafyreiah4z7tjhreztzw7tuuik6wstye7x7oslna2ryn2c3euxamzr5wha",
+                            "dependencies": []
+                        },
+                        "mode": "bafyreigkqwnwtzv4bivvmyunw5fsjqnunerocqzb6l75qx56kz5rgbxxkm"
+                    },
+                    "annotation": {
+                        "name": "fib10"
+                    }
+                }
+            }
+        },
+        {
+            "format": "assertion",
+            "element": {
+                "agent": "f1f778e0eb75ce859e10987b2bf7c3969b130bb5ecde98dfaceadd7a0a3c5b65",
+                "claim": {
+                    "format": "annotated-production",
+                    "production": {
+                        "sequent": {
+                            "conclusion": "bafyreifr7zsezq4foo2fmltiftwtdv3ma2uva72to3a25sl26aiufqxrnu",
+                            "dependencies": []
+                        },
+                        "mode": "bafyreigkqwnwtzv4bivvmyunw5fsjqnunerocqzb6l75qx56kz5rgbxxkm"
+                    },
+                    "annotation": {
+                        "name": "fib11"
+                    }
+                }
+            }
+        },
+        {
+            "format": "assertion",
+            "element": {
+                "agent": "f1f778e0eb75ce859e10987b2bf7c3969b130bb5ecde98dfaceadd7a0a3c5b65",
+                "claim": {
+                    "format": "annotated-production",
+                    "production": {
+                        "sequent": {
+                            "conclusion": "bafyreiduqjqyaxfeiatvaw5tx5x4f764f5ktnfqfb3nyaq6vxcvi5f64ea",
+                            "dependencies": []
+                        },
+                        "mode": "bafyreigkqwnwtzv4bivvmyunw5fsjqnunerocqzb6l75qx56kz5rgbxxkm"
+                    },
+                    "annotation": {
+                        "name": "fib12"
+                    }
+                }
+            }
+        },
+        {
+            "format": "assertion",
+            "element": {
+                "agent": "f1f778e0eb75ce859e10987b2bf7c3969b130bb5ecde98dfaceadd7a0a3c5b65",
+                "claim": {
+                    "format": "annotated-production",
+                    "production": {
+                        "sequent": {
+                            "conclusion": "bafyreifg3cvmkt5svdes6oxtvd4tu5wnep6m4tnpgaiehiebxwfrtjcfzu",
+                            "dependencies": []
+                        },
+                        "mode": "bafyreigkqwnwtzv4bivvmyunw5fsjqnunerocqzb6l75qx56kz5rgbxxkm"
+                    },
+                    "annotation": {
+                        "name": "fib13"
+                    }
+                }
+            }
+        }
+    ],
+    "formulas": {
+        "bafyreibeoxixgwsp2uptx2vlehvnsnvdktncf2tuwosklk6mfrmb2i6nga": {
+            "language": "bafyreicebs4jtzzbdr2v57jod7p3ww4e4gqmfsuyuox65fbdpuczadn6me",
+            "content": "fib (s (s z)) (s z)",
+            "context": [
+                "bafyreiadtjndregkez25i3f55qxlm62mquc22v2jcitvlxhzdcfsjfa5iu"
+            ]
+        },
+        "bafyreiepsqf4426hsbqjs66ahaxild3nxeolpl4jqivvwyy5qxrjtllfey": {
+            "language": "bafyreicebs4jtzzbdr2v57jod7p3ww4e4gqmfsuyuox65fbdpuczadn6me",
+            "content": "fib (s (s (s z))) (s (s z))",
+            "context": [
+                "bafyreiadtjndregkez25i3f55qxlm62mquc22v2jcitvlxhzdcfsjfa5iu"
+            ]
+        },
+        "bafyreihyxluw53n3bgtsoehlgr2o2zmadoou5oefpg47rzs4q5q2bwj7nm": {
+            "language": "bafyreicebs4jtzzbdr2v57jod7p3ww4e4gqmfsuyuox65fbdpuczadn6me",
+            "content": "fib (s (s (s (s z)))) (s (s (s z)))",
+            "context": [
+                "bafyreiadtjndregkez25i3f55qxlm62mquc22v2jcitvlxhzdcfsjfa5iu"
+            ]
+        },
+        "bafyreienoyhoqrvjcrac7w3fddqr4dqwfsfvasbi5eaju5pzgkepvhcdu4": {
+            "language": "bafyreicebs4jtzzbdr2v57jod7p3ww4e4gqmfsuyuox65fbdpuczadn6me",
+            "content": "fib (s (s (s (s (s z))))) (s (s (s (s (s z)))))",
+            "context": [
+                "bafyreiadtjndregkez25i3f55qxlm62mquc22v2jcitvlxhzdcfsjfa5iu"
+            ]
+        },
+        "bafyreiemcm5si35wwzgusxgosx2yj4jv5tyz5y26k6f4hdynbxoknqaf6y": {
+            "language": "bafyreicebs4jtzzbdr2v57jod7p3ww4e4gqmfsuyuox65fbdpuczadn6me",
+            "content": "fib (s (s (s (s (s (s z)))))) (s (s (s (s (s (s (s (s z))))))))",
+            "context": [
+                "bafyreiadtjndregkez25i3f55qxlm62mquc22v2jcitvlxhzdcfsjfa5iu"
+            ]
+        },
+        "bafyreigzrxfdtjgcbzqo2a4i3vbn42ymlh6ghtqagj2lrkgoewia3pjmwi": {
+            "language": "bafyreicebs4jtzzbdr2v57jod7p3ww4e4gqmfsuyuox65fbdpuczadn6me",
+            "content": "fib (s (s (s (s (s (s (s z))))))) (s (s (s (s (s (s (s (s (s (s (s (s (s z)))))))))))))",
+            "context": [
+                "bafyreiadtjndregkez25i3f55qxlm62mquc22v2jcitvlxhzdcfsjfa5iu"
+            ]
+        },
+        "bafyreihy5agywawuhlxpaq4nlb4ikravlqjdzppgxmh4rwj23l7z5rwd7y": {
+            "language": "bafyreicebs4jtzzbdr2v57jod7p3ww4e4gqmfsuyuox65fbdpuczadn6me",
+            "content": "fib (s (s (s (s (s (s (s (s z)))))))) (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s z)))))))))))))))))))))",
+            "context": [
+                "bafyreiadtjndregkez25i3f55qxlm62mquc22v2jcitvlxhzdcfsjfa5iu"
+            ]
+        },
+        "bafyreibilwgvxphasovcfaynlf6b23jlk73zaqocmoi5jh4t4dwwahheai": {
+            "language": "bafyreicebs4jtzzbdr2v57jod7p3ww4e4gqmfsuyuox65fbdpuczadn6me",
+            "content": "fib (s (s (s (s (s (s (s (s (s z))))))))) (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s z))))))))))))))))))))))))))))))))))",
+            "context": [
+                "bafyreiadtjndregkez25i3f55qxlm62mquc22v2jcitvlxhzdcfsjfa5iu"
+            ]
+        },
+        "bafyreiah4z7tjhreztzw7tuuik6wstye7x7oslna2ryn2c3euxamzr5wha": {
+            "language": "bafyreicebs4jtzzbdr2v57jod7p3ww4e4gqmfsuyuox65fbdpuczadn6me",
+            "content": "fib (s (s (s (s (s (s (s (s (s (s z)))))))))) (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s z)))))))))))))))))))))))))))))))))))))))))))))))))))))))",
+            "context": [
+                "bafyreiadtjndregkez25i3f55qxlm62mquc22v2jcitvlxhzdcfsjfa5iu"
+            ]
+        },
+        "bafyreifr7zsezq4foo2fmltiftwtdv3ma2uva72to3a25sl26aiufqxrnu": {
+            "language": "bafyreicebs4jtzzbdr2v57jod7p3ww4e4gqmfsuyuox65fbdpuczadn6me",
+            "content": "fib (s (s (s (s (s (s (s (s (s (s (s z))))))))))) (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s z)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))",
+            "context": [
+                "bafyreiadtjndregkez25i3f55qxlm62mquc22v2jcitvlxhzdcfsjfa5iu"
+            ]
+        },
+        "bafyreiduqjqyaxfeiatvaw5tx5x4f764f5ktnfqfb3nyaq6vxcvi5f64ea": {
+            "language": "bafyreicebs4jtzzbdr2v57jod7p3ww4e4gqmfsuyuox65fbdpuczadn6me",
+            "content": "fib (s (s (s (s (s (s (s (s (s (s (s (s z)))))))))))) (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s z))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))",
+            "context": [
+                "bafyreiadtjndregkez25i3f55qxlm62mquc22v2jcitvlxhzdcfsjfa5iu"
+            ]
+        },
+        "bafyreifg3cvmkt5svdes6oxtvd4tu5wnep6m4tnpgaiehiebxwfrtjcfzu": {
+            "language": "bafyreicebs4jtzzbdr2v57jod7p3ww4e4gqmfsuyuox65fbdpuczadn6me",
+            "content": "fib (s (s (s (s (s (s (s (s (s (s (s (s (s z))))))))))))) (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s z)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))",
+            "context": [
+                "bafyreiadtjndregkez25i3f55qxlm62mquc22v2jcitvlxhzdcfsjfa5iu"
+            ]
+        }
+    },
+    "contexts": {
+        "bafyreiadtjndregkez25i3f55qxlm62mquc22v2jcitvlxhzdcfsjfa5iu": {
+            "language": "bafyreicebs4jtzzbdr2v57jod7p3ww4e4gqmfsuyuox65fbdpuczadn6me",
+            "content": [
+                "kind nat  type",
+                "type z    nat",
+                "type s    nat -> nat",
+                "type plus nat -> nat -> nat -> o",
+                "type fib         nat -> nat -> o",
+                "plus z N N",
+                "plus (s N) M (s P) :- plus N M P",
+                "fib z z",
+                "fib (s z) (s z)",
+                "fib (s (s N)) F :- fib N F1, fib (s N) F2, plus F1 F2 F"
+            ]
+        }
+    },
+    "languages": {
+        "bafyreicebs4jtzzbdr2v57jod7p3ww4e4gqmfsuyuox65fbdpuczadn6me": {
+            "content": "!! This is the lambda Prolog language !!"
+        }
+    },
+    "tools": {
+        "bafyreigkqwnwtzv4bivvmyunw5fsjqnunerocqzb6l75qx56kz5rgbxxkm": {
+            "content": "This is the lambda-prolog tool"
+        }
+    }
+}
