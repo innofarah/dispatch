@@ -1,3 +1,5 @@
 /node_modules/
 src-ts/old-declared-types.js
 /old
+/src
+/executables
