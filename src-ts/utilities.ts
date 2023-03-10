@@ -20,167 +20,161 @@
 // in this file a lot should be added; for example, verifying that all things refered in the sequence are of the same language (check first if this is what we want?)
 // for now only check that the the object has the correct attributes (without checking the types of their values)
 
-const crypto = require('crypto')
-const fs = require('fs')
-const { execSync } = require('child_process')
-const util = require('util')
-const stream = require('stream')
-const fetch = require('node-fetch').default
-const { Web3Storage } = require('web3.storage')
-const { CarReader } = require('@ipld/car')
+import crypto from "crypto";
+import fs from "fs";
+import { execSync } from "child_process";
+import util from "util";
+import stream from "stream";
+const fetch = require("node-fetch").default;
+import { Web3Storage } from "web3.storage";
+import { CarReader } from "@ipld/car";
 
-import initialVals = require("./initial-vals")
-const { configpath, agentprofilespath, toolprofilespath, keystorepath, allowlistpath } = initialVals
+import { configpath, keystorepath, allowlistpath } from "./initial-vals";
 
-
-let isContext = (obj: {}) => {
-    if (Object.keys(obj).length == 3 && "format" in obj && obj["format"] == "context") {
-        return ("language" in obj && "content" in obj)
-    }
+function isAnnotated(format: string,
+                     testFn: (_: any) => boolean) : (_: any) => boolean {
+    const annotatedFormat = "annotated-" + format;
+    return (obj) => {
+        return Object.keys(obj).length == 3
+            && "format" in obj
+            && obj["format"] == annotatedFormat
+            && format in obj
+            && testFn(obj[format]);
+    };
 }
 
-let isAnnotatedContext = (obj: {}) => {
-    if (Object.keys(obj).length == 3 && "format" in obj && obj["format"] == "annotated-context") {
-        return ("context" in obj && "annotation" in obj)
-    }
+export function isContext(obj: any) : boolean {
+    return Object.keys(obj).length == 3
+        && "format" in obj
+        && obj["format"] == "context"
+        && "language" in obj
+        && "content" in obj;
 }
 
-let isFormula = (obj: {}) => {
-    if (Object.keys(obj).length == 4 && "format" in obj && obj["format"] == "formula") {
-        return ("language" in obj && "content" in obj && "context" in obj)
-    }
-    return false
+export const isAnnotatedContext = isAnnotated("context", isContext);
+
+export function isFormula(obj: any) : boolean {
+    return Object.keys(obj).length == 4
+        && "format" in obj
+        && obj["format"] == "formula"
+        && "language" in obj
+        && "content" in obj
+        && "context" in obj;
 }
 
-let isAnnotatedFormula = (obj: {}) => {
-    if (Object.keys(obj).length == 3 && "format" in obj && obj["format"] == "annotated-formula") {
-        return ("formula" in obj && "annotation" in obj)
-    }
-    return false
+export const isAnnotatedFormula = isAnnotated("formula", isFormula);
+
+export function isSequent(obj: any) : boolean {
+    return Object.keys(obj).length == 3
+        && "format" in obj
+        && obj["format"] == "sequent"
+        && "dependencies" in obj
+        && "conclusion" in obj;
 }
 
-let isSequent = (obj: {}) => {
-    if (Object.keys(obj).length == 3 && "format" in obj && obj["format"] == "sequent") {
-        return ("dependencies" in obj && "conclusion" in obj)
-    }
-    return false
+export const isAnnotatedSequent = isAnnotated("sequent", isSequent);
+
+export function isTool(obj: any) : boolean {
+    return Object.keys(obj).length == 2
+        && "format" in obj
+        && obj["format"] == "tool"
+        && "content" in obj;
 }
 
-let isAnnotatedSequent = (obj: {}) => {
-    if (Object.keys(obj).length == 3 && "format" in obj && obj["format"] == "annotated-sequent") {
-        return ("sequent" in obj && "annotation" in obj)
-    }
-    return false
+export function isLanguage(obj: any) : boolean {
+    return Object.keys(obj).length == 2
+        && "format" in obj
+        && obj["format"] == "language"
+        && "content" in obj;
 }
 
-let isTool = (obj: {}) => {
-    if (Object.keys(obj).length == 2 && "format" in obj && obj["format"] == "tool") {
-        return ("content" in obj)
-    }
-    return false
+export function isProduction(obj: any) : boolean {
+    return Object.keys(obj).length == 3
+        && "format" in obj
+        && obj["format"] == "production"
+        && "sequent" in obj
+        && "mode" in obj;
 }
 
-let isLanguage = (obj: {}) => {
-    if (Object.keys(obj).length == 2 && "format" in obj && obj["format"] == "language") {
-        return ("content" in obj)
-    }
-    return false
+export const isAnnotatedProduction = isAnnotated("production", isProduction);
+
+export function isAssertion(obj: any) : boolean {
+    return Object.keys(obj).length == 4
+        && "format" in obj
+        && obj["format"] == "assertion"
+        && "agent" in obj
+        && "claim" in obj
+        && "signature" in obj;
 }
 
-let isProduction = (obj: {}) => {
-    if (Object.keys(obj).length == 3 && "format" in obj && obj["format"] == "production") {
-        return ("sequent" in obj && "mode" in obj)
-    }
-    return false
-}
-
-let isAnnotatedProduction = (obj: {}) => {
-    if (Object.keys(obj).length == 3 && "format" in obj && obj["format"] == "annotated-production") {
-        return ("production" in obj && "annotation" in obj)
-    }
-    return false
-}
-
-let isAssertion = (obj: {}) => {
-    if (Object.keys(obj).length == 4 && "format" in obj && obj["format"] == "assertion") {
-        return ("agent" in obj && "claim" in obj && "signature" in obj)
-    }
-    return false
-}
-
-let isCollection = (obj: {}) => {
-    if (Object.keys(obj).length == 3 && "format" in obj && obj["format"] == "collection") {
-        return ("name" in obj && "elements" in obj)
-    }
-    return false
+export function isCollection(obj: any) : boolean {
+    return Object.keys(obj).length == 3
+        && "format" in obj
+        && obj["format"] == "collection"
+        && "name" in obj
+        && "elements" in obj;
 }
 
 // the standard format types to publish and get
-let isOfSpecifiedTypes = (obj: {}) => {
-    return (
-        isContext(obj) || isFormula(obj)
-        || isSequent(obj) || isProduction(obj)
-        || isAssertion(obj) || isCollection(obj)
-        || isAnnotatedContext(obj) || isAnnotatedFormula(obj)
-        || isAnnotatedSequent(obj) || isAnnotatedProduction(obj)
-    )
+export function isOfSpecifiedTypes(obj: any) : boolean {
+    return isContext(obj)
+        || isFormula(obj)
+        || isSequent(obj)
+        || isProduction(obj)
+        || isAssertion(obj)
+        || isCollection(obj)
+        || isAnnotatedContext(obj)
+        || isAnnotatedFormula(obj)
+        || isAnnotatedSequent(obj)
+        || isAnnotatedProduction(obj);
 }
 
-let verifySignature = (assertion: {}) => {
-    let signature = assertion["signature"]
-    let claimedPublicKey = assertion["agent"]
+// [TODO] rename to isValidSignature
+export function verifySignature(assertion: any) : boolean {
+    // [TODO] assert(isAssertion(assertion));
+    let signature = assertion["signature"];
+    let claimedPublicKey = assertion["agent"];
     // the data to verify : here it's the asset's cid in the object
-    let dataToVerify = assertion["claim"]["/"]
+    let dataToVerify = assertion["claim"]["/"];
 
-    const verify = crypto.createVerify('SHA256')
-    verify.write(dataToVerify)
-    verify.end()
-    let signatureVerified: boolean = verify.verify(claimedPublicKey, signature, 'hex')
-    return signatureVerified
+    const verify = crypto.createVerify('SHA256');
+    verify.write(dataToVerify);
+    verify.end();
+    return verify.verify(claimedPublicKey, signature, 'hex');
 }
 
-let fingerPrint = (agent: string) => {
-    let keystore = JSON.parse(fs.readFileSync(keystorepath))
-    let fingerPrint
-    if (keystore[agent]) {
-        fingerPrint = keystore[agent]
+export function fingerPrint(agent: string) : string {
+    let keystore = JSON.parse(fs.readFileSync(keystorepath).toString());
+    let fingerPrint = keystore[agent];
+    if (!fingerPrint) {
+        fingerPrint = crypto.createHash('sha256').update(agent).digest('hex');
+        keystore[agent] = fingerPrint;
+        fs.writeFileSync(keystorepath, JSON.stringify(keystore));
     }
-    else {
-        fingerPrint = crypto.createHash('sha256').update(agent).digest('hex')
-        keystore[agent] = fingerPrint
-        fs.writeFileSync(keystorepath, JSON.stringify(keystore))
-    }
-    return fingerPrint
+    return fingerPrint;
 }
 
-let inAllowList = (agent: string) => {
-    try {
-        let allowList = JSON.parse(fs.readFileSync(allowlistpath))
-        return (allowList.includes(agent))
-    } catch(error) {
-        console.error(new Error("problem in checking allowlist"))
-        process.exit(1)
-    }
+// [TODO] rename to isAllowed
+export function inAllowList(agent: string) : boolean {
+    let allowList = JSON.parse(fs.readFileSync(allowlistpath).toString());
+    return allowList.includes(agent);
 }
 
 // --------------------------
 // for retrieval from ipfs
 // --------------------------
 
-let ipfsGetObj = async (cid: string) => {
-    try {
-        let cmd = "ipfs dag get " + cid + " > " + cid + ".json"
-        execSync(cmd, { encoding: 'utf-8' })
-        let obj = JSON.parse(fs.readFileSync(cid + ".json"))
-        fs.unlinkSync(cid + ".json")
-        return obj
-    } catch (error) {
-        console.error("ERROR: getting object from ipfs failed");
-        return {}
-    }
+export async function ipfsGetObj(cid: string) : Promise<any> {
+    // [TODO] async function shouldn't be calling Sync()
+    let cmd = "ipfs dag get " + cid + " > " + cid + ".json";
+    execSync(cmd, { encoding: 'utf-8' });
+    let obj = JSON.parse(fs.readFileSync(cid + ".json").toString());
+    fs.unlinkSync(cid + ".json");
+    return obj;
 }
 
-let ensureFullDAG = async (cid) => {
+// [TODO] unspaghettify
+export async function ensureFullDAG(cid: string) : Promise<void> {
     try {
         //test if it exists locally / or tries to retrieve the missing links in case the ipfs daemon is activated
         let cmd = "ipfs dag export -p " + cid + " > tmpp.car"
@@ -192,10 +186,9 @@ let ensureFullDAG = async (cid) => {
         });
     } catch (err) {
         console.log("There are missing links that were not found in the local ipfs cache OR the ipfs daemon (if activated) has not been able to find them, trying to retrieve them from the specified gateway ..")
-        let config = JSON.parse(fs.readFileSync(configpath))
-        let gateway
-        if (config["my-gateway"]) gateway = config["my-gateway"]
-        else {
+        let config = JSON.parse(fs.readFileSync(configpath).toString())
+        let gateway = config["my-gateway"];
+        if (!gateway) {
             console.log("ERROR: gateway should be specified as trying to retreive data through it .. ")
             process.exit(1)
         }
@@ -228,7 +221,7 @@ let ensureFullDAG = async (cid) => {
 // for adding to ipfs (+cloud)
 // --------------------------
 
-let ipfsAddObj = async (obj: {}) => {
+export async function ipfsAddObj(obj: any) {
     try {
         fs.writeFileSync("tmpJSON.json", JSON.stringify(obj))
         let addcmd = "ipfs dag put tmpJSON.json --pin"
@@ -243,7 +236,7 @@ let ipfsAddObj = async (obj: {}) => {
 }
 
 // subject to change, check if adding as file is the correct (and better) thing to do for declarations content and formula string
-/*let ipfsAddFile = async (data: string) => {
+/*export const ipfsAddFile = async (data: string) => {
     try {
         fs.writeFileSync("tmpFile.txt", data)
         let addcmd = "ipfs add tmpFile.txt --cid-version 1 --pin"
@@ -258,11 +251,11 @@ let ipfsAddObj = async (obj: {}) => {
     }
 }*/
 
-let publishDagToCloud = async (cid: string) => {
-    let web3Token, web3Client
+export async function publishDagToCloud(cid: string) {
+    let web3Token: string, web3Client: Web3Storage
 
     try {
-        let config = JSON.parse(fs.readFileSync(configpath))
+        let config = JSON.parse(fs.readFileSync(configpath).toString())
 
         if (config["my-web3.storage-api-token"]
             && config["my-web3.storage-api-token"] != "**insert your token here**") {
@@ -278,7 +271,7 @@ let publishDagToCloud = async (cid: string) => {
         // read and parse the entire stream in one go, this will cache the contents of
         // the car in memory so is not suitable for large files.
         const reader = await CarReader.fromIterable(inStream)
-        const cid1 = await web3Client.putCar(reader)
+        await web3Client.putCar(reader)
         console.log("DAG successfully published to web3.storage!")
         console.log("root cid: " + cid)
         fs.unlink('tmpcar.car', (err) => {
@@ -289,9 +282,3 @@ let publishDagToCloud = async (cid: string) => {
         console.log(err)
     }
 }
-
-export = { isOfSpecifiedTypes, isContext, isFormula, isSequent, isProduction, isAssertion, 
-            isCollection, isAnnotatedContext, isAnnotatedFormula, isAnnotatedSequent, 
-            isAnnotatedProduction,
-            verifySignature, fingerPrint, inAllowList, ipfsGetObj, ensureFullDAG, 
-            ipfsAddObj, publishDagToCloud }

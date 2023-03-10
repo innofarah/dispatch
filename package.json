@@ -7,6 +7,7 @@
   "license": "Apache-2.0",
   "main": "./src/index.js",
   "scripts": {
+    "tsc": "cd src-ts && tsc",
     "build": "(cd src-ts && tsc) && webpack && pkg build/dispatch.js --out-path executables/"
   },
   "dependencies": {

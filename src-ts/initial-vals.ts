@@ -17,18 +17,15 @@
  * limitations under the License.
  */
 
-const os = require('os')
+import os from 'os';
 
-const xdg_config_dir = process.env.XDG_CONFIG_DIR
-const confdirpath =
-    xdg_config_dir ? xdg_config_dir : os.homedir() + '/.config/dispatch'
+const xdg_config_dir = process.env.XDG_CONFIG_DIR;
+export const confdirpath =
+    xdg_config_dir ? xdg_config_dir : os.homedir() + '/.config/dispatch';
 
-const configpath = confdirpath +  "/config.json"
-const keystorepath = confdirpath + "/keystore.json"
-const agentprofilespath = confdirpath + "/agentprofiles.json"
-const toolprofilespath = confdirpath + "/toolprofiles.json"
-const languagespath = confdirpath + "/languages.json"
-const allowlistpath = confdirpath + "/allowlist.json"
-
-export = { configpath, confdirpath, keystorepath, agentprofilespath,
-           toolprofilespath, languagespath, allowlistpath }
+export const configpath        = confdirpath + "/config.json";
+export const keystorepath      = confdirpath + "/keystore.json";
+export const agentprofilespath = confdirpath + "/agentprofiles.json";
+export const toolprofilespath  = confdirpath + "/toolprofiles.json";
+export const languagespath     = confdirpath + "/languages.json";
+export const allowlistpath     = confdirpath + "/allowlist.json";

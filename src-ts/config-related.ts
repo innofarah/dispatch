@@ -17,15 +17,13 @@
  * limitations under the License.
  */
 
-const fs = require('fs')
-const crypt = require('crypto')
+import fs from 'fs';
+import crypt from 'crypto';
 
-//const { configpath, confdirpath, keystorepath, agentprofilespath } = require('./initial-vals')
-import initialVals = require("./initial-vals")
-const { configpath, confdirpath, keystorepath, agentprofilespath, toolprofilespath, languagespath, allowlistpath } = initialVals
+import { confdirpath, configpath, keystorepath, agentprofilespath,
+         toolprofilespath, languagespath, allowlistpath } from './initial-vals';
 
-import utilities = require("./utilities")
-const { ipfsAddObj, publishDagToCloud } = utilities
+import { ipfsAddObj } from "./utilities"
 
 let setup = () => {
     // try to read ~/.config/dispatch/config.json --> create if doesn't exist
@@ -91,7 +89,7 @@ let createAgent = (profileName: string) => { // now just using default parameter
     // create a profile and add it to the profiles file
     let fingerPrint = crypt.createHash('sha256').update(publicKey).digest('hex')
 
-    let profiles = JSON.parse(fs.readFileSync(agentprofilespath))
+    let profiles = JSON.parse(fs.readFileSync(agentprofilespath).toString())
     let newProfile: agentProfile = {
         "name": profileName,
         "public-key": publicKey,
@@ -130,7 +128,7 @@ let createTool = async (toolProfileName: string, inputType: "file" | "cid" | "js
     }
     else if (inputType == "json") {
         try {
-            let data = JSON.parse(fs.readFileSync(input)) //assuming the data is json
+            let data = JSON.parse(fs.readFileSync(input).toString()) //assuming the data is json
             // but maybe it's not?
             //let data = fs.readFileSync(input)
             let contentCid = await ipfsAddObj(data)
@@ -151,7 +149,7 @@ let createTool = async (toolProfileName: string, inputType: "file" | "cid" | "js
         "tool": toolCid
     }
 
-    let toolProfiles = JSON.parse(fs.readFileSync(toolprofilespath))
+    let toolProfiles = JSON.parse(fs.readFileSync(toolprofilespath).toString())
     toolProfiles[toolProfileName] = toolProfile
 
     try {
@@ -185,7 +183,7 @@ let createLanguage = async (languageName: string, inputType: "file" | "cid" | "j
     }
     else if (inputType == "json") {
         try {
-            let data = JSON.parse(fs.readFileSync(input)) //assuming the data is json
+            let data = JSON.parse(fs.readFileSync(input).toString()) //assuming the data is json
             // but maybe it's not?
             //let data = fs.readFileSync(input)
             let contentCid = await ipfsAddObj(data)
@@ -206,7 +204,7 @@ let createLanguage = async (languageName: string, inputType: "file" | "cid" | "j
         "language": languageCid
     }
 
-    let languages = JSON.parse(fs.readFileSync(languagespath))
+    let languages = JSON.parse(fs.readFileSync(languagespath).toString())
     languages[languageName] = language
 
     try {
@@ -220,7 +218,7 @@ let createLanguage = async (languageName: string, inputType: "file" | "cid" | "j
 }
 
 let setweb3token = (token: string) => {
-    let configFile = fs.readFileSync(configpath)
+    let configFile = fs.readFileSync(configpath).toString()
     let config = JSON.parse(configFile)
     config["my-web3.storage-api-token"] = token
     try {
@@ -232,7 +230,7 @@ let setweb3token = (token: string) => {
 }
 
 let setgateway = (gateway: string) => {
-    let configFile = fs.readFileSync(configpath)
+    let configFile = fs.readFileSync(configpath).toString()
     let config = JSON.parse(configFile)
     config["my-gateway"] = gateway
     try {
@@ -257,7 +255,7 @@ let setgateway = (gateway: string) => {
 }*/
 
 let listconfig = () => {
-    let configFile = fs.readFileSync(configpath)
+    let configFile = fs.readFileSync(configpath).toString()
     let config = JSON.parse(configFile)
     console.log(config)
 }
