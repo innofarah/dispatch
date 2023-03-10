@@ -9,7 +9,7 @@ import utilities = require("./utilities")
 const { ipfsAddObj, publishDagToCloud } = utilities
 
 let setup = () => {
-    // try to read ~/.config/w3proof-dispatch/config.json --> create if doesn't exist
+    // try to read ~/.config/dispatch/config.json --> create if doesn't exist
     if (!fs.existsSync(configpath)) {
         fs.mkdirSync(confdirpath, { recursive: true }) // it creates any directory in the specified path if it does not exist
         let configObj = {

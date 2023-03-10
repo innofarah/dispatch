@@ -1,6 +1,6 @@
 const os = require('os')
 
-const confdirpath = os.homedir() + '/.config/w3proof-dispatch'
+const confdirpath = os.homedir() + '/.config/dispatch'
 
 const configpath = confdirpath +  "/config.json"
 const keystorepath = confdirpath + "/keystore.json"

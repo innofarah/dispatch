@@ -276,7 +276,7 @@ let publishSequent = async (sequentObj: {}, input: {}) => {
         let ciddependency = ""
         if (dependency.startsWith("damf:")) {
             // assuming the cids in "lemmas" should refer to a "formula" object
-            //(if we remove the .thc generation and replace it with generation of the output format.json file produced by w3proof-dispatch get)
+            //(if we remove the .thc generation and replace it with generation of the output format.json file produced by dispatch get)
             ciddependency = dependency.split(":")[1]
             // should we test that the cid refers to a formula object here? (check later where it's best to do the cid objects type checking?)
         }

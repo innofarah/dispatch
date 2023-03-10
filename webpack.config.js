@@ -4,7 +4,7 @@ module.exports = {
 	mode: 'development',
 	entry: './src/index.js',
 	output: {
-		filename: 'w3proof-dispatch.js',
+		filename: 'dispatch.js',
 		path: path.resolve(__dirname, 'build'),
 	},
 	module: {
