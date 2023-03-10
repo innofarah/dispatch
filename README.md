@@ -18,11 +18,11 @@ Welcome to the instructions page for Dispatch!
 
 In the root directory (the directory with this README file), run:
 
->    npm install
+>     npm install
 
 Then run:
 
->    npm run build
+>     npm run build
 
 ----------------
 
