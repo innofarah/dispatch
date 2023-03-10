@@ -2,7 +2,7 @@
 
 > Note: these instructions are temporary and subject to change.
 
-Welcome to the instructions page for w3proof-dispatch!
+Welcome to the instructions page for Dispatch!
 
 ## Requirements
 
@@ -18,19 +18,11 @@ Welcome to the instructions page for w3proof-dispatch!
 
 In the root directory (the directory with this README file), run:
 
->   npm install
+>    npm install
 
-### compiling `src-ts` to `src`
+Then run:
 
-This step is normally unnecessary. It is only required after making changes to the TypeScript sources of `dispatch`.
-
-- `cd src-ts`
-- `tsc`
-- `cd ..`
-
-### building executables from `src`
-
-- `npm run build`
+>    npm run build
 
 ----------------
 
