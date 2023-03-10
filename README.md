@@ -12,9 +12,9 @@ Welcome to the instructions page for Dispatch!
 
 ## In this repo
 
-- Sources for the `dispatch` tool with building instructions below. Pre-built executables are also provided for Linux, macOS, and Windows in the `executables/` subdirectory.
+- Sources for the `dispatch` tool with building instructions below.
 
-## Building dispatch
+## Building `dispatch`
 
 In the root directory (the directory with this README file), run:
 
