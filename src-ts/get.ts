@@ -17,10 +17,10 @@
  * limitations under the License.
  */
 
-const fs = require('fs')
+import fs from 'fs'
 
-import utilities = require("./utilities")
-const { isOfSpecifiedTypes, verifySignature, fingerPrint, ipfsGetObj, ensureFullDAG } = utilities
+import { isOfSpecifiedTypes, verifySignature, fingerPrint,
+         ipfsGetObj, ensureFullDAG } from "./utilities"
 
 // we need a general get <cid> command that works according to "format":
 // context ->
@@ -29,12 +29,12 @@ const { isOfSpecifiedTypes, verifySignature, fingerPrint, ipfsGetObj, ensureFull
 // production ->
 // assertion ->
 // collection -> similar to the way we has a standard format for "collection" at publish, there will be a similar one at get
-// etc...  
+// etc...
 // dispatch will produce an output for all these object types, and a consumer (prover for ex) would decide what format it reads and how it should read it. (although the meanings of objects are fixed globally as specified)
 
 //let getCommand = async (cid: string, filepath) => {
 //let getCommand = async (cid: string, directoryPath) => {
-/*let outputPath  
+/*let outputPath
 if (Object.values(filepath).length != 0) {
     outputPath =  Object.values(filepath)
 }
@@ -44,7 +44,7 @@ else { // if no filepath argument(option) is given
 
 
 // cid refers to: context, formula, sequent, production, assertion, collection, etc. // for now
-let getCommand = async (cid: string, directoryPath: string) => {
+export async function getCommand(cid: string, directoryPath: string) {
     let result = {}
     await ensureFullDAG(cid)
 
@@ -429,5 +429,3 @@ let getCollection = async (cidObj: string, obj: {}, result: {}) => {
         result["elements"].push(resElement)
     }
 }
-
-export = { getCommand }

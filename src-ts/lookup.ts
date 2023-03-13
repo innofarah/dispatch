@@ -17,10 +17,9 @@
  * limitations under the License.
  */
 
-const fs = require('fs')
-
-import utilities = require("./utilities")
-const { isAssertion, verifySignature, fingerPrint, ipfsGetObj, ensureFullDAG } = utilities
+import fs from 'fs';
+import { isAssertion, verifySignature, fingerPrint,
+         ipfsGetObj, ensureFullDAG } from "./utilities";
 
 let getResult = async (cidFormula: string, assertionsList: {}, resultUnits: {}, path: [string]) => {
 
@@ -212,11 +211,12 @@ let processAssertionList = async (assertionList: []) => {
 }
 
 // expected filepath: of file assertion-list-for-lookup.json; this is considered to produced from assertioncidlist (do later)
-let lookup = async (cidFormula: string, filepath: string, directoryPath: string) => {
+export async function lookup(cidFormula: string, filepath: string,
+                             directoryPath: string) {
     // must check that formula is of the correct "format" later
     let resultUnits = {}
 
-    let assertionList = JSON.parse(fs.readFileSync(filepath))
+    let assertionList = JSON.parse(fs.readFileSync(filepath).toString())
     // change here to just read an assertionList of the actual assertions cids,
     // and then dispatch shall produce from it the format that getResult(..) shall read
 
@@ -236,6 +236,3 @@ let lookup = async (cidFormula: string, filepath: string, directoryPath: string)
         console.error(err)
     }
 }
-
-export = { lookup }
-

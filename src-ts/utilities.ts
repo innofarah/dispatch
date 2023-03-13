@@ -25,7 +25,7 @@ import fs from "fs";
 import { execSync } from "child_process";
 import util from "util";
 import stream from "stream";
-const fetch = require("node-fetch").default;
+import fetch from "node-fetch";
 import { Web3Storage } from "web3.storage";
 import { CarReader } from "@ipld/car";
 

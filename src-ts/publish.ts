@@ -17,15 +17,12 @@
  * limitations under the License.
  */
 
-const fs = require('fs')
-const { execSync } = require('child_process');
-const crypto = require('crypto')
+import fs from 'fs';
+import crypto from 'crypto';
 
-import initialVals = require("./initial-vals")
-const { configpath, toolprofilespath, languagespath, agentprofilespath } = initialVals
+import { toolprofilespath, languagespath, agentprofilespath } from "./initial-vals";
 
-import utilities = require("./utilities")
-const { ipfsAddObj, publishDagToCloud } = utilities
+import { ipfsAddObj, publishDagToCloud } from "./utilities"
 
 //let publishedNamedFormulas: { [key: string]: string } = {}
 //let publishedFormulas: string[] = []
@@ -33,18 +30,18 @@ const { ipfsAddObj, publishDagToCloud } = utilities
 //let publishedAssertions: string[] = []
 //let publishedDeclarations: { [key: string]: string } = {}
 
-let publishCommand = async (inputPath: string, target: target) => {
+export async function publishCommand(inputPath: string, target: target) : Promise<void> {
     try {
-        let input = JSON.parse(fs.readFileSync(inputPath)) // json file expected
+        let input = JSON.parse(fs.readFileSync(inputPath).toString()) // json file expected
 
         // publish contexts first (because they need to be linked in formulas)
         // consider an entry in "contexts" (like "fib": ..) in the input file to have two possible values: either [string] or ["damf:cidcontextobjcet"]
-        // publish according to "format" in the given input file, first we consider the "sequence" format 
+        // publish according to "format" in the given input file, first we consider the "sequence" format
 
         // considering the "format" attribute to be fixed (exists all the time) for all the possible input-formats (considering that input-formats might differ according to format of published objects)
         let format = input["format"]
         let cid = ""
-        // maybe do some checking here of the given file structure if correct? 
+        // maybe do some checking here of the given file structure if correct?
 
         if (format == "context") {
             // only one declaration object exists in this case
@@ -127,7 +124,7 @@ let publishContext = async (contextObj: {}) => {
         cidLanguage = language.split(":")[1]
     else {
         try {
-            let languages = JSON.parse(fs.readFileSync(languagespath))
+            let languages = JSON.parse(fs.readFileSync(languagespath).toString())
             if (languages[language]) { // assuming the cids in languages are of "format"="language" --> check later
                 cidLanguage = languages[language]["language"]
             }
@@ -197,7 +194,7 @@ let publishFormula = async (formulaObj: {}, input: {}) => {
         cidLanguage = language.split(":")[1]
     else {
         try {
-            let languages = JSON.parse(fs.readFileSync(languagespath))
+            let languages = JSON.parse(fs.readFileSync(languagespath).toString())
             if (languages[language]) { // assuming the cids in languages are of "format"="language" --> check later
                 cidLanguage = languages[language]["language"]
             }
@@ -369,7 +366,7 @@ let publishProduction = async (productionObj: {}, input: {}) => {
     else cidSequent = await publishSequent(sequent, input)
 
     // these are just the CURRENTLY known production modes to dispatch
-    // but later, maybe this would be extended : the important point is 
+    // but later, maybe this would be extended : the important point is
     //that tools that publish and get global objects have some expected modes,
     //according to some specification (maybe standard maybe more)
     // OR maybe make it more general? --> dispatch doesn't check restricted mode values?
@@ -378,8 +375,8 @@ let publishProduction = async (productionObj: {}, input: {}) => {
     }
 
     // other than the expected modes keywords, the current specification of a production,
-    // and what dispatch expects is a "tool" format cid (either directly put in the input 
-    //as damf:cid or through a profile name which is specific to dispatch 
+    // and what dispatch expects is a "tool" format cid (either directly put in the input
+    //as damf:cid or through a profile name which is specific to dispatch
     //(but the end result is the same, which is the cid of the tool format object))
     else if (typeof mode == "string" && mode.startsWith("damf:")) {
         cidTool = mode.split(":")[1]
@@ -387,7 +384,7 @@ let publishProduction = async (productionObj: {}, input: {}) => {
     }
     else {
         try {
-            let toolProfiles = JSON.parse(fs.readFileSync(toolprofilespath))
+            let toolProfiles = JSON.parse(fs.readFileSync(toolprofilespath).toString())
             if (toolProfiles[mode]) { // assuming the cids in toolProfiles are of "format"="tool" --> check later
                 cidTool = toolProfiles[mode]["tool"]
                 modeValue = { "/": cidTool }
@@ -468,7 +465,7 @@ let publishAssertion = async (assertionObj: {}, input: {}) => {
     }
 
     try {
-        let agentProfiles = JSON.parse(fs.readFileSync(agentprofilespath))
+        let agentProfiles = JSON.parse(fs.readFileSync(agentprofilespath).toString())
         if (agentProfiles[agentProfileName]) {
             let agentProfile = agentProfiles[agentProfileName]
 
@@ -538,5 +535,3 @@ let publishCollection = async (name: string, elements: [], input: {}) => {
 
     return cidCollection
 }
-
-export = { publishCommand }

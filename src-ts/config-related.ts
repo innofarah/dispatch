@@ -25,7 +25,7 @@ import { confdirpath, configpath, keystorepath, agentprofilespath,
 
 import { ipfsAddObj } from "./utilities"
 
-let setup = () => {
+export function setup() {
     // try to read ~/.config/dispatch/config.json --> create if doesn't exist
     if (!fs.existsSync(configpath)) {
         fs.mkdirSync(confdirpath, { recursive: true }) // it creates any directory in the specified path if it does not exist
@@ -53,10 +53,9 @@ let setup = () => {
     if (!fs.existsSync(allowlistpath)) {
         fs.writeFileSync(allowlistpath, JSON.stringify([]))
     }
-
 }
 
-let createAgent = (profileName: string) => { // now just using default parameters
+export function createAgent(profileName: string) { // now just using default parameters
     /* const {
         publicKey,
         privateKey
@@ -108,7 +107,9 @@ let createAgent = (profileName: string) => { // now just using default parameter
     }
 }
 
-let createTool = async (toolProfileName: string, inputType: "file" | "cid" | "json", input: string) => {
+export async function createTool(toolProfileName: string,
+                                 inputType: "file" | "cid" | "json",
+                                 input: string) {
     let toolCid = ""
     if (inputType == "file") {
         try {
@@ -163,7 +164,9 @@ let createTool = async (toolProfileName: string, inputType: "file" | "cid" | "js
 }
 
 // check that cid refers to "format"="language" type --> later
-let createLanguage = async (languageName: string, inputType: "file" | "cid" | "json", input: string) => {
+export async function createLanguage(languageName: string,
+                                     inputType: "file" | "cid" | "json",
+                                     input: string) {
     let languageCid = ""
     if (inputType == "file") {
         try {
@@ -217,7 +220,7 @@ let createLanguage = async (languageName: string, inputType: "file" | "cid" | "j
     }
 }
 
-let setweb3token = (token: string) => {
+export function setweb3token(token: string) {
     let configFile = fs.readFileSync(configpath).toString()
     let config = JSON.parse(configFile)
     config["my-web3.storage-api-token"] = token
@@ -229,7 +232,7 @@ let setweb3token = (token: string) => {
     }
 }
 
-let setgateway = (gateway: string) => {
+export function setgateway(gateway: string) {
     let configFile = fs.readFileSync(configpath).toString()
     let config = JSON.parse(configFile)
     config["my-gateway"] = gateway
@@ -243,7 +246,7 @@ let setgateway = (gateway: string) => {
 
 /*let trustagent = (agent: string) => {
     let allowlistFile = fs.readFileSync(allowlistpath)
-    let allowList = JSON.parse(allowlistFile)  
+    let allowList = JSON.parse(allowlistFile)
     allowList.push(agent)
     allowList = Array.from(new Set(allowList)) // agent listed only once
     try {
@@ -254,10 +257,8 @@ let setgateway = (gateway: string) => {
     }
 }*/
 
-let listconfig = () => {
+export function listconfig() {
     let configFile = fs.readFileSync(configpath).toString()
     let config = JSON.parse(configFile)
     console.log(config)
 }
-
-export = { setup, createAgent, createTool, createLanguage, setweb3token, setgateway, listconfig }

@@ -17,15 +17,14 @@
  * limitations under the License.
  */
 
-const { program } = require('commander')
-
-const { publishCommand } = require('./publish.js')
-const { setup, createAgent, createTool, createLanguage, setweb3token, setgateway, trustagent, listconfig } = require('./config-related.js')
-const { getCommand } = require('./get.js')
-//const { trustwhoCommand } = require('./trusting.js')
-//const { whatISay, doISay } = require('./trusting-old.js')
-const { lookup } = require('./lookup.js')
-const { publishDagToCloud} = require('./utilities.js')
+import { program } from 'commander'
+import { publishCommand } from './publish'
+import { setup, createAgent, createTool, createLanguage, setweb3token, setgateway, listconfig } from './config-related'
+import { getCommand } from './get'
+//import { trustwhoCommand } from './trusting';
+//import { whatISay, doISay } from './trusting-old';
+import { lookup } from './lookup'
+import { publishDagToCloud } from './utilities'
 
 setup()
 
@@ -51,7 +50,7 @@ program
 program
     .command('set-web3token')
     .description('set your web3.storage api token.\n')
-    .argument('<token>', 'to use for publishing through the web3.storage api.\n' 
+    .argument('<token>', 'to use for publishing through the web3.storage api.\n'
     + 'you can create one at web3.storage website.\n')
     .action(setweb3token)
 program
@@ -120,8 +119,6 @@ program
     .argument('<CID>', 'ipfs content identifier for the structure to get.\n')
     .option('-fp, --filepath <string>', 'path of file to write the constructed output in. Example: output/myfile.json.\n            default value is CID.json in the current directory.')
     .action(getCommand)
-*/    
+*/
 
 program.parse()
-
-export = {}
