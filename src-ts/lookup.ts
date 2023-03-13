@@ -19,7 +19,7 @@
 
 import fs from 'fs';
 import { isAssertion, verifySignature, fingerPrint,
-         ipfsGetObj, ensureFullDAG } from "./utilities";
+         ipfsGetObj, ensureFullDAG } from "./utilities.js";
 
 let getResult = async (cidFormula: string, assertionsList: {}, resultUnits: {}, path: [string]) => {
 

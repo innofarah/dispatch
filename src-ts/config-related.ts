@@ -21,9 +21,9 @@ import fs from 'fs';
 import crypt from 'crypto';
 
 import { confdirpath, configpath, keystorepath, agentprofilespath,
-         toolprofilespath, languagespath, allowlistpath } from './initial-vals';
+         toolprofilespath, languagespath, allowlistpath } from './initial-vals.js';
 
-import { ipfsAddObj } from "./utilities"
+import { ipfsAddObj } from "./utilities.js"
 
 export function setup() {
     // try to read ~/.config/dispatch/config.json --> create if doesn't exist

@@ -18,13 +18,13 @@
  */
 
 import { program } from 'commander'
-import { publishCommand } from './publish'
-import { setup, createAgent, createTool, createLanguage, setweb3token, setgateway, listconfig } from './config-related'
-import { getCommand } from './get'
+import { publishCommand } from './publish.js'
+import { setup, createAgent, createTool, createLanguage, setweb3token, setgateway, listconfig } from './config-related.js'
+import { getCommand } from './get.js'
 //import { trustwhoCommand } from './trusting';
 //import { whatISay, doISay } from './trusting-old';
-import { lookup } from './lookup'
-import { publishDagToCloud } from './utilities'
+import { lookup } from './lookup.js'
+import { publishDagToCloud } from './utilities.js'
 
 setup()
 

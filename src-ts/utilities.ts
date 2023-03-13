@@ -29,7 +29,7 @@ import fetch from "node-fetch";
 import { Web3Storage } from "web3.storage";
 import { CarReader } from "@ipld/car";
 
-import { configpath, keystorepath, allowlistpath } from "./initial-vals";
+import { configpath, keystorepath, allowlistpath } from "./initial-vals.js";
 
 function isAnnotated(format: string,
                      testFn: (_: any) => boolean) : (_: any) => boolean {

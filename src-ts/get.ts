@@ -20,7 +20,7 @@
 import fs from 'fs'
 
 import { isOfSpecifiedTypes, verifySignature, fingerPrint,
-         ipfsGetObj, ensureFullDAG } from "./utilities"
+         ipfsGetObj, ensureFullDAG } from "./utilities.js"
 
 // we need a general get <cid> command that works according to "format":
 // context ->

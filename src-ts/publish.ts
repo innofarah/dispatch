@@ -20,9 +20,8 @@
 import fs from 'fs';
 import crypto from 'crypto';
 
-import { toolprofilespath, languagespath, agentprofilespath } from "./initial-vals";
-
-import { ipfsAddObj, publishDagToCloud } from "./utilities"
+import { toolprofilespath, languagespath, agentprofilespath } from "./initial-vals.js";
+import { ipfsAddObj, publishDagToCloud } from "./utilities.js"
 
 //let publishedNamedFormulas: { [key: string]: string } = {}
 //let publishedFormulas: string[] = []
