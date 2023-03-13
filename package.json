@@ -1,13 +1,14 @@
 {
   "name": "dispatch",
   "version": "1.0.10",
-  "description": "",
+  "description": "Intermediary tool for publishing, retrieval, and trust analysis in the Distributed Assertion Management Framework (DAMF)",
+  "homepage": "https://distributed-assertions.github.io/",
+  "author": "Farah Al Wardani",
+  "license": "Apache-2.0",
   "main": "./src/index.js",
   "scripts": {
     "build": "(cd src-ts && tsc) && webpack && pkg build/dispatch.js --out-path executables/"
   },
-  "author": "innofarah",
-  "license": "ISC",
   "dependencies": {
     "axios": "^1.3.4",
     "commander": "^10.0.0",

@@ -1,3 +1,22 @@
+/*
+ * Copyright (C) 2023  Inria
+ *
+ * Inria: Institut National de Recherche en Informatique et en Automatique
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * A copy of the license is provided in the file "LICENSE" distributed
+ * with this file. You may also obtain a copy of the License at:
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 // in this file a lot should be added; for example, verifying that all things refered in the sequence are of the same language (check first if this is what we want?)
 // for now only check that the the object has the correct attributes (without checking the types of their values)
 
