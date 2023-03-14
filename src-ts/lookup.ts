@@ -17,9 +17,9 @@
  * limitations under the License.
  */
 
-import fs from 'fs';
-import { isAssertion, verifySignature, fingerPrint,
-         ipfsGetObj, ensureFullDAG } from "./utilities.js";
+import fs from "node:fs/promises";
+import { isAssertion, isValidSignature, fingerPrint,
+         ipfsGetObj, ensureFullDAG, writeFileIn } from "./utilities.js";
 
 let getResult = async (cidFormula: string, assertionsList: {}, resultUnits: {}, path: [string]) => {
 
@@ -161,7 +161,7 @@ let processAssertion = async (cid: string, result: {}) => {
     let obj = await ipfsGetObj(cid)
     if (isAssertion(obj)) {
         let assertion = obj
-        if (verifySignature(assertion)) {
+        if (isValidSignature(assertion)) {
             let agent = fingerPrint(assertion["agent"])
             let claim = await ipfsGetObj(assertion["claim"]["/"])
             let production = {}
@@ -216,7 +216,8 @@ export async function lookup(cidFormula: string, filepath: string,
     // must check that formula is of the correct "format" later
     let resultUnits = {}
 
-    let assertionList = JSON.parse(fs.readFileSync(filepath).toString())
+    const assertionList = JSON.parse(await fs.readFile(filepath, { encoding: "utf-8" }));
+
     // change here to just read an assertionList of the actual assertions cids,
     // and then dispatch shall produce from it the format that getResult(..) shall read
 
@@ -226,13 +227,8 @@ export async function lookup(cidFormula: string, filepath: string,
     let result = await getResult(cidFormula, processedAssertionList, resultUnits, [cidFormula])
     //return result
     //console.log(result)
-    try {
 
-        if (!fs.existsSync(directoryPath)) fs.mkdirSync(directoryPath, { recursive: true })
-        fs.writeFileSync(directoryPath + "/" + cidFormula + ".json", JSON.stringify(result))
-        console.log("the result of lookup for the formula: " + cidFormula + 
-        " was output in the file " + directoryPath + "/" + cidFormula + ".json")
-    } catch (err) {
-        console.error(err)
-    }
+    const jsonFile = await writeFileIn(directoryPath, cidFormula + ".json",
+                                       JSON.stringify(result));
+    console.log(`the result of lookup for the formula: ${ cidFormula } was output in the file ${ jsonFile }`);
 }

@@ -17,15 +17,89 @@
  * limitations under the License.
  */
 
-import os from 'os';
+import os from "os";
+import fs from "node:fs/promises";
+import { constants } from "node:fs";
+import path from "path";
 
-const xdg_config_dir = process.env.XDG_CONFIG_DIR;
-export const confdirpath =
-    xdg_config_dir ? xdg_config_dir : os.homedir() + '/.config/dispatch';
+export class FileBacked {
+    public readonly fileName: string;
+    private obj: any;
+    private loaded: boolean;
 
-export const configpath        = confdirpath + "/config.json";
-export const keystorepath      = confdirpath + "/keystore.json";
-export const agentprofilespath = confdirpath + "/agentprofiles.json";
-export const toolprofilespath  = confdirpath + "/toolprofiles.json";
-export const languagespath     = confdirpath + "/languages.json";
-export const allowlistpath     = confdirpath + "/allowlist.json";
+    private static xdgConfigDir = process.env.XDG_CONFIG_DIR;
+    public static configDir = FileBacked.xdgConfigDir ??
+        path.join(os.homedir(), ".config/dispatch");
+
+    private async ensureConfigDirExists() {
+        try {
+            const dir = await fs.opendir(FileBacked.configDir);
+            await dir.close();
+        } catch {
+            await fs.mkdir(FileBacked.configDir, { recursive: true });
+        }
+    }
+
+    public constructor(fileName: string,
+                       initial: any = {}) {
+        this.fileName = path.join(FileBacked.configDir, fileName);
+        this.obj = initial;
+        this.loaded = false;
+    }
+
+    public async hasFile() {
+        try {
+            await fs.access(this.fileName,
+                            constants.F_OK | constants.R_OK | constants.W_OK);
+            return true;
+        } catch {
+            return false;
+        }
+    }
+
+    private async load() {
+        if (!this.loaded) {
+            await this.ensureConfigDirExists();
+            if (await this.hasFile()) {
+                const data = await fs.readFile(this.fileName);
+                this.obj = JSON.parse(data.toString());
+            }
+            // else read from initial value
+        }
+        this.loaded = true;
+    }
+
+    public async read(key: string) {
+        await this.load();
+        return this.obj[key];
+    }
+
+    public async readAll() {
+        await this.load();
+        return this.obj;
+    }
+
+    public async write(key: string, val: any) {
+        const old = await this.read(key);
+        if (old !== val) {
+            this.obj[key] = val;
+            await fs.writeFile(this.fileName, JSON.stringify(this.obj));
+        }
+    }
+}
+
+export const config        = new FileBacked("config.json", {
+    "my-gateway": "http://dweb.link",
+    "my-web3.storage-api-token": "**insert your token here**",
+});
+export const keyStore      = new FileBacked("keystore.json");
+export const agentProfiles = new FileBacked("agentprofiles.json");
+export const toolProfiles  = new FileBacked("toolprofiles.json");
+export const languages     = new FileBacked("languages.json");
+export const allowList     = new FileBacked("allowlist.json", {
+    "list": [],
+});
+
+export default {
+    config, keyStore, agentProfiles, toolProfiles, languages, allowList
+};

@@ -17,10 +17,11 @@
  * limitations under the License.
  */
 
-import fs from 'fs'
+import fs from 'node:fs/promises';
+import path from "path";
 
-import { isOfSpecifiedTypes, verifySignature, fingerPrint,
-         ipfsGetObj, ensureFullDAG } from "./utilities.js"
+import { isOfSpecifiedTypes, isValidSignature, fingerPrint,
+         ipfsGetObj, ensureFullDAG, writeFileIn } from "./utilities.js";
 
 // we need a general get <cid> command that works according to "format":
 // context ->
@@ -45,58 +46,53 @@ else { // if no filepath argument(option) is given
 
 // cid refers to: context, formula, sequent, production, assertion, collection, etc. // for now
 export async function getCommand(cid: string, directoryPath: string) {
-    let result = {}
-    await ensureFullDAG(cid)
+    let result = {};
+    await ensureFullDAG(cid);
 
-    try {
-        let mainObj = await ipfsGetObj(cid)
-        if (Object.keys(mainObj).length != 0) { // test if mainObj != {}
-            if (!isOfSpecifiedTypes(mainObj))
-                throw new Error("ERROR: Retrieved object has unknown/invalid format.")
+    let mainObj = await ipfsGetObj(cid);
+    if (Object.keys(mainObj).length != 0) { // test if mainObj != {}
+        if (!isOfSpecifiedTypes(mainObj))
+            throw new Error("ERROR: Retrieved object has unknown/invalid format.")
 
-            let mainObjFormat = mainObj["format"]
+        let mainObjFormat = mainObj["format"]
 
-            if (mainObjFormat == "context") {
-                await getContext(cid, mainObj, result)
-            }
-            else if (mainObjFormat == "annotated-context") {
-                await getAnnotatedContext(cid, mainObj, result)
-            }
-            else if (mainObjFormat == "formula") {
-                await getFormula(cid, mainObj, result)
-            }
-            else if (mainObjFormat == "annotated-formula") {
-                await getAnnotatedFormula(cid, mainObj, result)
-            }
-            else if (mainObjFormat == "sequent") {
-                await getSequent(cid, mainObj, result)
-            }
-            else if (mainObjFormat == "annotated-sequent") {
-                await getAnnotatedSequent(cid, mainObj, result)
-            }
-            else if (mainObjFormat == "production") {
-                await getProduction(cid, mainObj, result)
-            }
-            else if (mainObjFormat == "annotated-production") {
-                await getAnnotatedProduction(cid, mainObj, result)
-            }
-            else if (mainObjFormat == "assertion") {
-                await getAssertion(cid, mainObj, result)
-            }
-            else if (mainObjFormat == "collection") {
-                await getCollection(cid, mainObj, result)
-            }
+        if (mainObjFormat == "context") {
+            await getContext(cid, mainObj, result)
+        }
+        else if (mainObjFormat == "annotated-context") {
+            await getAnnotatedContext(cid, mainObj, result)
+        }
+        else if (mainObjFormat == "formula") {
+            await getFormula(cid, mainObj, result)
+        }
+        else if (mainObjFormat == "annotated-formula") {
+            await getAnnotatedFormula(cid, mainObj, result)
+        }
+        else if (mainObjFormat == "sequent") {
+            await getSequent(cid, mainObj, result)
+        }
+        else if (mainObjFormat == "annotated-sequent") {
+            await getAnnotatedSequent(cid, mainObj, result)
+        }
+        else if (mainObjFormat == "production") {
+            await getProduction(cid, mainObj, result)
+        }
+        else if (mainObjFormat == "annotated-production") {
+            await getAnnotatedProduction(cid, mainObj, result)
+        }
+        else if (mainObjFormat == "assertion") {
+            await getAssertion(cid, mainObj, result)
+        }
+        else if (mainObjFormat == "collection") {
+            await getCollection(cid, mainObj, result)
+        }
 
-        } else throw new Error("ERROR: Retrieved object is empty.")
+    } else throw new Error("ERROR: Retrieved object is empty.")
 
-        if (!fs.existsSync(directoryPath)) fs.mkdirSync(directoryPath, { recursive: true })
-        fs.writeFileSync(directoryPath + "/" + cid + ".json", JSON.stringify(result))
-        console.log("Input to Prover Constructed: DAG referred to by this cid is in the file " + directoryPath + "/" + cid + ".json")
-
-    } catch (err) {
-        console.log(err)
-    }
-
+    const jsonFile = await writeFileIn(directoryPath, cid + ".json",
+                                       JSON.stringify(result));
+    console.log("Input to Prover Constructed")
+    console.log("DAG referred to by this cid is in:", jsonFile);
 }
 
 let processContext = async (obj: {}, result: {}) => {
@@ -114,7 +110,6 @@ let processContext = async (obj: {}, result: {}) => {
 
     let content = await ipfsGetObj(contextObj["content"]["/"])
     contextOutput["content"] = content
-
 
     return contextOutput
 }
@@ -395,7 +390,7 @@ let getAssertion = async (cidObj: string, obj: {}, result: {}) => {
 
     //let assertion = await ipfsGetObj(cidObj)
     let assertion = obj
-    if (verifySignature(assertion)) { // should we verify the assertion type?
+    if (isValidSignature(assertion)) { // should we verify the assertion type?
 
         let assertionOutput = await processAssertion(assertion, result)
 
@@ -404,7 +399,7 @@ let getAssertion = async (cidObj: string, obj: {}, result: {}) => {
     }
     else {
         console.log("ERROR: Assertion signature not verified: invalid assertion")
-        process.exit(1)
+        throw new Error("invalid signature");
     }
 
 }

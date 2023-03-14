@@ -17,62 +17,14 @@
  * limitations under the License.
  */
 
-import fs from 'fs';
+import fs from 'node:fs/promises';
 import crypt from 'crypto';
 
-import { confdirpath, configpath, keystorepath, agentprofilespath,
-         toolprofilespath, languagespath, allowlistpath } from './initial-vals.js';
-
+import iv from './initial-vals.js';
 import { ipfsAddObj } from "./utilities.js"
 
-export function setup() {
-    // try to read ~/.config/dispatch/config.json --> create if doesn't exist
-    if (!fs.existsSync(configpath)) {
-        fs.mkdirSync(confdirpath, { recursive: true }) // it creates any directory in the specified path if it does not exist
-        let configObj = {
-            "my-gateway": "http://dweb.link",
-            "my-web3.storage-api-token": "**insert your token here**",
-        }
-        fs.writeFileSync(configpath, JSON.stringify(configObj))
-    }
-
-    if (!fs.existsSync(keystorepath)) {
-        fs.writeFileSync(keystorepath, JSON.stringify({}))
-    }
-
-    if (!fs.existsSync(agentprofilespath)) {
-        fs.writeFileSync(agentprofilespath, JSON.stringify({}))
-    }
-    if (!fs.existsSync(toolprofilespath)) {
-        fs.writeFileSync(toolprofilespath, JSON.stringify({}))
-    }
-    if (!fs.existsSync(languagespath)) {
-        fs.writeFileSync(languagespath, JSON.stringify({}))
-    }
-
-    if (!fs.existsSync(allowlistpath)) {
-        fs.writeFileSync(allowlistpath, JSON.stringify([]))
-    }
-}
-
-export function createAgent(profileName: string) { // now just using default parameters
-    /* const {
-        publicKey,
-        privateKey
-    } = crypto.generateKeyPairSync('rsa', {
-        modulusLength : 4096,
-        publicKeyEncoding: {
-            type : 'spki',
-            format : 'pem'
-        },
-        privateKeyEncoding: {
-            type: 'pkcs8',
-            format: 'pem',
-            cipher: 'aes-256-cbc',
-            passphrase: 'top secret'
-        }
-    }) */
-
+export async function createAgent(profileName: string) {
+    // now just using default parameters
     const { privateKey, publicKey } = crypt.generateKeyPairSync('ec', {
         namedCurve: 'sect239k1',
         publicKeyEncoding: {
@@ -86,162 +38,95 @@ export function createAgent(profileName: string) { // now just using default par
     });
 
     // create a profile and add it to the profiles file
-    let fingerPrint = crypt.createHash('sha256').update(publicKey).digest('hex')
+    const fingerPrint = crypt.createHash('sha256').update(publicKey).digest('hex');
 
-    let profiles = JSON.parse(fs.readFileSync(agentprofilespath).toString())
-    let newProfile: agentProfile = {
+    const newProfile: agentProfile = {
         "name": profileName,
         "public-key": publicKey,
         "private-key": privateKey,
         "fingerprint": fingerPrint
-    }
-
-    profiles[profileName] = newProfile
-
-    try {
-        fs.writeFileSync(agentprofilespath, JSON.stringify(profiles))
-        console.log("Agent profile " + profileName + " created successfully!")
-    }
-    catch (err) {
-        console.log(err)
-    }
+    };
+    await iv.agentProfiles.write(profileName, newProfile);
+    console.log("Agent profile " + profileName + " created successfully!");
 }
 
 export async function createTool(toolProfileName: string,
                                  inputType: "file" | "cid" | "json",
                                  input: string) {
-    let toolCid = ""
-    if (inputType == "file") {
-        try {
-            let data = fs.readFileSync(input, {encoding: 'utf-8'}) //assuming the data is text
-            // but maybe it's not?
-            //let data = fs.readFileSync(input)
-            let contentCid = await ipfsAddObj(data)
-            toolCid = await ipfsAddObj({
-                "format": "tool",
-                "content": { "/": contentCid }
-            })
-        }
-        catch (err) {
-            console.log(err)
-            process.exit(process.exitCode)
-        }
+    let toolCid = undefined;
+    if (inputType === "file") {
+        // [HACK] assumes file is data, not text
+        // could have { encoding: "utf-8" }
+        const contentCid = await ipfsAddObj(await fs.readFile(input));
+        toolCid = await ipfsAddObj({
+            "format": "tool",
+            "content": { "/": contentCid }
+        });
     }
-    else if (inputType == "json") {
-        try {
-            let data = JSON.parse(fs.readFileSync(input).toString()) //assuming the data is json
-            // but maybe it's not?
-            //let data = fs.readFileSync(input)
-            let contentCid = await ipfsAddObj(data)
-            toolCid = await ipfsAddObj({
-                "format": "tool",
-                "content": { "/": contentCid}
-            })
-        }
-        catch (err) {
-            console.log(err)
-            process.exit(process.exitCode)
-        }
+    else if (inputType === "json") {
+        const data = await fs.readFile(input, { encoding: "utf-8" });
+        const obj = JSON.parse(data);
+        const contentCid = await ipfsAddObj(obj)
+        toolCid = await ipfsAddObj({
+            "format": "tool",
+            "content": { "/": contentCid }
+        });
     }
-    else if (inputType == "cid") toolCid = input // assuming the cid refers to a "format" = "tool" object --> check later
+    else if (inputType === "cid")
+        toolCid = input; // assuming the cid refers to a "format" = "tool" object --> check later
+    else
+        throw new Error(`createTool: invalid inputType ${ inputType }`);
 
-    let toolProfile = {
+    const toolProfile = {
         "name": toolProfileName,
         "tool": toolCid
     }
 
-    let toolProfiles = JSON.parse(fs.readFileSync(toolprofilespath).toString())
-    toolProfiles[toolProfileName] = toolProfile
-
-    try {
-        fs.writeFileSync(toolprofilespath, JSON.stringify(toolProfiles))
-        console.log("Tool profile " + toolProfileName + " created successfully!")
-
-    }
-    catch (err) {
-        console.log(err)
-    }
+    await iv.toolProfiles.write(toolProfileName, toolProfile);
+    console.log("Tool profile " + toolProfileName + " created successfully!")
 }
 
 // check that cid refers to "format"="language" type --> later
 export async function createLanguage(languageName: string,
                                      inputType: "file" | "cid" | "json",
                                      input: string) {
-    let languageCid = ""
-    if (inputType == "file") {
-        try {
-            let data = fs.readFileSync(input, {encoding: 'utf-8'}) //assuming the data is text
-            // but maybe it's not?
-            //let data = fs.readFileSync(input)
-            let contentCid = await ipfsAddObj(data)
-            languageCid = await ipfsAddObj({
-                "format": "language",
-                "content": { "/": contentCid }
-            })
-        }
-        catch (err) {
-            console.log(err)
-            process.exit(process.exitCode)
-        }
+    let languageCid = "";
+    if (inputType === "file") {
+        const contentCid = await ipfsAddObj(await fs.readFile(input));
+        languageCid = await ipfsAddObj({
+            "format": "language",
+            "content": { "/": contentCid }
+        });
     }
-    else if (inputType == "json") {
-        try {
-            let data = JSON.parse(fs.readFileSync(input).toString()) //assuming the data is json
-            // but maybe it's not?
-            //let data = fs.readFileSync(input)
-            let contentCid = await ipfsAddObj(data)
-            languageCid = await ipfsAddObj({
-                "format": "language",
-                "content": { "/": contentCid }
-            })
-        }
-        catch (err) {
-            console.log(err)
-            process.exit(process.exitCode)
-        }
+    else if (inputType === "json") {
+        const data = await fs.readFile(input, { encoding: "utf-8" });
+        const obj = JSON.parse(data);
+        let contentCid = await ipfsAddObj(obj)
+        languageCid = await ipfsAddObj({
+            "format": "language",
+            "content": { "/": contentCid }
+        });
     }
-    else if (inputType == "cid") languageCid = input // assuming the cid refers to a "format" = "language" object --> check later
+    else if (inputType === "cid")
+        languageCid = input; // assuming the cid refers to a "format" = "language" object --> check later
+    else
+        throw new Error(`createLanguage: invalid inputType ${ inputType }`);
 
-    let language = {
+    const language = {
         "name": languageName,
         "language": languageCid
-    }
+    };
 
-    let languages = JSON.parse(fs.readFileSync(languagespath).toString())
-    languages[languageName] = language
-
-    try {
-        fs.writeFileSync(languagespath, JSON.stringify(languages))
-        console.log("Language record " + languageName + " created successfully!")
-
-    }
-    catch (err) {
-        console.log(err)
-    }
+    await iv.languages.write(languageName, language);
+    console.log("Language record " + languageName + " created successfully!");
 }
 
-export function setweb3token(token: string) {
-    let configFile = fs.readFileSync(configpath).toString()
-    let config = JSON.parse(configFile)
-    config["my-web3.storage-api-token"] = token
-    try {
-        fs.writeFileSync(configpath, JSON.stringify(config))
-    }
-    catch (err) {
-        console.log(err)
-    }
+export async function setweb3token(token: string) {
+    await iv.config.write("my-web3.storage-api-token", token);
 }
 
-export function setgateway(gateway: string) {
-    let configFile = fs.readFileSync(configpath).toString()
-    let config = JSON.parse(configFile)
-    config["my-gateway"] = gateway
-    try {
-        fs.writeFileSync(configpath, JSON.stringify(config))
-    }
-    catch (err) {
-        console.log(err)
-    }
+export async function setgateway(gateway: string) {
+    await iv.config.write("my-gateway", gateway);
 }
 
 /*let trustagent = (agent: string) => {
@@ -257,8 +142,24 @@ export function setgateway(gateway: string) {
     }
 }*/
 
-export function listconfig() {
-    let configFile = fs.readFileSync(configpath).toString()
-    let config = JSON.parse(configFile)
-    console.log(config)
+export async function listconfig() {
+    console.log("//", iv.config.fileName);
+    console.log(await iv.config.readAll());
+    console.log("//", iv.keyStore.fileName);
+    console.log(await iv.keyStore.readAll());
+    console.log("//", iv.agentProfiles.fileName);
+    console.log(await iv.agentProfiles.readAll());
+    console.log("//", iv.toolProfiles.fileName);
+    console.log(await iv.toolProfiles.readAll());
+    console.log("//", iv.languages.fileName);
+    console.log(await iv.languages.readAll());
+    console.log("//", iv.allowList.fileName);
+    console.log(await iv.allowList.readAll());
 }
+
+// export default {
+//     createAgent,
+//     createTool, createLanguage,
+//     setweb3token, setgateway,
+//     listconfig,
+// };

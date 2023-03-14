@@ -17,11 +17,11 @@
  * limitations under the License.
  */
 
-import fs from 'fs';
-import crypto from 'crypto';
+import fs from "node:fs/promises";
+import crypto from "crypto";
 
-import { toolprofilespath, languagespath, agentprofilespath } from "./initial-vals.js";
-import { ipfsAddObj, publishDagToCloud } from "./utilities.js"
+import iv from "./initial-vals.js";
+import { ipfsAddObj, publishDAGToCloud } from "./utilities.js";
 
 //let publishedNamedFormulas: { [key: string]: string } = {}
 //let publishedFormulas: string[] = []
@@ -29,83 +29,77 @@ import { ipfsAddObj, publishDagToCloud } from "./utilities.js"
 //let publishedAssertions: string[] = []
 //let publishedDeclarations: { [key: string]: string } = {}
 
-export async function publishCommand(inputPath: string, target: target) : Promise<void> {
-    try {
-        let input = JSON.parse(fs.readFileSync(inputPath).toString()) // json file expected
+export async function publishCommand(inputPath: string, target: target) {
+    const data = await fs.readFile(inputPath, { encoding: "utf-8" });
+    const input = JSON.parse(data);
 
-        // publish contexts first (because they need to be linked in formulas)
-        // consider an entry in "contexts" (like "fib": ..) in the input file to have two possible values: either [string] or ["damf:cidcontextobjcet"]
-        // publish according to "format" in the given input file, first we consider the "sequence" format
+    // publish contexts first (because they need to be linked in formulas)
+    // consider an entry in "contexts" (like "fib": ..) in the input file to have two possible values: either [string] or ["damf:cidcontextobjcet"]
+    // publish according to "format" in the given input file, first we consider the "sequence" format
 
-        // considering the "format" attribute to be fixed (exists all the time) for all the possible input-formats (considering that input-formats might differ according to format of published objects)
-        let format = input["format"]
-        let cid = ""
-        // maybe do some checking here of the given file structure if correct?
+    // considering the "format" attribute to be fixed (exists all the time) for all the possible input-formats (considering that input-formats might differ according to format of published objects)
+    let format = input["format"]
+    let cid = ""
+    // maybe do some checking here of the given file structure if correct?
 
-        if (format == "context") {
-            // only one declaration object exists in this case
-            //let name = Object.keys(input["declarations"])[0]
-            let contextObj = input["context"]
-            cid = await publishContext(contextObj)
-            console.log("published context object of cid: " + cid)
-        }
-        else if (format == "annotated-context") {
-            let annotatedContextObj = input["annotated-context"]
-            cid = await publishAnnotatedContext(annotatedContextObj)
-            console.log("published annotated context object of cid: " + cid)
-        }
-        else if (format == "formula") {
-            let formulaObj = input["formula"]
-            cid = await publishFormula(formulaObj, input)
-            console.log("published formula object of cid: " + cid)
-        }
-        else if (format == "annotated-formula") {
-            let annotatedFormulaObj = input["annotated-formula"]
-            cid = await publishAnnotatedFormula(annotatedFormulaObj, input)
-            console.log("published annotated formula object of cid: " + cid)
-        }
-        else if (format == "sequent") {
-            let sequentObj = input["sequent"]
-            cid = await publishSequent(sequentObj, input)
-            console.log("published sequent object of cid: " + cid)
-        }
-        else if (format == "annotated-sequent") {
-            let annotatedSequentObj = input["annotated-sequent"]
-            cid = await publishAnnotatedSequent(annotatedSequentObj, input)
-            console.log("published annotated sequent object of cid: " + cid)
-        }
-        else if (format == "production") {
-            let productionObj = input["production"]
-            cid = await publishProduction(productionObj, input)
-            console.log("published production object of cid: " + cid)
-        }
-        else if (format == "annotated-production") {
-            let annotatedProductionObj = input["annotated-production"]
-            cid = await publishAnnotatedProduction(annotatedProductionObj, input)
-            console.log("published annotated production object of cid: " + cid)
-        }
-        else if (format == "assertion") {
-            let assertionObj = input["assertion"]
-            cid = await publishAssertion(assertionObj, input)
-            console.log("published assertion object of cid: " + cid)
-        }
-        else if (format == "collection") { // collection of links to global objects
-            let name = input["name"]
-            let elements = input["elements"]
-            cid = await publishCollection(name, elements, input)
-            console.log("published collection object of cid: " + cid)
-        }
-        else {
-            console.error(new Error("unknown input format"))
-        }
+    if (format == "context") {
+        // only one declaration object exists in this case
+        //let name = Object.keys(input["declarations"])[0]
+        let contextObj = input["context"]
+        cid = await publishContext(contextObj)
+        console.log("published context object of cid: " + cid)
+    }
+    else if (format == "annotated-context") {
+        let annotatedContextObj = input["annotated-context"]
+        cid = await publishAnnotatedContext(annotatedContextObj)
+        console.log("published annotated context object of cid: " + cid)
+    }
+    else if (format == "formula") {
+        let formulaObj = input["formula"]
+        cid = await publishFormula(formulaObj, input)
+        console.log("published formula object of cid: " + cid)
+    }
+    else if (format == "annotated-formula") {
+        let annotatedFormulaObj = input["annotated-formula"]
+        cid = await publishAnnotatedFormula(annotatedFormulaObj, input)
+        console.log("published annotated formula object of cid: " + cid)
+    }
+    else if (format == "sequent") {
+        let sequentObj = input["sequent"]
+        cid = await publishSequent(sequentObj, input)
+        console.log("published sequent object of cid: " + cid)
+    }
+    else if (format == "annotated-sequent") {
+        let annotatedSequentObj = input["annotated-sequent"]
+        cid = await publishAnnotatedSequent(annotatedSequentObj, input)
+        console.log("published annotated sequent object of cid: " + cid)
+    }
+    else if (format == "production") {
+        let productionObj = input["production"]
+        cid = await publishProduction(productionObj, input)
+        console.log("published production object of cid: " + cid)
+    }
+    else if (format == "annotated-production") {
+        let annotatedProductionObj = input["annotated-production"]
+        cid = await publishAnnotatedProduction(annotatedProductionObj, input)
+        console.log("published annotated production object of cid: " + cid)
+    }
+    else if (format == "assertion") {
+        let assertionObj = input["assertion"]
+        cid = await publishAssertion(assertionObj, input)
+        console.log("published assertion object of cid: " + cid)
+    }
+    else if (format == "collection") { // collection of links to global objects
+        let name = input["name"]
+        let elements = input["elements"]
+        cid = await publishCollection(name, elements, input)
+        console.log("published collection object of cid: " + cid)
+    }
+    else throw new Error(`unknown input format ${ format }`);
 
-        // if "target" is cloud (global), publish the final sequence cid (dag) through the web3.storage api
-        if (cid != "" && target == "cloud") {
-            await publishDagToCloud(cid)
-        }
-
-    } catch (error) {
-        console.error(error)
+    // if "target" is cloud (global), publish the final sequence cid (dag) through the web3.storage api
+    if (cid != "" && target == "cloud") {
+        await publishDAGToCloud(cid)
     }
 }
 
@@ -122,16 +116,8 @@ let publishContext = async (contextObj: {}) => {
     if (typeof language == "string" && language.startsWith("damf:"))
         cidLanguage = language.split(":")[1]
     else {
-        try {
-            let languages = JSON.parse(fs.readFileSync(languagespath).toString())
-            if (languages[language]) { // assuming the cids in languages are of "format"="language" --> check later
-                cidLanguage = languages[language]["language"]
-            }
-            else throw new Error("ERROR: given language record name does not exist")
-        } catch (error) {
-            console.error(error);
-            process.exit(1)
-        }
+        // assuming the cids in languages are of "format"="language" --> check later
+        cidLanguage = (await iv.languages.read(language))["language"];
     }
 
     if (typeof content == "string" && content.startsWith("damf:"))
@@ -192,16 +178,8 @@ let publishFormula = async (formulaObj: {}, input: {}) => {
     if (typeof language == "string" && language.startsWith("damf:"))
         cidLanguage = language.split(":")[1]
     else {
-        try {
-            let languages = JSON.parse(fs.readFileSync(languagespath).toString())
-            if (languages[language]) { // assuming the cids in languages are of "format"="language" --> check later
-                cidLanguage = languages[language]["language"]
-            }
-            else throw new Error("ERROR: given language record name does not exist")
-        } catch (error) {
-            console.error(error);
-            process.exit(1)
-        }
+        // assuming the cids in languages are of "format"="language" --> check later
+        cidLanguage = (await iv.languages.read(language))["language"];
     }
 
     if (typeof content == "string" && content.startsWith("damf:"))
@@ -382,17 +360,8 @@ let publishProduction = async (productionObj: {}, input: {}) => {
         modeValue = { "/": cidTool }
     }
     else {
-        try {
-            let toolProfiles = JSON.parse(fs.readFileSync(toolprofilespath).toString())
-            if (toolProfiles[mode]) { // assuming the cids in toolProfiles are of "format"="tool" --> check later
-                cidTool = toolProfiles[mode]["tool"]
-                modeValue = { "/": cidTool }
-            }
-            else throw new Error("ERROR: given toolProfile name does not exist")
-        } catch (error) {
-            console.error(error);
-            process.exit(1)
-        }
+        // assuming the cids in toolProfiles are of "format"="tool" --> check later
+        cidTool = (await iv.toolProfiles.read(mode))["tool"];
     }
 
     let productionGlobal: production = {
@@ -463,33 +432,23 @@ let publishAssertion = async (assertionObj: {}, input: {}) => {
         }
     }
 
-    try {
-        let agentProfiles = JSON.parse(fs.readFileSync(agentprofilespath).toString())
-        if (agentProfiles[agentProfileName]) {
-            let agentProfile = agentProfiles[agentProfileName]
+    const agentProfile = await iv.agentProfiles.read(agentProfileName);
+    const sign = crypto.createSign('SHA256')
+    sign.write(cidClaim)
+    sign.end()
+    const signature = sign.sign(agentProfile["private-key"], 'hex')
 
-            const sign = crypto.createSign('SHA256')
-            sign.write(cidClaim)
-            sign.end()
-            const signature = sign.sign(agentProfile["private-key"], 'hex')
-
-            let assertionGlobal: assertion = {
-                "format": "assertion",
-                "agent": agentProfile["public-key"],
-                "claim": { "/": cidClaim },
-                "signature": signature
-            }
-
-            let cidAssertion = await ipfsAddObj(assertionGlobal)
-            //publishedAssertions.push(cidAssertion)
-
-            return cidAssertion
-        }
-        else throw new Error("ERROR: given profile name does not exist")
-    } catch (error) {
-        console.error(error);
-        process.exit(1)
+    let assertionGlobal: assertion = {
+        "format": "assertion",
+        "agent": agentProfile["public-key"],
+        "claim": { "/": cidClaim },
+        "signature": signature
     }
+
+    let cidAssertion = await ipfsAddObj(assertionGlobal)
+    //publishedAssertions.push(cidAssertion)
+
+    return cidAssertion
 }
 
 // also needs more checking

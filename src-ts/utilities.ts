@@ -21,42 +21,43 @@
 // for now only check that the the object has the correct attributes (without checking the types of their values)
 
 import crypto from "crypto";
-import fs from "fs";
-import { execSync } from "child_process";
+import os from "os";
+import fs from "node:fs/promises";
+import path from "path";
+import cp from "child_process";
 import util from "util";
-import stream from "stream";
 import fetch from "node-fetch";
 import { Web3Storage } from "web3.storage";
 import { CarReader } from "@ipld/car";
 
-import { configpath, keystorepath, allowlistpath } from "./initial-vals.js";
+import { config, keyStore, allowList } from "./initial-vals.js";
 
 function isAnnotated(format: string,
-                     testFn: (_: any) => boolean) : (_: any) => boolean {
+                     testFn: (obj: any) => boolean) {
     const annotatedFormat = "annotated-" + format;
-    return (obj) => {
-        return Object.keys(obj).length == 3
+    return (obj: any) => {
+        return Object.keys(obj).length === 3
             && "format" in obj
-            && obj["format"] == annotatedFormat
+            && obj["format"] === annotatedFormat
             && format in obj
             && testFn(obj[format]);
     };
 }
 
-export function isContext(obj: any) : boolean {
-    return Object.keys(obj).length == 3
+export function isContext(obj: any) {
+    return Object.keys(obj).length === 3
         && "format" in obj
-        && obj["format"] == "context"
+        && obj["format"] === "context"
         && "language" in obj
         && "content" in obj;
 }
 
 export const isAnnotatedContext = isAnnotated("context", isContext);
 
-export function isFormula(obj: any) : boolean {
-    return Object.keys(obj).length == 4
+export function isFormula(obj: any) {
+    return Object.keys(obj).length === 4
         && "format" in obj
-        && obj["format"] == "formula"
+        && obj["format"] === "formula"
         && "language" in obj
         && "content" in obj
         && "context" in obj;
@@ -64,59 +65,59 @@ export function isFormula(obj: any) : boolean {
 
 export const isAnnotatedFormula = isAnnotated("formula", isFormula);
 
-export function isSequent(obj: any) : boolean {
-    return Object.keys(obj).length == 3
+export function isSequent(obj: any) {
+    return Object.keys(obj).length === 3
         && "format" in obj
-        && obj["format"] == "sequent"
+        && obj["format"] === "sequent"
         && "dependencies" in obj
         && "conclusion" in obj;
 }
 
 export const isAnnotatedSequent = isAnnotated("sequent", isSequent);
 
-export function isTool(obj: any) : boolean {
-    return Object.keys(obj).length == 2
+export function isTool(obj: any) {
+    return Object.keys(obj).length === 2
         && "format" in obj
-        && obj["format"] == "tool"
+        && obj["format"] === "tool"
         && "content" in obj;
 }
 
-export function isLanguage(obj: any) : boolean {
-    return Object.keys(obj).length == 2
+export function isLanguage(obj: any) {
+    return Object.keys(obj).length === 2
         && "format" in obj
-        && obj["format"] == "language"
+        && obj["format"] === "language"
         && "content" in obj;
 }
 
-export function isProduction(obj: any) : boolean {
-    return Object.keys(obj).length == 3
+export function isProduction(obj: any) {
+    return Object.keys(obj).length === 3
         && "format" in obj
-        && obj["format"] == "production"
+        && obj["format"] === "production"
         && "sequent" in obj
         && "mode" in obj;
 }
 
 export const isAnnotatedProduction = isAnnotated("production", isProduction);
 
-export function isAssertion(obj: any) : boolean {
-    return Object.keys(obj).length == 4
+export function isAssertion(obj: any) {
+    return Object.keys(obj).length === 4
         && "format" in obj
-        && obj["format"] == "assertion"
+        && obj["format"] === "assertion"
         && "agent" in obj
         && "claim" in obj
         && "signature" in obj;
 }
 
-export function isCollection(obj: any) : boolean {
-    return Object.keys(obj).length == 3
+export function isCollection(obj: any) {
+    return Object.keys(obj).length === 3
         && "format" in obj
-        && obj["format"] == "collection"
+        && obj["format"] === "collection"
         && "name" in obj
         && "elements" in obj;
 }
 
 // the standard format types to publish and get
-export function isOfSpecifiedTypes(obj: any) : boolean {
+export function isOfSpecifiedTypes(obj: any) {
     return isContext(obj)
         || isFormula(obj)
         || isSequent(obj)
@@ -129,12 +130,11 @@ export function isOfSpecifiedTypes(obj: any) : boolean {
         || isAnnotatedProduction(obj);
 }
 
-// [TODO] rename to isValidSignature
-export function verifySignature(assertion: any) : boolean {
+export function isValidSignature(assertion: any): boolean {
     // [TODO] assert(isAssertion(assertion));
     let signature = assertion["signature"];
     let claimedPublicKey = assertion["agent"];
-    // the data to verify : here it's the asset's cid in the object
+    // the data to verify: here it's the asset's cid in the object
     let dataToVerify = assertion["claim"]["/"];
 
     const verify = crypto.createVerify('SHA256');
@@ -143,77 +143,80 @@ export function verifySignature(assertion: any) : boolean {
     return verify.verify(claimedPublicKey, signature, 'hex');
 }
 
-export function fingerPrint(agent: string) : string {
-    let keystore = JSON.parse(fs.readFileSync(keystorepath).toString());
-    let fingerPrint = keystore[agent];
+export async function fingerPrint(agent: string) {
+    let fingerPrint: string = await keyStore.read(agent);
     if (!fingerPrint) {
         fingerPrint = crypto.createHash('sha256').update(agent).digest('hex');
-        keystore[agent] = fingerPrint;
-        fs.writeFileSync(keystorepath, JSON.stringify(keystore));
+        await keyStore.write(agent, fingerPrint);
     }
     return fingerPrint;
 }
 
-// [TODO] rename to isAllowed
-export function inAllowList(agent: string) : boolean {
-    let allowList = JSON.parse(fs.readFileSync(allowlistpath).toString());
-    return allowList.includes(agent);
+export async function isAllowed(agent: string) {
+    const list: [string] = await allowList.read("list");
+    return list.includes(agent);
 }
 
 // --------------------------
 // for retrieval from ipfs
 // --------------------------
 
-export async function ipfsGetObj(cid: string) : Promise<any> {
-    // [TODO] async function shouldn't be calling Sync()
-    let cmd = "ipfs dag get " + cid + " > " + cid + ".json";
-    execSync(cmd, { encoding: 'utf-8' });
-    let obj = JSON.parse(fs.readFileSync(cid + ".json").toString());
-    fs.unlinkSync(cid + ".json");
-    return obj;
+const exec = util.promisify(cp.exec);
+
+export async function ipfsGetObj(cid: string) {
+    const cmd = `ipfs dag get ${ cid }`;
+    const dag = await exec(cmd);
+    return JSON.parse(dag.stdout);
 }
 
-// [TODO] unspaghettify
-export async function ensureFullDAG(cid: string) : Promise<void> {
+async function withTempFile<A>(ext: string,
+                               fn: (fileName: string) => Promise<A>)
+{
+    const tmpDirPrefix = path.join(await fs.realpath(os.tmpdir()), "dispatch-");
+    const tmpDir = await fs.mkdtemp(tmpDirPrefix);
+    const tmpFile = path.join(tmpDir, `file.${ ext }`);
     try {
-        //test if it exists locally / or tries to retrieve the missing links in case the ipfs daemon is activated
-        let cmd = "ipfs dag export -p " + cid + " > tmpp.car"
-        // for now : causes a problem if we use an address with slashes "/" since ipfs export doesn't support it currently
-        console.log("ipfs daemon working on retrieving DAG .. Please be patient ..")
-        execSync(cmd, { encoding: 'utf-8' }) // this fails if there are missing links from the local ipfs repo / or unsuccessful to retrieve in case the ipfs daemon is activated
-        fs.unlink('tmpp.car', (err) => {
-            if (err) throw err;
-        });
+        return await fn(tmpFile);
+    } finally {
+        await fs.rmdir(tmpDir, { recursive: true });
+    }
+}
+
+export async function ensureFullDAG(cid: string) {
+    try {
+        // test if it exists locally or tries to retrieve the missing links in
+        // case the ipfs daemon is activated
+        const cmd = `ipfs dag export ${ cid }`;
+        // [HACK] for now: causes a problem if we use an address with slashes
+        // since ipfs export doesn't support it currently
+        const ret = await exec(cmd);
+        // fails if there are missing links from the local ipfs repo or
+        // unsuccessful to retrieve in case the ipfs daemon is activated
+        console.log(`DEBUG: ensureFullDAG(${ cid }):`);
+        console.log(`DEBUG:   returned a CAR ${ ret.stdout.length }b long`);
     } catch (err) {
-        console.log("There are missing links that were not found in the local ipfs cache OR the ipfs daemon (if activated) has not been able to find them, trying to retrieve them from the specified gateway ..")
-        let config = JSON.parse(fs.readFileSync(configpath).toString())
-        let gateway = config["my-gateway"];
+        console.log(`DEBUG: ensureFullDAG(${ cid }):`);
+        console.log("DEBUG:   ipfs dag export failed");
+        console.log(`DEBUG:   ${ err }`);
+        const gateway = config.read("my-gateway");
         if (!gateway) {
-            console.log("ERROR: gateway should be specified as trying to retreive data through it .. ")
-            process.exit(1)
+            console.error("ERROR: unknown gateway (while trying to retrieve data");
+            console.error(`Consider running ${ process.argv0 } set-gateway`);
+            throw new Error("unknown gateway");
         }
-        let url = gateway + "/api/v0/dag/export?arg=" + cid
-        //let result = await axios.get(url)
-        // problem here: we need to return the result as a stream to properly create the .car file from it -> axios not sufficient
-
-        try {
-            const streamPipeline = util.promisify(stream.pipeline);
-
-            const response = await fetch(url);
-
-            if (!response.ok) throw new Error(`unexpected response ${response.statusText}`);
-
-            await streamPipeline(response.body, fs.createWriteStream('tmpp.car'));
-
-            //fs.writeFileSync("tmpp.car", response.body)
-            execSync("ipfs dag import tmpp.car", { encoding: 'utf-8' })
-            fs.unlink('tmpp.car', (err) => {
-                if (err) throw err;
-            });
-        } catch (err) {
-            console.log(err)
-            process.exit(1)
-        }
+        const url = `${ gateway }/api/v0/dag/export?arg=${ cid }`;
+        console.log(`DEBUG: ensureFullDAG(${ cid }):`);
+        console.log(`DEBUG:   url = ${ url }`);
+        const response = await fetch(url);
+        if (!response.ok)
+            throw new Error(`unexpected response: ${ response.statusText }`);
+        withTempFile("car", async (tmpFile) => {
+            await fs.writeFile(tmpFile, response.body);
+            await exec(`ipfs dag import ${ tmpFile }`);
+            console.log(`DEBUG: ensureFullDAG(${ cid }):`);
+            console.log(`DEBUG:   via ${ url }`);
+            console.log(`DEBUG:   returned a CAR ${ await fs.stat(tmpFile) }b long`);
+        });
     }
 }
 
@@ -221,64 +224,46 @@ export async function ensureFullDAG(cid: string) : Promise<void> {
 // for adding to ipfs (+cloud)
 // --------------------------
 
-export async function ipfsAddObj(obj: any) {
-    try {
-        fs.writeFileSync("tmpJSON.json", JSON.stringify(obj))
-        let addcmd = "ipfs dag put tmpJSON.json --pin"
-        let output = execSync(addcmd, { encoding: 'utf-8' })
-
-        fs.unlinkSync('tmpJSON.json')
-        return output.substring(0, output.length - 1)
-    } catch (error) {
-        console.error("ERROR: adding object to ipfs failed");
-        return ""
-    }
+export async function ipfsAddObj(obj: any): Promise<string> {
+    return withTempFile("json", async (tmpFile) => {
+        await fs.writeFile(tmpFile, JSON.stringify(obj));
+        const cmd = `ipfs dag put ${ tmpFile } --pin`;
+        const ret = await exec(cmd, { encoding: "utf-8" });
+        return ret.stdout.trim(); // this is the cid
+    });
 }
 
-// subject to change, check if adding as file is the correct (and better) thing to do for declarations content and formula string
-/*export const ipfsAddFile = async (data: string) => {
-    try {
-        fs.writeFileSync("tmpFile.txt", data)
-        let addcmd = "ipfs add tmpFile.txt --cid-version 1 --pin"
-        let output = execSync(addcmd, { encoding: 'utf-8' })
-
-        fs.unlinkSync('tmpFile.txt')
-        //return output.substring(0, output.length - 1)
-        return output.split(" ")[1] // not really best way to do it (must us nodjs ipfs api not cmd)
-    } catch (error) {
-        console.error("ERROR: adding object to ipfs failed");
-        return ""
-    }
-}*/
-
-export async function publishDagToCloud(cid: string) {
-    let web3Token: string, web3Client: Web3Storage
-
-    try {
-        let config = JSON.parse(fs.readFileSync(configpath).toString())
-
-        if (config["my-web3.storage-api-token"]
-            && config["my-web3.storage-api-token"] != "**insert your token here**") {
-            web3Token = config["my-web3.storage-api-token"]
-            web3Client = new Web3Storage({ token: web3Token })
-        }
-        else {
-            throw new Error("ERROR: setting a web3.storage token is required as the chosen mode for publishing is 'cloud' and not 'local'.")
-        }
-        let cmd = "ipfs dag export " + cid + " > tmpcar.car"
-        execSync(cmd, { encoding: 'utf-8' })
-        const inStream = fs.createReadStream('tmpcar.car')
+export async function publishDAGToCloud(cid: string) {
+    const token: string = await config.read("my-web3.storage-api-token");
+    if (!token || token === "**insert your token here**")
+        throw new Error(`ERROR: missing web3.token; use ${ process.argv0 } set-web3token`);
+    const client = new Web3Storage({ token });
+    // [TODO] try to do this without temporary files
+    withTempFile("car", async (tmpFile) => {
+        await exec(`ipfs dag export ${ cid } > ${ tmpFile }`);
         // read and parse the entire stream in one go, this will cache the contents of
         // the car in memory so is not suitable for large files.
-        const reader = await CarReader.fromIterable(inStream)
-        await web3Client.putCar(reader)
-        console.log("DAG successfully published to web3.storage!")
-        console.log("root cid: " + cid)
-        fs.unlink('tmpcar.car', (err) => {
-            if (err) throw err
-        })
+        const contents = await fs.readFile(tmpFile);
+        const reader = await CarReader.fromBytes(contents);
+        await client.putCar(reader);
+        console.log(`DEBUG: publishDAGToCloud(${ cid })`);
+        console.log("DEBUG:   successful");
+    });
+}
 
-    } catch (err) {
-        console.log(err)
+// -------------------------------------------
+// writing files after ensuring dirname exists
+// -------------------------------------------
+
+export async function writeFileIn(dirName : string, fileName : string,
+                                  data : any) {
+    try {
+        const dir = await fs.opendir(dirName);
+        await dir.close();
+    } catch {
+        await fs.mkdir(dirName, { recursive: true });
     }
+    const finalFile = path.join(dirName, fileName);
+    await fs.writeFile(finalFile, data);
+    return finalFile;
 }
