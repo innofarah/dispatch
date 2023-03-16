@@ -178,7 +178,7 @@ async function withTempFile<A>(ext: string,
     try {
         return await fn(tmpFile);
     } finally {
-        await fs.rmdir(tmpDir, { recursive: true });
+        await fs.rm(tmpDir, { recursive: true });
     }
 }
 
