@@ -246,8 +246,8 @@ export async function publishDAGToCloud(cid: string) {
         const contents = await fs.readFile(tmpFile);
         const reader = await CarReader.fromBytes(contents);
         await client.putCar(reader);
-        console.log(`DEBUG: publishDAGToCloud(${ cid })`);
-        console.log("DEBUG:   successful");
+        // console.log(`DEBUG: publishDAGToCloud(${ cid })`);
+        // console.log("DEBUG:   successful");
     });
 }
 
