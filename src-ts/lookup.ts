@@ -162,7 +162,7 @@ let processAssertion = async (cid: string, result: {}) => {
     if (isAssertion(obj)) {
         let assertion = obj
         if (isValidSignature(assertion)) {
-            let agent = fingerPrint(assertion["agent"])
+            let agent = await fingerPrint(assertion["agent"])
             let claim = await ipfsGetObj(assertion["claim"]["/"])
             let production = {}
             if (claim["format"] == "production")
