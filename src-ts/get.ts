@@ -201,7 +201,8 @@ let processAssertion = async (assertion: {}, result: {}) => {
     let claim = await ipfsGetObj(assertion["claim"]["/"])
     let assertionOutput = {}
 
-    assertionOutput["agent"] = fingerPrint(assertion["agent"])
+    assertionOutput["agent"] = await fingerPrint(assertion["agent"])
+    console.log(assertionOutput["agent"])
     assertionOutput["claim"] = {}
 
     if (claim["format"] == "production") {
