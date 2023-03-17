@@ -51,7 +51,7 @@ export async function getCommand(cid: string, directoryPath: string) {
 
     let mainObj = await ipfsGetObj(cid);
     if (Object.keys(mainObj).length != 0) { // test if mainObj != {}
-        if (!isOfSpecifiedTypes(mainObj))
+        if (! (await isOfSpecifiedTypes(mainObj)))
             throw new Error("ERROR: Retrieved object has unknown/invalid format.")
 
         let mainObjFormat = mainObj["format"]

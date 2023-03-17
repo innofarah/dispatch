@@ -35,12 +35,12 @@ import { config, keyStore, allowList } from "./initial-vals.js";
 function isAnnotated(format: string,
                      testFn: (obj: any) => boolean) {
     const annotatedFormat = "annotated-" + format;
-    return (obj: any) => {
+    return async (obj: any) => {
         return Object.keys(obj).length === 3
             && "format" in obj
             && obj["format"] === annotatedFormat
             && format in obj
-            && testFn(obj[format]);
+            && testFn(await ipfsGetObj(obj[format]["/"]));
     };
 }
 
@@ -117,17 +117,17 @@ export function isCollection(obj: any) {
 }
 
 // the standard format types to publish and get
-export function isOfSpecifiedTypes(obj: any) {
+export async function isOfSpecifiedTypes(obj: any) {
     return isContext(obj)
         || isFormula(obj)
         || isSequent(obj)
         || isProduction(obj)
         || isAssertion(obj)
         || isCollection(obj)
-        || isAnnotatedContext(obj)
-        || isAnnotatedFormula(obj)
-        || isAnnotatedSequent(obj)
-        || isAnnotatedProduction(obj);
+        || await isAnnotatedContext(obj)
+        || await isAnnotatedFormula(obj)
+        || await isAnnotatedSequent(obj)
+        || await isAnnotatedProduction(obj);
 }
 
 export function isValidSignature(assertion: any): boolean {
