@@ -202,7 +202,6 @@ let processAssertion = async (assertion: {}, result: {}) => {
     let assertionOutput = {}
 
     assertionOutput["agent"] = await fingerPrint(assertion["agent"])
-    console.log(assertionOutput["agent"])
     assertionOutput["claim"] = {}
 
     if (claim["format"] == "production") {
