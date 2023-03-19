@@ -25,8 +25,7 @@ import { ipfsAddObj } from "./utilities.js"
 
 export async function createAgent(profileName: string) {
     // now just using default parameters
-    const { privateKey, publicKey } = crypt.generateKeyPairSync('ec', {
-        namedCurve: 'sect239k1',
+    const { privateKey, publicKey } = crypt.generateKeyPairSync('ed25519', {
         publicKeyEncoding: {
             type: 'spki',
             format: 'pem'
