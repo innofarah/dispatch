@@ -331,10 +331,12 @@ let publishAnnotatedSequent = async (annotatedSequentObj: {}, input: {}) => {
     return cid
 }
 
+// [TODO] Remove the mode/modeValue distinction.
+//        (already caused at least one bug)
 let publishProduction = async (productionObj: {}, input: {}) => {
     let mode = productionObj["mode"]
     let sequent = productionObj["sequent"]
-    let modeValue: toolLink | null | "axiom" | "conjecture" // the currently expected mode values
+    let modeValue: toolLink | null | "axiom" | "conjecture" = null // the currently expected mode values
     let cidTool = "", cidSequent = ""
 
     // add spec and checks later that sequent is "damf:.." or {..}
@@ -348,7 +350,7 @@ let publishProduction = async (productionObj: {}, input: {}) => {
     //according to some specification (maybe standard maybe more)
     // OR maybe make it more general? --> dispatch doesn't check restricted mode values?
     if (mode == null || mode == "axiom" || mode == "conjecture") {
-            modeValue = mode
+        modeValue = mode
     }
 
     // other than the expected modes keywords, the current specification of a production,
@@ -362,6 +364,7 @@ let publishProduction = async (productionObj: {}, input: {}) => {
     else {
         // assuming the cids in toolProfiles are of "format"="tool" --> check later
         cidTool = (await iv.toolProfiles.read(mode))["tool"];
+        modeValue = { "/": cidTool }
     }
 
     let productionGlobal: production = {
