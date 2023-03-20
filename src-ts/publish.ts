@@ -23,6 +23,11 @@ import crypto from "crypto";
 import iv from "./initial-vals.js";
 import { ipfsAddObj, publishDAGToCloud } from "./utilities.js";
 
+
+let readLanguages = {}
+let readTools = {}
+let readAgents = {}
+
 export async function publishCommand(inputPath: string, target: target) {
     const data = await fs.readFile(inputPath, { encoding: "utf-8" });
     const input = JSON.parse(data);
@@ -108,7 +113,12 @@ let publishContext = async (contextObj: {}) => {
     if (typeof language == "string" && language.startsWith("damf:"))
         cidLanguage = language.split(":")[1]
     else {
-        cidLanguage = (await iv.languages.read(language))["language"];
+        // assuming the cids in languages are of "format"="language" --> check later
+        if (readLanguages[language]) { cidLanguage = readLanguages[language] }
+        else {
+            cidLanguage = (await iv.languages.read(language))["language"];
+            readLanguages[language] = cidLanguage
+        }
     }
 
     //if (typeof content == "string" && content.startsWith("damf:"))
@@ -167,7 +177,12 @@ let publishFormula = async (formulaObj: {}, input: {}, publishedContexts: {}) =>
     if (typeof language == "string" && language.startsWith("damf:"))
         cidLanguage = language.split(":")[1]
     else {
-        cidLanguage = (await iv.languages.read(language))["language"];
+        // assuming the cids in languages are of "format"="language" --> check later
+        if (readLanguages[language]) { cidLanguage = readLanguages[language] }
+        else {
+            cidLanguage = (await iv.languages.read(language))["language"];
+            readLanguages[language] = cidLanguage
+        }
     }
 
     //if (typeof content == "string" && content.startsWith("damf:"))
@@ -340,7 +355,13 @@ let publishProduction = async (productionObj: {}, input: {}, publishedContexts: 
         modeValue = { "/": cidTool }
     }
     else {
-        cidTool = (await iv.toolProfiles.read(mode))["tool"];
+        // assuming the cids in toolProfiles are of "format"="tool" --> check later
+        if (readTools[mode]) { cidTool = readTools[mode] }
+        else {
+            cidTool = (await iv.toolProfiles.read(mode))["tool"];
+            readTools[mode] = cidTool
+        }
+
         modeValue = { "/": cidTool }
     }
 
@@ -410,8 +431,12 @@ let publishAssertion = async (assertionObj: {}, input: {}, publishedContexts: {}
         }
     }
 
-    const agentProfile = (await iv.agentProfiles.read(agentProfileName));
-
+    let agentProfile = {}
+    if (readAgents[agentProfileName]) { agentProfile = readAgents[agentProfileName] }
+    else {
+        agentProfile = (await iv.agentProfiles.read(agentProfileName));
+        readAgents[agentProfileName] = agentProfile
+    }
     const sign = crypto.createSign('SHA256')
     sign.write(cidClaim)
     sign.end()
