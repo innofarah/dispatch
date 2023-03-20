@@ -1,0 +1,594 @@
+{
+  "format": "collection",
+  "name": "fib",
+  "elements": [
+   {
+     "format": "assertion",
+     "element": {
+       "agent": "exampleAgent",
+       "claim": {
+         "format": "annotated-production",
+         "annotation": { "name": "sq1" },
+         "production": {
+           "mode": "teyjus-2.1.1",
+           "sequent": {
+             "conclusion": "sq1",
+             "dependencies": [ ]
+           }
+         }
+       }
+     }
+   },
+   {
+     "format": "assertion",
+     "element": {
+       "agent": "exampleAgent",
+       "claim": {
+         "format": "annotated-production",
+         "annotation": { "name": "sq2" },
+         "production": {
+           "mode": "teyjus-2.1.1",
+           "sequent": {
+             "conclusion": "sq2",
+             "dependencies": [ ]
+           }
+         }
+       }
+     }
+   },
+   {
+     "format": "assertion",
+     "element": {
+       "agent": "exampleAgent",
+       "claim": {
+         "format": "annotated-production",
+         "annotation": { "name": "sq3" },
+         "production": {
+           "mode": "teyjus-2.1.1",
+           "sequent": {
+             "conclusion": "sq3",
+             "dependencies": [ ]
+           }
+         }
+       }
+     }
+   },
+   {
+     "format": "assertion",
+     "element": {
+       "agent": "exampleAgent",
+       "claim": {
+         "format": "annotated-production",
+         "annotation": { "name": "sq4" },
+         "production": {
+           "mode": "teyjus-2.1.1",
+           "sequent": {
+             "conclusion": "sq4",
+             "dependencies": [ ]
+           }
+         }
+       }
+     }
+   },
+   {
+     "format": "assertion",
+     "element": {
+       "agent": "exampleAgent",
+       "claim": {
+         "format": "annotated-production",
+         "annotation": { "name": "sq5" },
+         "production": {
+           "mode": "teyjus-2.1.1",
+           "sequent": {
+             "conclusion": "sq5",
+             "dependencies": [ ]
+           }
+         }
+       }
+     }
+   },
+   {
+     "format": "assertion",
+     "element": {
+       "agent": "exampleAgent",
+       "claim": {
+         "format": "annotated-production",
+         "annotation": { "name": "sq6" },
+         "production": {
+           "mode": "teyjus-2.1.1",
+           "sequent": {
+             "conclusion": "sq6",
+             "dependencies": [ ]
+           }
+         }
+       }
+     }
+   },
+   {
+     "format": "assertion",
+     "element": {
+       "agent": "exampleAgent",
+       "claim": {
+         "format": "annotated-production",
+         "annotation": { "name": "sq7" },
+         "production": {
+           "mode": "teyjus-2.1.1",
+           "sequent": {
+             "conclusion": "sq7",
+             "dependencies": [ ]
+           }
+         }
+       }
+     }
+   },
+   {
+     "format": "assertion",
+     "element": {
+       "agent": "exampleAgent",
+       "claim": {
+         "format": "annotated-production",
+         "annotation": { "name": "sq8" },
+         "production": {
+           "mode": "teyjus-2.1.1",
+           "sequent": {
+             "conclusion": "sq8",
+             "dependencies": [ ]
+           }
+         }
+       }
+     }
+   },
+   {
+     "format": "assertion",
+     "element": {
+       "agent": "exampleAgent",
+       "claim": {
+         "format": "annotated-production",
+         "annotation": { "name": "sq9" },
+         "production": {
+           "mode": "teyjus-2.1.1",
+           "sequent": {
+             "conclusion": "sq9",
+             "dependencies": [ ]
+           }
+         }
+       }
+     }
+   },
+   {
+     "format": "assertion",
+     "element": {
+       "agent": "exampleAgent",
+       "claim": {
+         "format": "annotated-production",
+         "annotation": { "name": "sq10" },
+         "production": {
+           "mode": "teyjus-2.1.1",
+           "sequent": {
+             "conclusion": "sq10",
+             "dependencies": [ ]
+           }
+         }
+       }
+     }
+   },
+   {
+     "format": "assertion",
+     "element": {
+       "agent": "exampleAgent",
+       "claim": {
+         "format": "annotated-production",
+         "annotation": { "name": "sq11" },
+         "production": {
+           "mode": "teyjus-2.1.1",
+           "sequent": {
+             "conclusion": "sq11",
+             "dependencies": [ ]
+           }
+         }
+       }
+     }
+   },
+   {
+     "format": "assertion",
+     "element": {
+       "agent": "exampleAgent",
+       "claim": {
+         "format": "annotated-production",
+         "annotation": { "name": "sq12" },
+         "production": {
+           "mode": "teyjus-2.1.1",
+           "sequent": {
+             "conclusion": "sq12",
+             "dependencies": [ ]
+           }
+         }
+       }
+     }
+   },
+   {
+     "format": "assertion",
+     "element": {
+       "agent": "exampleAgent",
+       "claim": {
+         "format": "annotated-production",
+         "annotation": { "name": "sq13" },
+         "production": {
+           "mode": "teyjus-2.1.1",
+           "sequent": {
+             "conclusion": "sq13",
+             "dependencies": [ ]
+           }
+         }
+       }
+     }
+   },
+   {
+     "format": "assertion",
+     "element": {
+       "agent": "exampleAgent",
+       "claim": {
+         "format": "annotated-production",
+         "annotation": { "name": "fib1" },
+         "production": {
+           "mode": "teyjus-2.1.1",
+           "sequent": {
+             "conclusion": "fib1",
+             "dependencies": [ ]
+           }
+         }
+       }
+     }
+   },
+   {
+     "format": "assertion",
+     "element": {
+       "agent": "exampleAgent",
+       "claim": {
+         "format": "annotated-production",
+         "annotation": { "name": "fib2" },
+         "production": {
+           "mode": "teyjus-2.1.1",
+           "sequent": {
+             "conclusion": "fib2",
+             "dependencies": [ ]
+           }
+         }
+       }
+     }
+   },
+   {
+     "format": "assertion",
+     "element": {
+       "agent": "exampleAgent",
+       "claim": {
+         "format": "annotated-production",
+         "annotation": { "name": "fib3" },
+         "production": {
+           "mode": "teyjus-2.1.1",
+           "sequent": {
+             "conclusion": "fib3",
+             "dependencies": [ ]
+           }
+         }
+       }
+     }
+   },
+   {
+     "format": "assertion",
+     "element": {
+       "agent": "exampleAgent",
+       "claim": {
+         "format": "annotated-production",
+         "annotation": { "name": "fib4" },
+         "production": {
+           "mode": "teyjus-2.1.1",
+           "sequent": {
+             "conclusion": "fib4",
+             "dependencies": [ ]
+           }
+         }
+       }
+     }
+   },
+   {
+     "format": "assertion",
+     "element": {
+       "agent": "exampleAgent",
+       "claim": {
+         "format": "annotated-production",
+         "annotation": { "name": "fib5" },
+         "production": {
+           "mode": "teyjus-2.1.1",
+           "sequent": {
+             "conclusion": "fib5",
+             "dependencies": [ ]
+           }
+         }
+       }
+     }
+   },
+   {
+     "format": "assertion",
+     "element": {
+       "agent": "exampleAgent",
+       "claim": {
+         "format": "annotated-production",
+         "annotation": { "name": "fib6" },
+         "production": {
+           "mode": "teyjus-2.1.1",
+           "sequent": {
+             "conclusion": "fib6",
+             "dependencies": [ ]
+           }
+         }
+       }
+     }
+   },
+   {
+     "format": "assertion",
+     "element": {
+       "agent": "exampleAgent",
+       "claim": {
+         "format": "annotated-production",
+         "annotation": { "name": "fib7" },
+         "production": {
+           "mode": "teyjus-2.1.1",
+           "sequent": {
+             "conclusion": "fib7",
+             "dependencies": [ ]
+           }
+         }
+       }
+     }
+   },
+   {
+     "format": "assertion",
+     "element": {
+       "agent": "exampleAgent",
+       "claim": {
+         "format": "annotated-production",
+         "annotation": { "name": "fib8" },
+         "production": {
+           "mode": "teyjus-2.1.1",
+           "sequent": {
+             "conclusion": "fib8",
+             "dependencies": [ ]
+           }
+         }
+       }
+     }
+   },
+   {
+     "format": "assertion",
+     "element": {
+       "agent": "exampleAgent",
+       "claim": {
+         "format": "annotated-production",
+         "annotation": { "name": "fib9" },
+         "production": {
+           "mode": "teyjus-2.1.1",
+           "sequent": {
+             "conclusion": "fib9",
+             "dependencies": [ ]
+           }
+         }
+       }
+     }
+   },
+   {
+     "format": "assertion",
+     "element": {
+       "agent": "exampleAgent",
+       "claim": {
+         "format": "annotated-production",
+         "annotation": { "name": "fib10" },
+         "production": {
+           "mode": "teyjus-2.1.1",
+           "sequent": {
+             "conclusion": "fib10",
+             "dependencies": [ ]
+           }
+         }
+       }
+     }
+   },
+   {
+     "format": "assertion",
+     "element": {
+       "agent": "exampleAgent",
+       "claim": {
+         "format": "annotated-production",
+         "annotation": { "name": "fib11" },
+         "production": {
+           "mode": "teyjus-2.1.1",
+           "sequent": {
+             "conclusion": "fib11",
+             "dependencies": [ ]
+           }
+         }
+       }
+     }
+   },
+   {
+     "format": "assertion",
+     "element": {
+       "agent": "exampleAgent",
+       "claim": {
+         "format": "annotated-production",
+         "annotation": { "name": "fib12" },
+         "production": {
+           "mode": "teyjus-2.1.1",
+           "sequent": {
+             "conclusion": "fib12",
+             "dependencies": [ ]
+           }
+         }
+       }
+     }
+   },
+   {
+     "format": "assertion",
+     "element": {
+       "agent": "exampleAgent",
+       "claim": {
+         "format": "annotated-production",
+         "annotation": { "name": "fib13" },
+         "production": {
+           "mode": "teyjus-2.1.1",
+           "sequent": {
+             "conclusion": "fib13",
+             "dependencies": [ ]
+           }
+         }
+       }
+     }
+   }
+  ],
+  "formulas": {
+    "sq1": {
+      "language": "lprolog",
+      "content": "times (s z) (s z) (s z)",
+      "context": [ "fib" ]
+    },
+    "sq2": {
+      "language": "lprolog",
+      "content": "times (s (s z)) (s (s z)) (s (s (s (s z))))",
+      "context": [ "fib" ]
+    },
+    "sq3": {
+      "language": "lprolog",
+      "content": "times (s (s (s z))) (s (s (s z))) (s (s (s (s (s (s (s (s (s z)))))))))",
+      "context": [ "fib" ]
+    },
+    "sq4": {
+      "language": "lprolog",
+      "content": "times (s (s (s (s z)))) (s (s (s (s z)))) (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s z))))))))))))))))",
+      "context": [ "fib" ]
+    },
+    "sq5": {
+      "language": "lprolog",
+      "content": "times (s (s (s (s (s z))))) (s (s (s (s (s z))))) (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s z)))))))))))))))))))))))))",
+      "context": [ "fib" ]
+    },
+    "sq6": {
+      "language": "lprolog",
+      "content": "times (s (s (s (s (s (s z)))))) (s (s (s (s (s (s z)))))) (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s z))))))))))))))))))))))))))))))))))))",
+      "context": [ "fib" ]
+    },
+    "sq7": {
+      "language": "lprolog",
+      "content": "times (s (s (s (s (s (s (s z))))))) (s (s (s (s (s (s (s z))))))) (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s z)))))))))))))))))))))))))))))))))))))))))))))))))",
+      "context": [ "fib" ]
+    },
+    "sq8": {
+      "language": "lprolog",
+      "content": "times (s (s (s (s (s (s (s (s z)))))))) (s (s (s (s (s (s (s (s z)))))))) (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s z))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))",
+      "context": [ "fib" ]
+    },
+    "sq9": {
+      "language": "lprolog",
+      "content": "times (s (s (s (s (s (s (s (s (s z))))))))) (s (s (s (s (s (s (s (s (s z))))))))) (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s z)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))",
+      "context": [ "fib" ]
+    },
+    "sq10": {
+      "language": "lprolog",
+      "content": "times (s (s (s (s (s (s (s (s (s (s z)))))))))) (s (s (s (s (s (s (s (s (s (s z)))))))))) (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s z))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))",
+      "context": [ "fib" ]
+    },
+    "sq11": {
+      "language": "lprolog",
+      "content": "times (s (s (s (s (s (s (s (s (s (s (s z))))))))))) (s (s (s (s (s (s (s (s (s (s (s z))))))))))) (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s z)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))",
+      "context": [ "fib" ]
+    },
+    "sq12": {
+      "language": "lprolog",
+      "content": "times (s (s (s (s (s (s (s (s (s (s (s (s z)))))))))))) (s (s (s (s (s (s (s (s (s (s (s (s z)))))))))))) (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s z))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))",
+      "context": [ "fib" ]
+    },
+    "sq13": {
+      "language": "lprolog",
+      "content": "times (s (s (s (s (s (s (s (s (s (s (s (s (s z))))))))))))) (s (s (s (s (s (s (s (s (s (s (s (s (s z))))))))))))) (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s z)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))",
+      "context": [ "fib" ]
+    },
+    "fib1": {
+      "language": "lprolog",
+      "content": "fib (s z) (s z)",
+      "context": [ "fib" ]
+    },
+    "fib2": {
+      "language": "lprolog",
+      "content": "fib (s (s z)) (s z)",
+      "context": [ "fib" ]
+    },
+    "fib3": {
+      "language": "lprolog",
+      "content": "fib (s (s (s z))) (s (s z))",
+      "context": [ "fib" ]
+    },
+    "fib4": {
+      "language": "lprolog",
+      "content": "fib (s (s (s (s z)))) (s (s (s z)))",
+      "context": [ "fib" ]
+    },
+    "fib5": {
+      "language": "lprolog",
+      "content": "fib (s (s (s (s (s z))))) (s (s (s (s (s z)))))",
+      "context": [ "fib" ]
+    },
+    "fib6": {
+      "language": "lprolog",
+      "content": "fib (s (s (s (s (s (s z)))))) (s (s (s (s (s (s (s (s z))))))))",
+      "context": [ "fib" ]
+    },
+    "fib7": {
+      "language": "lprolog",
+      "content": "fib (s (s (s (s (s (s (s z))))))) (s (s (s (s (s (s (s (s (s (s (s (s (s z)))))))))))))",
+      "context": [ "fib" ]
+    },
+    "fib8": {
+      "language": "lprolog",
+      "content": "fib (s (s (s (s (s (s (s (s z)))))))) (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s z)))))))))))))))))))))",
+      "context": [ "fib" ]
+    },
+    "fib9": {
+      "language": "lprolog",
+      "content": "fib (s (s (s (s (s (s (s (s (s z))))))))) (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s z))))))))))))))))))))))))))))))))))",
+      "context": [ "fib" ]
+    },
+    "fib10": {
+      "language": "lprolog",
+      "content": "fib (s (s (s (s (s (s (s (s (s (s z)))))))))) (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s z)))))))))))))))))))))))))))))))))))))))))))))))))))))))",
+      "context": [ "fib" ]
+    },
+    "fib11": {
+      "language": "lprolog",
+      "content": "fib (s (s (s (s (s (s (s (s (s (s (s z))))))))))) (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s z)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))",
+      "context": [ "fib" ]
+    },
+    "fib12": {
+      "language": "lprolog",
+      "content": "fib (s (s (s (s (s (s (s (s (s (s (s (s z)))))))))))) (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s z))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))",
+      "context": [ "fib" ]
+    },
+    "fib13": {
+      "language": "lprolog",
+      "content": "fib (s (s (s (s (s (s (s (s (s (s (s (s (s z))))))))))))) (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s z)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))",
+      "context": [ "fib" ]
+    }
+
+  },
+  "contexts": {
+    "fib": {
+      "language": "lprolog",
+      "content": [
+        "kind nat    type.",
+        "type z      nat.",
+        "type s      nat -> nat.",
+        "type plus   nat -> nat -> nat -> o.",
+        "type times  nat -> nat -> nat -> o.",
+        "type fib    nat -> nat -> o."
+      ]
+    }
+  }
+}

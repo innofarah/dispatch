@@ -23,12 +23,6 @@ import crypto from "crypto";
 import iv from "./initial-vals.js";
 import { ipfsAddObj, publishDAGToCloud } from "./utilities.js";
 
-//let publishedNamedFormulas: { [key: string]: string } = {}
-//let publishedFormulas: string[] = []
-//let publishedSequents: string[] = []
-//let publishedAssertions: string[] = []
-//let publishedDeclarations: { [key: string]: string } = {}
-
 export async function publishCommand(inputPath: string, target: target) {
     const data = await fs.readFile(inputPath, { encoding: "utf-8" });
     const input = JSON.parse(data);
@@ -40,11 +34,10 @@ export async function publishCommand(inputPath: string, target: target) {
     // considering the "format" attribute to be fixed (exists all the time) for all the possible input-formats (considering that input-formats might differ according to format of published objects)
     let format = input["format"]
     let cid = ""
-    // maybe do some checking here of the given file structure if correct?
+    // SHOULD [TODO] check here if input-format is valid
 
     if (format == "context") {
-        // only one declaration object exists in this case
-        //let name = Object.keys(input["declarations"])[0]
+        // only one context object exists in this case
         let contextObj = input["context"]
         cid = await publishContext(contextObj)
         console.log("published context object of cid: " + cid)
@@ -56,46 +49,46 @@ export async function publishCommand(inputPath: string, target: target) {
     }
     else if (format == "formula") {
         let formulaObj = input["formula"]
-        cid = await publishFormula(formulaObj, input)
+        cid = await publishFormula(formulaObj, input, {})
         console.log("published formula object of cid: " + cid)
     }
     else if (format == "annotated-formula") {
         let annotatedFormulaObj = input["annotated-formula"]
-        cid = await publishAnnotatedFormula(annotatedFormulaObj, input)
+        cid = await publishAnnotatedFormula(annotatedFormulaObj, input, {})
         console.log("published annotated formula object of cid: " + cid)
     }
     else if (format == "sequent") {
         let sequentObj = input["sequent"]
-        cid = await publishSequent(sequentObj, input)
+        cid = await publishSequent(sequentObj, input, {})
         console.log("published sequent object of cid: " + cid)
     }
     else if (format == "annotated-sequent") {
         let annotatedSequentObj = input["annotated-sequent"]
-        cid = await publishAnnotatedSequent(annotatedSequentObj, input)
+        cid = await publishAnnotatedSequent(annotatedSequentObj, input, {})
         console.log("published annotated sequent object of cid: " + cid)
     }
     else if (format == "production") {
         let productionObj = input["production"]
-        cid = await publishProduction(productionObj, input)
+        cid = await publishProduction(productionObj, input, {})
         console.log("published production object of cid: " + cid)
     }
     else if (format == "annotated-production") {
         let annotatedProductionObj = input["annotated-production"]
-        cid = await publishAnnotatedProduction(annotatedProductionObj, input)
+        cid = await publishAnnotatedProduction(annotatedProductionObj, input, {})
         console.log("published annotated production object of cid: " + cid)
     }
     else if (format == "assertion") {
         let assertionObj = input["assertion"]
-        cid = await publishAssertion(assertionObj, input)
+        cid = await publishAssertion(assertionObj, input, {})
         console.log("published assertion object of cid: " + cid)
     }
     else if (format == "collection") { // collection of links to global objects
         let name = input["name"]
         let elements = input["elements"]
-        cid = await publishCollection(name, elements, input)
+        cid = await publishCollection(name, elements, input, {})
         console.log("published collection object of cid: " + cid)
     }
-    else throw new Error(`unknown input format ${ format }`);
+    else throw new Error(`unknown input format ${format}`);
 
     // if "target" is cloud (global), publish the final sequence cid (dag) through the web3.storage api
     if (cid != "" && target == "cloud") {
@@ -103,11 +96,10 @@ export async function publishCommand(inputPath: string, target: target) {
     }
 }
 
-// !!!!!!!!!!!! should add more safety checks - do later (for all the publishing functions)
+// !!! should add more safety checks - do later (for all the publishing functions)
 let publishContext = async (contextObj: {}) => {
-    // consider an entry in "declaration" (like "fib": ..) in the input file to have two possible values: either [string] or "damf:ciddeclarationobject"
-    // use ipfsAddObj to add the declarations end object
-
+    // consider an entry in "context" (like "fib": ..) in the input file to have two possible values: either [string] or "damf:ciddeclarationobject"
+    // use ipfsAddObj to add the context and object
     let language = contextObj["language"]
     let content = contextObj["content"]
 
@@ -116,13 +108,13 @@ let publishContext = async (contextObj: {}) => {
     if (typeof language == "string" && language.startsWith("damf:"))
         cidLanguage = language.split(":")[1]
     else {
-        // assuming the cids in languages are of "format"="language" --> check later
         cidLanguage = (await iv.languages.read(language))["language"];
     }
 
-    if (typeof content == "string" && content.startsWith("damf:"))
-        cidContent = content.split(":")[1]
-    else cidContent = await ipfsAddObj(content)
+    //if (typeof content == "string" && content.startsWith("damf:"))
+    //    cidContent = content.split(":")[1]
+    //else cidContent = await ipfsAddObj(content)
+    cidContent = await ipfsAddObj(content)
 
     let contextGlobal: context = {
         "format": "context",
@@ -131,7 +123,6 @@ let publishContext = async (contextObj: {}) => {
     }
 
     let cidObj = await ipfsAddObj(contextGlobal)
-    //publishedDeclarations[name] = cidObj
     cidContext = cidObj
 
     return cidContext
@@ -150,11 +141,11 @@ let publishAnnotatedContext = async (annotatedContextObj: {}) => {
         cidContext = await publishContext(context)
     }
 
-    if (typeof annotation == "string" && annotation.startsWith("damf:"))
-        cidAnnotation = annotation.split(":")[1]
-    else {
-        cidAnnotation = await ipfsAddObj(annotation)
-    }
+    //if (typeof annotation == "string" && annotation.startsWith("damf:"))
+    //    cidAnnotation = annotation.split(":")[1]
+    //else {
+    cidAnnotation = await ipfsAddObj(annotation)
+    //}
 
 
     let annotatedContextGlobal: annotatedContext = {
@@ -165,12 +156,10 @@ let publishAnnotatedContext = async (annotatedContextObj: {}) => {
 
     let cid = await ipfsAddObj(annotatedContextGlobal)
 
-    //publishedNamedFormulas[name] = cid
-
     return cid
 }
 
-let publishFormula = async (formulaObj: {}, input: {}) => {
+let publishFormula = async (formulaObj: {}, input: {}, publishedContexts: {}) => {
     let language = formulaObj["language"]
     let content = formulaObj["content"]
     let cidLanguage = "", cidContent = ""
@@ -178,22 +167,28 @@ let publishFormula = async (formulaObj: {}, input: {}) => {
     if (typeof language == "string" && language.startsWith("damf:"))
         cidLanguage = language.split(":")[1]
     else {
-        // assuming the cids in languages are of "format"="language" --> check later
         cidLanguage = (await iv.languages.read(language))["language"];
     }
 
-    if (typeof content == "string" && content.startsWith("damf:"))
-        cidContent = content.split(":")[1]
-    else cidContent = await ipfsAddObj(content)
+    //if (typeof content == "string" && content.startsWith("damf:"))
+    //    cidContent = content.split(":")[1]
+    //else cidContent = await ipfsAddObj(content)
+    cidContent = await ipfsAddObj(content)
 
     let contextNames = formulaObj["context"]
     let contextLinks = [] as ipldLink[]
 
     for (let contextName of contextNames) {
         let contextCid = ""
-        if (contextName.startsWith("damf:"))
+        if (publishedContexts[contextName]) {
+            contextCid = publishedContexts[contextName]
+        }
+        else if (contextName.startsWith("damf:"))
             contextCid = contextName.split(":")[1]
-        else contextCid = await publishContext(input["contexts"][contextName])
+        else {
+            contextCid = await publishContext(input["contexts"][contextName])
+            publishedContexts[contextName] = contextCid
+        }
         contextLinks.push({ "/": contextCid })
     }
 
@@ -207,14 +202,12 @@ let publishFormula = async (formulaObj: {}, input: {}) => {
 
     let cid = await ipfsAddObj(formulaGlobal)
 
-    //publishedFormulas.push(cid)
-
     return cid
 
 }
 
 // change into annotated -> ...
-let publishAnnotatedFormula = async (annotatedFormulaObj: {}, input: {}) => {
+let publishAnnotatedFormula = async (annotatedFormulaObj: {}, input: {}, publishedContexts: {}) => {
     let formula = annotatedFormulaObj["formula"]
     let annotation = annotatedFormulaObj["annotation"]
 
@@ -223,14 +216,14 @@ let publishAnnotatedFormula = async (annotatedFormulaObj: {}, input: {}) => {
     if (typeof formula == "string" && formula.startsWith("damf:"))
         cidFormula = formula.split(":")[1]
     else {
-        cidFormula = await publishFormula(formula, input)
+        cidFormula = await publishFormula(formula, input, publishedContexts)
     }
 
-    if (typeof annotation == "string" && annotation.startsWith("damf:"))
-        cidAnnotation = annotation.split(":")[1]
-    else {
-        cidAnnotation = await ipfsAddObj(annotation)
-    }
+    //if (typeof annotation == "string" && annotation.startsWith("damf:"))
+    //    cidAnnotation = annotation.split(":")[1]
+    //else {
+    cidAnnotation = await ipfsAddObj(annotation)
+    //}
 
 
     let annotatedFormulaGlobal: annotatedFormula = {
@@ -241,12 +234,11 @@ let publishAnnotatedFormula = async (annotatedFormulaObj: {}, input: {}) => {
 
     let cid = await ipfsAddObj(annotatedFormulaGlobal)
 
-    //publishedNamedFormulas[name] = cid
-
     return cid
 }
 
-let publishSequent = async (sequentObj: {}, input: {}) => {
+let publishSequent = async (sequentObj: {}, input: {}, publishedContexts: {}) => {
+
     let conclusionName = sequentObj["conclusion"]
     let cidConclusion = ""
 
@@ -254,13 +246,8 @@ let publishSequent = async (sequentObj: {}, input: {}) => {
         cidConclusion = conclusionName.split(":")[1]
     else {
         let conclusionObj = input["formulas"][conclusionName]
-        /*let conclusionGlobal = {
-            "language": conclusionObj["language"],
-            "content": conclusionObj["content"],
-            "declarations": conclusionObj["declarations"]
-        }*/
 
-        cidConclusion = await publishFormula(conclusionObj, input)
+        cidConclusion = await publishFormula(conclusionObj, input, publishedContexts)
     }
 
     let dependenciesNames = sequentObj["dependencies"]
@@ -275,16 +262,10 @@ let publishSequent = async (sequentObj: {}, input: {}) => {
         }
         else {
             let dependencyObj = input["formulas"][dependency]
-            /*let dependencyGlobal = {
-                "language": dependencyObj["language"],
-                "content": dependencyObj["content"],
-                "declaration": dependencyObj["declaration"]
-            }*/
-            ciddependency = await publishFormula(dependencyObj, input)
+            ciddependency = await publishFormula(dependencyObj, input, publishedContexts)
         }
         dependenciesIpfs.push({ "/": ciddependency })
     }
-
 
     let sequentGlobal = {
         "format": "sequent",
@@ -293,13 +274,12 @@ let publishSequent = async (sequentObj: {}, input: {}) => {
     }
 
     let cid = await ipfsAddObj(sequentGlobal)
-    //publishedSequents.push(cid)
 
     return cid
 
 }
 
-let publishAnnotatedSequent = async (annotatedSequentObj: {}, input: {}) => {
+let publishAnnotatedSequent = async (annotatedSequentObj: {}, input: {}, publishedContexts: {}) => {
     let sequent = annotatedSequentObj["sequent"]
     let annotation = annotatedSequentObj["annotation"]
 
@@ -308,14 +288,14 @@ let publishAnnotatedSequent = async (annotatedSequentObj: {}, input: {}) => {
     if (typeof sequent == "string" && sequent.startsWith("damf:"))
         cidSequent = sequent.split(":")[1]
     else {
-        cidSequent = await publishSequent(sequent, input)
+        cidSequent = await publishSequent(sequent, input, publishedContexts)
     }
 
-    if (typeof annotation == "string" && annotation.startsWith("damf:"))
-        cidAnnotation = annotation.split(":")[1]
-    else {
-        cidAnnotation = await ipfsAddObj(annotation)
-    }
+    //if (typeof annotation == "string" && annotation.startsWith("damf:"))
+    //    cidAnnotation = annotation.split(":")[1]
+    //else {
+    cidAnnotation = await ipfsAddObj(annotation)
+    //}
 
 
     let annotatedSequentGlobal: annotatedSequent = {
@@ -326,14 +306,12 @@ let publishAnnotatedSequent = async (annotatedSequentObj: {}, input: {}) => {
 
     let cid = await ipfsAddObj(annotatedSequentGlobal)
 
-    //publishedNamedFormulas[name] = cid
-
     return cid
 }
 
 // [TODO] Remove the mode/modeValue distinction.
 //        (already caused at least one bug)
-let publishProduction = async (productionObj: {}, input: {}) => {
+let publishProduction = async (productionObj: {}, input: {}, publishedContexts: {}) => {
     let mode = productionObj["mode"]
     let sequent = productionObj["sequent"]
     let modeValue: toolLink | null | "axiom" | "conjecture" = null // the currently expected mode values
@@ -342,7 +320,7 @@ let publishProduction = async (productionObj: {}, input: {}) => {
     // add spec and checks later that sequent is "damf:.." or {..}
     if (typeof sequent == "string" && sequent.startsWith("damf:"))
         cidSequent = sequent.split(":")[1]
-    else cidSequent = await publishSequent(sequent, input)
+    else cidSequent = await publishSequent(sequent, input, publishedContexts)
 
     // these are just the CURRENTLY known production modes to dispatch
     // but later, maybe this would be extended : the important point is
@@ -362,7 +340,6 @@ let publishProduction = async (productionObj: {}, input: {}) => {
         modeValue = { "/": cidTool }
     }
     else {
-        // assuming the cids in toolProfiles are of "format"="tool" --> check later
         cidTool = (await iv.toolProfiles.read(mode))["tool"];
         modeValue = { "/": cidTool }
     }
@@ -378,7 +355,7 @@ let publishProduction = async (productionObj: {}, input: {}) => {
     return cidProduction
 }
 
-let publishAnnotatedProduction = async (annotatedProductionObj: {}, input: {}) => {
+let publishAnnotatedProduction = async (annotatedProductionObj: {}, input: {}, publishedContexts: {}) => {
     let production = annotatedProductionObj["production"]
     let annotation = annotatedProductionObj["annotation"]
 
@@ -387,14 +364,14 @@ let publishAnnotatedProduction = async (annotatedProductionObj: {}, input: {}) =
     if (typeof production == "string" && production.startsWith("damf:"))
         cidProduction = production.split(":")[1]
     else {
-        cidProduction = await publishProduction(production, input)
+        cidProduction = await publishProduction(production, input, publishedContexts)
     }
 
-    if (typeof annotation == "string" && annotation.startsWith("damf:"))
-        cidAnnotation = annotation.split(":")[1]
-    else {
-        cidAnnotation = await ipfsAddObj(annotation)
-    }
+    //if (typeof annotation == "string" && annotation.startsWith("damf:"))
+    //    cidAnnotation = annotation.split(":")[1]
+    //else {
+    cidAnnotation = await ipfsAddObj(annotation)
+    //}
 
 
     let annotatedProductionGlobal: annotatedProduction = {
@@ -405,13 +382,11 @@ let publishAnnotatedProduction = async (annotatedProductionObj: {}, input: {}) =
 
     let cid = await ipfsAddObj(annotatedProductionGlobal)
 
-    //publishedNamedFormulas[name] = cid
-
     return cid
 }
 
 // refer to either production or annotatedproduction. how
-let publishAssertion = async (assertionObj: {}, input: {}) => {
+let publishAssertion = async (assertionObj: {}, input: {}, publishedContexts: {}) => {
     let agentProfileName = assertionObj["agent"]
     let claim = assertionObj["claim"]
     let cidClaim = ""
@@ -421,7 +396,7 @@ let publishAssertion = async (assertionObj: {}, input: {}) => {
     else {
         // should do additional checking
         if (claim["format"] == "production") {
-            cidClaim = await publishProduction(claim["production"], input)
+            cidClaim = await publishProduction(claim["production"], input, publishedContexts)
         }
         else if (claim["format"] == "annotated-production") {
             let production = claim["production"]
@@ -431,11 +406,12 @@ let publishAssertion = async (assertionObj: {}, input: {}) => {
                 "production": production,
                 "annotation": annotation
             }
-            cidClaim = await publishAnnotatedProduction(annotatedProductionObj, input)
+            cidClaim = await publishAnnotatedProduction(annotatedProductionObj, input, publishedContexts)
         }
     }
 
-    const agentProfile = await iv.agentProfiles.read(agentProfileName);
+    const agentProfile = (await iv.agentProfiles.read(agentProfileName));
+
     const sign = crypto.createSign('SHA256')
     sign.write(cidClaim)
     sign.end()
@@ -449,13 +425,12 @@ let publishAssertion = async (assertionObj: {}, input: {}) => {
     }
 
     let cidAssertion = await ipfsAddObj(assertionGlobal)
-    //publishedAssertions.push(cidAssertion)
 
     return cidAssertion
 }
 
 // also needs more checking
-let publishGeneric = async (element: {}, input: {}) => {
+let publishGeneric = async (element: {}, input: {}, publishedContexts: {}) => {
     let cid = ""
     let actualElement = element["element"]
     if (element["format"] == "context")
@@ -463,26 +438,26 @@ let publishGeneric = async (element: {}, input: {}) => {
     else if (element["format"] == "annotated-context")
         cid = await publishAnnotatedContext(actualElement)
     else if (element["format"] == "formula")
-        cid = await publishFormula(actualElement, input)
+        cid = await publishFormula(actualElement, input, publishedContexts)
     else if (element["format"] == "annotated-formula")
-        cid = await publishAnnotatedFormula(actualElement, input)
+        cid = await publishAnnotatedFormula(actualElement, input, publishedContexts)
     else if (element["format"] == "sequent")
-        cid = await publishSequent(actualElement, input)
+        cid = await publishSequent(actualElement, input, publishedContexts)
     else if (element["format"] == "annotated-sequent")
-        cid = await publishAnnotatedSequent(actualElement, input)
+        cid = await publishAnnotatedSequent(actualElement, input, publishedContexts)
     else if (element["format"] == "production")
-        cid = await publishProduction(actualElement, input)
+        cid = await publishProduction(actualElement, input, publishedContexts)
     else if (element["format"] == "annotated-production")
-        cid = await publishAnnotatedProduction(actualElement, input)
+        cid = await publishAnnotatedProduction(actualElement, input, publishedContexts)
     else if (element["format"] == "assertion")
-        cid = await publishAssertion(actualElement, input)
+        cid = await publishAssertion(actualElement, input, publishedContexts)
     return cid
 }
 
-let publishCollection = async (name: string, elements: [], input: {}) => {
+let publishCollection = async (name: string, elements: [], input: {}, publishedContexts: {}) => {
     let elementsLinks = []
     for (let element of elements) {
-        let cidElement = await publishGeneric(element, input)
+        let cidElement = await publishGeneric(element, input, publishedContexts)
         elementsLinks.push({ "/": cidElement })
     }
 
