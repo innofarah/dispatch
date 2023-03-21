@@ -132,15 +132,10 @@ export async function isOfSpecifiedTypes(obj: any) {
 
 export function isValidSignature(assertion: any): boolean {
     // [TODO] assert(isAssertion(assertion));
-    let signature = assertion["signature"];
-    let claimedPublicKey = assertion["agent"];
-    // the data to verify: here it's the asset's cid in the object
-    let dataToVerify = assertion["claim"]["/"];
-
-    const verify = crypto.createVerify('SHA256');
-    verify.write(dataToVerify);
-    verify.end();
-    return verify.verify(claimedPublicKey, signature, 'hex');
+    const pubKey = crypto.createPublicKey(assertion["agent"]);
+    const data = Buffer.from(assertion["claim"]["/"]);
+    const sig = Buffer.from(assertion["signature"], "hex");
+    return crypto.verify(null, data, pubKey, sig);
 }
 
 export async function fingerPrint(agent: string) {

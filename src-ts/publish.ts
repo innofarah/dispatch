@@ -437,19 +437,17 @@ let publishAssertion = async (assertionObj: {}, input: {}, publishedContexts: {}
         agentProfile = (await iv.agentProfiles.read(agentProfileName));
         readAgents[agentProfileName] = agentProfile
     }
-    const sign = crypto.createSign('SHA256')
-    sign.write(cidClaim)
-    sign.end()
-    const signature = sign.sign(agentProfile["private-key"], 'hex')
+    const priKey = crypto.createPrivateKey(agentProfile["private-key"]);
+    const signature = crypto.sign(null, Buffer.from(cidClaim), priKey).toString("hex");
 
-    let assertionGlobal: assertion = {
+    const assertionGlobal: assertion = {
         "format": "assertion",
         "agent": agentProfile["public-key"],
         "claim": { "/": cidClaim },
         "signature": signature
     }
 
-    let cidAssertion = await ipfsAddObj(assertionGlobal)
+    const cidAssertion = await ipfsAddObj(assertionGlobal)
 
     return cidAssertion
 }
