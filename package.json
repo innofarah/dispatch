@@ -9,7 +9,7 @@
   "type": "module",
   "scripts": {
     "tsc": "cd src-ts && tsc",
-    "dist": "esbuild ./src --bundle --platform=node --outfile=build/dispatch.cjs",
+    "dist": "esbuild ./src --color=false --bundle --platform=node --outfile=build/dispatch.cjs",
     "exec": "pkg build/dispatch.cjs --out-path executables",
     "build": "npm run tsc && npm run dist && npm run exec"
   },

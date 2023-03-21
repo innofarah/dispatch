@@ -164,6 +164,17 @@ export async function ipfsGetObj(cid: string) {
     return JSON.parse(dag.stdout);
 }
 
+export async function ipfsResolve(cid: string) {
+    const cmd = `ipfs dag resolve ${ cid }`;
+    const result = await exec(cmd);
+    return result.stdout;
+}
+
+export async function damfResolve(cidLike: string) {
+    if (typeof cidLike != "string" || !cidLike.startsWith("damf:")) return null;
+    return await ipfsResolve(cidLike.slice(5));
+}
+
 async function withTempFile<A>(ext: string,
                                fn: (fileName: string) => Promise<A>)
 {
