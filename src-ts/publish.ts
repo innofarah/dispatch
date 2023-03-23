@@ -22,6 +22,7 @@ import crypto from "crypto";
 
 import iv from "./initial-vals.js";
 import { damfResolve, ipfsAddObj, publishDAGToCloud } from "./utilities.js";
+import { validateInput } from "./validate_input.js";
 
 let readLanguages = {};
 let readTools = {};
@@ -30,6 +31,8 @@ let readAgents = {};
 export async function publishCommand(inputPath: string, target: target) {
     const data = await fs.readFile(inputPath, { encoding: "utf-8" });
     const input = JSON.parse(data);
+
+    validateInput(input, 4);
 
     // considering the "format" attribute to be fixed (exists all the time) for
     // all the possible input-formats (considering that input-formats might
