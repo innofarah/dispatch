@@ -103,13 +103,11 @@ let processContext = async (obj: {}, result: {}) => {
     let languageCid = contextObj["language"]["/"]
     contextOutput["language"] = languageCid
     let language = await ipfsGetObj(languageCid)    // should check format "language"
-    let langContent = await ipfsGetObj(language["content"]["/"])
 
     result["languages"][languageCid] = {}
-    result["languages"][languageCid]["content"] = langContent
+    result["languages"][languageCid]["content"] = language["content"]
 
-    let content = await ipfsGetObj(contextObj["content"]["/"])
-    contextOutput["content"] = content
+    contextOutput["content"] = contextObj["content"]
 
     return contextOutput
 }
@@ -122,12 +120,11 @@ let processFormula = async (obj: {}, result: {}) => {
     let languageCid = mainObj["language"]["/"]
     output["language"] = languageCid
     let language = await ipfsGetObj(languageCid)    // should check format "language"
-    let langContent = await ipfsGetObj(language["content"]["/"])
 
     result["languages"][languageCid] = {}
-    result["languages"][languageCid]["content"] = langContent
+    result["languages"][languageCid]["content"] = language["content"]
 
-    output["content"] = await ipfsGetObj(mainObj["content"]["/"])
+    output["content"] = mainObj["content"]
 
     output["context"] = []
 
@@ -186,9 +183,8 @@ let processProduction = async (obj: {}, result: {}) => {
         let toolCid = production["mode"]["/"]
         productionOutput["mode"] = toolCid
         let tool = await ipfsGetObj(toolCid)    // should check format "tool"
-        let toolContent = await ipfsGetObj(tool["content"]["/"])
         result["tools"][toolCid] = {}
-        result["tools"][toolCid]["content"] = toolContent
+        result["tools"][toolCid]["content"] = tool["content"]
     }
     else { // case any
         productionOutput["mode"] = mode
@@ -212,7 +208,7 @@ let processAssertion = async (assertion: {}, result: {}) => {
         assertionOutput["claim"]["format"] = "annotated-production"
         let productionObj = await ipfsGetObj(claim["production"]["/"])
         assertionOutput["claim"]["production"] = await processProduction(productionObj, result)
-        assertionOutput["claim"]["annotation"] = await ipfsGetObj(claim["annotation"]["/"])
+        assertionOutput["claim"]["annotation"] = claim["annotation"]
         // later if we add more structure to annotation, we could change the usage of the generic ipfsGetObj
     }
     else {
@@ -240,7 +236,7 @@ let processGeneric = async (element: {}, result: {}) => {
         let resElement = {}
         let contextObj = await ipfsGetObj(element["context"]["/"])
         resElement["context"] = await processContext(contextObj, result)
-        resElement["annotation"] = await ipfsGetObj(element["annotation"]["/"])
+        resElement["annotation"] = element["annotation"]
         return resElement
     }
     else if (element["format"] == "formula")
@@ -249,7 +245,7 @@ let processGeneric = async (element: {}, result: {}) => {
         let resElement = {}
         let formulaObj = await ipfsGetObj(element["formula"]["/"])
         resElement["formula"] = await processFormula(formulaObj, result)
-        resElement["annotation"] = await ipfsGetObj(element["annotation"]["/"])
+        resElement["annotation"] = element["annotation"]
         return resElement
     }
     else if (element["format"] == "sequent")
@@ -258,7 +254,7 @@ let processGeneric = async (element: {}, result: {}) => {
         let resElement = {}
         let sequentObj = await ipfsGetObj(element["sequent"]["/"])
         resElement["sequent"] = await processSequent(sequentObj, result)
-        resElement["annotation"] = await ipfsGetObj(element["annotation"]["/"])
+        resElement["annotation"] = element["annotation"]
         return resElement
     }
     else if (element["format"] == "production")
@@ -267,7 +263,7 @@ let processGeneric = async (element: {}, result: {}) => {
         let resElement = {}
         let productionObj = await ipfsGetObj(element["production"]["/"])
         resElement["production"] = await processProduction(productionObj, result)
-        resElement["annotation"] = await ipfsGetObj(element["annotation"]["/"])
+        resElement["annotation"] = element["annotation"]
         return resElement
     }
     else if (element["format"] == "assertion") {
@@ -294,7 +290,7 @@ let getAnnotatedContext = async (cidObj: string, obj: {}, result: {}) => {
     let contextOutput = await processContext(contextObj, result)
     result["annotated-context"]["context"] = contextOutput
 
-    result["annotated-context"]["annotation"] = await ipfsGetObj(obj["annotation"]["/"])
+    result["annotated-context"]["annotation"] = obj["annotation"]
 }
 
 let getFormula = async (cidObj: string, obj: {}, result: {}) => {
@@ -319,7 +315,7 @@ let getAnnotatedFormula = async (cidObj: string, obj: {}, result: {}) => {
     let formulaObj = await ipfsGetObj(obj["formula"]["/"])
     let formulaOutput = await processFormula(formulaObj, result)
     result["annotated-formula"]["formula"] = formulaOutput
-    result["annotated-formula"]["annotation"] = await ipfsGetObj(obj["annotation"]["/"])
+    result["annotated-formula"]["annotation"] = obj["annotation"]
 }
 
 let getSequent = async (cidObj: string, obj: {}, result: {}) => { // similar to getAssertion
@@ -346,7 +342,7 @@ let getAnnotatedSequent = async (cidObj: string, obj: {}, result: {}) => {
     let sequentObj = await ipfsGetObj(obj["sequent"]["/"])
     let sequentOutput = await processSequent(sequentObj, result)
     result["annotated-sequent"]["sequent"] = sequentOutput
-    result["annotated-sequent"]["annotation"] = await ipfsGetObj(obj["annotation"]["/"])
+    result["annotated-sequent"]["annotation"] = obj["annotation"]
 }
 
 let getProduction = async (cidObj: string, obj: {}, result: {}) => {
@@ -375,7 +371,7 @@ let getAnnotatedProduction = async (cidObj: string, obj: {}, result: {}) => {
     let productionObj = await ipfsGetObj(obj["production"]["/"])
     let productionOutput = await processProduction(productionObj, result)
     result["annotated-production"]["production"] = productionOutput
-    result["annotated-production"]["annotation"] = await ipfsGetObj(obj["annotation"]["/"])
+    result["annotated-production"]["annotation"] = obj["annotation"]
 }
 
 let getAssertion = async (cidObj: string, obj: {}, result: {}) => {

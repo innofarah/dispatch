@@ -56,19 +56,18 @@ export async function createTool(toolProfileName: string,
     if (inputType === "file") {
         // [HACK] assumes file is data, not text
         // could have { encoding: "utf-8" }
-        const contentCid = await ipfsAddObj(await fs.readFile(input));
+        const content = await fs.readFile(input);
         toolCid = await ipfsAddObj({
             "format": "tool",
-            "content": { "/": contentCid }
+            "content": content
         });
     }
     else if (inputType === "json") {
         const data = await fs.readFile(input, { encoding: "utf-8" });
-        const obj = JSON.parse(data);
-        const contentCid = await ipfsAddObj(obj)
+        const content = JSON.parse(data);
         toolCid = await ipfsAddObj({
             "format": "tool",
-            "content": { "/": contentCid }
+            "content": content
         });
     }
     else if (inputType === "cid")
@@ -91,19 +90,18 @@ export async function createLanguage(languageName: string,
                                      input: string) {
     let languageCid = "";
     if (inputType === "file") {
-        const contentCid = await ipfsAddObj(await fs.readFile(input));
+        const content = await fs.readFile(input);
         languageCid = await ipfsAddObj({
             "format": "language",
-            "content": { "/": contentCid }
+            "content": content
         });
     }
     else if (inputType === "json") {
         const data = await fs.readFile(input, { encoding: "utf-8" });
-        const obj = JSON.parse(data);
-        let contentCid = await ipfsAddObj(obj)
+        const content = JSON.parse(data)
         languageCid = await ipfsAddObj({
             "format": "language",
-            "content": { "/": contentCid }
+            "content": content
         });
     }
     else if (inputType === "cid")

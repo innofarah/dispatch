@@ -108,7 +108,7 @@ let publishContext = async (contextObj: {}) => {
     let language = contextObj["language"]
     let content = contextObj["content"]
 
-    let cidLanguage = "", cidContent = "", cidContext = ""
+    let cidLanguage = "", cidContext = ""
 
     if (typeof language == "string" && language.startsWith("damf:"))
         cidLanguage = language.split(":")[1]
@@ -121,15 +121,11 @@ let publishContext = async (contextObj: {}) => {
         }
     }
 
-    //if (typeof content == "string" && content.startsWith("damf:"))
-    //    cidContent = content.split(":")[1]
-    //else cidContent = await ipfsAddObj(content)
-    cidContent = await ipfsAddObj(content)
 
     let contextGlobal: context = {
         "format": "context",
         "language": { "/": cidLanguage },
-        "content": { "/": cidContent }
+        "content": content
     }
 
     let cidObj = await ipfsAddObj(contextGlobal)
@@ -138,12 +134,11 @@ let publishContext = async (contextObj: {}) => {
     return cidContext
 }
 
-// change into annotated  -> what is annotations"?
 let publishAnnotatedContext = async (annotatedContextObj: {}) => {
     let context = annotatedContextObj["context"]
     let annotation = annotatedContextObj["annotation"]
 
-    let cidContext = "", cidAnnotation = ""
+    let cidContext = ""
 
     if (typeof context == "string" && context.startsWith("damf:"))
         cidContext = context.split(":")[1]
@@ -151,17 +146,11 @@ let publishAnnotatedContext = async (annotatedContextObj: {}) => {
         cidContext = await publishContext(context)
     }
 
-    //if (typeof annotation == "string" && annotation.startsWith("damf:"))
-    //    cidAnnotation = annotation.split(":")[1]
-    //else {
-    cidAnnotation = await ipfsAddObj(annotation)
-    //}
-
 
     let annotatedContextGlobal: annotatedContext = {
         "format": "annotated-context",
         "context": { "/": cidContext },
-        "annotation": { "/": cidAnnotation }
+        "annotation":  annotation
     }
 
     let cid = await ipfsAddObj(annotatedContextGlobal)
@@ -172,7 +161,7 @@ let publishAnnotatedContext = async (annotatedContextObj: {}) => {
 let publishFormula = async (formulaObj: {}, input: {}, publishedContexts: {}) => {
     let language = formulaObj["language"]
     let content = formulaObj["content"]
-    let cidLanguage = "", cidContent = ""
+    let cidLanguage = ""
 
     if (typeof language == "string" && language.startsWith("damf:"))
         cidLanguage = language.split(":")[1]
@@ -184,11 +173,6 @@ let publishFormula = async (formulaObj: {}, input: {}, publishedContexts: {}) =>
             readLanguages[language] = cidLanguage
         }
     }
-
-    //if (typeof content == "string" && content.startsWith("damf:"))
-    //    cidContent = content.split(":")[1]
-    //else cidContent = await ipfsAddObj(content)
-    cidContent = await ipfsAddObj(content)
 
     let contextNames = formulaObj["context"]
     let contextLinks = [] as ipldLink[]
@@ -211,7 +195,7 @@ let publishFormula = async (formulaObj: {}, input: {}, publishedContexts: {}) =>
     let formulaGlobal: formula = {
         "format": "formula",
         "language": { "/": cidLanguage },
-        "content": { "/": cidContent },
+        "content": content,
         "context": contextLinks
     }
 
@@ -226,7 +210,7 @@ let publishAnnotatedFormula = async (annotatedFormulaObj: {}, input: {}, publish
     let formula = annotatedFormulaObj["formula"]
     let annotation = annotatedFormulaObj["annotation"]
 
-    let cidFormula = "", cidAnnotation = ""
+    let cidFormula = ""
 
     if (typeof formula == "string" && formula.startsWith("damf:"))
         cidFormula = formula.split(":")[1]
@@ -234,17 +218,11 @@ let publishAnnotatedFormula = async (annotatedFormulaObj: {}, input: {}, publish
         cidFormula = await publishFormula(formula, input, publishedContexts)
     }
 
-    //if (typeof annotation == "string" && annotation.startsWith("damf:"))
-    //    cidAnnotation = annotation.split(":")[1]
-    //else {
-    cidAnnotation = await ipfsAddObj(annotation)
-    //}
-
 
     let annotatedFormulaGlobal: annotatedFormula = {
         "format": "annotated-formula",
         "formula": { "/": cidFormula },
-        "annotation": { "/": cidAnnotation }
+        "annotation": annotation
     }
 
     let cid = await ipfsAddObj(annotatedFormulaGlobal)
@@ -298,7 +276,7 @@ let publishAnnotatedSequent = async (annotatedSequentObj: {}, input: {}, publish
     let sequent = annotatedSequentObj["sequent"]
     let annotation = annotatedSequentObj["annotation"]
 
-    let cidSequent = "", cidAnnotation = ""
+    let cidSequent = ""
 
     if (typeof sequent == "string" && sequent.startsWith("damf:"))
         cidSequent = sequent.split(":")[1]
@@ -306,17 +284,11 @@ let publishAnnotatedSequent = async (annotatedSequentObj: {}, input: {}, publish
         cidSequent = await publishSequent(sequent, input, publishedContexts)
     }
 
-    //if (typeof annotation == "string" && annotation.startsWith("damf:"))
-    //    cidAnnotation = annotation.split(":")[1]
-    //else {
-    cidAnnotation = await ipfsAddObj(annotation)
-    //}
-
 
     let annotatedSequentGlobal: annotatedSequent = {
         "format": "annotated-sequent",
         "sequent": { "/": cidSequent },
-        "annotation": { "/": cidAnnotation }
+        "annotation": annotation
     }
 
     let cid = await ipfsAddObj(annotatedSequentGlobal)
@@ -380,7 +352,7 @@ let publishAnnotatedProduction = async (annotatedProductionObj: {}, input: {}, p
     let production = annotatedProductionObj["production"]
     let annotation = annotatedProductionObj["annotation"]
 
-    let cidProduction = "", cidAnnotation = ""
+    let cidProduction = ""
 
     if (typeof production == "string" && production.startsWith("damf:"))
         cidProduction = production.split(":")[1]
@@ -388,17 +360,11 @@ let publishAnnotatedProduction = async (annotatedProductionObj: {}, input: {}, p
         cidProduction = await publishProduction(production, input, publishedContexts)
     }
 
-    //if (typeof annotation == "string" && annotation.startsWith("damf:"))
-    //    cidAnnotation = annotation.split(":")[1]
-    //else {
-    cidAnnotation = await ipfsAddObj(annotation)
-    //}
-
 
     let annotatedProductionGlobal: annotatedProduction = {
         "format": "annotated-production",
         "production": { "/": cidProduction },
-        "annotation": { "/": cidAnnotation }
+        "annotation": annotation
     }
 
     let cid = await ipfsAddObj(annotatedProductionGlobal)

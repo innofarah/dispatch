@@ -75,19 +75,19 @@ type globalTypeLink = contextLink | formulaLink | sequentLink | productionLink |
 // --> maybe add more structure to it later
 type language = {
     "format": "language",
-    "content": ipldLink
+    "content": any
 }
 
 type context = {
     "format": "context",
     "language": languageLink,
-    "content": ipldLink
+    "content": any
 }
 
 type formula = {
     "format": "formula",
     "language": languageLink,
-    "content": ipldLink,
+    "content": any,
     "context": contextLink[]
 }
 
@@ -100,7 +100,7 @@ type sequent = {
 
 type tool = {
     "format": "tool",
-    "content": ipldLink
+    "content": any
 }
 
 // having a sequent as a standalone object (instead of putting "lemmas" and "conclusion" here directly) has the benefit of it having a unique identifier for maybe other uses
@@ -134,25 +134,25 @@ type assertion = {
 type annotatedContext = {
     "format": "annotated-context",
     "context": contextLink,
-    "annotation": ipldLink
+    "annotation": any
 }
 
 type annotatedFormula = {
     "format": "annotated-formula",
     "formula": formulaLink,
-    "annotation": ipldLink
+    "annotation": any
 }
 
 type annotatedSequent = {
     "format": "annotated-sequent",
     "sequent": sequentLink,
-    "annotation": ipldLink
+    "annotation": any
 }
 
 type annotatedProduction =  {
     "format": "annotated-production",
     "production": productionLink,
-    "annotation": ipldLink
+    "annotation": any
 }
 
 /*type annotation = {
