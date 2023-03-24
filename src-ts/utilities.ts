@@ -205,7 +205,7 @@ export async function ensureFullDAG(cid: string) {
         const response = await fetch(url);
         if (!response.ok)
             throw new Error(`unexpected response: ${ response.statusText }`);
-        withTempFile("car", async (tmpFile) => {
+        await withTempFile("car", async (tmpFile) => {
             await fs.writeFile(tmpFile, response.body);
             await exec(`ipfs dag import ${ tmpFile }`);
             console.log(`DEBUG: ensureFullDAG(${ cid }):`);
@@ -220,7 +220,7 @@ export async function ensureFullDAG(cid: string) {
 // --------------------------
 
 export async function ipfsAddObj(obj: any): Promise<string> {
-    return withTempFile("json", async (tmpFile) => {
+    return await withTempFile("json", async (tmpFile) => {
         await fs.writeFile(tmpFile, JSON.stringify(obj));
         const cmd = `ipfs dag put ${ tmpFile } --pin`;
         const ret = await exec(cmd, { encoding: "utf-8" });
@@ -234,7 +234,7 @@ export async function publishDAGToCloud(cid: string) {
         throw new Error(`ERROR: missing web3.token; use ${ process.argv0 } set-web3token`);
     const client = new Web3Storage({ token });
     // [TODO] try to do this without temporary files
-    withTempFile("car", async (tmpFile) => {
+    await withTempFile("car", async (tmpFile) => {
         await exec(`ipfs dag export ${ cid } > ${ tmpFile }`);
         // read and parse the entire stream in one go, this will cache the contents of
         // the car in memory so is not suitable for large files.
