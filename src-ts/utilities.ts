@@ -230,12 +230,36 @@ export async function ensureFullDAG(cid: string) {
 // for adding to ipfs (+cloud)
 // --------------------------
 
+import * as Block from "multiformats/block";
+import * as icodec from "@ipld/dag-json";
+import * as scodec from "@ipld/dag-cbor";
+import { sha256 as hasher } from "multiformats/hashes/sha2";
+
+// const ipfsObjects = {};
+
 export async function ipfsAddObj(obj: any): Promise<string> {
+    const json = JSON.stringify(obj);
+    const data = await Block.decode({
+        bytes: Buffer.from(json),
+        codec: icodec,
+        hasher: hasher
+    });
+    const expectedCid: string = (await Block.encode({
+        value: data.value,
+        codec: scodec,
+        hasher: hasher
+    })).cid.toString();
     return await withTempFile("json", async (tmpFile) => {
         await fs.writeFile(tmpFile, JSON.stringify(obj));
         const cmd = `ipfs dag put ${ tmpFile } --pin`;
         const ret = await exec(cmd, { encoding: "utf-8" });
-        return ret.stdout.trim(); // this is the cid
+        const gotCid = ret.stdout.trim();
+        if (gotCid !== expectedCid) {
+            console.error(`ipfsAddObj: expected CID ${ expectedCid }`);
+            console.error(`            got CID:     ${ gotCid }`);
+            throw new Error("ipfsAddObj()");
+        }
+        return gotCid;
     });
 }
 
