@@ -29,6 +29,7 @@ import cp from "child_process";
 import util from "util";
 import fetch from "node-fetch";
 // IPFS/IPLD stuff
+import { CID } from "multiformats";
 import * as Block from "multiformats/block";
 import * as jsonCodec from "@ipld/dag-json";
 import * as cborCodec from "@ipld/dag-cbor";
@@ -135,6 +136,15 @@ export async function isOfSpecifiedTypes(obj: any) {
         || await isAnnotatedFormula(obj)
         || await isAnnotatedSequent(obj)
         || await isAnnotatedProduction(obj);
+}
+
+export function isValidCid(cid: string): boolean {
+    try {
+        const cidObj = CID.parse(cid);
+        return !!cidObj && cidObj.version === 1;
+    } catch {
+        return false;
+    }
 }
 
 export function isValidSignature(assertion: any): boolean {

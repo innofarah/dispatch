@@ -17,6 +17,8 @@
  * limitations under the License.
  */
 
+import { isValidCid } from "./utilities.js";
+
 let verbosity: number = 0;
 export function setVerbosity(v: number) { verbosity = v; }
 
@@ -71,7 +73,8 @@ function validateTool(obj: any, path: string) {
 function validateDamfLink(obj: any, path: string) {
     if (typeof obj !== "string")
         diagnose(obj, path, "not a DAMF link");
-    // [TODO] if it begins with damf:, validate CID
+    if (obj.startsWith("damf:") && !isValidCid(obj.slice(5)))
+        diagnose(obj, path, "invalid CID in DAMF link");
 }
 
 type Locals = {
