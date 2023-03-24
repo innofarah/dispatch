@@ -21,7 +21,8 @@ import fs from "node:fs/promises";
 import crypto from "crypto";
 
 import iv from "./initial-vals.js";
-import { damfResolve, ipfsAddObj, publishDAGToCloud } from "./utilities.js";
+import { damfResolve, ipfsAddObj, ipfsCommit,
+         publishDAGToCloud } from "./utilities.js";
 import { validateInput } from "./validate_input.js";
 
 let readLanguages = {};
@@ -46,6 +47,7 @@ export async function publishCommand(inputPath: string, target: target) {
         await publishGeneric(input, input);
     if (!cid)
         throw new Error(`publishCommand(): failed to publish ${ format } object`);
+    await ipfsCommit();
     if (target === "cloud")
         await publishDAGToCloud(cid);
 
@@ -223,7 +225,7 @@ const publishAssertion: Pub = async (assertionObj, input) => {
 const publishGeneric: Pub = async (element, input) => {
     const format = element["format"];
     const actualElement = element["element"];
-    const cid =
+    const cid: string =
         (format !== "context" ? null :
             await publishContext(actualElement)) ??
         (format !== "annotated-context" ? null :

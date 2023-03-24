@@ -21,7 +21,7 @@ import fs from 'node:fs/promises';
 import crypt from 'crypto';
 
 import iv from './initial-vals.js';
-import { ipfsAddObj } from "./utilities.js"
+import { ipfsAddObj, ipfsCommit } from "./utilities.js"
 
 export async function createAgent(profileName: string) {
     // now just using default parameters
@@ -80,6 +80,7 @@ export async function createTool(toolProfileName: string,
         "tool": toolCid
     }
 
+    await ipfsCommit();
     await iv.toolProfiles.write(toolProfileName, toolProfile);
     console.log("Tool profile " + toolProfileName + " created successfully!")
 }
@@ -114,6 +115,7 @@ export async function createLanguage(languageName: string,
         "language": languageCid
     };
 
+    await ipfsCommit();
     await iv.languages.write(languageName, language);
     console.log("Language record " + languageName + " created successfully!");
 }

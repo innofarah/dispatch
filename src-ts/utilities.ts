@@ -20,6 +20,7 @@
 // in this file a lot should be added; for example, verifying that all things refered in the sequence are of the same language (check first if this is what we want?)
 // for now only check that the the object has the correct attributes (without checking the types of their values)
 
+// nodejs stuff
 import crypto from "crypto";
 import os from "os";
 import fs from "node:fs/promises";
@@ -27,8 +28,14 @@ import path from "path";
 import cp from "child_process";
 import util from "util";
 import fetch from "node-fetch";
+// IPFS/IPLD stuff
+import * as Block from "multiformats/block";
+import * as jsonCodec from "@ipld/dag-json";
+import * as cborCodec from "@ipld/dag-cbor";
+import { sha256 } from "multiformats/hashes/sha2";
+import { CarWriter, CarReader } from "@ipld/car";
+// web3.storage stuff
 import { Web3Storage } from "web3.storage";
-import { CarReader } from "@ipld/car";
 
 import { config, keyStore, allowList } from "./initial-vals.js";
 
@@ -230,36 +237,40 @@ export async function ensureFullDAG(cid: string) {
 // for adding to ipfs (+cloud)
 // --------------------------
 
-import * as Block from "multiformats/block";
-import * as icodec from "@ipld/dag-json";
-import * as scodec from "@ipld/dag-cbor";
-import { sha256 as hasher } from "multiformats/hashes/sha2";
-
-// const ipfsObjects = {};
+const ipfsObjects = [];
 
 export async function ipfsAddObj(obj: any): Promise<string> {
     const json = JSON.stringify(obj);
     const data = await Block.decode({
         bytes: Buffer.from(json),
-        codec: icodec,
-        hasher: hasher
+        codec: jsonCodec,
+        hasher: sha256
     });
-    const expectedCid: string = (await Block.encode({
+    const block = await Block.encode({
         value: data.value,
-        codec: scodec,
-        hasher: hasher
-    })).cid.toString();
-    return await withTempFile("json", async (tmpFile) => {
-        await fs.writeFile(tmpFile, JSON.stringify(obj));
-        const cmd = `ipfs dag put ${ tmpFile } --pin`;
-        const ret = await exec(cmd, { encoding: "utf-8" });
-        const gotCid = ret.stdout.trim();
-        if (gotCid !== expectedCid) {
-            console.error(`ipfsAddObj: expected CID ${ expectedCid }`);
-            console.error(`            got CID:     ${ gotCid }`);
-            throw new Error("ipfsAddObj()");
-        }
-        return gotCid;
+        codec: cborCodec,
+        hasher: sha256
+    });
+    ipfsObjects.push(block);
+    return block.cid.toString();
+}
+
+export async function ipfsCommit() {
+    // create one final node that just shallow links to the existing nodes
+    const finalObj = [];
+    for (const obj of ipfsObjects)
+        finalObj.push({ "/": obj.cid.toString() });
+    await ipfsAddObj(finalObj);
+    const finalCid = ipfsObjects.at(-1).cid;
+    // put all the objects into a car and import it at once
+    await withTempFile("car", async (tmpFile) => {
+        const { writer, out } = CarWriter.create([finalCid]);
+        const writePromise = fs.writeFile(tmpFile, out);
+        for (const obj of ipfsObjects)
+            await writer.put(obj);
+        writer.close();
+        await writePromise;
+        await exec(`ipfs dag import ${ tmpFile }`);
     });
 }
 
