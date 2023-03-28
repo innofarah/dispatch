@@ -229,8 +229,8 @@ function validateCollection(obj: any, path: string, locals: Locals) {
         const elemFormat: string = validatingGet(elem, elemPath, "format", "string");
         if (!(elemFormat in validators))
             diagnose(elem, elemPath, `unknown format: ${ elemFormat }`);
-        const elemObj: any = validatingGet(elem, elemPath, "element", "object");
-        validators[elemFormat](elemObj, `${ elemPath }.element`, locals);
+        //const elemObj: any = validatingGet(elem, elemPath, "element", "object");
+        validators[elemFormat](elem, `${ elemPath }.element`, locals);
     });
 }
 

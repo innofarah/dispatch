@@ -82,9 +82,9 @@ async function getLanguageCid(language: string) {
 
 // [TODO] should add more safety checks (for all the publishing functions)
 
-async function publishContext(formulaObj: any) {
-    const cidLanguage = await getLanguageCid(formulaObj["language"]);
-    const content = formulaObj["content"];
+async function publishContext(contextObj: any) {
+    const cidLanguage = await getLanguageCid(contextObj["language"]);
+    const content = contextObj["content"];
 
     const contextGlobal: context = {
         "format": "context",
@@ -224,26 +224,25 @@ const publishAssertion: Pub = async (assertionObj, input) => {
 // also needs more checking
 const publishGeneric: Pub = async (element, input) => {
     const format = element["format"];
-    const actualElement = element["element"];
     const cid: string =
         (format !== "context" ? null :
-            await publishContext(actualElement)) ??
+            await publishContext(element)) ??
         (format !== "annotated-context" ? null :
-            await publishAnnotatedContext(actualElement, input)) ??
+            await publishAnnotatedContext(element, input)) ??
         (format !== "formula" ? null :
-            await publishFormula(actualElement, input)) ??
+            await publishFormula(element, input)) ??
         (format !== "annotated-formula" ? null :
-            await publishAnnotatedFormula(actualElement, input)) ??
+            await publishAnnotatedFormula(element, input)) ??
         (format !== "sequent" ? null :
-            await publishSequent(actualElement, input)) ??
+            await publishSequent(element, input)) ??
         (format !== "annotated-sequent" ? null :
-            await publishAnnotatedSequent(actualElement, input)) ??
+            await publishAnnotatedSequent(element, input)) ??
         (format !== "production" ? null :
-            await publishProduction(actualElement, input)) ??
+            await publishProduction(element, input)) ??
         (format !== "annotated-production" ? null :
-            await publishAnnotatedProduction(actualElement, input)) ??
+            await publishAnnotatedProduction(element, input)) ??
         (format !== "assertion" ? null :
-            await publishAssertion(actualElement, input));
+            await publishAssertion(element, input));
     if (!cid)
         throw new Error(`publishGeneric(): failed to publish ${ format } object`);
     return cid
