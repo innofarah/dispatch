@@ -1,11 +1,10 @@
-
 {
-    "format": "formula",    
-    "formula": {
-        "language": "abella-language",
-        "content": "forall M N K, nat K -> plus M N K -> plus N M K",
-        "context": ["plus"]
-    },
+    "format": "formula",
+    "language": "abella-language",
+    "content": "forall M N K, nat K -> plus M N K -> plus N M K",
+    "context": [
+        "plus"
+    ],
     "contexts": {
         "plus": {
             "language": "abella-language",

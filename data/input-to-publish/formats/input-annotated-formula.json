@@ -1,13 +1,15 @@
 {
     "format": "annotated-formula",
-    "annotated-formula": {
-        "formula": {
-            "language": "abella-language",
-            "content": "forall M N K, nat K -> plus M N K -> plus N M K",
-            "context": ["plus"]
-        },
-        "annotation": ["any"]
+    "formula": {
+        "language": "abella-language",
+        "content": "forall M N K, nat K -> plus M N K -> plus N M K",
+        "context": [
+            "plus"
+        ]
     },
+    "annotation": [
+        "any"
+    ],
     "contexts": {
         "plus": {
             "language": "abella-language",

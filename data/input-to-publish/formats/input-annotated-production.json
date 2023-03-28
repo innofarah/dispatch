@@ -1,28 +1,32 @@
 {
     "format": "annotated-production",
-    "annotated-production": {
-        "production": {
-            "mode": "abella-testing-ipfs",
-            "sequent": {
-                "conclusion": "plus_comm",
-                "dependencies": [
-                    "damf:bafyreihw6ggod5k5nvrfs7a3prtvjoqd6t3unymbh3bklqdy6mydpfrime",
-                    "plus_succ"
-                ]
-            }
-        },
-        "annotation": ["any"]
+    "production": {
+        "mode": "abella-testing-ipfs",
+        "sequent": {
+            "conclusion": "plus_comm",
+            "dependencies": [
+                "damf:bafyreiefqjjv3wzuvjjvelufzwfrohckxdzv4two7a5wmcxl7rkvsrlzoq",
+                "plus_succ"
+            ]
+        }
     },
+    "annotation": [
+        "any"
+    ],
     "formulas": {
         "plus_comm": {
             "language": "abella-language",
             "content": "forall M N K, nat K -> plus M N K -> plus N M K",
-            "context": ["plus"]
+            "context": [
+                "plus"
+            ]
         },
         "plus_succ": {
             "language": "abella-language",
             "content": "forall M N K, plus M N K -> plus M (s N) (s K)",
-            "context": ["plus"]
+            "context": [
+                "plus"
+            ]
         }
     },
     "contexts": {

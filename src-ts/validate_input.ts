@@ -205,6 +205,7 @@ const validators = {
     language: validateLanguage,
     tool: validateTool,
     context: validateContext,
+    "annotated-context": validateAnnotated("context", validateContext),
     formula: validateFormula,
     "annotated-formula": validateAnnotated("formula", validateFormula),
     sequent: validateSequent,

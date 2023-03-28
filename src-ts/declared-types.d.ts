@@ -36,6 +36,11 @@ type toolProfile = {
     "tool": cid
 }
 
+type languageProfile = {
+    "name": string,
+    "language": cid
+}
+
 //*************************//
 /* for local configuration */
 
@@ -60,7 +65,7 @@ type annotatedContextLink = ipldLink
 type annotatedFormulaLink = ipldLink
 type annotatedSequentLink = ipldLink
 type annotatedProductionLink = ipldLink
-type globalTypeLink = contextLink | formulaLink | sequentLink | productionLink | assertionLink
+type damfLink = contextLink | formulaLink | sequentLink | productionLink | assertionLink
                         | annotatedContextLink | annotatedFormulaLink 
                         | annotatedSequentLink | annotatedProductionLink
 /****************************/
@@ -169,7 +174,7 @@ type annotatedProduction =  {
 type collection = {
     "format": "collection",
     "name": string,
-    "elements": globalTypeLink[]
+    "elements": damfLink[]
 }
 // is a collection an "annotated" type by nature or not? 
 
