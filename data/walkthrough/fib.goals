@@ -1,0 +1,26 @@
+name "sq1" (times (s z) (s z) X).
+name "sq2" (times (s (s z)) (s (s z)) X).
+name "sq3" (times (s (s (s z))) (s (s (s z))) X).
+name "sq4" (times (s (s (s (s z)))) (s (s (s (s z)))) X).
+name "sq5" (times (s (s (s (s (s z))))) (s (s (s (s (s z))))) X).
+name "sq6" (times (s (s (s (s (s (s z)))))) (s (s (s (s (s (s z)))))) X).
+name "sq7" (times (s (s (s (s (s (s (s z))))))) (s (s (s (s (s (s (s z))))))) X).
+name "sq8" (times (s (s (s (s (s (s (s (s z)))))))) (s (s (s (s (s (s (s (s z)))))))) X).
+name "sq9" (times (s (s (s (s (s (s (s (s (s z))))))))) (s (s (s (s (s (s (s (s (s z))))))))) X).
+name "sq10" (times (s (s (s (s (s (s (s (s (s (s z)))))))))) (s (s (s (s (s (s (s (s (s (s z)))))))))) X).
+name "sq11" (times (s (s (s (s (s (s (s (s (s (s (s z))))))))))) (s (s (s (s (s (s (s (s (s (s (s z))))))))))) X).
+name "sq12" (times (s (s (s (s (s (s (s (s (s (s (s (s z)))))))))))) (s (s (s (s (s (s (s (s (s (s (s (s z)))))))))))) X).
+name "sq13" (times (s (s (s (s (s (s (s (s (s (s (s (s (s z))))))))))))) (s (s (s (s (s (s (s (s (s (s (s (s (s z))))))))))))) X).
+name "fib1" (fib (s z) X).
+name "fib2" (fib (s (s z)) X).
+name "fib3" (fib (s (s (s z))) X).
+name "fib4" (fib (s (s (s (s z)))) X).
+name "fib5" (fib (s (s (s (s (s z))))) X).
+name "fib6" (fib (s (s (s (s (s (s z)))))) X).
+name "fib7" (fib (s (s (s (s (s (s (s z))))))) X).
+name "fib8" (fib (s (s (s (s (s (s (s (s z)))))))) X).
+name "fib9" (fib (s (s (s (s (s (s (s (s (s z))))))))) X).
+name "fib10" (fib (s (s (s (s (s (s (s (s (s (s z)))))))))) X).
+name "fib11" (fib (s (s (s (s (s (s (s (s (s (s (s z))))))))))) X).
+name "fib12" (fib (s (s (s (s (s (s (s (s (s (s (s (s z)))))))))))) X).
+name "fib13" (fib (s (s (s (s (s (s (s (s (s (s (s (s (s z))))))))))))) X).

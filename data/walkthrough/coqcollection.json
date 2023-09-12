@@ -1,0 +1,67 @@
+{
+    "format": "collection",
+    "name": "FibLemma.v",
+    "elements": [
+        {
+            "format": "assertion",
+            "agent": "exampleAgent",
+            "claim": {
+                "format": "annotated-production",
+                "annotation": {
+                    "name": "fib_square_lemma"
+                },
+                "production": {
+                    "mode": "coq-8.16.1",
+                    "sequent": {
+                        "conclusion": "fib_square_lemma",
+                        "dependencies": []
+                    }
+                }
+            }
+        },
+        {
+            "format": "assertion",
+            "agent": "exampleAgent",
+            "claim": {
+                "format": "annotated-production",
+                "annotation": {
+                    "name": "fib_square_above"
+                },
+                "production": {
+                    "mode": "coq-8.16.1",
+                    "sequent": {
+                        "conclusion": "fib_square_above",
+                        "dependencies": [
+                            "fib_square_lemma"
+                        ]
+                    }
+                }
+            }
+        }
+    ],
+    "formulas": {
+        "fib_square_lemma": {
+            "language": "coq-8.16.1",
+            "context": [
+                "fib_square!context"
+            ],
+            "content": "forall n, 2 * n + 27 <= fib (n + 12)"
+        },
+        "fib_square_above": {
+            "language": "coq-8.16.1",
+            "context": [
+                "fib_square!context"
+            ],
+            "content": "forall n, 13 <= n -> n ^ 2 < fib n"
+        }
+    },
+    "contexts": {
+        "fib_square!context": {
+            "language": "coq-8.16.1",
+            "content": [
+                "Require Import Arith",
+                "Fixpoint fib (n: nat): nat := match n with | 0 => 0 | S j => match j with | 0 => 1 | S k => fib j + fib k end end"
+            ]
+        }
+    }
+}

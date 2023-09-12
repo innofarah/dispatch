@@ -1,0 +1,989 @@
+{
+  "format": "collection",
+  "name": "FibTheorem",
+  "elements": [
+    {
+      "format": "assertion",
+      "agent": "exampleAgent",
+      "claim": {
+        "format": "annotated-production",
+        "annotation": [ "plus_deterministic" ],
+        "production": {
+          "mode": "damf:bafyreigusrfbu2wu7k5rknudfay6to3mex75ajfaa4jyfuuvb6g3imw5z4",
+          "sequent": {
+            "conclusion": "plus_deterministic",
+            "dependencies": []
+          }
+        }
+      }
+    },
+    {
+      "format": "assertion",
+      "agent": "exampleAgent",
+      "claim": {
+        "format": "annotated-production",
+        "annotation": [ "times_deterministic" ],
+        "production": {
+          "mode": "damf:bafyreigusrfbu2wu7k5rknudfay6to3mex75ajfaa4jyfuuvb6g3imw5z4",
+          "sequent": {
+            "conclusion": "times_deterministic",
+            "dependencies": [ "plus_deterministic" ]
+          }
+        }
+      }
+    },
+    {
+      "format": "assertion",
+      "agent": "exampleAgent",
+      "claim": {
+        "format": "annotated-production",
+        "annotation": [ "fib_deterministic" ],
+        "production": {
+          "mode": "damf:bafyreigusrfbu2wu7k5rknudfay6to3mex75ajfaa4jyfuuvb6g3imw5z4",
+          "sequent": {
+            "conclusion": "fib_deterministic",
+            "dependencies": [ "plus_deterministic" ]
+          }
+        }
+      }
+    },
+    {
+      "format": "assertion",
+      "agent": "exampleAgent",
+      "claim": {
+        "format": "annotated-production",
+        "annotation": [ "lt_irreflexive" ],
+        "production": {
+          "mode": "damf:bafyreigusrfbu2wu7k5rknudfay6to3mex75ajfaa4jyfuuvb6g3imw5z4",
+          "sequent": { "conclusion": "lt_irreflexive", "dependencies": [] }
+        }
+      }
+    },
+    {
+      "format": "assertion",
+      "agent": "exampleAgent",
+      "claim": {
+        "format": "annotated-production",
+        "annotation": [ "plus_result_nat" ],
+        "production": {
+          "mode": "damf:bafyreigusrfbu2wu7k5rknudfay6to3mex75ajfaa4jyfuuvb6g3imw5z4",
+          "sequent": { "conclusion": "plus_result_nat", "dependencies": [] }
+        }
+      }
+    },
+    {
+      "format": "assertion",
+      "agent": "exampleAgent",
+      "claim": {
+        "format": "annotated-production",
+        "annotation": [ "times_result_nat" ],
+        "production": {
+          "mode": "damf:bafyreigusrfbu2wu7k5rknudfay6to3mex75ajfaa4jyfuuvb6g3imw5z4",
+          "sequent": {
+            "conclusion": "times_result_nat",
+            "dependencies": [ "plus_result_nat" ]
+          }
+        }
+      }
+    },
+    {
+      "format": "assertion",
+      "agent": "exampleAgent",
+      "claim": {
+        "format": "annotated-production",
+        "annotation": [ "fib_square_above" ],
+        "production": {
+          "mode": null,
+          "sequent": {
+            "conclusion": "fib_square_above",
+            "dependencies": [
+              "damf:bafyreie3burlpxyodh36aog3x2rhn5xz6vaaaie6kaabuegjhhh2yadz44"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "format": "assertion",
+      "agent": "exampleAgent",
+      "claim": {
+        "format": "annotated-production",
+        "annotation": [ "sq1" ],
+        "production": {
+          "mode": null,
+          "sequent": {
+            "conclusion": "sq1",
+            "dependencies": [
+              "damf:bafyreige4jlqymmkxmqwhnt2dn2m6dbrrjvdkfbpy3vdeynfpvdc6dam4q"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "format": "assertion",
+      "agent": "exampleAgent",
+      "claim": {
+        "format": "annotated-production",
+        "annotation": [ "sq2" ],
+        "production": {
+          "mode": null,
+          "sequent": {
+            "conclusion": "sq2",
+            "dependencies": [
+              "damf:bafyreic2gyx76uwvmfa24g64dhniunbnt3lxpajlhn64fpcddz2rv3ybzu"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "format": "assertion",
+      "agent": "exampleAgent",
+      "claim": {
+        "format": "annotated-production",
+        "annotation": [ "sq3" ],
+        "production": {
+          "mode": null,
+          "sequent": {
+            "conclusion": "sq3",
+            "dependencies": [
+              "damf:bafyreihalvd7cofysanvlzz2tm5523dhtvr4b2p3t2dt6mqgsmjgbge3zm"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "format": "assertion",
+      "agent": "exampleAgent",
+      "claim": {
+        "format": "annotated-production",
+        "annotation": [ "sq4" ],
+        "production": {
+          "mode": null,
+          "sequent": {
+            "conclusion": "sq4",
+            "dependencies": [
+              "damf:bafyreibqjo2hgnopogeomsza6y5melqnkcpw3mgcg3dfqhf66nblhz5qpi"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "format": "assertion",
+      "agent": "exampleAgent",
+      "claim": {
+        "format": "annotated-production",
+        "annotation": [ "sq5" ],
+        "production": {
+          "mode": null,
+          "sequent": {
+            "conclusion": "sq5",
+            "dependencies": [
+              "damf:bafyreifxbzxad7f62ak6jps636tevyusdmm2a42to2yyatr7xgunyjmghm"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "format": "assertion",
+      "agent": "exampleAgent",
+      "claim": {
+        "format": "annotated-production",
+        "annotation": [ "sq6" ],
+        "production": {
+          "mode": null,
+          "sequent": {
+            "conclusion": "sq6",
+            "dependencies": [
+              "damf:bafyreibslivp7unvjrmon7hsjqlhqnfk4pewfk2hw6hnitrh6xkgr36dju"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "format": "assertion",
+      "agent": "exampleAgent",
+      "claim": {
+        "format": "annotated-production",
+        "annotation": [ "sq7" ],
+        "production": {
+          "mode": null,
+          "sequent": {
+            "conclusion": "sq7",
+            "dependencies": [
+              "damf:bafyreie7rmithdsjsbdp4iigp4li5z3h4rwjgbz5xqfkenmw5y2lzwt4ly"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "format": "assertion",
+      "agent": "exampleAgent",
+      "claim": {
+        "format": "annotated-production",
+        "annotation": [ "sq8" ],
+        "production": {
+          "mode": null,
+          "sequent": {
+            "conclusion": "sq8",
+            "dependencies": [
+              "damf:bafyreihkcvmdipc3hygdd5ggveig4mtluat3xj4pgw6zogjbjopbdbwt6y"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "format": "assertion",
+      "agent": "exampleAgent",
+      "claim": {
+        "format": "annotated-production",
+        "annotation": [ "sq9" ],
+        "production": {
+          "mode": null,
+          "sequent": {
+            "conclusion": "sq9",
+            "dependencies": [
+              "damf:bafyreida625ippp6jjwmnoswx23gaswzcaillzsxwfqomlonn2rgdvd6ji"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "format": "assertion",
+      "agent": "exampleAgent",
+      "claim": {
+        "format": "annotated-production",
+        "annotation": [ "sq10" ],
+        "production": {
+          "mode": null,
+          "sequent": {
+            "conclusion": "sq10",
+            "dependencies": [
+              "damf:bafyreigay566gbay7evwrbcy4gmzyjkmyi5bwxocf5lznbihlgrsrwjfwy"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "format": "assertion",
+      "agent": "exampleAgent",
+      "claim": {
+        "format": "annotated-production",
+        "annotation": [ "sq11" ],
+        "production": {
+          "mode": null,
+          "sequent": {
+            "conclusion": "sq11",
+            "dependencies": [
+              "damf:bafyreidz6x6w6zkdtn67mqz2mzapwqniwuvufmudyq5nh4tskacztos36e"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "format": "assertion",
+      "agent": "exampleAgent",
+      "claim": {
+        "format": "annotated-production",
+        "annotation": [ "sq12" ],
+        "production": {
+          "mode": null,
+          "sequent": {
+            "conclusion": "sq12",
+            "dependencies": [
+              "damf:bafyreic44o5yns4pqpnf2wte27lbo4njvwhph7carnvirywcry5wvkwdcq"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "format": "assertion",
+      "agent": "exampleAgent",
+      "claim": {
+        "format": "annotated-production",
+        "annotation": [ "sq13" ],
+        "production": {
+          "mode": null,
+          "sequent": {
+            "conclusion": "sq13",
+            "dependencies": [
+              "damf:bafyreici4wjymroud54zikc7tsr3x5dwbz67zm2jfd7w2zzb2t6m46hkfe"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "format": "assertion",
+      "agent": "exampleAgent",
+      "claim": {
+        "format": "annotated-production",
+        "annotation": [ "fib2" ],
+        "production": {
+          "mode": null,
+          "sequent": {
+            "conclusion": "fib2",
+            "dependencies": [
+              "damf:bafyreiemq3zkovszxiocsqkomfqjalq4sdforjnjmnyx2ltcnulstaajuy"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "format": "assertion",
+      "agent": "exampleAgent",
+      "claim": {
+        "format": "annotated-production",
+        "annotation": [ "fib3" ],
+        "production": {
+          "mode": null,
+          "sequent": {
+            "conclusion": "fib3",
+            "dependencies": [
+              "damf:bafyreih2tzr4tt3yloztmmwo3pcmdo6v65icvjt6el47yf4bozxmhsnqti"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "format": "assertion",
+      "agent": "exampleAgent",
+      "claim": {
+        "format": "annotated-production",
+        "annotation": [ "fib4" ],
+        "production": {
+          "mode": null,
+          "sequent": {
+            "conclusion": "fib4",
+            "dependencies": [
+              "damf:bafyreif7wbhn5scwlhqai6odjoxgoht3jk2a35a2dfwwauvhkj544g7ica"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "format": "assertion",
+      "agent": "exampleAgent",
+      "claim": {
+        "format": "annotated-production",
+        "annotation": [ "fib5" ],
+        "production": {
+          "mode": null,
+          "sequent": {
+            "conclusion": "fib5",
+            "dependencies": [
+              "damf:bafyreicaaw73hpaokzuxm2hofk7mkxicfyuropizdox7a7msuua4rcfsq4"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "format": "assertion",
+      "agent": "exampleAgent",
+      "claim": {
+        "format": "annotated-production",
+        "annotation": [ "fib6" ],
+        "production": {
+          "mode": null,
+          "sequent": {
+            "conclusion": "fib6",
+            "dependencies": [
+              "damf:bafyreidbs5sohzvmwlkwuskzbel337n2ffb5pokcjbisqtkubqrhddp3xi"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "format": "assertion",
+      "agent": "exampleAgent",
+      "claim": {
+        "format": "annotated-production",
+        "annotation": [ "fib7" ],
+        "production": {
+          "mode": null,
+          "sequent": {
+            "conclusion": "fib7",
+            "dependencies": [
+              "damf:bafyreihmip6pk4zsgnsttsidww4asdpw6v6cds5sv4nkkjvrd7b6m5jnnq"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "format": "assertion",
+      "agent": "exampleAgent",
+      "claim": {
+        "format": "annotated-production",
+        "annotation": [ "fib8" ],
+        "production": {
+          "mode": null,
+          "sequent": {
+            "conclusion": "fib8",
+            "dependencies": [
+              "damf:bafyreiaaoxwfgfv2ppdcofcjfdmfqqqrzq55kb46chwelivbsfc5o2lhki"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "format": "assertion",
+      "agent": "exampleAgent",
+      "claim": {
+        "format": "annotated-production",
+        "annotation": [ "fib9" ],
+        "production": {
+          "mode": null,
+          "sequent": {
+            "conclusion": "fib9",
+            "dependencies": [
+              "damf:bafyreicmiwm3oywe6hxhlskaebxbvrpymkgs2vz7pithazi2dta4i5h4nm"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "format": "assertion",
+      "agent": "exampleAgent",
+      "claim": {
+        "format": "annotated-production",
+        "annotation": [ "fib10" ],
+        "production": {
+          "mode": null,
+          "sequent": {
+            "conclusion": "fib10",
+            "dependencies": [
+              "damf:bafyreigg4yqiivq6htxhjdqpnzdmjqnhutj34gfljrktpt6tva3xse4v3a"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "format": "assertion",
+      "agent": "exampleAgent",
+      "claim": {
+        "format": "annotated-production",
+        "annotation": [ "fib11" ],
+        "production": {
+          "mode": null,
+          "sequent": {
+            "conclusion": "fib11",
+            "dependencies": [
+              "damf:bafyreihozmlr2qlukwqss34ieoqguovjdepiifslbnh4yhtqdjxaeiuww4"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "format": "assertion",
+      "agent": "exampleAgent",
+      "claim": {
+        "format": "annotated-production",
+        "annotation": [ "fib12" ],
+        "production": {
+          "mode": null,
+          "sequent": {
+            "conclusion": "fib12",
+            "dependencies": [
+              "damf:bafyreigqhh4twp2leeudsxr457fdqp76y7ekap2y7fxrt7bijcddq5d72y"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "format": "assertion",
+      "agent": "exampleAgent",
+      "claim": {
+        "format": "annotated-production",
+        "annotation": [ "fib13" ],
+        "production": {
+          "mode": null,
+          "sequent": {
+            "conclusion": "fib13",
+            "dependencies": [
+              "damf:bafyreibzsi3prizhy7sh3qhawaj4vobjsnsxep7omupb52rubnmcrqpjci"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "format": "assertion",
+      "agent": "exampleAgent",
+      "claim": {
+        "format": "annotated-production",
+        "annotation": [ "fib_squares" ],
+        "production": {
+          "mode": "damf:bafyreigusrfbu2wu7k5rknudfay6to3mex75ajfaa4jyfuuvb6g3imw5z4",
+          "sequent": {
+            "conclusion": "fib_squares",
+            "dependencies": [
+              "fib12", "times_deterministic",
+              "lt_irreflexive", "times_result_nat", "fib_square_above", "fib_deterministic"
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "formulas": {
+    "sq6": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": ": times (s (s (s (s (s (s z)))))) (s (s (s (s (s (s z))))))\n    (s\n       (s\n          (s\n             (s\n                (s\n                   (s\n                      (s\n                         (s\n                            (s\n                               (s\n                                  (s\n                                     (s\n                                        (s\n                                           (s\n                                              (s\n                                                 (s\n                                                    (s\n                                                       (s\n                                                          (s\n                                                             (s\n                                                                (s\n                                                                   (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s (s z))))))))))))))))))))))))))))))))))))",
+      "context": [ "sq6!sigma" ]
+    },
+    "fib7": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": ": fib (s (s (s (s (s (s (s z)))))))\n    (s (s (s (s (s (s (s (s (s (s (s (s (s z)))))))))))))",
+      "context": [ "fib7!sigma" ]
+    },
+    "plus_result_nat": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": ": forall x y k, nat x -> nat y -> plus x y k -> nat k",
+      "context": [ "plus_result_nat!sigma" ]
+    },
+    "fib_square_above": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": ": forall x, nat x ->\n    leq (s (s (s (s (s (s (s (s (s (s (s (s (s z))))))))))))) x ->\n    (forall y, times x x y -> (forall u, fib x u -> lt y u))",
+      "context": [ "fib_square_above!sigma" ]
+    },
+    "sq3": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": ": times (s (s (s z))) (s (s (s z))) (s (s (s (s (s (s (s (s (s z)))))))))",
+      "context": [ "sq3!sigma" ]
+    },
+    "fib5": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": ": fib (s (s (s (s (s z))))) (s (s (s (s (s z)))))",
+      "context": [ "fib5!sigma" ]
+    },
+    "sq7": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": ": times (s (s (s (s (s (s (s z))))))) (s (s (s (s (s (s (s z)))))))\n    (s\n       (s\n          (s\n             (s\n                (s\n                   (s\n                      (s\n                         (s\n                            (s\n                               (s\n                                  (s\n                                     (s\n                                        (s\n                                           (s\n                                              (s\n                                                 (s\n                                                    (s\n                                                       (s\n                                                          (s\n                                                             (s\n                                                                (s\n                                                                   (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s (s z)))))))))))))))))))))))))))))))))))))))))))))))))",
+      "context": [ "sq7!sigma" ]
+    },
+    "times_deterministic": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": ": forall x y u v, times x y u -> times x y v -> u = v",
+      "context": [ "times_deterministic!sigma" ]
+    },
+    "fib8": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": ": fib (s (s (s (s (s (s (s (s z))))))))\n    (s\n       (s\n          (s\n             (s\n                (s\n                   (s\n                      (s\n                         (s\n                            (s\n                               (s\n                                  (s\n                                     (s (s (s (s (s (s (s (s (s (s z)))))))))))))))))))))",
+      "context": [ "fib8!sigma" ]
+    },
+    "fib9": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": ": fib (s (s (s (s (s (s (s (s (s z)))))))))\n    (s\n       (s\n          (s\n             (s\n                (s\n                   (s\n                      (s\n                         (s\n                            (s\n                               (s\n                                  (s\n                                     (s\n                                        (s\n                                           (s\n                                              (s\n                                                 (s\n                                                    (s\n                                                       (s\n                                                          (s\n                                                             (s\n                                                                (s\n                                                                   (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s (s z))))))))))))))))))))))))))))))))))",
+      "context": [ "fib9!sigma" ]
+    },
+    "fib6": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": ": fib (s (s (s (s (s (s z)))))) (s (s (s (s (s (s (s (s z))))))))",
+      "context": [ "fib6!sigma" ]
+    },
+    "sq2": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": ": times (s (s z)) (s (s z)) (s (s (s (s z))))",
+      "context": [ "sq2!sigma" ]
+    },
+    "sq12": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": ": times (s (s (s (s (s (s (s (s (s (s (s (s z))))))))))))\n    (s (s (s (s (s (s (s (s (s (s (s (s z))))))))))))\n    (s\n       (s\n          (s\n             (s\n                (s\n                   (s\n                      (s\n                         (s\n                            (s\n                               (s\n                                  (s\n                                     (s\n                                        (s\n                                           (s\n                                              (s\n                                                 (s\n                                                    (s\n                                                       (s\n                                                          (s\n                                                             (s\n                                                                (s\n                                                                   (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s (s z))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))",
+      "context": [ "sq12!sigma" ]
+    },
+    "fib3": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": ": fib (s (s (s z))) (s (s z))",
+      "context": [ "fib3!sigma" ]
+    },
+    "sq9": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": ": times (s (s (s (s (s (s (s (s (s z)))))))))\n    (s (s (s (s (s (s (s (s (s z)))))))))\n    (s\n       (s\n          (s\n             (s\n                (s\n                   (s\n                      (s\n                         (s\n                            (s\n                               (s\n                                  (s\n                                     (s\n                                        (s\n                                           (s\n                                              (s\n                                                 (s\n                                                    (s\n                                                       (s\n                                                          (s\n                                                             (s\n                                                                (s\n                                                                   (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s (s z)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))",
+      "context": [ "sq9!sigma" ]
+    },
+    "fib12": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": ": fib (s (s (s (s (s (s (s (s (s (s (s (s z))))))))))))\n    (s\n       (s\n          (s\n             (s\n                (s\n                   (s\n                      (s\n                         (s\n                            (s\n                               (s\n                                  (s\n                                     (s\n                                        (s\n                                           (s\n                                              (s\n                                                 (s\n                                                    (s\n                                                       (s\n                                                          (s\n                                                             (s\n                                                                (s\n                                                                   (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s (s z))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))",
+      "context": [ "fib12!sigma" ]
+    },
+    "fib4": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": ": fib (s (s (s (s z)))) (s (s (s z)))",
+      "context": [ "fib4!sigma" ]
+    },
+    "sq5": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": ": times (s (s (s (s (s z))))) (s (s (s (s (s z)))))\n    (s\n       (s\n          (s\n             (s\n                (s\n                   (s\n                      (s\n                         (s\n                            (s\n                               (s\n                                  (s\n                                     (s\n                                        (s\n                                           (s\n                                              (s\n                                                 (s\n                                                    (s\n                                                       (s\n                                                          (s\n                                                             (s\n                                                                (s\n                                                                   (s\n                                                                    (s\n                                                                    (s (s z)))))))))))))))))))))))))",
+      "context": [ "sq5!sigma" ]
+    },
+    "fib13": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": ": fib (s (s (s (s (s (s (s (s (s (s (s (s (s z)))))))))))))\n    (s\n       (s\n          (s\n             (s\n                (s\n                   (s\n                      (s\n                         (s\n                            (s\n                               (s\n                                  (s\n                                     (s\n                                        (s\n                                           (s\n                                              (s\n                                                 (s\n                                                    (s\n                                                       (s\n                                                          (s\n                                                             (s\n                                                                (s\n                                                                   (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s (s z)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))",
+      "context": [ "fib13!sigma" ]
+    },
+    "fib2": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": ": fib (s (s z)) (s z)",
+      "context": [ "fib2!sigma" ]
+    },
+    "sq1": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": ": times (s z) (s z) (s z)",
+      "context": [ "sq1!sigma" ]
+    },
+    "lt_irreflexive": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": ": forall x, nat x -> lt x x -> false",
+      "context": [ "lt_irreflexive!sigma" ]
+    },
+    "fib10": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": ": fib (s (s (s (s (s (s (s (s (s (s z))))))))))\n    (s\n       (s\n          (s\n             (s\n                (s\n                   (s\n                      (s\n                         (s\n                            (s\n                               (s\n                                  (s\n                                     (s\n                                        (s\n                                           (s\n                                              (s\n                                                 (s\n                                                    (s\n                                                       (s\n                                                          (s\n                                                             (s\n                                                                (s\n                                                                   (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s (s z)))))))))))))))))))))))))))))))))))))))))))))))))))))))",
+      "context": [ "fib10!sigma" ]
+    },
+    "sq11": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": ": times (s (s (s (s (s (s (s (s (s (s (s z)))))))))))\n    (s (s (s (s (s (s (s (s (s (s (s z)))))))))))\n    (s\n       (s\n          (s\n             (s\n                (s\n                   (s\n                      (s\n                         (s\n                            (s\n                               (s\n                                  (s\n                                     (s\n                                        (s\n                                           (s\n                                              (s\n                                                 (s\n                                                    (s\n                                                       (s\n                                                          (s\n                                                             (s\n                                                                (s\n                                                                   (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s (s z)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))",
+      "context": [ "sq11!sigma" ]
+    },
+    "sq8": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": ": times (s (s (s (s (s (s (s (s z)))))))) (s (s (s (s (s (s (s (s z))))))))\n    (s\n       (s\n          (s\n             (s\n                (s\n                   (s\n                      (s\n                         (s\n                            (s\n                               (s\n                                  (s\n                                     (s\n                                        (s\n                                           (s\n                                              (s\n                                                 (s\n                                                    (s\n                                                       (s\n                                                          (s\n                                                             (s\n                                                                (s\n                                                                   (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s (s z))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))",
+      "context": [ "sq8!sigma" ]
+    },
+    "plus_deterministic": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": ": forall x y u v, plus x y u -> plus x y v -> u = v",
+      "context": [ "plus_deterministic!sigma" ]
+    },
+    "sq13": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": ": times (s (s (s (s (s (s (s (s (s (s (s (s (s z)))))))))))))\n    (s (s (s (s (s (s (s (s (s (s (s (s (s z)))))))))))))\n    (s\n       (s\n          (s\n             (s\n                (s\n                   (s\n                      (s\n                         (s\n                            (s\n                               (s\n                                  (s\n                                     (s\n                                        (s\n                                           (s\n                                              (s\n                                                 (s\n                                                    (s\n                                                       (s\n                                                          (s\n                                                             (s\n                                                                (s\n                                                                   (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s (s z)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))",
+      "context": [ "sq13!sigma" ]
+    },
+    "sq4": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": ": times (s (s (s (s z)))) (s (s (s (s z))))\n    (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s (s z))))))))))))))))",
+      "context": [ "sq4!sigma" ]
+    },
+    "fib_deterministic": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": ": forall x y u, fib x y -> fib x u -> y = u",
+      "context": [ "fib_deterministic!sigma" ]
+    },
+    "fib11": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": ": fib (s (s (s (s (s (s (s (s (s (s (s z)))))))))))\n    (s\n       (s\n          (s\n             (s\n                (s\n                   (s\n                      (s\n                         (s\n                            (s\n                               (s\n                                  (s\n                                     (s\n                                        (s\n                                           (s\n                                              (s\n                                                 (s\n                                                    (s\n                                                       (s\n                                                          (s\n                                                             (s\n                                                                (s\n                                                                   (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s (s z)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))",
+      "context": [ "fib11!sigma" ]
+    },
+    "times_result_nat": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": ": forall x y k, nat x -> nat y -> times x y k -> nat k",
+      "context": [ "times_result_nat!sigma" ]
+    },
+    "fib_squares": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": ": forall x x2, nat x -> times x x x2 ->\n    (fib x x2 -> x = z \\/ x = s z \\/ x =\n       s (s (s (s (s (s (s (s (s (s (s (s z)))))))))))) /\\\n    (x = z \\/ x = s z \\/ x =\n       s (s (s (s (s (s (s (s (s (s (s (s z))))))))))) -> fib x x2)",
+      "context": [ "fib_squares!sigma" ]
+    },
+    "sq10": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": ": times (s (s (s (s (s (s (s (s (s (s z))))))))))\n    (s (s (s (s (s (s (s (s (s (s z))))))))))\n    (s\n       (s\n          (s\n             (s\n                (s\n                   (s\n                      (s\n                         (s\n                            (s\n                               (s\n                                  (s\n                                     (s\n                                        (s\n                                           (s\n                                              (s\n                                                 (s\n                                                    (s\n                                                       (s\n                                                          (s\n                                                             (s\n                                                                (s\n                                                                   (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s\n                                                                    (s (s z))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))",
+      "context": [ "sq10!sigma" ]
+    }
+  },
+  "contexts": {
+    "fib_square_above!sigma": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": [
+        "Kind nat type", "Type z nat", "Type s nat -> nat",
+        "Define nat : nat -> prop by nat z := true; nat (s X) := nat X",
+        "Define lt : nat -> nat -> prop by lt z (s X) := true; lt (s X) (s Y) := lt X Y",
+        "Define leq : nat -> nat -> prop by leq z X := true; leq (s X) (s Y) := leq X Y",
+        "Define plus : nat -> nat -> nat -> prop by plus z X X := true; plus (s X) Y (s Z) := plus X Y Z",
+        "Define times : nat -> nat -> nat -> prop by times z X z := true; times (s X) Y Z := exists (U : nat), times X Y U /\\ plus U Y Z",
+        "Define fib : nat -> nat -> prop by fib z z := true; fib (s z) (s z) := true; fib (s (s X)) K := exists (M : nat) (N : nat), fib X M /\\ fib (s X) N /\\ plus M N K"
+      ]
+    },
+    "fib12!sigma": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": [
+        "Kind nat type", "Type z nat", "Type s nat -> nat",
+        "Define plus : nat -> nat -> nat -> prop by plus z X X := true; plus (s X) Y (s Z) := plus X Y Z",
+        "Define fib : nat -> nat -> prop by fib z z := true; fib (s z) (s z) := true; fib (s (s X)) K := exists (M : nat) (N : nat), fib X M /\\ fib (s X) N /\\ plus M N K"
+      ]
+    },
+    "fib11!sigma": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": [
+        "Kind nat type", "Type z nat", "Type s nat -> nat",
+        "Define plus : nat -> nat -> nat -> prop by plus z X X := true; plus (s X) Y (s Z) := plus X Y Z",
+        "Define fib : nat -> nat -> prop by fib z z := true; fib (s z) (s z) := true; fib (s (s X)) K := exists (M : nat) (N : nat), fib X M /\\ fib (s X) N /\\ plus M N K"
+      ]
+    },
+    "sq6!sigma": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": [
+        "Kind nat type", "Type z nat", "Type s nat -> nat",
+        "Define plus : nat -> nat -> nat -> prop by plus z X X := true; plus (s X) Y (s Z) := plus X Y Z",
+        "Define times : nat -> nat -> nat -> prop by times z X z := true; times (s X) Y Z := exists (U : nat), times X Y U /\\ plus U Y Z"
+      ]
+    },
+    "sq9!sigma": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": [
+        "Kind nat type", "Type z nat", "Type s nat -> nat",
+        "Define plus : nat -> nat -> nat -> prop by plus z X X := true; plus (s X) Y (s Z) := plus X Y Z",
+        "Define times : nat -> nat -> nat -> prop by times z X z := true; times (s X) Y Z := exists (U : nat), times X Y U /\\ plus U Y Z"
+      ]
+    },
+    "sq7!sigma": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": [
+        "Kind nat type", "Type z nat", "Type s nat -> nat",
+        "Define plus : nat -> nat -> nat -> prop by plus z X X := true; plus (s X) Y (s Z) := plus X Y Z",
+        "Define times : nat -> nat -> nat -> prop by times z X z := true; times (s X) Y Z := exists (U : nat), times X Y U /\\ plus U Y Z"
+      ]
+    },
+    "fib7!sigma": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": [
+        "Kind nat type", "Type z nat", "Type s nat -> nat",
+        "Define plus : nat -> nat -> nat -> prop by plus z X X := true; plus (s X) Y (s Z) := plus X Y Z",
+        "Define fib : nat -> nat -> prop by fib z z := true; fib (s z) (s z) := true; fib (s (s X)) K := exists (M : nat) (N : nat), fib X M /\\ fib (s X) N /\\ plus M N K"
+      ]
+    },
+    "sq11!sigma": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": [
+        "Kind nat type", "Type z nat", "Type s nat -> nat",
+        "Define plus : nat -> nat -> nat -> prop by plus z X X := true; plus (s X) Y (s Z) := plus X Y Z",
+        "Define times : nat -> nat -> nat -> prop by times z X z := true; times (s X) Y Z := exists (U : nat), times X Y U /\\ plus U Y Z"
+      ]
+    },
+    "plus_result_nat!sigma": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": [
+        "Kind nat type", "Type z nat", "Type s nat -> nat",
+        "Define nat : nat -> prop by nat z := true; nat (s X) := nat X",
+        "Define plus : nat -> nat -> nat -> prop by plus z X X := true; plus (s X) Y (s Z) := plus X Y Z"
+      ]
+    },
+    "sq2!sigma": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": [
+        "Kind nat type", "Type z nat", "Type s nat -> nat",
+        "Define plus : nat -> nat -> nat -> prop by plus z X X := true; plus (s X) Y (s Z) := plus X Y Z",
+        "Define times : nat -> nat -> nat -> prop by times z X z := true; times (s X) Y Z := exists (U : nat), times X Y U /\\ plus U Y Z"
+      ]
+    },
+    "sq10!sigma": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": [
+        "Kind nat type", "Type z nat", "Type s nat -> nat",
+        "Define plus : nat -> nat -> nat -> prop by plus z X X := true; plus (s X) Y (s Z) := plus X Y Z",
+        "Define times : nat -> nat -> nat -> prop by times z X z := true; times (s X) Y Z := exists (U : nat), times X Y U /\\ plus U Y Z"
+      ]
+    },
+    "fib3!sigma": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": [
+        "Kind nat type", "Type z nat", "Type s nat -> nat",
+        "Define plus : nat -> nat -> nat -> prop by plus z X X := true; plus (s X) Y (s Z) := plus X Y Z",
+        "Define fib : nat -> nat -> prop by fib z z := true; fib (s z) (s z) := true; fib (s (s X)) K := exists (M : nat) (N : nat), fib X M /\\ fib (s X) N /\\ plus M N K"
+      ]
+    },
+    "times_deterministic!sigma": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": [
+        "Kind nat type", "Type z nat", "Type s nat -> nat",
+        "Define plus : nat -> nat -> nat -> prop by plus z X X := true; plus (s X) Y (s Z) := plus X Y Z",
+        "Define times : nat -> nat -> nat -> prop by times z X z := true; times (s X) Y Z := exists (U : nat), times X Y U /\\ plus U Y Z"
+      ]
+    },
+    "sq1!sigma": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": [
+        "Kind nat type", "Type z nat", "Type s nat -> nat",
+        "Define plus : nat -> nat -> nat -> prop by plus z X X := true; plus (s X) Y (s Z) := plus X Y Z",
+        "Define times : nat -> nat -> nat -> prop by times z X z := true; times (s X) Y Z := exists (U : nat), times X Y U /\\ plus U Y Z"
+      ]
+    },
+    "fib_squares!sigma": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": [
+        "Kind nat type", "Type z nat", "Type s nat -> nat",
+        "Define nat : nat -> prop by nat z := true; nat (s X) := nat X",
+        "Define plus : nat -> nat -> nat -> prop by plus z X X := true; plus (s X) Y (s Z) := plus X Y Z",
+        "Define times : nat -> nat -> nat -> prop by times z X z := true; times (s X) Y Z := exists (U : nat), times X Y U /\\ plus U Y Z",
+        "Define fib : nat -> nat -> prop by fib z z := true; fib (s z) (s z) := true; fib (s (s X)) K := exists (M : nat) (N : nat), fib X M /\\ fib (s X) N /\\ plus M N K"
+      ]
+    },
+    "fib6!sigma": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": [
+        "Kind nat type", "Type z nat", "Type s nat -> nat",
+        "Define plus : nat -> nat -> nat -> prop by plus z X X := true; plus (s X) Y (s Z) := plus X Y Z",
+        "Define fib : nat -> nat -> prop by fib z z := true; fib (s z) (s z) := true; fib (s (s X)) K := exists (M : nat) (N : nat), fib X M /\\ fib (s X) N /\\ plus M N K"
+      ]
+    },
+    "sq5!sigma": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": [
+        "Kind nat type", "Type z nat", "Type s nat -> nat",
+        "Define plus : nat -> nat -> nat -> prop by plus z X X := true; plus (s X) Y (s Z) := plus X Y Z",
+        "Define times : nat -> nat -> nat -> prop by times z X z := true; times (s X) Y Z := exists (U : nat), times X Y U /\\ plus U Y Z"
+      ]
+    },
+    "fib8!sigma": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": [
+        "Kind nat type", "Type z nat", "Type s nat -> nat",
+        "Define plus : nat -> nat -> nat -> prop by plus z X X := true; plus (s X) Y (s Z) := plus X Y Z",
+        "Define fib : nat -> nat -> prop by fib z z := true; fib (s z) (s z) := true; fib (s (s X)) K := exists (M : nat) (N : nat), fib X M /\\ fib (s X) N /\\ plus M N K"
+      ]
+    },
+    "sq8!sigma": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": [
+        "Kind nat type", "Type z nat", "Type s nat -> nat",
+        "Define plus : nat -> nat -> nat -> prop by plus z X X := true; plus (s X) Y (s Z) := plus X Y Z",
+        "Define times : nat -> nat -> nat -> prop by times z X z := true; times (s X) Y Z := exists (U : nat), times X Y U /\\ plus U Y Z"
+      ]
+    },
+    "times_result_nat!sigma": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": [
+        "Kind nat type", "Type z nat", "Type s nat -> nat",
+        "Define nat : nat -> prop by nat z := true; nat (s X) := nat X",
+        "Define plus : nat -> nat -> nat -> prop by plus z X X := true; plus (s X) Y (s Z) := plus X Y Z",
+        "Define times : nat -> nat -> nat -> prop by times z X z := true; times (s X) Y Z := exists (U : nat), times X Y U /\\ plus U Y Z"
+      ]
+    },
+    "plus_deterministic!sigma": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": [
+        "Kind nat type", "Type z nat", "Type s nat -> nat",
+        "Define plus : nat -> nat -> nat -> prop by plus z X X := true; plus (s X) Y (s Z) := plus X Y Z"
+      ]
+    },
+    "fib_deterministic!sigma": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": [
+        "Kind nat type", "Type z nat", "Type s nat -> nat",
+        "Define plus : nat -> nat -> nat -> prop by plus z X X := true; plus (s X) Y (s Z) := plus X Y Z",
+        "Define fib : nat -> nat -> prop by fib z z := true; fib (s z) (s z) := true; fib (s (s X)) K := exists (M : nat) (N : nat), fib X M /\\ fib (s X) N /\\ plus M N K"
+      ]
+    },
+    "sq12!sigma": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": [
+        "Kind nat type", "Type z nat", "Type s nat -> nat",
+        "Define plus : nat -> nat -> nat -> prop by plus z X X := true; plus (s X) Y (s Z) := plus X Y Z",
+        "Define times : nat -> nat -> nat -> prop by times z X z := true; times (s X) Y Z := exists (U : nat), times X Y U /\\ plus U Y Z"
+      ]
+    },
+    "fib5!sigma": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": [
+        "Kind nat type", "Type z nat", "Type s nat -> nat",
+        "Define plus : nat -> nat -> nat -> prop by plus z X X := true; plus (s X) Y (s Z) := plus X Y Z",
+        "Define fib : nat -> nat -> prop by fib z z := true; fib (s z) (s z) := true; fib (s (s X)) K := exists (M : nat) (N : nat), fib X M /\\ fib (s X) N /\\ plus M N K"
+      ]
+    },
+    "fib9!sigma": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": [
+        "Kind nat type", "Type z nat", "Type s nat -> nat",
+        "Define plus : nat -> nat -> nat -> prop by plus z X X := true; plus (s X) Y (s Z) := plus X Y Z",
+        "Define fib : nat -> nat -> prop by fib z z := true; fib (s z) (s z) := true; fib (s (s X)) K := exists (M : nat) (N : nat), fib X M /\\ fib (s X) N /\\ plus M N K"
+      ]
+    },
+    "fib2!sigma": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": [
+        "Kind nat type", "Type z nat", "Type s nat -> nat",
+        "Define plus : nat -> nat -> nat -> prop by plus z X X := true; plus (s X) Y (s Z) := plus X Y Z",
+        "Define fib : nat -> nat -> prop by fib z z := true; fib (s z) (s z) := true; fib (s (s X)) K := exists (M : nat) (N : nat), fib X M /\\ fib (s X) N /\\ plus M N K"
+      ]
+    },
+    "fib10!sigma": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": [
+        "Kind nat type", "Type z nat", "Type s nat -> nat",
+        "Define plus : nat -> nat -> nat -> prop by plus z X X := true; plus (s X) Y (s Z) := plus X Y Z",
+        "Define fib : nat -> nat -> prop by fib z z := true; fib (s z) (s z) := true; fib (s (s X)) K := exists (M : nat) (N : nat), fib X M /\\ fib (s X) N /\\ plus M N K"
+      ]
+    },
+    "fib13!sigma": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": [
+        "Kind nat type", "Type z nat", "Type s nat -> nat",
+        "Define plus : nat -> nat -> nat -> prop by plus z X X := true; plus (s X) Y (s Z) := plus X Y Z",
+        "Define fib : nat -> nat -> prop by fib z z := true; fib (s z) (s z) := true; fib (s (s X)) K := exists (M : nat) (N : nat), fib X M /\\ fib (s X) N /\\ plus M N K"
+      ]
+    },
+    "lt_irreflexive!sigma": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": [
+        "Kind nat type", "Type z nat", "Type s nat -> nat",
+        "Define nat : nat -> prop by nat z := true; nat (s X) := nat X",
+        "Define lt : nat -> nat -> prop by lt z (s X) := true; lt (s X) (s Y) := lt X Y"
+      ]
+    },
+    "sq13!sigma": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": [
+        "Kind nat type", "Type z nat", "Type s nat -> nat",
+        "Define plus : nat -> nat -> nat -> prop by plus z X X := true; plus (s X) Y (s Z) := plus X Y Z",
+        "Define times : nat -> nat -> nat -> prop by times z X z := true; times (s X) Y Z := exists (U : nat), times X Y U /\\ plus U Y Z"
+      ]
+    },
+    "fib4!sigma": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": [
+        "Kind nat type", "Type z nat", "Type s nat -> nat",
+        "Define plus : nat -> nat -> nat -> prop by plus z X X := true; plus (s X) Y (s Z) := plus X Y Z",
+        "Define fib : nat -> nat -> prop by fib z z := true; fib (s z) (s z) := true; fib (s (s X)) K := exists (M : nat) (N : nat), fib X M /\\ fib (s X) N /\\ plus M N K"
+      ]
+    },
+    "sq4!sigma": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": [
+        "Kind nat type", "Type z nat", "Type s nat -> nat",
+        "Define plus : nat -> nat -> nat -> prop by plus z X X := true; plus (s X) Y (s Z) := plus X Y Z",
+        "Define times : nat -> nat -> nat -> prop by times z X z := true; times (s X) Y Z := exists (U : nat), times X Y U /\\ plus U Y Z"
+      ]
+    },
+    "sq3!sigma": {
+      "language": "damf:bafyreibpwzjx5erk53xizw3t2tonnov6dspo7bcj5qa5ovcrzwdtbzzi6i",
+      "content": [
+        "Kind nat type", "Type z nat", "Type s nat -> nat",
+        "Define plus : nat -> nat -> nat -> prop by plus z X X := true; plus (s X) Y (s Z) := plus X Y Z",
+        "Define times : nat -> nat -> nat -> prop by times z X z := true; times (s X) Y Z := exists (U : nat), times X Y U /\\ plus U Y Z"
+      ]
+    }
+  }
+}

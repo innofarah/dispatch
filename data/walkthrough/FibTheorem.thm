@@ -1,0 +1,217 @@
+Kind nat type.
+Type z nat.
+Type s nat -> nat.
+
+Define nat: nat -> prop by
+; nat z
+; nat (s X) := nat X.
+
+Define lt: nat -> nat -> prop by
+; lt z (s X)
+; lt (s X) (s Y) := lt X Y.
+
+Define leq: nat -> nat -> prop by
+; leq z X
+; leq (s X) (s Y) := leq X Y.
+
+Define plus: nat -> nat -> nat -> prop by
+; plus z X X
+; plus (s X) Y (s Z) := plus X Y Z.
+
+Define times: nat -> nat -> nat -> prop by
+; times z X z
+; times (s X) Y Z := exists U, times X Y U /\ plus U Y Z.
+
+Define fib: nat -> nat -> prop by
+; fib z z
+; fib (s z) (s z)
+; fib (s (s X)) K :=
+    exists M N, fib X M /\ fib (s X) N /\ plus M N K.
+
+    Theorem plus_deterministic: forall x y u v, plus x y u -> plus x y v -> u = v.
+induction on 1. intros. case H1.
+  case H2. search.
+  case H2. apply IH to *H3 *H4. search.
+
+Theorem times_deterministic: forall x y u v, times x y u -> times x y v -> u = v.
+induction on 1. intros. case H1.
+  case H2. search.
+  case H2. apply IH to *H3 *H5. apply plus_deterministic to *H4 *H6. search.
+
+Theorem fib_deterministic: forall x y u, fib x y -> fib x u -> y = u.
+induction on 1. intros. case H1.
+  case H2. search.
+  case H2. search.
+  case H2.
+    apply IH to *H3 *H6.
+    apply IH to *H4 *H7.
+    apply plus_deterministic to *H5 *H8. search.
+
+Theorem lt_irreflexive: forall x, nat x -> lt x x -> false.
+induction on 1. intros. case H1.
+  case H2.
+  case H2. apply IH to *H3 *H4.
+
+Theorem plus_result_nat: forall x y k, nat x -> nat y -> plus x y k -> nat k.
+induction on 3. intros. case H3.
+  search.
+  case H1. apply IH to *H5 *H2 *H4. search.
+
+Theorem times_result_nat: forall x y k, nat x -> nat y -> times x y k -> nat k.
+induction on 3. intros. case H3.
+  search.
+  case H1. apply IH to *H6 H2 *H4. apply plus_result_nat to *H7 *H2 *H5. search.
+
+Import "damf:bafyreie3burlpxyodh36aog3x2rhn5xz6vaaaie6kaabuegjhhh2yadz44" as
+Theorem fib_square_above: forall x, nat x ->
+  leq (s^13 z) x ->
+  forall y, times x x y ->
+  forall u, fib x u -> lt y u.
+
+Import "damf:bafyreibzjis5u5lynmt3cngxs2hjv6pzbrkusjdez7jwcchqt277kpvx3a" as
+Theorem sq1: times (s^1 z) (s^1 z) (s^1 z).
+
+Import "damf:bafyreif5u2zykdv5tfbsgov6beivzl3uvtwhwhrsee7rjdlwx3i4u2uzau" as
+Theorem sq2: times (s^2 z) (s^2 z) (s^4 z).
+
+Import "damf:bafyreibnj2iwwnkkypqru2vnb7cdj5mrycq6fntgk6kzfzictjckj4qxia" as
+Theorem sq3: times (s^3 z) (s^3 z) (s^9 z).
+
+Import "damf:bafyreigqj57kh6n7sr2tg2vumozwz2s63pimmgglrw447c5md6by7isd7a" as
+Theorem sq4: times (s^4 z) (s^4 z) (s^16 z).
+
+Import "damf:bafyreictq2j265u555hj43cy6zvc4to3ebzwmixlh3drq5br4n34tf67l4" as
+Theorem sq5: times (s^5 z) (s^5 z) (s^25 z).
+
+Import "damf:bafyreictdwmsvkwhikgawsqu6vyerhx4aalxzvup7twbijq5xd7ikge534" as
+Theorem sq6: times (s^6 z) (s^6 z) (s^36 z).
+
+Import "damf:bafyreibzzidcbe67qpzvefarbhqj2tdvt3svx7dkpqenaujgozyz747d7q" as
+Theorem sq7: times (s^7 z) (s^7 z) (s^49 z).
+
+Import "damf:bafyreidmi5cm3nprgihoz5772l44hzgrydklgxf5foe2eaaze5sl2yeyni" as
+Theorem sq8: times (s^8 z) (s^8 z) (s^64 z).
+
+Import "damf:bafyreicgbc4v3hqf7ezsu3qlijrwx52iifhbhfv2ye3pk5zevgh2sq66le" as
+Theorem sq9: times (s^9 z) (s^9 z) (s^81 z).
+
+Import "damf:bafyreifrxs7wzawozmokscyeyk6fqs4exx6fgrcx7o24zccuaanwt4ldwu" as
+Theorem sq10: times (s^10 z) (s^10 z) (s^100 z).
+
+Import "damf:bafyreifwkebyrqyx24opbmfoc2i6an3jc2funry2d6py5je7mpwo7akpka" as
+Theorem sq11: times (s^11 z) (s^11 z) (s^121 z).
+
+Import "damf:bafyreib53wmf7orelxefl3dyavf35bs2jjt7sx4oinjdoogbhqxm4piaja" as
+Theorem sq12: times (s^12 z) (s^12 z) (s^144 z).
+
+Import "damf:bafyreidxg74t246b7frcsax7xrviot7mw3pfkxajaxsaizlvbyolidrsey" as
+Theorem sq13: times (s^13 z) (s^13 z) (s^169 z).
+
+Import "damf:bafyreih2d6diicxygv4ikqvxoccz2hlgrrevtmj6ykadfk6fhhmkjtb6we" as
+Theorem fib2: fib (s^2 z) (s^1 z).
+
+Import "damf:bafyreihx4zfvyidbvp4aqyxsystvn6nic7h42h3tkkpuidqxuijj4selcm" as
+Theorem fib3: fib (s^4 z) (s^3 z).
+
+Import "damf:bafyreidq5fnzj3wr2isg74id7obyf4qmxjwnd7ptejmyl3vgzitqivtz2q" as
+Theorem fib4: fib (s^5 z) (s^5 z).
+
+Import "damf:bafyreidhj4ql77imteyz63g6agwjp3uz2qtheblaghbv4ki6cqfvor66ha" as
+Theorem fib5: fib (s^6 z) (s^8 z).
+
+Import "damf:bafyreib6dog2vpp6532v34npssku5w6gsluo67zmmrxxdes2eawpezukbu" as
+Theorem fib6: fib (s^7 z) (s^13 z).
+
+Import "damf:bafyreiekrbw64uj4d564x7jsbufxj4fj4jac25f5xoldzrxqvlur4glq44" as
+Theorem fib7: fib (s^8 z) (s^21 z).
+
+Import "damf:bafyreibwetomdeku74m4ijmbjpepyl3yyowku7qxxmd4ipbwba2zpynuie" as
+Theorem fib8: fib (s^9 z) (s^34 z).
+
+Import "damf:bafyreihygguzc2sijbutd3zv3mlkdy2fthvlj4lndck676vy4jkxmel4fm" as
+Theorem fib9: fib (s^10 z) (s^55 z).
+
+Import "damf:bafyreigwxc4yjx6vrchwthfkrpptxulw676mtkbwkkcsxoxfmgnseuokva" as
+Theorem fib10: fib (s^11 z) (s^89 z).
+
+Import "damf:bafyreie7ssgrtgtmehu2v662z4mqxk7drbjtgtrknsaedi3pzm2yodpwxa" as
+Theorem fib11: fib (s^12 z) (s^144 z).
+
+Import "damf:bafyreigspm5o3hdw33wklundww6hzwv5mg3ihgynoommx5cesjpu5hl22q" as
+Theorem fib12: fib (s^13 z) (s^233 z).
+
+Import "damf:bafyreieliqbze5725rrro2bxw4imcznj5vygkzorbahvsll25yq4jfubce" as
+Theorem fib13: fib (s^13 z) (s^233 z).
+
+Theorem fib_squares: forall x x2, nat x -> times x x x2 ->
+  (fib x x2 -> x = z \/ x = s z \/ x = s^12 z) /\
+  (x = z \/ x = s z \/ x = s^12 z -> fib x x2).
+intros Hnat Hsquare. split.
+%% ->
+intros Hfib.
+Hcs: assert x = s^0 z \/ x = s^1 z \/ x = s^2 z \/ x = s^3 z
+         \/ x = s^4 z \/ x = s^5 z \/ x = s^6 z \/ x = s^7 z
+         \/ x = s^8 z \/ x = s^9 z \/ x = s^10 z \/ x = s^11 z
+         \/ x = s^12 z \/ leq (s^13 z) x.
+  Hnat: case Hnat. search.
+  Hnat: case Hnat. search.
+  Hnat: case Hnat. search.
+  Hnat: case Hnat. search.
+  Hnat: case Hnat. search.
+  Hnat: case Hnat. search.
+  Hnat: case Hnat. search.
+  Hnat: case Hnat. search.
+  Hnat: case Hnat. search.
+  Hnat: case Hnat. search.
+  Hnat: case Hnat. search.
+  Hnat: case Hnat. search.
+  Hnat: case Hnat. search.
+  right. search 14.
+Hcs: case Hcs.
+  search. % case of x = z
+  search. % case of x = s z
+  % case of x = 2
+  apply fib_deterministic to fib2 Hfib.
+  apply times_deterministic to sq2 Hsquare.
+  % case of x = 3
+  apply fib_deterministic to fib3 Hfib.
+  apply times_deterministic to sq3 Hsquare.
+  % case of x = 4
+  apply fib_deterministic to fib4 Hfib.
+  apply times_deterministic to sq4 Hsquare.
+  % case of x = 5
+  apply fib_deterministic to fib5 Hfib.
+  apply times_deterministic to sq5 Hsquare.
+  % case of x = 6
+  apply fib_deterministic to fib6 Hfib.
+  apply times_deterministic to sq6 Hsquare.
+  % case of x = 7
+  apply fib_deterministic to fib7 Hfib.
+  apply times_deterministic to sq7 Hsquare.
+  % case of x = 8
+  apply fib_deterministic to fib8 Hfib.
+  apply times_deterministic to sq8 Hsquare.
+  % case of x = 9
+  apply fib_deterministic to fib9 Hfib.
+  apply times_deterministic to sq9 Hsquare.
+  % case of x = 10
+  apply fib_deterministic to fib10 Hfib.
+  apply times_deterministic to sq10 Hsquare.
+  % case of x = 11
+  apply fib_deterministic to fib11 Hfib.
+  apply times_deterministic to sq11 Hsquare.
+  % case of x = 12
+  search.
+  % case of x >= 13
+  H: apply fib_square_above to Hnat Hcs.
+  H: apply *H to Hsquare.
+  H: apply *H to Hfib.
+  Hnat2: apply times_result_nat to Hnat Hnat Hsquare.
+  apply lt_irreflexive to Hnat2 H.
+
+%% <-
+intros Hcs.
+Hcs: case Hcs.
+  case Hsquare. search.
+  apply times_deterministic to sq1 Hsquare. search.
+  apply times_deterministic to sq12 Hsquare. backchain fib12.
