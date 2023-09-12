@@ -178,8 +178,11 @@ let processAssertion = async (cid: string, result: {}) => {
 
             let modeValue = production["mode"]
             // addressing the currently expecting mode values -- or make it more general here? (anything or ipldLink)
-            //if (mode == null || mode == "axiom" || mode == "conjecture")
-            if (modeValue["/"]) { // case ipldLink (maybe also later should verify cid?)
+            //if (mode == null || mode == "conjecture")
+            if (modeValue == null) {
+                // modeValue stays the same
+            }
+            else if (modeValue["/"]) { // case ipldLink (maybe also later should verify cid?)
                 modeValue = modeValue["/"]
             }
             else { // case standard string modes
