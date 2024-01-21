@@ -26,7 +26,7 @@ import { getCommand } from './get.js';
 //import { whatISay, doISay } from './trusting-old';
 import { lookup } from './lookup.js';
 import { publishDAGToCloud } from './utilities.js';
-import { serve } from './service.js';
+import { serve } from './serve.js';
 
 program
     .command('serve')
