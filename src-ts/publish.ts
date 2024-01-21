@@ -21,8 +21,10 @@ import fs from "node:fs/promises";
 import crypto from "crypto";
 
 import iv from "./initial-vals.js";
-import { damfResolve, ipfsAddObj, ipfsCommit,
-         publishDAGToCloud } from "./utilities.js";
+import {
+    damfResolve, ipfsAddObj, ipfsCommit,
+    publishDAGToCloud
+} from "./utilities.js";
 import { validateInput } from "./validate_input.js";
 
 let readLanguages = {};
@@ -46,12 +48,12 @@ export async function publishCommand(inputPath: string, target: target) {
             await publishCollection(input, input)) ??
         await publishGeneric(input, input);
     if (!cid)
-        throw new Error(`publishCommand(): failed to publish ${ format } object`);
+        throw new Error(`publishCommand(): failed to publish ${format} object`);
     await ipfsCommit();
     if (target === "cloud")
         await publishDAGToCloud(cid);
 
-    console.log(`Published DAMF ${ format } object to ${ target } with cid: ${ cid }`);
+    console.log(`Published DAMF ${format} object to ${target} with cid: ${cid}`);
 }
 
 type Pub = (obj: any, input: any) => Promise<string>;
@@ -71,7 +73,7 @@ function publishAnnotated(format: string, publish: Pub): Pub {
     };
 }
 
-async function getLanguageCid(language: string) {
+export async function getLanguageCid(language: string) {
     const cid: string =
         await damfResolve(language) ??
         readLanguages[language] ??
@@ -103,7 +105,7 @@ function getContextCid(ctx: any) {
     return null;
 }
 
-const publishFormula: Pub = async (formulaObj, input) => {
+export const publishFormula: Pub = async (formulaObj, input) => {
     const cidLanguage = await getLanguageCid(formulaObj["language"]);
     const content = await formulaObj["content"];
 
@@ -127,14 +129,39 @@ const publishFormula: Pub = async (formulaObj, input) => {
     return await ipfsAddObj(formulaGlobal);
 }
 
+
 const publishAnnotatedFormula = publishAnnotated("formula", publishFormula);
 
 const publishSequent: Pub = async (sequentObj, input) => {
-    const conclusionName = sequentObj["conclusion"];
+
+    // here, to consider conclusion of "abstraction" format,
+    // we initially considered conclusion as "formula" format
+    // this is now temporary change; just to consider "abstraction" and keep the way in which we treat "formula" the same (we are not considering many cases, one of which is when format is "abstraction" but it's "damf:cid" directly)
+
+    const conclusion = sequentObj["conclusion"]
+    let cidConclusion = ""
+
+    if (conclusion["format"] && conclusion["format"] == "abstraction") {
+        let abstraction = {
+            "format": "abstraction",
+            "formula": { "/": await publishFormula(input["formulas"][conclusion["formula"]], input) },
+            "parameters": conclusion["parameters"]
+        }
+
+        cidConclusion = await ipfsAddObj(abstraction)
+    }
+    else {
+        const conclusionName = sequentObj["conclusion"];
+
+        cidConclusion =
+            await damfResolve(conclusionName) ??
+            await publishFormula(input["formulas"][conclusionName], input);
+    }
+    /*const conclusionName = sequentObj["conclusion"];
 
     const cidConclusion =
         await damfResolve(conclusionName) ??
-        await publishFormula(input["formulas"][conclusionName], input);
+        await publishFormula(input["formulas"][conclusionName], input);*/
 
     const dependenciesIpfs = [] as ipldLink[];
     for (const dependency of sequentObj["dependencies"]) {
@@ -167,16 +194,17 @@ const publishProduction: Pub = async (productionObj, input) => {
     //that tools that publish and get global objects have some expected modes,
     //according to some specification (maybe standard maybe more)
     // OR maybe make it more general? --> dispatch doesn't check restricted mode values?
+    // [TODO] rethink these mode values (axiom, conjecture .. not really modes?)
     const modeValue: toolLink | null | "axiom" | "conjecture" =
         (mode == null || mode == "axiom" || mode == "conjecture") ? mode :
-        await (async () => {
-            const cid =
-                readTools[mode] ??
-                await damfResolve(mode) ??
-                (await iv.toolProfiles.read(mode))["tool"];
-            readTools[mode] = cid;
-            return { "/": cid };
-        })();
+            await (async () => {
+                const cid =
+                    readTools[mode] ??
+                    await damfResolve(mode) ??
+                    (await iv.toolProfiles.read(mode))["tool"];
+                readTools[mode] = cid;
+                return { "/": cid };
+            })();
 
     const productionGlobal: production = {
         "format": "production",
@@ -201,7 +229,7 @@ const publishAssertion: Pub = async (assertionObj, input) => {
         (claim["format"] !== "annotated-production" ? null :
             await publishAnnotatedProduction(claim, input));
     if (!cidClaim)
-        throw new Error(`publishAssertion(): invalid format ${ claim["format"] }`);
+        throw new Error(`publishAssertion(): invalid format ${claim["format"]}`);
 
     const agentProfileName = assertionObj["agent"]
     const agentProfile =
@@ -222,7 +250,7 @@ const publishAssertion: Pub = async (assertionObj, input) => {
 }
 
 // also needs more checking
-const publishGeneric: Pub = async (element, input) => {
+export const publishGeneric: Pub = async (element, input) => {
     const format = element["format"];
     const cid: string =
         (format !== "context" ? null :
@@ -244,7 +272,7 @@ const publishGeneric: Pub = async (element, input) => {
         (format !== "assertion" ? null :
             await publishAssertion(element, input));
     if (!cid)
-        throw new Error(`publishGeneric(): failed to publish ${ format } object`);
+        throw new Error(`publishGeneric(): failed to publish ${format} object`);
     return cid
 }
 

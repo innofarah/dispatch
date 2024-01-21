@@ -125,6 +125,7 @@ function validateFormula(obj: any, path: string, locals: Locals) {
 
 function validateSequent(obj: any, path: string, locals: Locals) {
     // debug(path, "Sequent");
+    /* remove temporarily; due to testing publishing an abstraction assertion
     const conclusion: string = validatingGet(obj, path, "conclusion", "string");
     if (conclusion.startsWith("damf:")) {
         // [TODO] validate referenced DAMF object
@@ -133,7 +134,7 @@ function validateSequent(obj: any, path: string, locals: Locals) {
         if (!localF)
             diagnose(conclusion, `${ path }.conclusion`, "unknown local formula");
         validateFormula(localF, `${ path }.formulas.${ conclusion }`, locals);
-    }
+    }*/
     const dependencies: string[] = validatingGet(obj, path, "dependencies");
     if (!(dependencies instanceof Array))
         diagnose(dependencies, `${ path }.dependencies`, "not an array");

@@ -26,6 +26,7 @@ import { getCommand } from './get.js';
 //import { whatISay, doISay } from './trusting-old';
 import { lookup } from './lookup.js';
 import { publishDAGToCloud } from './utilities.js';
+import { apply } from './apply.js';
 
 program
     .command('create-agent')
@@ -109,6 +110,14 @@ program
     .description('publish dag to cloud starting from a given cid.\n')
     .argument('<CID>', 'the root dag cid.\n')
     .action(publishDAGToCloud);
+
+program
+    .command('apply')
+    .description('TBA\n')
+    .argument('<abstraction>', 'TBA\n')
+    .argument('<argument>', 'TBA\n')
+    .argument('<target>', '"local" to pin only on local ipfs node, "cloud to pin on web3.storage" (web3token should be specified in this case)')
+    .action(apply)
 /*
 program
     .command('get')

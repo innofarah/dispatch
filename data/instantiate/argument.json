@@ -1,0 +1,12 @@
+{
+    "format": "argument",
+    "language": "abella-language",
+    "identifier": "refl_t",
+    "type-signature": "proc -> proc -> proc -> proc -> prop",
+    "context": [
+        "Kind name type",
+        "Kind action type",
+        "Kind proc type",
+        "Define refl_t : proc -> proc -> proc -> proc -> prop by refl_t P P Q Q."
+    ]
+}
