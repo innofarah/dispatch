@@ -26,7 +26,12 @@ import { getCommand } from './get.js';
 //import { whatISay, doISay } from './trusting-old';
 import { lookup } from './lookup.js';
 import { publishDAGToCloud } from './utilities.js';
+import { serve } from './service.js';
 
+program
+    .command('serve')
+    .description('start dispatch as a service\n')
+    .action(serve)
 program
     .command('create-agent')
     .description('generate an agent profile with a PPK pair.\n')
@@ -109,6 +114,7 @@ program
     .description('publish dag to cloud starting from a given cid.\n')
     .argument('<CID>', 'the root dag cid.\n')
     .action(publishDAGToCloud);
+
 /*
 program
     .command('get')
