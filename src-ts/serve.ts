@@ -1,4 +1,6 @@
 const http = require('http');
+import { getResult } from './get.js';
+
 
 export async function serve() {
 
@@ -6,10 +8,30 @@ export async function serve() {
     const hostname = '127.0.0.1';
     const port = 3000;
 
-    const server = http.createServer((req, res) => {
+    const server = http.createServer(async (req, res) => {
         res.statusCode = 200;
         res.setHeader('Content-Type', 'text/plain');
-        res.end('Hello World');
+        res.setHeader('Access-Control-Allow-Origin', '*');
+
+        if (req.method == "GET") { // this is GET in general, not just dispatch-get, so:
+            // params:
+                // "dispatch-command": "get" | ?
+            // TODO proper error handling
+            let url = new URL("http://" + hostname + ":" + port + req.url)
+            let params = url.searchParams
+            let dispatchCommand = params.get("dispatch-command")
+            if (dispatchCommand == "get") {
+                let cid = params.get("cid")
+                let result = await getResult(cid)
+                
+                res.end(result)
+            }
+            else {
+                res.end('Unknown dispatch command');
+            }
+        }
+        else res.end('Unknown request method');
+        
     });
 
     server.listen(port, hostname, () => {

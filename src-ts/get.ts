@@ -43,9 +43,8 @@ else { // if no filepath argument(option) is given
     outputPath = cid + ".json" // the default value for the output file path
 }*/
 
-
-// cid refers to: context, formula, sequent, production, assertion, collection, etc. // for now
-export async function getCommand(cid: string, directoryPath: string) {
+export async function getResult(cid: string) {
+    
     let result = {};
     await ensureFullDAG(cid);
 
@@ -89,6 +88,14 @@ export async function getCommand(cid: string, directoryPath: string) {
         }
 
     } else throw new Error("ERROR: Retrieved object is empty.")
+
+    return JSON.stringify(result);
+    //console.log(JSON.stringify(result))
+}
+
+// cid refers to: context, formula, sequent, production, assertion, collection, etc. // for now
+export async function getCommand(cid: string, directoryPath: string) {
+    let result = await getResult(cid);
 
     const jsonFile = await writeFileIn(directoryPath, cid + ".json",
                                        JSON.stringify(result));
