@@ -189,6 +189,7 @@ let processAssertion = async (cid: string, result: {}) => {
                 // modeValue stays the same
             }
             let unit = {
+                "assertion": cid,
                 "agent": agent,
                 "mode": modeValue,
                 "dependencies": dependenciesCids
@@ -210,6 +211,7 @@ let processAssertionList = async (assertionList: []) => {
         // also it will ignore an assertion if the signature is invalid
         // it will ignore any other cid "format"
     }
+    console.log(result)
     return result
 }
 
