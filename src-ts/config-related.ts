@@ -120,8 +120,16 @@ export async function createLanguage(languageName: string,
     console.log("Language record " + languageName + " created successfully!");
 }
 
-export async function setweb3token(token: string) {
+/*export async function setweb3token(token: string) {
     await iv.config.write("my-web3.storage-api-token", token);
+}*/
+
+export async function setw3email(email: string) {
+    await iv.config.write("my-w3-email", email);
+}
+
+export async function setw3space(space: string) {
+    await iv.config.write("my-w3-space", space);
 }
 
 export async function setgateway(gateway: string) {

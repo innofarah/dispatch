@@ -36,9 +36,11 @@ import * as cborCodec from "@ipld/dag-cbor";
 import { sha256 } from "multiformats/hashes/sha2";
 import { CarWriter, CarReader } from "@ipld/car";
 // web3.storage stuff
-import { Web3Storage } from "web3.storage";
+//import { Web3Storage } from "web3.storage";
+import { create } from '@web3-storage/w3up-client'
 
 import { config, keyStore, allowList } from "./initial-vals.js";
+import { createReadStream, readFileSync } from "fs";
 
 function isAnnotated(format: string,
                      testFn: (obj: any) => boolean) {
@@ -285,6 +287,32 @@ export async function ipfsCommit() {
 }
 
 export async function publishDAGToCloud(cid: string) {
+    const email = await config.read("my-w3-email");
+    if (!email || email === "**insert your email here**")
+        throw new Error(`ERROR: missing email; use ${ process.argv0 } set-w3-email`);
+    const w3SpaceKey = await config.read("my-w3-space");
+    if (!w3SpaceKey || w3SpaceKey === "**insert your space key here**")
+        throw new Error(`ERROR: missing space key; use ${ process.argv0 } set-w3-space`);
+    const client = await create()
+    await client.login(email)
+    // tmp set space as my "damf" space ([TODO] move also to config)
+    await client.setCurrentSpace(w3SpaceKey) // select the relevant Space DID that is associated with your account
+
+     // [TODO] try to do this without temporary files
+     await withTempFile("car", async (tmpFile) => {
+        await exec(`ipfs dag export ${ cid } > ${ tmpFile }`);
+        // read and parse the entire stream in one go, this will cache the contents of
+        // the car in memory so is not suitable for large files.
+        const contents = readFileSync(tmpFile);
+        //const reader = await CarReader.fromBytes(contents);
+        const blob = new Blob([contents])
+        await client.uploadCAR(blob)
+        // console.log(`DEBUG: publishDAGToCloud(${ cid })`);
+        // console.log("DEBUG:   successful");
+    });
+}
+
+/*export async function publishDAGToCloudOld(cid: string) {
     const token: string = await config.read("my-web3.storage-api-token");
     if (!token || token === "**insert your token here**")
         throw new Error(`ERROR: missing web3.token; use ${ process.argv0 } set-web3token`);
@@ -300,7 +328,7 @@ export async function publishDAGToCloud(cid: string) {
         // console.log(`DEBUG: publishDAGToCloud(${ cid })`);
         // console.log("DEBUG:   successful");
     });
-}
+}*/
 
 // -------------------------------------------
 // writing files after ensuring dirname exists

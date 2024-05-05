@@ -19,8 +19,7 @@
 
 import { program } from 'commander';
 import { publishCommand } from './publish.js';
-import { createAgent, createTool, createLanguage, setweb3token,
-         setgateway, listconfig } from './config-related.js';
+import { createAgent, createTool, createLanguage, setw3email, setw3space, setgateway, listconfig } from './config-related.js';
 import { getCommand } from './get.js';
 //import { trustwhoCommand } from './trusting';
 //import { whatISay, doISay } from './trusting-old';
@@ -46,12 +45,22 @@ program
     .argument('<input-type>', 'type for your input: takes "file" for a text input, "json" or "cid".\n')
     .argument('<input>', 'the input for the created language record. A filepath or cid.\n')
     .action(createLanguage);
-program
+/*program
     .command('set-web3token')
     .description('set your web3.storage api token.\n')
     .argument('<token>', 'to use for publishing through the web3.storage api.\n'
     + 'you can create one at web3.storage website.\n')
-    .action(setweb3token);
+    .action(setweb3token);*/
+program
+    .command('set-w3-email')
+    .description('set your web3.storage account login email.\n')
+    .argument('<email>', 'to use to access your web3.storage account and upload data.\n')
+    .action(setw3email)
+program
+    .command('set-w3-space')
+    .description('set your web3.storage space key.\n')
+    .argument('<key>', 'the key for the desired console.web3.storage space for uploading data.\n')
+    .action(setw3space)
 program
     .command('set-gateway')
     .description('set your gateway.\n')
